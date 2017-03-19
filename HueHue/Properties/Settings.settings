@@ -3,7 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="COM_PORT" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">COM4</Value>
+    </Setting>
+    <Setting Name="LedsPerSpot" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
     </Setting>
   </Settings>
 </SettingsFile>

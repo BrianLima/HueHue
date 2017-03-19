@@ -25,13 +25,25 @@ namespace HueHue.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM4")]
         public string COM_PORT {
             get {
                 return ((string)(this["COM_PORT"]));
             }
             set {
                 this["COM_PORT"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int LedsPerSpot {
+            get {
+                return ((int)(this["LedsPerSpot"]));
+            }
+            set {
+                this["LedsPerSpot"] = value;
             }
         }
     }

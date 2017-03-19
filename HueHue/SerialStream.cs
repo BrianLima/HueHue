@@ -8,11 +8,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using NLog;
 using HueHue.Properties;
+using System.Collections.Generic;
 
 namespace HueHue
 {
     internal class SerialStream : IDisposable
     {
+        //This will be our array of LEDS representing the strip;
+        List<LEDBulb> LEDS = new List<LEDBulb>();
+
         private ILogger _log = LogManager.GetCurrentClassLogger();
 
         private readonly byte[] _messagePreamble = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09 };
@@ -21,10 +25,16 @@ namespace HueHue
         private CancellationTokenSource _cancellationTokenSource;
         private readonly Stopwatch _stopwatch = new Stopwatch();
 
-
         public void Start()
         {
             _log.Debug("Start called.");
+
+            for (int i = 0; i < 90; i++)
+            {
+                LEDBulb bulb = new LEDBulb();
+                LEDS.Add(bulb);
+            }
+
             if (_workerThread != null) return;
 
             _cancellationTokenSource = new CancellationTokenSource();
@@ -52,26 +62,20 @@ namespace HueHue
             byte[] outputStream;
 
             int counter = _messagePreamble.Length;
-            //lock (SpotSet.Lock)
-            //{
-            //    const int colorsPerLed = 3;
-            //    outputStream = new byte[_messagePreamble.Length + (Settings.LedsPerSpot * SpotSet.Spots.Length * colorsPerLed)];
-            //    Buffer.BlockCopy(_messagePreamble, 0, outputStream, 0, _messagePreamble.Length);
-            //
-            //    foreach (Spot spot in SpotSet.Spots)
-            //    {
-            //
-            //        for (int i = 0; i < Settings.LedsPerSpot; i++)
-            //        {
-            //
-            //            outputStream[counter++] = spot.Blue; // blue
-            //            outputStream[counter++] = spot.Green; // green
-            //            outputStream[counter++] = spot.Red; // red
-            //        }
-            //    }
-            //}
+            const int colorsPerLed = 3;
+            outputStream = new byte[LEDS.Count * 3];
+            //Buffer.BlockCopy(_messagePreamble, 0, outputStream, 0, _messagePreamble.Length);
 
-            return null;
+            int count = 0;
+            foreach (LEDBulb bulb in LEDS)
+            {
+                outputStream[count] = bulb.r;
+                outputStream[count+1] = bulb.g;
+                outputStream[count+2] = bulb.b;
+                count+=3;
+            }
+
+            return outputStream;
         }
 
         private void mBackgroundWorker_DoWork(object tokenObject)
