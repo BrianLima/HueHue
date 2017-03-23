@@ -32,7 +32,7 @@ namespace HueHue
 
         private void ClrPcker_Background_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
         {
-            textBox.Text = "#" + ClrPcker_Background.SelectedColor.Value.R.ToString() + ClrPcker_Background.SelectedColor.Value.G.ToString().PadLeft(3,'0') + ClrPcker_Background.SelectedColor.Value.B.ToString().PadLeft(3,'0');
+           // textBox.Text = "#" + ClrPcker_Background.SelectedColor.Value.R.ToString() + ClrPcker_Background.SelectedColor.Value.G.ToString().PadLeft(3,'0') + ClrPcker_Background.SelectedColor.Value.B.ToString().PadLeft(3,'0');
         }
     }
 }
