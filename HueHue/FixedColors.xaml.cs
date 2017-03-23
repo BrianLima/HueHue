@@ -34,9 +34,9 @@ namespace HueHue
         {
             foreach (var LEDBulb in SerialStream.LEDS)
             {
-                LEDBulb.b = colorPicker.B;
-                LEDBulb.g = colorPicker.G;
-                LEDBulb.r = colorPicker.R;
+                LEDBulb.B = colorPicker.B;
+                LEDBulb.G = colorPicker.G;
+                LEDBulb.R = colorPicker.R;
             }
         }
     }

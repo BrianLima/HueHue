@@ -62,17 +62,15 @@ namespace HueHue
             byte[] outputStream;
 
             int counter = _messagePreamble.Length;
-            const int colorsPerLed = 3;
             outputStream = new byte[LEDS.Count * 3];
-            //Buffer.BlockCopy(_messagePreamble, 0, outputStream, 0, _messagePreamble.Length);
 
             int count = 0;
             foreach (LEDBulb bulb in LEDS)
             {
-                outputStream[count] = bulb.r;
-                outputStream[count+1] = bulb.g;
-                outputStream[count+2] = bulb.b;
-                count+=3;
+                outputStream[count] = bulb.R;
+                outputStream[count + 1] = bulb.G;
+                outputStream[count + 2] = bulb.B;
+                count += 3;
             }
 
             return outputStream;
@@ -101,7 +99,6 @@ namespace HueHue
 
                         byte[] outputStream = GetOutputStream();
                         serialPort.Write(outputStream, 0, outputStream.Length);
-
                         //ws2812b LEDs need 30 µs = 0.030 ms for each led to set its color so there is a lower minimum to the allowed refresh rate
                         //receiving over serial takes it time as well and the arduino does both tasks in sequence
                         //+1 ms extra safe zone
