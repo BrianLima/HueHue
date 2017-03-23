@@ -16,25 +16,13 @@ using System.Windows.Shapes;
 namespace HueHue
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for FixedColors.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class FixedColors : UserControl
     {
-        SerialStream s = new SerialStream();
-
-        public MainWindow()
+        public FixedColors()
         {
             InitializeComponent();
-            s.Start();
-            frame.Navigate(new FixedColors());
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
         }
     }
 }

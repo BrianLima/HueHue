@@ -46,5 +46,29 @@ namespace HueHue.Properties {
                 this["LedsPerSpot"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("FixedColor")]
+        public string CorrentMode {
+            get {
+                return ((string)(this["CorrentMode"]));
+            }
+            set {
+                this["CorrentMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("90")]
+        public int AmountOfLEDS {
+            get {
+                return ((int)(this["AmountOfLEDS"]));
+            }
+            set {
+                this["AmountOfLEDS"] = value;
+            }
+        }
     }
 }
