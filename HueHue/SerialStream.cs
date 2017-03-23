@@ -15,7 +15,7 @@ namespace HueHue
     internal class SerialStream : IDisposable
     {
         //This will be our array of LEDS representing the strip;
-        List<LEDBulb> LEDS = new List<LEDBulb>();
+        public static List<LEDBulb> LEDS = new List<LEDBulb>();
 
         private ILogger _log = LogManager.GetCurrentClassLogger();
 
@@ -29,7 +29,7 @@ namespace HueHue
         {
             _log.Debug("Start called.");
 
-            for (int i = 0; i < 90; i++)
+            for (int i = 0; i < Settings.Default.AmountOfLEDS; i++)
             {
                 LEDBulb bulb = new LEDBulb();
                 LEDS.Add(bulb);

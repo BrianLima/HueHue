@@ -12,15 +12,15 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}">
+        FontFamily="Segoe UI Light">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="83*"/>
             <RowDefinition Height="425*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="123*"/>
-            <ColumnDefinition Width="257*"/>
+            <ColumnDefinition Width="246.4"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" Grid.ColumnSpan="2" Margin="0,0,0,3" VerticalAlignment="Stretch" Content="HueHue"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,14,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="120" Text="Amount of LED's:"/>
