@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HueHue.Properties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,12 +26,17 @@ namespace HueHue
         public MainWindow()
         {
             InitializeComponent();
-            s.Start();
-            frame.Navigate(new FixedColors());
+            for (int i = 0; i < Settings.Default.AmountOfLEDS; i++)
+            {
+                s.LEDS.Add(new LEDBulb());
+            }
+
+            frame.Navigate(new FixedColors(s.LEDS));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            s.Start();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

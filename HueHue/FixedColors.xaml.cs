@@ -20,9 +20,11 @@ namespace HueHue
     /// </summary>
     public partial class FixedColors : UserControl
     {
-        public FixedColors()
+        List<LEDBulb> leds;
+        public FixedColors(List<LEDBulb> _leds)
         {
             InitializeComponent();
+            this.leds = _leds;
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -32,7 +34,7 @@ namespace HueHue
 
         private void ApplyColor(object sender, RoutedEventArgs e)
         {
-            foreach (var LEDBulb in SerialStream.LEDS)
+            foreach (var LEDBulb in leds)
             {
                 LEDBulb.B = colorPicker.B;
                 LEDBulb.G = colorPicker.G;
