@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Drawing;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
@@ -21,6 +22,8 @@ namespace HueHue
     public partial class FixedColors : UserControl
     {
         List<LEDBulb> leds;
+        int countPreviousColors;
+
         public FixedColors(List<LEDBulb> _leds)
         {
             InitializeComponent();
@@ -40,6 +43,11 @@ namespace HueHue
                 LEDBulb.G = colorPicker.G;
                 LEDBulb.R = colorPicker.R;
             }
+        }
+
+        private void colorPicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+          //Todo: Implement a color history view
         }
     }
 }

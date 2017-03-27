@@ -8,11 +8,14 @@
     <Setting Name="LedsPerSpot" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="CorrentMode" Type="System.String" Scope="User">
-      <Value Profile="(Default)">FixedColor</Value>
+    <Setting Name="CurrentMode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Fixed Colors</Value>
     </Setting>
     <Setting Name="AmountOfLEDS" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">90</Value>
+    </Setting>
+    <Setting Name="LastColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

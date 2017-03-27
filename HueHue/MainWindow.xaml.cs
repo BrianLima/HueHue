@@ -1,18 +1,5 @@
 ﻿using HueHue.Properties;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace HueHue
 {
@@ -21,6 +8,7 @@ namespace HueHue
     /// </summary>
     public partial class MainWindow : Window
     {
+        bool isRunning = false;
         SerialStream s = new SerialStream();
 
         public MainWindow()
@@ -31,16 +19,43 @@ namespace HueHue
                 s.LEDS.Add(new LEDBulb());
             }
 
-            frame.Navigate(new FixedColors(s.LEDS));
+            switch (Settings.Default.CurrentMode)
+            {
+                case "FixedColors":
+                    frame.Navigate(new FixedColors(s.LEDS));
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            s.Start();
+            if (!isRunning)
+            {
+                isRunning = true;
+                buttonStart.Content = "Stop";
+                s.Start();
+            }
+            else
+            {
+                isRunning = false;
+                buttonStart.Content = "Start";
+                s.Stop();
+            }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void comboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
+            switch (comboBox.SelectedIndex)
+            {
+                case 0:
+                    frame.Navigate(new FixedColors(s.LEDS));
+                    break;
+                default:
+
+                    break;
+            }
         }
     }
 }

@@ -49,13 +49,13 @@ namespace HueHue.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("FixedColor")]
-        public string CorrentMode {
+        [global::System.Configuration.DefaultSettingValueAttribute("Fixed Colors")]
+        public string CurrentMode {
             get {
-                return ((string)(this["CorrentMode"]));
+                return ((string)(this["CurrentMode"]));
             }
             set {
-                this["CorrentMode"] = value;
+                this["CurrentMode"] = value;
             }
         }
         
@@ -68,6 +68,18 @@ namespace HueHue.Properties {
             }
             set {
                 this["AmountOfLEDS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastColor {
+            get {
+                return ((string)(this["LastColor"]));
+            }
+            set {
+                this["LastColor"] = value;
             }
         }
     }

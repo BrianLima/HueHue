@@ -12,7 +12,7 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="Segoe UI Light">
+        FontFamily="Segoe UI Light" Height="721.556">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="83*"/>
@@ -32,7 +32,7 @@
                 </LinearGradientBrush>
             </Frame.BorderBrush>
         </Frame>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="116,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectedIndex="0" Height="30">
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="116,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectedIndex="0" Height="30" SelectionChanged="comboBox_SelectionChanged">
             <Label Content="Fixed Colors" />
             <Label Content="Rainbow"/>
             <Label Content="Alternate Colors"/>
@@ -41,7 +41,6 @@
         </ComboBox>
         <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,56,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="86" Text="Effect Type:"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="27" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="120" Margin="116,8,0,0" Grid.Row="1" TextAlignment="Right"/>
-        <Button Content="Start" HorizontalAlignment="Left" Margin="161,112.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-
+        <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Margin="161,539,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
     </Grid>
 </Window>
