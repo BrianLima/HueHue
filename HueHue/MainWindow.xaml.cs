@@ -35,13 +35,13 @@ namespace HueHue
             {
                 isRunning = true;
                 buttonStart.Content = "Stop";
-                s.Start();
+                ///s.Start();
             }
             else
             {
                 isRunning = false;
                 buttonStart.Content = "Start";
-                s.Stop();
+                //s.Stop();
             }
         }
 

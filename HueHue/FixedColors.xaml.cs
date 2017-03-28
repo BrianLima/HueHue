@@ -45,9 +45,14 @@ namespace HueHue
             }
         }
 
-        private void colorPicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        private void colorPicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<System.Windows.Media.Color?> e)
         {
-          //Todo: Implement a color history view
+            foreach (var LEDBulb in leds)
+            {
+                LEDBulb.B = e.NewValue.Value.B;
+                LEDBulb.G = e.NewValue.Value.G;
+                LEDBulb.R = e.NewValue.Value.R;
+            }
         }
     }
 }

@@ -8,7 +8,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="HueHue.FixedColors"
              mc:Ignorable="d" 
             FontFamily="Segoe UI Light"
-             d:DesignHeight="551" d:DesignWidth="370" >
+             d:DesignHeight="551" d:DesignWidth="600" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="48.8"/>
@@ -18,9 +18,20 @@
         <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Content="Fixed Color"/>
         <!--https://wpfcolorpickercontrol.codeplex.com/-->
         <Button x:Name="button" Content="Apply Color" HorizontalAlignment="Right" Margin="0,0,10,10.2" Grid.Row="2" Width="115" Height="32" VerticalAlignment="Bottom" Click="ApplyColor"/>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0.2,0,50.2" Grid.Row="1" Grid.RowSpan="2">
-            <Grid  HorizontalAlignment="Left" Height="452" Grid.Row="1" VerticalAlignment="Top" Width="366" Grid.RowSpan="2">
-                <controls:ColorCanvas x:Name="colorPicker" Margin="0,10,12,10" HorizontalAlignment="Right" Width="344"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+            <Grid  HorizontalAlignment="Left" Height="452" Grid.Row="1" VerticalAlignment="Top" Width="600" Grid.RowSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="359*"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="181*"/>
+                </Grid.ColumnDefinitions>
+                <controls:ColorCanvas x:Name="colorPicker" Margin="10,10,0,10" HorizontalAlignment="Left" Width="344" SelectedColorChanged="colorPicker_SelectedColorChanged"/>
+                <ToggleButton x:Name="breathToggle" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,10,6,0" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="False" Height="18" HorizontalAlignment="Right" Width="46" Grid.Column="2" />
+                <Label Content="Breathing:" Margin="0,11,3,0" VerticalAlignment="Top" Grid.Column="1" Height="25"/>
+                <Slider x:Name="slider" HorizontalAlignment="Right" Margin="0,-8,10,0" VerticalAlignment="Top" Width="161" Grid.Column="2" Height="79" Minimum="1" Maximum="30" Style="{StaticResource MaterialDesignDiscreteSlider}"/>
+                <Label Content="Delay:" Margin="12,41,10,0" VerticalAlignment="Top" Grid.Column="1" Height="25" ToolTip="Delay in seconds"/>
+                <Label Content="Random:" HorizontalAlignment="Left" Margin="6,71,0,0" VerticalAlignment="Top" Grid.Column="1" Height="25" Width="51"/>
+                <ToggleButton x:Name="randomToggle" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,71,6,0" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="False" Height="18" HorizontalAlignment="Right" Width="46" Grid.Column="2" />
             </Grid>
         </ScrollViewer>
     </Grid>
