@@ -2,7 +2,7 @@
 
 #define NUM_LEDS 90
 #define LED_DATA_PIN 6
-#define NUM_BYTES (NUM_LEDS*3) // 3 colors  
+#define NUM_BYTES ((NUM_LEDS*3) + 1) // 3 colors  + 1 for brightness
 
 #define BRIGHTNESS 255
 #define UPDATES_PER_SECOND 60
@@ -54,7 +54,6 @@ void loop()
 		showBlack();
 		break;
 	}
-
 }
 
 void processIncomingData()
@@ -62,6 +61,14 @@ void processIncomingData()
 	if (waitForPreamble(TIMEOUT))
 	{
 		Serial.readBytes(buffer, NUM_BYTES);
+		
+		//The first byte on the array is the brightness value
+		byte brightness = buffer[byte_counter++];
+		if (brightness != BRIGHTNESS)
+		{
+			//Let's set the brightness only if the value changed to avoid extra delays on effects that don't include breath mode
+			FastLED.setBrightness(brightness);
+		}
 
 		while (byte_counter < NUM_BYTES)
 		{

@@ -49,10 +49,10 @@ namespace HueHue.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Fixed Colors")]
-        public string CurrentMode {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public short CurrentMode {
             get {
-                return ((string)(this["CurrentMode"]));
+                return ((short)(this["CurrentMode"]));
             }
             set {
                 this["CurrentMode"] = value;
@@ -80,6 +80,18 @@ namespace HueHue.Properties {
             }
             set {
                 this["LastColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public short BreathDelay {
+            get {
+                return ((short)(this["BreathDelay"]));
+            }
+            set {
+                this["BreathDelay"] = value;
             }
         }
     }
