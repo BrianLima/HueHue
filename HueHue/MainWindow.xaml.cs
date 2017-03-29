@@ -10,13 +10,14 @@ namespace HueHue
     {
         bool isRunning = false;
         AppSettings settings;
-        SerialStream stream = new SerialStream();
+        SerialStream stream;
 
         public MainWindow()
         {
             InitializeComponent();
 
             settings = new AppSettings();
+            stream = new SerialStream(settings);
 
             GridMain.DataContext = settings;
 
@@ -24,7 +25,6 @@ namespace HueHue
             {
                 stream.LEDS.Add(new LEDBulb());
             }
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

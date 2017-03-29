@@ -64,11 +64,11 @@ void processIncomingData()
 		
 		//The first byte on the array is the brightness value
 		byte brightness = buffer[byte_counter++];
-		if (brightness != BRIGHTNESS)
-		{
+		//if (brightness != BRIGHTNESS)
+		//{
 			//Let's set the brightness only if the value changed to avoid extra delays on effects that don't include breath mode
 			FastLED.setBrightness(brightness);
-		}
+		//}
 
 		while (byte_counter < NUM_BYTES)
 		{

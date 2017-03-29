@@ -11,11 +11,12 @@ namespace HueHue
 {
     internal class SerialStream : IDisposable
     {
-        public SerialStream()
+        public SerialStream(AppSettings _settings)
         {
-
+            this.settings = _settings;
         }
 
+        public AppSettings settings;
         public List<LEDBulb> LEDS = new List<LEDBulb>();
         private ILogger _log = LogManager.GetCurrentClassLogger();
 
@@ -60,7 +61,7 @@ namespace HueHue
             outputStream = new byte[_messagePreamble.Length + (Settings.Default.TotalLeds * colorsPerLed) + 1]; //3 colors per led, +1 for the brightness
             Buffer.BlockCopy(_messagePreamble, 0, outputStream, 0, _messagePreamble.Length);
 
-            outputStream[counter++] = 255; //Set the brightness as the first byte after the preamble
+            outputStream[counter++] = settings.Brightness; //Set the brightness as the first byte after the preamble
 
             foreach (LEDBulb bulb in LEDS)
             {

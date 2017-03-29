@@ -32,22 +32,29 @@
             </Frame.BorderBrush>
         </Frame>
         <Grid x:Name="GridMain" Margin="10,10,5,308" Grid.Row="1" >
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="34,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="32"><Run Text="LED's"/><Run Text=":"/></TextBlock>
-            <ComboBox x:Name="comboBox" SelectedIndex="{Binding CurrentMode}" HorizontalAlignment="Left" Margin="71,119,0,0" VerticalAlignment="Top" Width="150" Height="30" SelectionChanged="comboBox_SelectionChanged">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="52"/>
+                <RowDefinition Height="200.8"/>
+                <RowDefinition Height="46.4"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="34,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="32" Grid.Row="1"><Run Text="LED's"/><Run Text=":"/></TextBlock>
+            <ComboBox x:Name="comboBox" SelectedIndex="{Binding CurrentMode}" Margin="71,67,10.4,0" VerticalAlignment="Top" Height="30" SelectionChanged="comboBox_SelectionChanged" Grid.Row="1">
                 <Label Content="Fixed Color" />
                 <Label Content="Rainbow"/>
                 <Label Content="Alternate Colors"/>
                 <Label Content="Running Color"/>
                 <Label Content="Breathing"/>
             </ComboBox>
-            <TextBlock HorizontalAlignment="Left" Margin="32,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="34" Text="Effect:"/>
-            <TextBox x:Name="textBox" Text="{Binding TotalLeds}" HorizontalAlignment="Left" Height="27" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Margin="71,87,0,0" TextAlignment="Right"/>
-            <Slider x:Name="slider" Value="{Binding Brightness}" HorizontalAlignment="Right" Margin="0,131,0,0" VerticalAlignment="Top" Width="165" Height="53" Minimum="0" Maximum="255" Style="{StaticResource MaterialDesignDiscreteSlider}"/>
-            <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="5,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="61" Text="Brightness:"/>
-            <Button x:Name="buttonStart" Content="Start" Margin="146,269,10,7" Click="Button_Click" Height="Auto"/>
-            <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Content="HueHue" Margin="0,0,0,255"/>
-            <TextBlock HorizontalAlignment="Left" Margin="5,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="61" Text="COM Port:"/>
-            <ComboBox x:Name="comboBox_ComPort" SelectedIndex="{Binding COMPort}" Text="{Binding COMPort}" HorizontalAlignment="Left" Margin="71,52,0,0" VerticalAlignment="Top" Width="150" Height="30"/>
+            <TextBlock HorizontalAlignment="Left" Margin="32,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="34" Text="Effect:" Grid.Row="1"/>
+            <TextBox x:Name="textBox" Text="{Binding TotalLeds}" Height="27" TextWrapping="Wrap" VerticalAlignment="Top" Margin="71,35,10.4,0" TextAlignment="Right" Grid.Row="1"/>
+            <Slider x:Name="slider" Value="{Binding Brightness}" HorizontalAlignment="Right" Margin="0,79,0.4,0" VerticalAlignment="Top" Width="165" Height="53" Minimum="0" Maximum="255" Style="{StaticResource MaterialDesignDiscreteSlider}" Grid.Row="1"/>
+            <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="5,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="61" Text="Brightness:" Grid.Row="1"/>
+            <Button x:Name="buttonStart" Content="Start" Margin="146,8.2,10.4,7.2" Click="Button_Click" Height="Auto" Grid.Row="2"/>
+            <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,0.4,5">
+                <TextBlock HorizontalAlignment="Left" Margin="-6,-6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="61" Text="Settings"/>
+            </materialDesign:ColorZone>
+            <TextBlock HorizontalAlignment="Left" Margin="5,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="61" Text="COM Port:" Grid.Row="1"/>
+            <ComboBox x:Name="comboBox_ComPort" SelectedIndex="{Binding COMPort}" Text="{Binding COMPort}" Margin="71,0,10.4,0" VerticalAlignment="Top" Height="30" Grid.Row="1"/>
         </Grid>
     </Grid>
 </Window>
