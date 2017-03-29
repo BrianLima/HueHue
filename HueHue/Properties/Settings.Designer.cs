@@ -37,18 +37,6 @@ namespace HueHue.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int LedsPerSpot {
-            get {
-                return ((int)(this["LedsPerSpot"]));
-            }
-            set {
-                this["LedsPerSpot"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public short CurrentMode {
             get {
@@ -62,12 +50,12 @@ namespace HueHue.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("90")]
-        public int AmountOfLEDS {
+        public int TotalLeds {
             get {
-                return ((int)(this["AmountOfLEDS"]));
+                return ((int)(this["TotalLeds"]));
             }
             set {
-                this["AmountOfLEDS"] = value;
+                this["TotalLeds"] = value;
             }
         }
         
@@ -92,6 +80,18 @@ namespace HueHue.Properties {
             }
             set {
                 this["BreathDelay"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("128")]
+        public byte Brightness {
+            get {
+                return ((byte)(this["Brightness"]));
+            }
+            set {
+                this["Brightness"] = value;
             }
         }
     }

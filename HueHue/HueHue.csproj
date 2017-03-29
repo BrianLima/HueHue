@@ -85,6 +85,7 @@
     </Compile>
     <Compile Include="LEDBulb.cs" />
     <Compile Include="SerialStream.cs" />
+    <Compile Include="AppSettings.cs" />
     <Page Include="AlternateColors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

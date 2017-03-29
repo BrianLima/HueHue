@@ -9,24 +9,22 @@ namespace HueHue
     public partial class MainWindow : Window
     {
         bool isRunning = false;
-        SerialStream s = new SerialStream();
+        AppSettings settings;
+        SerialStream stream = new SerialStream();
 
         public MainWindow()
         {
             InitializeComponent();
-            for (int i = 0; i < Settings.Default.AmountOfLEDS; i++)
+
+            settings = new AppSettings();
+
+            GridMain.DataContext = settings;
+
+            for (int i = 0; i < settings.TotalLeds; i++)
             {
-                s.LEDS.Add(new LEDBulb());
+                stream.LEDS.Add(new LEDBulb());
             }
 
-            switch (Settings.Default.CurrentMode)
-            {
-                case "FixedColors":
-                    frame.Navigate(new FixedColors(s.LEDS));
-                    break;
-                default:
-                    break;
-            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -35,13 +33,13 @@ namespace HueHue
             {
                 isRunning = true;
                 buttonStart.Content = "Stop";
-                s.Start();
+                stream.Start();
             }
             else
             {
                 isRunning = false;
                 buttonStart.Content = "Start";
-                s.Stop();
+                stream.Stop();
             }
         }
 
@@ -50,7 +48,7 @@ namespace HueHue
             switch (comboBox.SelectedIndex)
             {
                 case 0:
-                    frame.Navigate(new FixedColors(s.LEDS));
+                    frame.Navigate(new FixedColors(stream.LEDS));
                     break;
                 default:
 

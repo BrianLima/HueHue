@@ -5,13 +5,10 @@
     <Setting Name="COM_PORT" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM4</Value>
     </Setting>
-    <Setting Name="LedsPerSpot" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
-    </Setting>
     <Setting Name="CurrentMode" Type="System.Int16" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="AmountOfLEDS" Type="System.Int32" Scope="User">
+    <Setting Name="TotalLeds" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">90</Value>
     </Setting>
     <Setting Name="LastColor" Type="System.String" Scope="User">
@@ -19,6 +16,9 @@
     </Setting>
     <Setting Name="BreathDelay" Type="System.Int16" Scope="User">
       <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="Brightness" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">128</Value>
     </Setting>
   </Settings>
 </SettingsFile>

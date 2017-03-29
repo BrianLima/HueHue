@@ -57,7 +57,7 @@ namespace HueHue
 
             int counter = _messagePreamble.Length;
             const int colorsPerLed = 3;
-            outputStream = new byte[_messagePreamble.Length + (Settings.Default.AmountOfLEDS * colorsPerLed) + 1]; //3 colors per led, +1 for the brightness
+            outputStream = new byte[_messagePreamble.Length + (Settings.Default.TotalLeds * colorsPerLed) + 1]; //3 colors per led, +1 for the brightness
             Buffer.BlockCopy(_messagePreamble, 0, outputStream, 0, _messagePreamble.Length);
 
             outputStream[counter++] = 255; //Set the brightness as the first byte after the preamble
