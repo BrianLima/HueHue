@@ -61,14 +61,20 @@ void processIncomingData()
 	if (waitForPreamble(TIMEOUT))
 	{
 		Serial.readBytes(buffer, NUM_BYTES);
-		
+		byte brightness;
 		//The first byte on the array is the brightness value
-		byte brightness = buffer[byte_counter++];
-		//if (brightness != BRIGHTNESS)
-		//{
-			//Let's set the brightness only if the value changed to avoid extra delays on effects that don't include breath mode
-			FastLED.setBrightness(brightness);
-		//}
+		if (buffer[byte_counter++] == 1)
+		{
+			brightness = (exp(sin(millis() / 2000.0*PI)) - 0.36787944)*108.0;
+			byte_counter++;
+		}
+		else
+		{
+			brightness = buffer[byte_counter++];
+		}
+
+		//Let's set the brightness only if the value changed to avoid extra delays on effects that don't include breath mode
+		FastLED.setBrightness(brightness);
 
 		while (byte_counter < NUM_BYTES)
 		{

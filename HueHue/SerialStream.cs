@@ -65,9 +65,10 @@ namespace HueHue
 
             int counter = _messagePreamble.Length;
             const int colorsPerLed = 3;
-            outputStream = new byte[_messagePreamble.Length + (Settings.Default.TotalLeds * colorsPerLed) + 1]; //3 colors per led, +1 for the brightness
+            outputStream = new byte[_messagePreamble.Length + (Settings.Default.TotalLeds * colorsPerLed) + 2]; //3 colors per led, +1 for the brightness +1 to tell a specific effect
             Buffer.BlockCopy(_messagePreamble, 0, outputStream, 0, _messagePreamble.Length);
 
+            outputStream[counter++] = 0;
             outputStream[counter++] = settings.Brightness; //Set the brightness as the first byte after the preamble
 
             foreach (LEDBulb bulb in LEDS)
@@ -79,6 +80,8 @@ namespace HueHue
 
             return outputStream;
         }
+
+        int delayInMs = 0;
 
         private void mBackgroundWorker_DoWork(object tokenObject)
         {
@@ -111,7 +114,7 @@ namespace HueHue
                         var serialTransferTime = outputStream.Length * 10.0 * 1000.0 / baudRate;
                         var minTimespan = (int)(fastLedTime + serialTransferTime) + 1;
 
-                        int delayInMs = Math.Max(minTimespan, 0 - (int)_stopwatch.ElapsedMilliseconds);
+                        delayInMs = Math.Max(minTimespan, 0 - (int)_stopwatch.ElapsedMilliseconds);
                         if (delayInMs > 0)
                         {
                             Task.Delay(delayInMs, cancellationToken).Wait(cancellationToken);

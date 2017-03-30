@@ -10,7 +10,6 @@ namespace HueHue
     {
         public AppSettings()
         {
-
             this._brightness = Properties.Settings.Default.Brightness;
             this._com_port = Properties.Settings.Default.COM_PORT;
             this._current_mode = Properties.Settings.Default.CurrentMode;
