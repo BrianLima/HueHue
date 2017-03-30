@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NLog;
 using System.Collections.Generic;
 using HueHue.Properties;
+using System.Windows.Data;
 
 namespace HueHue
 {
@@ -18,6 +19,12 @@ namespace HueHue
 
         public AppSettings settings;
         public List<LEDBulb> LEDS = new List<LEDBulb>();
+
+        internal string[] GetPorts()
+        {
+            return SerialPort.GetPortNames();
+        }
+
         private ILogger _log = LogManager.GetCurrentClassLogger();
 
         private readonly byte[] _messagePreamble = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09 };

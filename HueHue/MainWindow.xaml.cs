@@ -1,4 +1,5 @@
 ﻿using HueHue.Properties;
+using System.IO.Ports;
 using System.Windows;
 
 namespace HueHue
@@ -18,6 +19,7 @@ namespace HueHue
 
             settings = new AppSettings();
             stream = new SerialStream(settings);
+            comboBox_ComPort.ItemsSource = stream.GetPorts();
 
             GridMain.DataContext = settings;
 
