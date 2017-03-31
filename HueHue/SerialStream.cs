@@ -6,25 +6,16 @@ using System.Threading.Tasks;
 using NLog;
 using System.Collections.Generic;
 using HueHue.Properties;
-using System.Windows.Data;
 
 namespace HueHue
 {
     internal class SerialStream : IDisposable
     {
-        public SerialStream(AppSettings _settings)
+        public SerialStream()
         {
-            this.settings = _settings;
         }
 
-        public AppSettings settings;
         public List<LEDBulb> LEDS = new List<LEDBulb>();
-
-        internal string[] GetPorts()
-        {
-            return SerialPort.GetPortNames();
-        }
-
         private ILogger _log = LogManager.GetCurrentClassLogger();
 
         private readonly byte[] _messagePreamble = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09 };
@@ -33,6 +24,10 @@ namespace HueHue
         private CancellationTokenSource _cancellationTokenSource;
         private readonly Stopwatch _stopwatch = new Stopwatch();
 
+        internal string[] GetPorts()
+        {
+            return SerialPort.GetPortNames();
+        }
 
         public void Start()
         {
@@ -68,20 +63,18 @@ namespace HueHue
             outputStream = new byte[_messagePreamble.Length + (Settings.Default.TotalLeds * colorsPerLed) + 2]; //3 colors per led, +1 for the brightness +1 to tell a specific effect
             Buffer.BlockCopy(_messagePreamble, 0, outputStream, 0, _messagePreamble.Length);
 
-            outputStream[counter++] = 0;
-            outputStream[counter++] = settings.Brightness; //Set the brightness as the first byte after the preamble
+            outputStream[counter++] = Properties.Settings.Default.Breath ? (byte)1 : (byte)0; //If the user wants to use a breath effect this will be 1 and the arduino will handle the brightness, else it's 0 andit will use the next byte as brightness
+            outputStream[counter++] = Properties.Settings.Default.Brightness; //Set the brightness as the first byte after the preamble
 
             foreach (LEDBulb bulb in LEDS)
             {
-                    outputStream[counter++] = bulb.B; // blue
-                    outputStream[counter++] = bulb.G; // green
-                    outputStream[counter++] = bulb.R; // red
+                outputStream[counter++] = bulb.B; // blue
+                outputStream[counter++] = bulb.G; // green
+                outputStream[counter++] = bulb.R; // red
             }
 
             return outputStream;
         }
-
-        int delayInMs = 0;
 
         private void mBackgroundWorker_DoWork(object tokenObject)
         {
@@ -90,7 +83,7 @@ namespace HueHue
 
             if (String.IsNullOrEmpty(Settings.Default.COM_PORT)) return;
 
-            //retry after exceptions...
+            //retry after exceptions
             while (!cancellationToken.IsCancellationRequested)
             {
                 try
@@ -114,7 +107,7 @@ namespace HueHue
                         var serialTransferTime = outputStream.Length * 10.0 * 1000.0 / baudRate;
                         var minTimespan = (int)(fastLedTime + serialTransferTime) + 1;
 
-                        delayInMs = Math.Max(minTimespan, 0 - (int)_stopwatch.ElapsedMilliseconds);
+                        var delayInMs = Math.Max(minTimespan, 0 - (int)_stopwatch.ElapsedMilliseconds);
                         if (delayInMs > 0)
                         {
                             Task.Delay(delayInMs, cancellationToken).Wait(cancellationToken);
@@ -149,7 +142,6 @@ namespace HueHue
                     }
                 }
             }
-
         }
 
         public void Dispose()

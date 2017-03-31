@@ -38,9 +38,9 @@ namespace HueHue.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public short CurrentMode {
+        public int CurrentMode {
             get {
-                return ((short)(this["CurrentMode"]));
+                return ((int)(this["CurrentMode"]));
             }
             set {
                 this["CurrentMode"] = value;
@@ -74,9 +74,9 @@ namespace HueHue.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public short BreathDelay {
+        public int BreathDelay {
             get {
-                return ((short)(this["BreathDelay"]));
+                return ((int)(this["BreathDelay"]));
             }
             set {
                 this["BreathDelay"] = value;
@@ -92,6 +92,30 @@ namespace HueHue.Properties {
             }
             set {
                 this["Brightness"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Random {
+            get {
+                return ((bool)(this["Random"]));
+            }
+            set {
+                this["Random"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Breath {
+            get {
+                return ((bool)(this["Breath"]));
+            }
+            set {
+                this["Breath"] = value;
             }
         }
     }

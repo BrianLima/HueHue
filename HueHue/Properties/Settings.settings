@@ -5,7 +5,7 @@
     <Setting Name="COM_PORT" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM4</Value>
     </Setting>
-    <Setting Name="CurrentMode" Type="System.Int16" Scope="User">
+    <Setting Name="CurrentMode" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="TotalLeds" Type="System.Int32" Scope="User">
@@ -14,11 +14,17 @@
     <Setting Name="LastColor" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="BreathDelay" Type="System.Int16" Scope="User">
+    <Setting Name="BreathDelay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="Brightness" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">128</Value>
+    </Setting>
+    <Setting Name="Random" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Breath" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

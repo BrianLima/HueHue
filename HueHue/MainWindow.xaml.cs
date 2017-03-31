@@ -18,7 +18,7 @@ namespace HueHue
             InitializeComponent();
 
             settings = new AppSettings();
-            stream = new SerialStream(settings);
+            stream = new SerialStream();
             comboBox_ComPort.ItemsSource = stream.GetPorts();
 
             GridMain.DataContext = settings;

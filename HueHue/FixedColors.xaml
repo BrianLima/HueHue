@@ -25,13 +25,13 @@
                     <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="181*"/>
                 </Grid.ColumnDefinitions>
-                <controls:ColorCanvas x:Name="colorPicker" Margin="10,10,0,10" HorizontalAlignment="Left" Width="344" SelectedColorChanged="colorPicker_SelectedColorChanged"/>
-                <ToggleButton x:Name="breathToggle" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,10,6,0" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="False" Height="18" HorizontalAlignment="Right" Width="46" Grid.Column="2" />
-                <Label Content="Breathing:" Margin="0,11,3,0" VerticalAlignment="Top" Grid.Column="1" Height="25"/>
-                <Slider x:Name="slider" HorizontalAlignment="Right" Margin="0,-8,10,0" VerticalAlignment="Top" Width="161" Grid.Column="2" Height="79" Minimum="1" Maximum="30" Style="{StaticResource MaterialDesignDiscreteSlider}"/>
-                <Label Content="Delay:" Margin="12,41,10,0" VerticalAlignment="Top" Grid.Column="1" Height="25" ToolTip="Delay in seconds"/>
-                <Label Content="Random:" HorizontalAlignment="Left" Margin="6,71,0,0" VerticalAlignment="Top" Grid.Column="1" Height="25" Width="51"/>
-                <ToggleButton x:Name="randomToggle" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,71,6,0" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="False" Height="18" HorizontalAlignment="Right" Width="46" Grid.Column="2" />
+                <controls:ColorCanvas x:Name="colorPicker" Margin="10,10,0,12" HorizontalAlignment="Left" Width="343" SelectedColorChanged="colorPicker_SelectedColorChanged"/>
+                <Grid x:Name="GridFixedColorSettings" Grid.ColumnSpan="2" Grid.Column="1" Margin="0,10,6,386">
+                    <ToggleButton x:Name="breathToggle" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="{Binding Breath}" Height="18" HorizontalAlignment="Right" Width="46" />
+                    <Label Content="Breathing:" Margin="0,1,178,0" VerticalAlignment="Top" Height="25"/>
+                    <Label Content="Random:" HorizontalAlignment="Left" Margin="6,31,0,0" VerticalAlignment="Top" Height="25" Width="51"/>
+                    <ToggleButton x:Name="randomToggle" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,31,0,0" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="{Binding Random}" Height="18" HorizontalAlignment="Right" Width="46" />
+                </Grid>
             </Grid>
         </ScrollViewer>
     </Grid>
