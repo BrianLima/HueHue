@@ -1,49 +1,60 @@
-﻿using HueHue.Properties;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace HueHue
 {
     public static class Effects
     {
-        public static bool firstRun;
-        private static byte step;
-        private static byte stepR, stepG, stepB, originalR, originalG, originalB;
+        //The colors the effect will be based on
+        public static LEDBulb ColorOne = new LEDBulb();
+        public static LEDBulb ColorTwo = new LEDBulb();
+         public static LEDBulb ColorThree = new LEDBulb();
 
         /// <summary>
-        /// Interation logic to breath effect a List<LEDBulb>
+        /// Fills a entire LED strip with a solid color
         /// </summary>
-        /// <param name="LEDS"></param>
-        public static void Breathing(List<LEDBulb> LEDS)
+        /// <param name="LEDs"></param>
+        public static void FixedColor(List<LEDBulb> LEDs)
         {
-            //The perfect way to do this would be by dimming the brightness from 255 to 0, but i still don't have a way to set brightness in C#
-            //So instead i'm trying to fade the collors to black
-
-            if (firstRun)
+            foreach (LEDBulb LED in LEDs)
             {
-                originalR = 
-                step = (byte)(255 / Settings.Default.BreathDelay);
-                firstRun = false;
+                LED.R = ColorOne.R;
+                LED.B = ColorOne.B;
+                LED.G = ColorOne.G;
             }
-            else
+        }
+
+        /// <summary>
+        /// Fills a strip alternating between two colors
+        /// </summary>
+        /// <param name="LEDs"></param>
+        public static void TwoAlternateColor(List<LEDBulb> LEDs)
+        {
+            for (int i = 0; i < LEDs.Count; i++)
             {
-                Thread.Sleep(Settings.Default.BreathDelay / step);
+                if (i%2 == 0)
+                {
+                    LEDs[i].R = ColorOne.R;
+                    LEDs[i].G = ColorOne.G;
+                    LEDs[i].B = ColorOne.B;
+                }
+                else
+                {
+                    LEDs[i].R = ColorTwo.R;
+                    LEDs[i].G = ColorTwo.G;
+                    LEDs[i].B = ColorTwo.B;
+                }
             }
+        }
 
-            if (LEDS[0].B == 0 && LEDS[0].G == 0 && LEDS[0].G == 0)
-            {
+        public static void RandomColor(List<LEDBulb> LEDs)
+        {
+            Random random = new Random();
+            ColorOne.R = (byte)random.Next(255);
+            ColorOne.G = (byte)random.Next(255);
+            ColorOne.B = (byte)random.Next(255);
 
-            }
-            else
-            {
-
-            }
-
-
+            FixedColor(LEDs);
         }
     }
 }

@@ -50,7 +50,7 @@ namespace HueHue
             switch (comboBox.SelectedIndex)
             {
                 case 0:
-                    frame.Navigate(new FixedColors(stream.LEDS));
+                    frame.Navigate(new FixedColors());
                     break;
                 default:
 

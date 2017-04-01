@@ -66,6 +66,16 @@ namespace HueHue
             outputStream[counter++] = Properties.Settings.Default.Breath ? (byte)1 : (byte)0; //If the user wants to use a breath effect this will be 1 and the arduino will handle the brightness, else it's 0 andit will use the next byte as brightness
             outputStream[counter++] = Properties.Settings.Default.Brightness; //Set the brightness as the first byte after the preamble
 
+            switch (Properties.Settings.Default.CurrentMode)
+            {
+                case 0: //FixedColors
+                    Effects.FixedColor(LEDS);
+                    break;
+                default:
+                    Effects.FixedColor(LEDS);
+                    break;
+            }
+
             foreach (LEDBulb bulb in LEDS)
             {
                 outputStream[counter++] = bulb.B; // blue

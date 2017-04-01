@@ -13,36 +13,26 @@ namespace HueHue
         List<LEDBulb> leds;
         int countPreviousColors;
 
-        public FixedColors(List<LEDBulb> _leds)
+        public FixedColors()
         {
             InitializeComponent();
-            this.leds = _leds;
             GridFixedColorSettings.DataContext = settings;
+            //colorPicker.DataContext = Effects.ColorOne; TODO: Bind to a converter maybe?
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void ApplyColor(object sender, RoutedEventArgs e)
         {
-            foreach (var LEDBulb in leds)
-            {
-                LEDBulb.B = colorPicker.B;
-                LEDBulb.G = colorPicker.G;
-                LEDBulb.R = colorPicker.R;
-            }
         }
 
         private void colorPicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<System.Windows.Media.Color?> e)
         {
-            foreach (var LEDBulb in leds)
-            {
-                LEDBulb.B = e.NewValue.Value.B;
-                LEDBulb.G = e.NewValue.Value.G;
-                LEDBulb.R = e.NewValue.Value.R;
-            }
+            Effects.ColorOne.B = e.NewValue.Value.B;
+            Effects.ColorOne.G = e.NewValue.Value.G;
+            Effects.ColorOne.R = e.NewValue.Value.R;
         }
     }
 }
