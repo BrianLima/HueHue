@@ -8,7 +8,7 @@ namespace HueHue
         //The colors the effect will be based on
         public static LEDBulb ColorOne = new LEDBulb();
         public static LEDBulb ColorTwo = new LEDBulb();
-         public static LEDBulb ColorThree = new LEDBulb();
+        public static LEDBulb ColorThree = new LEDBulb();
 
         /// <summary>
         /// Fills a entire LED strip with a solid color
@@ -32,7 +32,7 @@ namespace HueHue
         {
             for (int i = 0; i < LEDs.Count; i++)
             {
-                if (i%2 == 0)
+                if (i % 2 == 0)
                 {
                     LEDs[i].R = ColorOne.R;
                     LEDs[i].G = ColorOne.G;

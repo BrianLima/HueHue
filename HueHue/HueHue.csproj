@@ -77,9 +77,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AlternateColors.xaml.cs">
-      <DependentUpon>AlternateColors.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Effects.cs" />
     <Compile Include="FixedColors.xaml.cs">
       <DependentUpon>FixedColors.xaml</DependentUpon>
@@ -87,10 +84,6 @@
     <Compile Include="LEDBulb.cs" />
     <Compile Include="SerialStream.cs" />
     <Compile Include="AppSettings.cs" />
-    <Page Include="AlternateColors.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="FixedColors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

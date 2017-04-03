@@ -68,8 +68,11 @@ namespace HueHue
 
             switch (Properties.Settings.Default.CurrentMode)
             {
-                case 0: //FixedColors
+                case 0: //FixedColor
                     Effects.FixedColor(LEDS);
+                    break;
+                case 1: //AlternateColors
+                    Effects.TwoAlternateColor(LEDS);
                     break;
                 default:
                     Effects.FixedColor(LEDS);

@@ -32,8 +32,8 @@
             <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="34,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="32" Grid.Row="1"><Run Text="LED's"/><Run Text=":"/></TextBlock>
             <ComboBox x:Name="comboBox" SelectedIndex="{Binding CurrentMode}" Margin="71,67,10.4,0" VerticalAlignment="Top" Height="30" SelectionChanged="comboBox_SelectionChanged" Grid.Row="1">
                 <Label Content="Fixed Color" />
-                <Label Content="Rainbow"/>
                 <Label Content="Alternate Colors"/>
+                <Label Content="Rainbow"/>
                 <Label Content="Running Color"/>
                 <Label Content="Breathing"/>
             </ComboBox>

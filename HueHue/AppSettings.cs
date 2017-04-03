@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace HueHue
 {
-    class AppSettings : INotifyPropertyChanged
+    public class AppSettings : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -17,6 +12,8 @@ namespace HueHue
             this._com_port = Properties.Settings.Default.COM_PORT;
             this._current_mode = Properties.Settings.Default.CurrentMode;
             this._total_leds = Properties.Settings.Default.TotalLeds;
+            this._breath = Properties.Settings.Default.Breath;
+            this._random = Properties.Settings.Default.Random;
         }
 
         protected void OnPropertyChanged(string name)
@@ -42,6 +39,14 @@ namespace HueHue
                     Properties.Settings.Default.COM_PORT = _com_port;
                     Properties.Settings.Default.Save();
                     break;
+                case "Breath":
+                    Properties.Settings.Default.Breath = _breath;
+                    Properties.Settings.Default.Save();
+                    break;
+                case "Random":
+                    Properties.Settings.Default.Random = _random;
+                    Properties.Settings.Default.Save();
+                    break;
                 default:
                     break;
             }
@@ -54,8 +59,7 @@ namespace HueHue
         public int CurrentMode
         {
             get { return _current_mode; }
-            set
-            { _current_mode = value; OnPropertyChanged("CurrentMode"); }
+            set { _current_mode = value; OnPropertyChanged("CurrentMode"); }
         }
 
         private byte _brightness;
@@ -86,37 +90,6 @@ namespace HueHue
         {
             get { return _com_port; }
             set { _com_port = value; OnPropertyChanged("COMPort"); }
-        }
-    }
-
-    class ColorSettings : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public ColorSettings()
-        {
-            this._breath = Properties.Settings.Default.Breath;
-            this._random = Properties.Settings.Default.Random;
-        }
-
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
-            //When a property is changed, let's alter the respective default in settings
-            switch (name)
-            {
-                case "Breath":
-                    Properties.Settings.Default.Breath = _breath;
-                    Properties.Settings.Default.Save();
-                    break;
-                case "Random":
-                    Properties.Settings.Default.Random = _random;
-                    Properties.Settings.Default.Save();
-                    break;
-                default:
-                    break;
-            }
         }
 
         private bool _breath;

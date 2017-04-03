@@ -1,6 +1,4 @@
-﻿using HueHue.Properties;
-using System.IO.Ports;
-using System.Windows;
+﻿using System.Windows;
 
 namespace HueHue
 {
@@ -50,7 +48,10 @@ namespace HueHue
             switch (comboBox.SelectedIndex)
             {
                 case 0:
-                    frame.Navigate(new FixedColors());
+                    frame.Navigate(new FixedColors(settings));
+                    break;
+                case 1:
+                    frame.Navigate(new FixedColors(settings));
                     break;
                 default:
 
