@@ -1,4 +1,5 @@
 ﻿using CSCore;
+using CSCore.CoreAudioAPI;
 using CSCore.DSP;
 using CSCore.SoundIn;
 using CSCore.SoundOut;
@@ -35,18 +36,24 @@ namespace HueHue.Views
 //        private LineSpectrum _lineSpectrum; //TODO: create my handlers and converters from the audio spectrum to the RGB spectrum
 //        private VoicePrint3DSpectrum _voicePrint3DSpectrum;
         DispatcherTimer timer1;
-
+        private MusicSpectrum _MusicSpectrum;
 
         public MusicMode()
         {
             InitializeComponent();
+            timer1 = new DispatcherTimer();
+            //timer1.
             timer1.Tick += Timer1_Tick;
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
+            var size = FftSize.Fft4096;
+            var fftBuffer = new float[(int)size];
+
+            _MusicSpectrum.CreateSpectrum(fftBuffer);
             //render the spectrum
-            GenerateLineSpectrum();
+            //GenerateLineSpectrum();
            // GenerateVoice3DPrintSpectrum();
         }
 
@@ -69,7 +76,7 @@ namespace HueHue.Views
             //open the default device 
             _soundIn = new WasapiLoopbackCapture();
             //Our loopback capture opens the default render device by default so the following is not needed
-            //_soundIn.Device = MMDeviceEnumerator.DefaultAudioEndpoint(DataFlow.Render, Role.Console);
+            _soundIn.Device = MMDeviceEnumerator.DefaultAudioEndpoint(DataFlow.Render, Role.Console);
             _soundIn.Initialize();
 
             var soundInSource = new SoundInSource(_soundIn);
@@ -91,8 +98,8 @@ namespace HueHue.Views
 
             timer1.Start();
 
-            propertyGridTop.SelectedObject = _lineSpectrum;
-            propertyGridBottom.SelectedObject = _voicePrint3DSpectrum;
+            //propertyGridTop.SelectedObject = _lineSpectrum;
+            //propertyGridBottom.SelectedObject = _voicePrint3DSpectrum;
         }
 
         private void Stop()
@@ -124,27 +131,26 @@ namespace HueHue.Views
             //create a spectrum provider which provides fft data based on some input
             var spectrumProvider = new BasicSpectrumProvider(aSampleSource.WaveFormat.Channels,
                 aSampleSource.WaveFormat.SampleRate, fftSize);
-
-            //linespectrum and voiceprint3dspectrum used for rendering some fft data
-            //in oder to get some fft data, set the previously created spectrumprovider 
-            _lineSpectrum = new LineSpectrum(fftSize)
+            //
+            ////linespectrum and voiceprint3dspectrum used for rendering some fft data
+            ////in oder to get some fft data, set the previously created spectrumprovider 
+            _MusicSpectrum = new MusicSpectrum(fftSize)
             {
                 SpectrumProvider = spectrumProvider,
                 UseAverage = true,
-                BarCount = 50,
-                BarSpacing = 2,
+                Count = 3,
                 IsXLogScale = true,
                 ScalingStrategy = ScalingStrategy.Sqrt
             };
-            _voicePrint3DSpectrum = new VoicePrint3DSpectrum(fftSize)
-            {
-                SpectrumProvider = spectrumProvider,
-                UseAverage = true,
-                PointCount = 200,
-                IsXLogScale = true,
-                ScalingStrategy = ScalingStrategy.Sqrt
-            };
-
+            //_voicePrint3DSpectrum = new VoicePrint3DSpectrum(fftSize)
+            //{
+            //    SpectrumProvider = spectrumProvider,
+            //    UseAverage = true,
+            //    PointCount = 200,
+            //    IsXLogScale = true,
+            //    ScalingStrategy = ScalingStrategy.Sqrt
+            //};
+            //
             //the SingleBlockNotificationStream is used to intercept the played samples
             var notificationSource = new SingleBlockNotificationStream(aSampleSource);
             //pass the intercepted samples as input data to the spectrumprovider (which will calculate a fft based on them)

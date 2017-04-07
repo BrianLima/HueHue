@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using HueHue.Views;
+using System.Windows;
 
 namespace HueHue
 {
@@ -52,6 +53,9 @@ namespace HueHue
                     break;
                 case 1:
                     frame.Navigate(new FixedColors(settings));
+                    break;
+                case 2:
+                    frame.Navigate(new MusicMode());
                     break;
                 default:
 

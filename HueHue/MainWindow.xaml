@@ -33,6 +33,7 @@
             <ComboBox x:Name="comboBox" SelectedIndex="{Binding CurrentMode}" Margin="71,67,10.4,0" VerticalAlignment="Top" Height="30" SelectionChanged="comboBox_SelectionChanged" Grid.Row="1">
                 <Label Content="Fixed Color" />
                 <Label Content="Alternate Colors"/>
+                <Label Content="Music Mode"/>
                 <Label Content="Rainbow"/>
                 <Label Content="Running Color"/>
                 <Label Content="Breathing"/>
