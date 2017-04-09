@@ -56,6 +56,7 @@ namespace HueHue
                     break;
                 case 2:
                     frame.Navigate(new MusicMode());
+                    Effects.LEDS = stream.LEDS; //Just to set those to be the same object, i will cleanup this later
                     break;
                 default:
 

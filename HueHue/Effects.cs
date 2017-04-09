@@ -10,13 +10,16 @@ namespace HueHue
         public static LEDBulb ColorOne = new LEDBulb();
         public static LEDBulb ColorTwo = new LEDBulb();
         public static LEDBulb ColorThree = new LEDBulb();
-        
+        public static List<LEDBulb> LEDS = new List<LEDBulb>();
         /// <summary>
         /// Fills a entire LED strip with a solid color
         /// </summary>
         /// <param name="LEDs"></param>
         public static void FixedColor(List<LEDBulb> LEDs)
         {
+            //Console.Write("R: " + ColorOne.R + " B:" + ColorOne.B + " G: " + ColorOne.G);
+            //Console.WriteLine();
+
             foreach (LEDBulb LED in LEDs)
             {
                 LED.R = ColorOne.R;

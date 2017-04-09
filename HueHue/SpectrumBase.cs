@@ -160,6 +160,8 @@ namespace HueHue
 
         protected virtual SpectrumPointData[] CalculateSpectrumPoints(double maxValue, float[] fftBuffer)
         {
+            this.ScalingStrategy = ScalingStrategy.Linear;
+
             var dataPoints = new List<SpectrumPointData>();
 
             double value0 = 0, value = 0;
@@ -211,7 +213,7 @@ namespace HueHue
 
                 //value = 0;
             }
-
+            Console.WriteLine(dataPoints[0].Value.ToString());
             return dataPoints.ToArray();
         }
 
