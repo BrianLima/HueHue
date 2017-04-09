@@ -49,9 +49,8 @@ namespace HueHue.Views
         private void Timer1_Tick(object sender, EventArgs e)
         {
             var size = FftSize.Fft4096;
-            var fftBuffer = new float[(int)size];
 
-            _MusicSpectrum.CreateSpectrum(fftBuffer);
+            _MusicSpectrum.CreateSpectrum();
             //render the spectrum
             //GenerateLineSpectrum();
            // GenerateVoice3DPrintSpectrum();
@@ -138,7 +137,7 @@ namespace HueHue.Views
             {
                 SpectrumProvider = spectrumProvider,
                 UseAverage = true,
-                Count = 3,
+                Count = 90,
                 IsXLogScale = true,
                 ScalingStrategy = ScalingStrategy.Sqrt
             };

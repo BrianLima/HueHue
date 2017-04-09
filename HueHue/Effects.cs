@@ -5,11 +5,12 @@ namespace HueHue
 {
     public static class Effects
     {
+
         //The colors the effect will be based on
         public static LEDBulb ColorOne = new LEDBulb();
         public static LEDBulb ColorTwo = new LEDBulb();
         public static LEDBulb ColorThree = new LEDBulb();
-
+        
         /// <summary>
         /// Fills a entire LED strip with a solid color
         /// </summary>
@@ -55,6 +56,11 @@ namespace HueHue
             ColorOne.B = (byte)random.Next(255);
 
             FixedColor(LEDs);
+        }
+
+        public static void music()
+        {
+
         }
     }
 }
