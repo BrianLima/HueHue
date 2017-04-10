@@ -30,11 +30,11 @@ namespace HueHue
             }
             if (spectrumPoints[1].Value > 0)
             {
-                Effects.ColorOne.G = (byte)(spectrumPoints[1].Value);
+                Effects.ColorOne.G = (byte)((2*spectrumPoints[1].Value));
             }
             if (spectrumPoints[2].Value > 0)
             {
-                Effects.ColorOne.B = (byte)(spectrumPoints[2].Value);
+                Effects.ColorOne.B = (byte) ((2-spectrumPoints[2].Value));
             }
         }
 
