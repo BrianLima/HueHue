@@ -43,6 +43,7 @@ namespace HueHue.Views
             InitializeComponent();
             timer1 = new DispatcherTimer();
             //timer1.
+            timer1.Interval = new TimeSpan(0, 0, 0, 0, 16);
             timer1.Tick += Timer1_Tick;
         }
 
@@ -159,5 +160,10 @@ namespace HueHue.Views
 
         }
 
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Stop();
+            timer1.Stop();
+        }
     }
 }
