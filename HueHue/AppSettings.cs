@@ -14,8 +14,14 @@ namespace HueHue
             this._total_leds = Properties.Settings.Default.TotalLeds;
             this._breath = Properties.Settings.Default.Breath;
             this._random = Properties.Settings.Default.Random;
+            this._width = Properties.Settings.Default.Width;
+            this._speed = Properties.Settings.Default.Speed;
         }
 
+        /// <summary>
+        /// Updates properties
+        /// </summary>
+        /// <param name="name">Property name</param>
         protected void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
@@ -45,6 +51,14 @@ namespace HueHue
                     break;
                 case "Random":
                     Properties.Settings.Default.Random = _random;
+                    Properties.Settings.Default.Save();
+                    break;
+                case "Speed":
+                    Properties.Settings.Default.Speed = _speed;
+                    Properties.Settings.Default.Save();
+                    break;
+                case "Width":
+                    Properties.Settings.Default.Width = _width;
                     Properties.Settings.Default.Save();
                     break;
                 default:
@@ -93,7 +107,9 @@ namespace HueHue
         }
 
         private bool _breath;
-
+        /// <summary>
+        /// Gets or sets if it's currently in breath mode
+        /// </summary>
         public bool Breath
         {
             get { return _breath; }
@@ -107,5 +123,26 @@ namespace HueHue
             get { return _random; }
             set { _random = value; OnPropertyChanged("Random"); }
         }
+
+        private int _speed;
+        /// <summary>
+        /// Gets or sets the speed for some effects like Snake Mode
+        /// </summary>
+        public int Speed
+        {
+            get { return _speed; }
+            set { _speed = value; OnPropertyChanged("Speed"); }
+        }
+
+        private int _width;
+        /// <summary>
+        /// Gets or sets the width for some effects like Snake Mode
+        /// </summary>
+        public int Width
+        {
+            get { return _width; }
+            set { _width = value; OnPropertyChanged("Width"); }
+        }
+
     }
 }

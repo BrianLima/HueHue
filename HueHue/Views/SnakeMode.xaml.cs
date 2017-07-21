@@ -20,19 +20,24 @@ namespace HueHue.Views
     /// </summary>
     public partial class SnakeMode : UserControl
     {
-        public SnakeMode()
+        public SnakeMode(AppSettings settings)
         {
             InitializeComponent();
+            GridSnakeColorSettings.DataContext = settings;
         }
 
         private void colorPicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
         {
-
+            Effects.ColorOne.B = e.NewValue.Value.B;
+            Effects.ColorOne.G = e.NewValue.Value.G;
+            Effects.ColorOne.R = e.NewValue.Value.R;
         }
 
         private void colorPicker2_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
         {
-
+            Effects.ColorTwo.B = e.NewValue.Value.B;
+            Effects.ColorTwo.G = e.NewValue.Value.G;
+            Effects.ColorTwo.R = e.NewValue.Value.R;
         }
     }
 }

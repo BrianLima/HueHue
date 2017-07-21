@@ -61,7 +61,7 @@ namespace HueHue
                 case 3:
                     break;
                 case 4:
-                    frame.Navigate(new SnakeMode());
+                    frame.Navigate(new SnakeMode(settings));
                     break;
 
                 default:
