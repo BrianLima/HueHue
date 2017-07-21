@@ -15,11 +15,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="HueHueClient.ino" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="__vm\.HueHueClient.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="HueHueClient.ino" />
   </ItemGroup>
 </Project>

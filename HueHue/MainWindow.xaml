@@ -34,8 +34,8 @@
                 <Label Content="Fixed Color" />
                 <Label Content="Alternate Colors"/>
                 <Label Content="Music Mode"/>
-                <Label Content="Rainbow"/>
-                <Label Content="Running Color"/>
+                <Label Content="Color Cycling"/>
+                <Label Content="Snake Color"/>
                 <Label Content="Breathing"/>
             </ComboBox>
             <TextBlock HorizontalAlignment="Left" Margin="32,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="34" Text="Effect:" Grid.Row="1"/>
