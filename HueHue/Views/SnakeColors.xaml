@@ -1,0 +1,39 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HueHue"
+             xmlns:controls="clr-namespace:ColorPickerLib.Controls;assembly=ColorPickerLib"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="HueHue.SnakeColors"
+             mc:Ignorable="d" 
+            FontFamily="Segoe UI Light"
+             d:DesignHeight="510" d:DesignWidth="720" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="51*"/>
+            <ColumnDefinition Width="49*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48.8"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Content="Snake Colors" Grid.ColumnSpan="2"/>
+        <!--https://wpfcolorpickercontrol.codeplex.com/-->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid  HorizontalAlignment="Left" Height="461" Grid.Row="1" VerticalAlignment="Top" Width="720" Grid.RowSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <controls:ColorCanvas  R="{Binding R}" G="{Binding G}" B="{Binding B}" x:Name="colorPicker" Margin="10,10,0,91" HorizontalAlignment="Left" Width="343" SelectedColorChanged="colorPicker_SelectedColorChanged"/>
+                <controls:ColorCanvas  R="{Binding R}" G="{Binding G}" B="{Binding B}" x:Name="colorPicker2" Margin="358,10,0,91" HorizontalAlignment="Left" Width="343" SelectedColorChanged="colorPicker2_SelectedColorChanged"/>
+                <Grid x:Name="GridFixedColorSettings" Margin="10,375,367,0">
+                    <ToggleButton x:Name="breathToggle" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="{Binding Breath}" Height="18" HorizontalAlignment="Right" Width="46" />
+                    <Label Content="Breathing:" Margin="0,-4,286,0" VerticalAlignment="Top" Height="26"/>
+                    <Label x:Name="labelRandom" Content="Random:" HorizontalAlignment="Left" Margin="6,22,0,0" VerticalAlignment="Top" Height="25" Width="51"/>
+                    <ToggleButton x:Name="randomToggle" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,26,0,0" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="{Binding Random}" Height="18" HorizontalAlignment="Right" Width="46" />
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

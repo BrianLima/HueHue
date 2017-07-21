@@ -24,5 +24,15 @@ namespace HueHue.Views
         {
             InitializeComponent();
         }
+
+        private void colorPicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+
+        }
+
+        private void colorPicker2_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+
+        }
     }
 }
