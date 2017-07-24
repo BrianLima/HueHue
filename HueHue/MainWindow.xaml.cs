@@ -61,6 +61,7 @@ namespace HueHue
                 case 3:
                     break;
                 case 4:
+                    Effects.LEDS = stream.LEDS; //Just to set those to be the same object, i will cleanup this later
                     frame.Navigate(new SnakeMode(settings));
                     break;
 

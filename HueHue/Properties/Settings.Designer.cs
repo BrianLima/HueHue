@@ -121,7 +121,7 @@ namespace HueHue.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
         public int Speed {
             get {
                 return ((int)(this["Speed"]));
@@ -134,12 +134,12 @@ namespace HueHue.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public int Width {
+        public int Length {
             get {
-                return ((int)(this["Width"]));
+                return ((int)(this["Length"]));
             }
             set {
-                this["Width"] = value;
+                this["Length"] = value;
             }
         }
     }

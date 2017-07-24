@@ -14,7 +14,7 @@ namespace HueHue
             this._total_leds = Properties.Settings.Default.TotalLeds;
             this._breath = Properties.Settings.Default.Breath;
             this._random = Properties.Settings.Default.Random;
-            this._width = Properties.Settings.Default.Width;
+            this._length = Properties.Settings.Default.Length;
             this._speed = Properties.Settings.Default.Speed;
         }
 
@@ -57,8 +57,8 @@ namespace HueHue
                     Properties.Settings.Default.Speed = _speed;
                     Properties.Settings.Default.Save();
                     break;
-                case "Width":
-                    Properties.Settings.Default.Width = _width;
+                case "Length":
+                    Properties.Settings.Default.Length = _length;
                     Properties.Settings.Default.Save();
                     break;
                 default:
@@ -134,14 +134,14 @@ namespace HueHue
             set { _speed = value; OnPropertyChanged("Speed"); }
         }
 
-        private int _width;
+        private int _length;
         /// <summary>
         /// Gets or sets the width for some effects like Snake Mode
         /// </summary>
-        public int Width
+        public int Length
         {
-            get { return _width; }
-            set { _width = value; OnPropertyChanged("Width"); }
+            get { return _length; }
+            set { _length = value; OnPropertyChanged("Length"); }
         }
 
     }

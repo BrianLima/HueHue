@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace HueHue.Views
 {
@@ -20,10 +21,28 @@ namespace HueHue.Views
     /// </summary>
     public partial class SnakeMode : UserControl
     {
-        public SnakeMode(AppSettings settings)
+        static DispatcherTimer timer;
+        AppSettings settings;
+
+        int offset;
+
+        public SnakeMode(AppSettings _settings)
         {
             InitializeComponent();
+
+            this.settings = _settings;
+
             GridSnakeColorSettings.DataContext = settings;
+
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(settings.Speed);
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            Effects.Snake(Effects.LEDS, settings.Length);
         }
 
         private void colorPicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
@@ -38,6 +57,26 @@ namespace HueHue.Views
             Effects.ColorTwo.B = e.NewValue.Value.B;
             Effects.ColorTwo.G = e.NewValue.Value.G;
             Effects.ColorTwo.R = e.NewValue.Value.R;
+        }
+
+        private void sliderSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (timer != null)
+            {
+                timer.Stop();
+                timer.Interval = TimeSpan.FromMilliseconds(e.NewValue);
+                timer.Start();
+            }
+        }
+
+        private void Grid_Unloaded(object sender, RoutedEventArgs e)
+        {
+            timer.Stop();
+        }
+
+        private void sliderWidth_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
         }
     }
 }
