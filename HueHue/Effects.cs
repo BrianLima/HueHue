@@ -71,36 +71,62 @@ namespace HueHue
 
         }
 
+        private static int step;
+
+        /// <summary>
+        /// Resets the position of the snake, preventing out of bounds errors
+        /// </summary>
+        public static void ResetSnake()
+        {
+            step = 1;
+        }
+
         /// <summary>
         /// Logic for the SnakeColor effect
         /// </summary>
         /// <param name="LEDs">LED strip to apply the effect</param>
         /// <param name="length">Lenght of the snake</param>
-        private static int step;
         public static void Snake(List<LEDBulb> LEDs, int length)
         {
-            for (int i = 0; i < LEDs.Count; i++) //Loops through the strip
+            if (step + length == LEDs.Count + length) //When the snake is completely out of bounds, reset it's step
             {
-                if (i == step) //Starting point from the "Tail" of the snake 
-                {
-                    for (int j = 0; j < length; j++) //Loop through the snake
-                    {
-                        LEDs[i + j] = ColorTwo; //Set color on the snake
-                    }
-                    i += length; //Move the strip counter foward
-                }
-                else
-                {
-                    LEDs[i] = ColorOne; //Sets colors for non "snake" leds
-                }
+                step = 1;
             }
 
-            if (step == LEDs.Count - length) //TODO: Fix the snake going out of bounds
+            if (step + length > LEDs.Count) //If the snake is going out of bounds, decrease it's size so it actually fits the strip
             {
-                step = 0;
+                length -= ((step + length) - LEDs.Count);
             }
-            else
+
+            if (step >= length) //The snake is fully out ( ° ʖ °)
             {
+                for (int i = 0; i < LEDs.Count; i++) //Loops through the strip
+                {
+                    if (i == step) //Starting point from the "Tail" of the snake 
+                    {
+                        for (int j = 0; j < length; j++) //Loop through the snake
+                        {
+                            LEDs[i + j] = ColorTwo; //Set color on the snake
+                        }
+                        i += length; //Move the strip counter foward
+                    }
+                    else
+                    {
+                        LEDs[i] = ColorOne; //Sets colors for non "snake" leds
+                    }
+                }
+                step++;
+            }
+            else //The snake is coming out ( ° ʖ °)
+            {
+                for (int i = 0; i < step; i++)
+                {
+                    LEDs[i] = ColorTwo;
+                }
+                for (int i = step; i < LEDs.Count; i++)
+                {
+                    LEDs[i] = ColorOne;
+                }
                 step++;
             }
         }

@@ -24,8 +24,6 @@ namespace HueHue.Views
         static DispatcherTimer timer;
         AppSettings settings;
 
-        int offset;
-
         public SnakeMode(AppSettings _settings)
         {
             InitializeComponent();
@@ -33,6 +31,8 @@ namespace HueHue.Views
             this.settings = _settings;
 
             GridSnakeColorSettings.DataContext = settings;
+
+            //colorPicker.R = settings.p
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(settings.Speed);
@@ -76,7 +76,7 @@ namespace HueHue.Views
 
         private void sliderWidth_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-
+            Effects.ResetSnake();
         }
     }
 }

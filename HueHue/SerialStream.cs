@@ -74,6 +74,9 @@ namespace HueHue
                 case 1: //AlternateColors
                     Effects.TwoAlternateColor(LEDS);
                     break;
+                case 3:
+                    //Music mode
+                    break;
                 case 4:
                     //Effects.Snake(LEDS); 
                     break;

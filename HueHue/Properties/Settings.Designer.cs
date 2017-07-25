@@ -142,5 +142,17 @@ namespace HueHue.Properties {
                 this["Length"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastColorTwo {
+            get {
+                return ((string)(this["LastColorTwo"]));
+            }
+            set {
+                this["LastColorTwo"] = value;
+            }
+        }
     }
 }

@@ -27,7 +27,7 @@
                 <controls:ColorCanvas  R="{Binding R}" G="{Binding G}" B="{Binding B}" x:Name="colorPicker" Margin="10,10,0,91" HorizontalAlignment="Left" Width="343" SelectedColorChanged="colorPicker_SelectedColorChanged"/>
                 <controls:ColorCanvas  R="{Binding R}" G="{Binding G}" B="{Binding B}" x:Name="colorPicker2" Margin="358,10,0,91" HorizontalAlignment="Left" Width="343" SelectedColorChanged="colorPicker2_SelectedColorChanged"/>
                 <Grid x:Name="GridSnakeColorSettings" Margin="10,375,10,0">
-                    <Slider x:Name="sliderSpeed" Value="{Binding Speed}" HorizontalAlignment="Right" Margin="0,0,253,22.8" Width="165" Minimum="100" Maximum="3000" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Bottom" ValueChanged="sliderSpeed_ValueChanged"/>
+                    <Slider x:Name="sliderSpeed" Value="{Binding Speed}" HorizontalAlignment="Right" Margin="0,0,253,22.8" Width="165" Minimum="50" Maximum="3000" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Bottom" ValueChanged="sliderSpeed_ValueChanged"/>
                     <Label Content="Speed:" HorizontalAlignment="Right" Margin="0,0,422,14.8" Height="26" VerticalAlignment="Bottom"/>
                     <Slider x:Name="sliderWidth" Value="{Binding Length}" HorizontalAlignment="Right" Margin="0,10,473,0" VerticalAlignment="Top" Width="165" Height="53" Minimum="1" Maximum="30" Style="{StaticResource MaterialDesignDiscreteSlider}" ValueChanged="sliderWidth_ValueChanged"/>
                     <Label Content="Width:" HorizontalAlignment="Right" Margin="0,0,638,14.8" Height="26" VerticalAlignment="Bottom"/>
