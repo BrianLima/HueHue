@@ -1,0 +1,22 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HueHue.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="HueHue.Views.ColorCycle"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Unloaded="Grid_Unloaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="52"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Content="Color Cycle"/>
+        <Slider x:Name="sliderSpeed" Value="{Binding Speed}" HorizontalAlignment="Left" Margin="60,6,0,0" Width="230" Minimum="50" Maximum="3000" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" Grid.Row="1" ValueChanged="sliderSpeed_ValueChanged"/>
+        <Label Content="Speed:" Margin="10,41,0,0" Grid.Row="1" HorizontalAlignment="Left" Width="46" Height="26" VerticalAlignment="Top"/>
+        <Label Content="*Speed in miliseconds" Margin="10,67,0,0" Height="26" VerticalAlignment="Top" Grid.Row="1" HorizontalAlignment="Left" Width="126"/>
+
+    </Grid>
+</UserControl>
