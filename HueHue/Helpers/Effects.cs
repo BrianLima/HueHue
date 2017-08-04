@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Threading;
 
 namespace HueHue.Helpers
 {
@@ -14,13 +13,12 @@ namespace HueHue.Helpers
         public static LEDBulb ColorTwo = new LEDBulb();
         public static LEDBulb ColorThree = new LEDBulb();
 
-        public static List<LEDBulb> LEDS = new List<LEDBulb>();
+        public static List<LEDBulb> LEDs = new List<LEDBulb>();
 
         /// <summary>
         /// Fills a entire LED strip with a solid color
         /// </summary>
-        /// <param name="LEDs"></param>
-        public static void FixedColor(List<LEDBulb> LEDs)
+        public static void FixedColor()
         {
             //Console.Write("R: " + ColorOne.R + " B:" + ColorOne.B + " G: " + ColorOne.G);
             //Console.WriteLine();
@@ -36,8 +34,7 @@ namespace HueHue.Helpers
         /// <summary>
         /// Fills a strip alternating between two colors
         /// </summary>
-        /// <param name="LEDs"></param>
-        public static void TwoAlternateColor(List<LEDBulb> LEDs)
+        public static void TwoAlternateColor()
         {
             for (int i = 0; i < LEDs.Count; i++)
             {
@@ -63,7 +60,7 @@ namespace HueHue.Helpers
             ColorOne.G = (byte)random.Next(255);
             ColorOne.B = (byte)random.Next(255);
 
-            FixedColor(LEDs);
+            FixedColor();
         }
 
         public static void music()

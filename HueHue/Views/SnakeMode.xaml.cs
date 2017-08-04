@@ -43,7 +43,7 @@ namespace HueHue.Views
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            Effects.Snake(Effects.LEDS, settings.Length);
+            Effects.Snake(Effects.LEDs, settings.Length);
         }
 
         private void colorPicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)

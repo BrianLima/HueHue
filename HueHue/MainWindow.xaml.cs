@@ -25,7 +25,7 @@ namespace HueHue
 
             for (int i = 0; i < settings.TotalLeds; i++)
             {
-                stream.LEDS.Add(new LEDBulb());
+                Effects.LEDs.Add(new LEDBulb());
             }
         }
 
@@ -57,13 +57,11 @@ namespace HueHue
                     break;
                 case 2:
                     frame.Navigate(new MusicMode());
-                    Effects.LEDS = stream.LEDS; //Just to set those to be the same object, i will cleanup this later
                     break;
                 case 3:
                     frame.Navigate(new ColorCycle(settings));
                     break;
                 case 4:
-                    Effects.LEDS = stream.LEDS; //Just to set those to be the same object, i will cleanup this later
                     frame.Navigate(new SnakeMode(settings));
                     break;
 

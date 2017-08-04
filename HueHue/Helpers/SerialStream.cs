@@ -15,7 +15,7 @@ namespace HueHue.Helpers
         {
         }
 
-        public List<LEDBulb> LEDS = new List<LEDBulb>();
+       // public List<LEDBulb> LEDS = new List<LEDBulb>();
         private ILogger _log = LogManager.GetCurrentClassLogger();
 
         private readonly byte[] _messagePreamble = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09 };
@@ -66,26 +66,7 @@ namespace HueHue.Helpers
             outputStream[counter++] = Properties.Settings.Default.Breath ? (byte)1 : (byte)0; //If the user wants to use a breath effect this will be 1 and the arduino will handle the brightness, else it's 0 andit will use the next byte as brightness
             outputStream[counter++] = Properties.Settings.Default.Brightness; //Set the brightness as the first byte after the preamble
 
-            switch (Properties.Settings.Default.CurrentMode)
-            {
-                case 0: //FixedColor
-                    Effects.FixedColor(LEDS);
-                    break;
-                case 1: //AlternateColors
-                    Effects.TwoAlternateColor(LEDS);
-                    break;
-                case 3:
-                    //Music mode
-                    break;
-                case 4:
-                    //Effects.Snake(LEDS); 
-                    break;
-                default:
-                    Effects.FixedColor(LEDS);
-                    break;
-            }
-
-            foreach (LEDBulb bulb in LEDS)
+            foreach (LEDBulb bulb in Effects.LEDs)
             {
                 outputStream[counter++] = bulb.B; // blue
                 outputStream[counter++] = bulb.G; // green

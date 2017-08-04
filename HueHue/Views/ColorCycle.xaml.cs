@@ -24,7 +24,9 @@ namespace HueHue.Views
     {
         enum Status
         {
-            Increasing,
+            IncreasingR,
+            IncreasingG,
+            IncreasingB,
             Decreasing,
         };
 
@@ -36,7 +38,7 @@ namespace HueHue.Views
         {
             InitializeComponent();
 
-            status = Status.Increasing;
+            status = Status.IncreasingG;
 
             //Starts with Red
             Effects.ColorOne.R = 255;
@@ -55,7 +57,7 @@ namespace HueHue.Views
             if (Effects.ColorOne.R == 255)
             {
                 if (true)
-                {
+                { 
 
                 }
             }
