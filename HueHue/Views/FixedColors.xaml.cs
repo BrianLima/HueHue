@@ -1,7 +1,6 @@
 ﻿using HueHue.Helpers;
 using System.Windows;
 using System.Windows.Controls;
-using System;
 
 namespace HueHue
 {
@@ -62,6 +61,8 @@ namespace HueHue
             Effects.ColorTwo.B = e.NewValue.Value.B;
             Effects.ColorTwo.G = e.NewValue.Value.G;
             Effects.ColorTwo.R = e.NewValue.Value.R;
+
+            FillColor();
         }
     }
 }

@@ -33,17 +33,17 @@ namespace HueHue.Views
 
             GridSnakeColorSettings.DataContext = settings;
 
-            //colorPicker.R = settings.p
-
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(settings.Speed);
+            timer = new DispatcherTimer()
+            {
+                Interval = TimeSpan.FromMilliseconds(settings.Speed)
+            };
             timer.Tick += Timer_Tick;
             timer.Start();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            Effects.Snake(Effects.LEDs, settings.Length);
+            Effects.Snake(settings.Length);
         }
 
         private void colorPicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)

@@ -13,7 +13,15 @@ namespace HueHue.Helpers
         public static LEDBulb ColorTwo = new LEDBulb();
         public static LEDBulb ColorThree = new LEDBulb();
 
+        /// <summary>
+        /// Strip of LEDs representing the LEDs attached to the Arduino
+        /// </summary>
         public static List<LEDBulb> LEDs = new List<LEDBulb>();
+
+        /// <summary>
+        /// Step used for effects
+        /// </summary>
+        private static int step;
 
         /// <summary>
         /// Fills a entire LED strip with a solid color
@@ -63,12 +71,13 @@ namespace HueHue.Helpers
             FixedColor();
         }
 
-        public static void music()
+        /// <summary>
+        /// Placeholder
+        /// </summary>
+        public static void Music() /// selo rob de codigos bonito
         {
 
         }
-
-        private static int step;
 
         /// <summary>
         /// Resets the position of the snake, preventing out of bounds errors
@@ -81,16 +90,15 @@ namespace HueHue.Helpers
         /// <summary>
         /// Logic for the SnakeColor effect
         /// </summary>
-        /// <param name="LEDs">LED strip to apply the effect</param>
         /// <param name="length">Lenght of the snake</param>
-        public static void Snake(List<LEDBulb> LEDs, int length)
+        public static void Snake(int length)
         {
-            if (step + length == LEDs.Count + length) //When the snake is completely out of bounds, reset it's step
+            if (step + length == LEDs.Count + length) //When the snake is completely out of bounds, reset its step
             {
-                step = 1;
+                ResetSnake();
             }
 
-            if (step + length > LEDs.Count) //If the snake is going out of bounds, decrease it's size so it actually fits the strip
+            if (step + length > LEDs.Count) //If the snake is going out of bounds, decrease its size so it actually fits the strip
             {
                 length -= ((step + length) - LEDs.Count);
             }

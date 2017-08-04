@@ -40,6 +40,8 @@ namespace HueHue.Views
 
             status = Status.IncreasingG;
 
+            gridSettings.DataContext = settings;
+
             //Starts with Red
             Effects.ColorOne.R = 255;
             Effects.ColorOne.G = 0;

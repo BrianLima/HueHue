@@ -35,7 +35,7 @@ namespace HueHue.Helpers
             if (_workerThread != null) return;
 
             _cancellationTokenSource = new CancellationTokenSource();
-            _workerThread = new Thread(mBackgroundWorker_DoWork)
+            _workerThread = new Thread(BackgroundWorker_DoWork)
             {
                 Name = "Serial sending",
                 IsBackground = true
@@ -76,7 +76,7 @@ namespace HueHue.Helpers
             return outputStream;
         }
 
-        private void mBackgroundWorker_DoWork(object tokenObject)
+        private void BackgroundWorker_DoWork(object tokenObject)
         {
             var cancellationToken = (CancellationToken)tokenObject;
             SerialPort serialPort = null;
