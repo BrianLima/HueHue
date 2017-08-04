@@ -77,16 +77,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BasicSpectrumProvider.cs" />
-    <Compile Include="Effects.cs" />
-    <Compile Include="MusicSpectrum.cs" />
-    <Compile Include="SpectrumBase.cs" />
+    <Compile Include="Helpers\BasicSpectrumProvider.cs" />
+    <Compile Include="Helpers\Effects.cs" />
+    <Compile Include="Helpers\MusicSpectrum.cs" />
+    <Compile Include="Helpers\SpectrumBase.cs" />
     <Compile Include="Views\FixedColors.xaml.cs">
       <DependentUpon>FixedColors.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LEDBulb.cs" />
-    <Compile Include="SerialStream.cs" />
-    <Compile Include="AppSettings.cs" />
+    <Compile Include="Helpers\LEDBulb.cs" />
+    <Compile Include="Helpers\SerialStream.cs" />
+    <Compile Include="Helpers\AppSettings.cs" />
     <Compile Include="Views\MusicMode.xaml.cs">
       <DependentUpon>MusicMode.xaml</DependentUpon>
     </Compile>

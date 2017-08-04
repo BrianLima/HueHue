@@ -7,7 +7,7 @@ using NLog;
 using System.Collections.Generic;
 using HueHue.Properties;
 
-namespace HueHue
+namespace HueHue.Helpers
 {
     internal class SerialStream : IDisposable
     {

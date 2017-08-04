@@ -1,4 +1,5 @@
-﻿using HueHue.Views;
+﻿using HueHue.Helpers;
+using HueHue.Views;
 using System.Windows;
 
 namespace HueHue

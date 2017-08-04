@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Threading;
 
-namespace HueHue
+namespace HueHue.Helpers
 {
     /// <summary>
     /// Logic implementation for all of the available effects

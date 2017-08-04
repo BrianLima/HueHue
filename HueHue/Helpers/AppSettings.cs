@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace HueHue
+namespace HueHue.Helpers
 {
     public class AppSettings : INotifyPropertyChanged
     {

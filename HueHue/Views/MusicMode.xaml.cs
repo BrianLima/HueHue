@@ -5,6 +5,7 @@ using CSCore.SoundIn;
 using CSCore.SoundOut;
 using CSCore.Streams;
 using CSCore.Streams.Effects;
+using HueHue.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;

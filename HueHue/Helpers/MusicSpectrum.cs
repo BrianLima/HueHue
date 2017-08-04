@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using HueHue;
 using CSCore.DSP;
 using System.Drawing;
+using HueHue.Helpers;
 
-namespace HueHue
+namespace HueHue.Helpers
 {
     class MusicSpectrum:SpectrumBase
     {

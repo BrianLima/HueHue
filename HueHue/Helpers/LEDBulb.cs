@@ -1,4 +1,4 @@
-﻿namespace HueHue
+﻿namespace HueHue.Helpers
 {
     public class LEDBulb
     {
