@@ -77,7 +77,7 @@ namespace HueHue.Views
 
         private void sliderWidth_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            Effects.ResetSnake();
+            Effects.ResetStep();
         }
     }
 }

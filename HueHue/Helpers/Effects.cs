@@ -82,7 +82,7 @@ namespace HueHue.Helpers
         /// <summary>
         /// Resets the position of the snake, preventing out of bounds errors
         /// </summary>
-        public static void ResetSnake()
+        public static void ResetStep()
         {
             step = 1;
         }
@@ -95,7 +95,7 @@ namespace HueHue.Helpers
         {
             if (step + length == LEDs.Count + length) //When the snake is completely out of bounds, reset its step
             {
-                ResetSnake();
+                ResetStep();
             }
 
             if (step + length > LEDs.Count) //If the snake is going out of bounds, decrease its size so it actually fits the strip
@@ -134,6 +134,68 @@ namespace HueHue.Helpers
                 }
                 step++;
             }
+        }
+
+        /// <summary>
+        /// Cycles through all the basic colors
+        /// Run ResetStep() and set Effects.ColorOne.R to 255 before starting to use this effect
+        /// </summary>
+        public static void ColorCycle()
+        {
+            if (step == 1) //Started with Red, transition to Yellow
+            {
+                ColorOne.G++;
+
+                if (ColorOne.G == 255)
+                {
+                    step++;
+                }
+            }
+            else if (step == 2) //From Yellow to Green
+            {
+                ColorOne.R--;
+
+                if (ColorOne.R == 0)
+                {
+                    step++;
+                }
+            }
+            else if (step == 3) //From Green to Alice Blue
+            {
+                ColorOne.B++;
+
+                if (ColorOne.B == 255)
+                {
+                    step++;
+                }
+            }
+            else if (step == 4) //From Alice Blue to Blue
+            {
+                ColorOne.G--;
+
+                if (ColorOne.G == 0)
+                {
+                    step++;
+                }
+            }
+            else if (step == 5) // From Blue to Pink/Purple
+            {
+                ColorOne.R++;
+                if (ColorOne.R == 255)
+                {
+                    step++;
+                }
+            }
+            else if (step == 6) //From Pink/Purple to Red
+            {
+                ColorOne.B--;
+                if (ColorOne.B == 0)
+                {
+                    ResetStep(); //We Cycled all the basic colors, reset and start again
+                }
+            }
+
+            FixedColor(); //Fill the strip with the color
         }
     }
 }
