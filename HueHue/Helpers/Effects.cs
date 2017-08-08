@@ -28,9 +28,6 @@ namespace HueHue.Helpers
         /// </summary>
         public static void FixedColor()
         {
-            //Console.Write("R: " + ColorOne.R + " B:" + ColorOne.B + " G: " + ColorOne.G);
-            //Console.WriteLine();
-
             foreach (LEDBulb LED in LEDs)
             {
                 LED.R = ColorOne.R;

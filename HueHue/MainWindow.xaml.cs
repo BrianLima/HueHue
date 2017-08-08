@@ -1,4 +1,5 @@
-﻿using HueHue.Helpers;
+﻿using Hardcodet.Wpf.TaskbarNotification;
+using HueHue.Helpers;
 using HueHue.Views;
 using System.Windows;
 
@@ -12,6 +13,7 @@ namespace HueHue
         bool isRunning = false;
         AppSettings settings;
         SerialStream stream;
+        NotifyIcon icon;
 
         public MainWindow()
         {
@@ -27,6 +29,7 @@ namespace HueHue
             {
                 Effects.LEDs.Add(new LEDBulb());
             }
+            icon = new NotifyIcon();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -73,7 +76,13 @@ namespace HueHue
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            icon.Close();
             stream.Stop();
+        }
+
+        private void Window_StateChanged(object sender, System.EventArgs e)
+        {
+            if (WindowState == WindowState.Minimized) this.Hide();
         }
     }
 }
