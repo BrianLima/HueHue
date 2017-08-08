@@ -96,8 +96,8 @@
     <Compile Include="Views\ColorCycle.xaml.cs">
       <DependentUpon>ColorCycle.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NotifyIcon.xaml.cs">
-      <DependentUpon>NotifyIcon.xaml</DependentUpon>
+    <Compile Include="Views\TrayIcon.xaml.cs">
+      <DependentUpon>TrayIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SnakeMode.xaml.cs">
       <DependentUpon>SnakeMode.xaml</DependentUpon>
@@ -126,7 +126,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NotifyIcon.xaml">
+    <Page Include="Views\TrayIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
