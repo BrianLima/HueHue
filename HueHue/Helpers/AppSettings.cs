@@ -8,14 +8,17 @@ namespace HueHue.Helpers
 
         public AppSettings()
         {
-            this._brightness = Properties.Settings.Default.Brightness;
             this._com_port = Properties.Settings.Default.COM_PORT;
             this._current_mode = Properties.Settings.Default.CurrentMode;
             this._total_leds = Properties.Settings.Default.TotalLeds;
-            this._breath = Properties.Settings.Default.Breath;
+            this._brightness = Properties.Settings.Default.Brightness;
             this._random = Properties.Settings.Default.Random;
-            this._length = Properties.Settings.Default.Length;
+            this._breath = Properties.Settings.Default.Breath;
             this._speed = Properties.Settings.Default.Speed;
+            this._length = Properties.Settings.Default.Length;
+            this._auto_start = Properties.Settings.Default.AutoStart;
+            this._minimize = Properties.Settings.Default.Minimize;
+            this._auto_run = Properties.Settings.Default.AutoRun;
         }
 
         /// <summary>
@@ -59,6 +62,18 @@ namespace HueHue.Helpers
                     break;
                 case "Length":
                     Properties.Settings.Default.Length = _length;
+                    Properties.Settings.Default.Save();
+                    break;
+                case "AutoStart":
+                    Properties.Settings.Default.AutoStart = _auto_start;
+                    Properties.Settings.Default.Save();
+                    break;
+                case "Minimize":
+                    Properties.Settings.Default.Minimize = _minimize;
+                    Properties.Settings.Default.Save();
+                    break;
+                case "AutoRun":
+                    Properties.Settings.Default.AutoRun = _auto_run;
                     Properties.Settings.Default.Save();
                     break;
                 default:
@@ -142,6 +157,36 @@ namespace HueHue.Helpers
         {
             get { return _length; }
             set { _length = value; OnPropertyChanged("Length"); }
+        }
+
+        private bool _auto_start;
+        /// <summary>
+        /// Gets or sets whether the app will auto run on Windows startup or not
+        /// </summary>
+        public bool AutoStart
+        {
+            get { return _auto_start; }
+            set { _auto_start = value; OnPropertyChanged("AutoStart"); }
+        }
+
+        private bool _minimize;
+        /// <summary>
+        /// Gets or sets whether the app will minimize on close or not
+        /// </summary>
+        public bool Minimize
+        {
+            get { return _minimize; }
+            set { _minimize = value; OnPropertyChanged("Minimize"); }
+        }
+
+        private bool _auto_run;
+        /// <summary>
+        /// Gets or sets whether the app will change effects on the fly according to running apps
+        /// </summary>
+        public bool AutoRun
+        {
+            get { return _auto_run; }
+            set { _auto_run = value; OnPropertyChanged("AutoRun"); }
         }
 
     }

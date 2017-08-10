@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HueHue.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,10 @@ namespace HueHue
     /// </summary>
     public partial class SettingsWindow : Window
     {
-        public SettingsWindow()
+        public SettingsWindow(AppSettings _settings)
         {
             InitializeComponent();
+            grid_settings.DataContext = _settings;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

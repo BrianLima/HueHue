@@ -154,5 +154,41 @@ namespace HueHue.Properties {
                 this["LastColorTwo"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoStart {
+            get {
+                return ((bool)(this["AutoStart"]));
+            }
+            set {
+                this["AutoStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Minimize {
+            get {
+                return ((bool)(this["Minimize"]));
+            }
+            set {
+                this["Minimize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoRun {
+            get {
+                return ((bool)(this["AutoRun"]));
+            }
+            set {
+                this["AutoRun"] = value;
+            }
+        }
     }
 }

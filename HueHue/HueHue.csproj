@@ -176,7 +176,7 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\briano.png" />
+    <Resource Include="Resources\briano.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BlackTransparent.png" />

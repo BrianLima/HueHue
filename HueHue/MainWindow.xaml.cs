@@ -76,25 +76,37 @@ namespace HueHue
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            icon.Close();
-            stream.Stop();
+            if (settings.Minimize)
+            {
+                Minimize();
+            }
+            else
+            {
+                icon.Close();
+                stream.Stop();
+            }
         }
 
         private void Window_StateChanged(object sender, System.EventArgs e)
         {
             if (WindowState == WindowState.Minimized)
             {
-                Hide();
-                icon.ShowStandardBalloon();
+                Minimize();
             }
             else
             {
             }
         }
 
+        private void Minimize()
+        {
+            Hide();
+            icon.ShowStandardBalloon();
+        }
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            SettingsWindow window = new SettingsWindow();
+            SettingsWindow window = new SettingsWindow(settings);
             window.ShowDialog();
         }
     }
