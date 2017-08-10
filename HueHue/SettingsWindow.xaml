@@ -68,7 +68,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <ToggleButton x:Name="language_toggle" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,36,0,0" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="{Binding AutoStart}" Height="18" HorizontalAlignment="Right" Width="46" />
+            <ToggleButton x:Name="language_toggle" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,36,0,0" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="{Binding AutoStart}" Height="18" HorizontalAlignment="Right" Width="46" Checked="language_toggle_Checked" Unchecked="language_toggle_Unchecked" />
             <Label Content="Auto start with Windows" HorizontalAlignment="Left" Margin="0,32,0,0" VerticalAlignment="Top"/>
             <ToggleButton x:Name="language_toggle_Copy" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,68,0,0" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="{Binding Minimize}" Height="18" HorizontalAlignment="Right" Width="46" />
             <Label Content="Minimize on close" HorizontalAlignment="Left" Margin="0,64,0,0" VerticalAlignment="Top"/>

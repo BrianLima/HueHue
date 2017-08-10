@@ -1,5 +1,6 @@
 ﻿using HueHue.Helpers;
 using HueHue.Views;
+using System;
 using System.Windows;
 
 namespace HueHue
@@ -30,21 +31,45 @@ namespace HueHue
             }
 
             icon = new TrayIcon();
+
+            //The app was auto started by windows from the user's startup folder
+            if (settings.AutoStart && Environment.GetCommandLineArgs() != null)
+            {
+                this.Minimize();
+                StartStop();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            StartStop();
+        }
+
+        private void StartStop()
         {
             if (!isRunning)
             {
                 isRunning = true;
                 buttonStart.Content = "Stop";
-                stream.Start();
+                try
+                {
+                    stream.Start();
+                }
+                catch (Exception)
+                {
+                }
             }
             else
             {
                 isRunning = false;
                 buttonStart.Content = "Start";
-                stream.Stop();
+                try
+                {
+                    stream.Stop();
+                }
+                catch (Exception)
+                {
+                }
             }
         }
 
@@ -69,7 +94,6 @@ namespace HueHue
                     break;
 
                 default:
-
                     break;
             }
         }
