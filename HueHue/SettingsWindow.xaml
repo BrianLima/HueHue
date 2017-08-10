@@ -62,7 +62,7 @@
                 <Label  Content="About" HorizontalAlignment="Left" Margin="-10,-15,0,-17" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="14" Height="32" Foreground="#DDFFFFFF"/>
             </materialDesign:ColorZone>
             <TextBlock TextWrapping="WrapWithOverflow" x:Name="textBlock_Copy" VerticalAlignment="Top" Height="59" Text="This project uses the MaterialDesignXAMLToolkit. " TextAlignment="Justify" Grid.Row="3" Grid.ColumnSpan="3" Margin="0,44,0,0" Grid.RowSpan="2"/>
-            <Image Grid.Column="1" Margin="8.2,32,10.2,97.6" Source="pack://siteoforigin:,,,/Resources/briano.png" Stretch="Fill"/>
+            <Image x:Name="picture" Grid.Column="1" Margin="8.2,32,10.2,97.6" Source="Resources/briano.png" Stretch="Fill"/>
         </Grid>
         <Grid x:Name="grid_settings" Height="467" Margin="10,9.8,9.8,0" Grid.Row="1" VerticalAlignment="Top">
             <Grid.RowDefinitions>
