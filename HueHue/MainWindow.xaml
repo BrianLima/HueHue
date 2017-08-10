@@ -22,7 +22,13 @@
             <ColumnDefinition Width="246.4"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" Grid.ColumnSpan="2" VerticalAlignment="Stretch" Content="HueHue"/>
+        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" Grid.ColumnSpan="2" VerticalAlignment="Stretch">
+            <Button  Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                Margin="0,0,-1.4,0" HorizontalAlignment="Right"
+                ToolTip="Settings/About" VerticalAlignment="Top" Click="Button_Click_1">
+                <materialDesign:PackIcon Kind="Settings" Height="24" Width="24" />
+            </Button>
+        </materialDesign:ColorZone>
         <Grid x:Name="GridMain" Margin="10,10,5,308" Grid.Row="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="52"/>

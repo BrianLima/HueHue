@@ -92,5 +92,10 @@ namespace HueHue
             }
         }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow window = new SettingsWindow();
+            window.ShowDialog();
+        }
     }
 }

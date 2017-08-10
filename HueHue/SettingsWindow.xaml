@@ -9,17 +9,76 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="Segoe UI Light"
-        Title="SettingsWindow" Height="600" Width="600">
+        Title="Additional Settings" Height="600" Width="600">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="73*"/>
-            <ColumnDefinition Width="520*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="233*"/>
         </Grid.RowDefinitions>
-        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Content="Settings" Margin="0,0,0,10" Grid.ColumnSpan="2"/>
+        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Content="Settings" Margin="0,0,-0.4,10.2" Grid.ColumnSpan="2"/>
+        <Grid Margin="10.2,9.8,9.6,-0.6" Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="61*"/>
+                <ColumnDefinition Width="158.4"/>
+                <ColumnDefinition Width="58*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="277.6"/>
+                <RowDefinition Height="45.6"/>
+                <RowDefinition Height="48.8"/>
+                <RowDefinition Height="47.2"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <materialDesign:Chip Content="Projects @ GitHub"                                  
+                IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                Margin="8,3,0,4" Click="Chip1_Click" HorizontalAlignment="Stretch" Height="Auto" Grid.Row="1" Grid.Column="1">
+                <materialDesign:Chip.Icon>
+                    <materialDesign:PackIcon Kind="GithubCircle"/>
+                </materialDesign:Chip.Icon>
+            </materialDesign:Chip>
+            <materialDesign:Chip Content="Paypal donate"                                  
+                IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                Margin="8,4,0,5" Click="Chip2_Click" HorizontalAlignment="Stretch" Height="Auto" Grid.Row="2" Grid.Column="1">
+                <materialDesign:Chip.Icon>
+                    <materialDesign:PackIcon Kind="Coffee"/>
+                </materialDesign:Chip.Icon>
+            </materialDesign:Chip>
+            <materialDesign:Chip Content="@brianostorm"                                  
+                IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                Margin="8,4,0,3" Click="Chip_Click" HorizontalAlignment="Stretch" Height="Auto" Grid.Row="3" Grid.Column="1">
+                <materialDesign:Chip.Icon>
+                    <materialDesign:PackIcon Kind="Twitter" />
+                </materialDesign:Chip.Icon>
+            </materialDesign:Chip>
+            <TextBlock TextWrapping="WrapWithOverflow" x:Name="textBlock" Margin="0,185,0,0" Text="Developed by Brian Lima, @brianostorm, if you like my work cheer me up at my Twitter or pay me a coffee via Paypal, this way i can keep building amazing open-source tools for you!" TextAlignment="Justify" Height="91" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
+            <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Top" Height="27" Grid.ColumnSpan="3">
+                <Label  Content="About" HorizontalAlignment="Left" Margin="-10,-15,0,-17" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="14" Height="32" Foreground="#DDFFFFFF"/>
+            </materialDesign:ColorZone>
+            <TextBlock TextWrapping="WrapWithOverflow" x:Name="textBlock_Copy" VerticalAlignment="Top" Height="59" Text="This project uses the MaterialDesignXAMLToolkit. " TextAlignment="Justify" Grid.Row="3" Grid.ColumnSpan="3" Margin="0,44,0,0" Grid.RowSpan="2"/>
+            <Image Grid.Column="1" HorizontalAlignment="Left" Height="148" Margin="8.2,32,0,0" VerticalAlignment="Top" Width="140" Source="pack://siteoforigin:,,,/Resources/briano.png"/>
+        </Grid>
+        <Grid Height="467" Margin="10,9.8,9.8,0" Grid.Row="1" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <ToggleButton x:Name="language_toggle" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,36,0,0" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="False" Height="18" HorizontalAlignment="Right" Width="46" />
+            <Label Content="Auto start with Windows" HorizontalAlignment="Left" Margin="0,32,0,0" VerticalAlignment="Top"/>
+            <ToggleButton x:Name="language_toggle_Copy" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,68,0,0" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="False" Height="18" HorizontalAlignment="Right" Width="46" />
+            <Label Content="Minimize on close" HorizontalAlignment="Left" Margin="0,64,0,0" VerticalAlignment="Top"/>
+            <ToggleButton x:Name="language_toggle_Copy1" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,99,0,0" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="False" Height="18" HorizontalAlignment="Right" Width="46" />
+            <Label Content="Automatic change effects when an app runs" HorizontalAlignment="Left" Margin="0,95,0,0" VerticalAlignment="Top"/>
+            <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Top" Height="27">
+                <Label  Content="Settings" HorizontalAlignment="Left" Margin="-10,-15,0,-17" FontFamily="Segoe UI Semibold" FontSize="14" Foreground="#DDFFFFFF"/>
+            </materialDesign:ColorZone>
+            <Button Content="Setup" HorizontalAlignment="Right" Margin="0,126,10,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        </Grid>
 
     </Grid>
 </Window>

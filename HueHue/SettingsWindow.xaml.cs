@@ -23,5 +23,25 @@ namespace HueHue
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Chip_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://twitter.com/brianostorm");
+        }
+
+        private void Chip1_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://github.com/brianlima");
+        }
+
+        private void Chip2_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9YPV3FHEFRAUQ");
+        }
     }
 }
