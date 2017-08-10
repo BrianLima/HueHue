@@ -84,6 +84,9 @@
     <Compile Include="Helpers\Effects.cs" />
     <Compile Include="Helpers\MusicSpectrum.cs" />
     <Compile Include="Helpers\SpectrumBase.cs" />
+    <Compile Include="SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FixedColors.xaml.cs">
       <DependentUpon>FixedColors.xaml</DependentUpon>
     </Compile>
@@ -102,6 +105,10 @@
     <Compile Include="Views\SnakeMode.xaml.cs">
       <DependentUpon>SnakeMode.xaml</DependentUpon>
     </Compile>
+    <Page Include="SettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\FixedColors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
