@@ -1,17 +1,7 @@
 ﻿using Hardcodet.Wpf.TaskbarNotification;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using HueHue.Helpers;
+using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace HueHue.Views
 {
@@ -38,7 +28,12 @@ namespace HueHue.Views
 
         private void MenuItem_Quit_Click(object sender, RoutedEventArgs e)
         {
-            App.Current.MainWindow.Close();
+            Process.GetCurrentProcess().Kill();
+        }
+
+        private void MenuItem_ShutOff_Click(object sender, RoutedEventArgs e)
+        {
+            Effects.FixedColor();
         }
     }
 }

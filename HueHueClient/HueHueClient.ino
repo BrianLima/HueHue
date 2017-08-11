@@ -97,7 +97,8 @@ void processIncomingData()
 	{
 		//if we get here, there must have been data before(so the user already knows, it works!)
 		//simply go to black!
-		mode = MODE_BLACK;
+		//mode = MODE_BLACK;		 //If the arduino stops receiving commands, shut down the LEDs
+		mode = MODE_ANIMATION; //If the Arduino stops receiving commands, start the rainbow effect
 	}
 }
 

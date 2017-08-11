@@ -33,7 +33,7 @@ namespace HueHue
             icon = new TrayIcon();
 
             //The app was auto started by windows from the user's startup folder
-            if (settings.AutoStart && Environment.GetCommandLineArgs() != null)
+            if (settings.AutoStart && Environment.GetCommandLineArgs().Length > 1)
             {
                 this.Minimize();
                 StartStop();
@@ -91,6 +91,9 @@ namespace HueHue
                     break;
                 case 4:
                     frame.Navigate(new SnakeMode(settings));
+                    break;
+                case 5:
+                    Effects.Black();
                     break;
 
                 default:

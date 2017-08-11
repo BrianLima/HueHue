@@ -11,7 +11,7 @@
         <tb:TaskbarIcon ToolTipText="HueHue LED Controler" x:Name="icon" TrayMouseDoubleClick="icon_TrayMouseDoubleClick">
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu >
-                    <MenuItem Header="Shut off LEDs" FontFamily="Segoe UI Light" FontSize="14" />
+                    <MenuItem Header="Shut off LEDs" FontFamily="Segoe UI Light" FontSize="14" Click="MenuItem_ShutOff_Click" />
                     <MenuItem Header="Quit" FontFamily="Segoe UI Light" FontSize="14" Click="MenuItem_Quit_Click" x:Name="menuItem_Quit"/>
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
