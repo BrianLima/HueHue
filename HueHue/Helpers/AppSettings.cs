@@ -46,6 +46,7 @@ namespace HueHue.Helpers
                 case "TotalLeds":
                     Properties.Settings.Default.TotalLeds = _total_leds;
                     Properties.Settings.Default.Save();
+                    Effects.Setup(_total_leds);
                     break;
                 case "COMPort":
                     Properties.Settings.Default.COM_PORT = _com_port;

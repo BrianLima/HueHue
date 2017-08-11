@@ -2,6 +2,8 @@
 using IWshRuntimeLibrary;
 using System;
 using System.Windows;
+using System.Text.RegularExpressions;
+using System.Windows.Input;
 
 namespace HueHue
 {
@@ -10,10 +12,15 @@ namespace HueHue
     /// </summary>
     public partial class SettingsWindow : Window
     {
-        public SettingsWindow(AppSettings _settings)
+        private SerialStream stream;
+        public SettingsWindow(AppSettings _settings, SerialStream _stream)
         {
             InitializeComponent();
             grid_settings.DataContext = _settings;
+            stream = _stream;
+            comboBox_ComPort.ItemsSource = stream.GetPorts();
+
+            stream.Stop(); //Stop the communication with the arduino, it might cause problems if some settings are changed while it's running
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -72,6 +79,17 @@ namespace HueHue
             {
                 System.IO.File.Delete(shortcut);
             }
+        }
+
+        /// <summary>
+        /// Locks the user from typing character text
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

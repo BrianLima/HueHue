@@ -16,7 +16,24 @@ namespace HueHue.Helpers
         /// <summary>
         /// Strip of LEDs representing the LEDs attached to the Arduino
         /// </summary>
-        public static List<LEDBulb> LEDs = new List<LEDBulb>();
+        public static List<LEDBulb> LEDs;
+
+        /// <summary>
+        /// Resets and setup de LEDs strip
+        /// </summary>
+        /// <param name="TotalLEDs">Amount of LEDs on the Strip</param>
+        public static void Setup(int TotalLEDs)
+        {
+            if (LEDs == null || LEDs.Count > 0)
+            {
+                LEDs = new List<LEDBulb>();
+            }
+
+            for (int i = 0; i < TotalLEDs; i++)
+            {
+                LEDs.Add(new LEDBulb());
+            }
+        }
 
         /// <summary>
         /// Step used for effects

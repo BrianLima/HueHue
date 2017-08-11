@@ -4,7 +4,6 @@ using System.IO.Ports;
 using System.Threading;
 using System.Threading.Tasks;
 using NLog;
-using System.Collections.Generic;
 using HueHue.Properties;
 
 namespace HueHue.Helpers

@@ -21,23 +21,21 @@ namespace HueHue
 
             settings = new AppSettings();
             stream = new SerialStream();
-            comboBox_ComPort.ItemsSource = stream.GetPorts();
 
             GridMain.DataContext = settings;
-
-            for (int i = 0; i < settings.TotalLeds; i++)
-            {
-                Effects.LEDs.Add(new LEDBulb());
-            }
+            Effects.Setup(settings.TotalLeds);
 
             //The tray icon can control effects too
             icon = new TrayIcon(settings, stream, this);
 
             //The app was auto started by windows from the user's startup folder
-            if (settings.AutoStart && Environment.GetCommandLineArgs().Length > 1)
+            if (Environment.GetCommandLineArgs() != null)
             {
-                this.Minimize();
-                StartStop();
+                if (settings.AutoStart && Environment.GetCommandLineArgs().Length > 1)
+                {
+                    this.Minimize();
+                    StartStop();
+                }
             }
         }
 
@@ -127,9 +125,6 @@ namespace HueHue
             {
                 Minimize();
             }
-            else
-            {
-            }
         }
 
         private void Minimize()
@@ -140,8 +135,9 @@ namespace HueHue
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            SettingsWindow window = new SettingsWindow(settings);
+            SettingsWindow window = new SettingsWindow(settings, stream);
             window.ShowDialog();
+            buttonStart.Content = "Start";
         }
     }
 }

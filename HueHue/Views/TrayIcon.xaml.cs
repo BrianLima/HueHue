@@ -2,7 +2,6 @@
 using HueHue.Helpers;
 using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace HueHue.Views
 {
@@ -18,6 +17,7 @@ namespace HueHue.Views
         public TrayIcon(AppSettings _settings, SerialStream _stream, MainWindow _mainWindow)
         {
             InitializeComponent();
+
             this.settings = _settings;
             this.stream = _stream;
             this.mainWindow = _mainWindow;
@@ -78,7 +78,7 @@ namespace HueHue.Views
 
         public void UpdateTrayLabel()
         {
-            if (stream.IsRunning())
+            if (!stream.IsRunning())
             {
                 item_start_stop.Header = "Start";
             }
