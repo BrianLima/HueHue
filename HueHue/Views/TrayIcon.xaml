@@ -6,13 +6,22 @@
         xmlns:tb="http://www.hardcodet.net/taskbar"
         xmlns:local="clr-namespace:HueHue.Views"
         mc:Ignorable="d"
-        Title="NotifyIcon" Height="300" Width="300" FontFamily="Segoe UI Light" FontSize="12">
+        Title="NotifyIcon" Height="300" Width="300" FontFamily="Segoe UI Light" FontSize="14">
     <Grid>
         <tb:TaskbarIcon ToolTipText="HueHue LED Controler" x:Name="icon" TrayMouseDoubleClick="icon_TrayMouseDoubleClick">
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu >
-                    <MenuItem Header="Shut off LEDs" FontFamily="Segoe UI Light" FontSize="14" Click="MenuItem_ShutOff_Click" />
-                    <MenuItem Header="Quit" FontFamily="Segoe UI Light" FontSize="14" Click="MenuItem_Quit_Click" x:Name="menuItem_Quit"/>
+                    <MenuItem Header="Effects" >
+                        <MenuItem Header="Fixed Color" Click="MenuItem_FixedColor_Click" />
+                        <MenuItem Header="Alternate Colors" Click="MenuItem_AlternateColors_Click"/>
+                        <MenuItem Header="Music Mode" Click="MenuItem_MusicMode_Click"/>
+                        <MenuItem Header="Color Cycling" Click="MenuItem_ColorCycling_Click"/>
+                        <MenuItem Header="Snake Color" Click="MenuItem_SnakeColor_Click"/>
+                        <MenuItem Header="Breathing"/>
+                    </MenuItem>
+                    <MenuItem Header="Start stream" Click="MenuItem_StartStop_Click" x:Name="item_start_stop" />
+                    <MenuItem Header="Shut off LEDs" Click="MenuItem_ShutOff_Click" />
+                    <MenuItem Header="Quit App"  Click="MenuItem_Quit_Click" x:Name="menuItem_Quit"/>
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
         </tb:TaskbarIcon>

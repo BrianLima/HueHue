@@ -56,7 +56,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="5,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="61" Text="COM Port:" Grid.Row="1"/>
             <ComboBox x:Name="comboBox_ComPort" Text="{Binding COMPort}" Margin="71,0,10.4,0" VerticalAlignment="Top" Height="30" Grid.Row="1"/>
         </Grid>
-        <Frame x:Name="frame" Content="Frame" BorderThickness="2" Grid.Column="1" Height="598" Margin="9.6,9.6,9.6,0" Grid.Row="1" VerticalAlignment="Top"  NavigationUIVisibility="Hidden">
+        <Frame x:Name="frame" Content="No effect selected or LED's current shut off" BorderThickness="2" Grid.Column="1" Height="598" Margin="9.6,9.6,9.6,0" Grid.Row="1" VerticalAlignment="Top"  NavigationUIVisibility="Hidden">
             <Frame.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop x:Name="colorFrame1" Color="#FF00D1FF"/>

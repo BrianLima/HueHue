@@ -9,13 +9,14 @@ using HueHue.Properties;
 
 namespace HueHue.Helpers
 {
-    internal class SerialStream : IDisposable
+    public class SerialStream : IDisposable
     {
         public SerialStream()
         {
         }
 
         private ILogger _log = LogManager.GetCurrentClassLogger();
+        private bool running = false;
 
         private readonly byte[] _messagePreamble = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09 };
 
@@ -40,6 +41,7 @@ namespace HueHue.Helpers
                 IsBackground = true
             };
             _workerThread.Start(_cancellationTokenSource.Token);
+            running = true;
         }
 
         public void Stop()
@@ -51,6 +53,7 @@ namespace HueHue.Helpers
             _cancellationTokenSource = null;
             _workerThread.Join();
             _workerThread = null;
+            running = false;
         }
 
         private byte[] GetOutputStream()
@@ -118,7 +121,7 @@ namespace HueHue.Helpers
                 catch (OperationCanceledException)
                 {
                     _log.Debug("OperationCanceledException catched. returning.");
-
+                    running = false;
                     return;
                 }
                 catch (Exception ex)
@@ -131,6 +134,7 @@ namespace HueHue.Helpers
                     }
                     serialPort?.Dispose();
                     serialPort = null;
+                    running = false;
                 }
                 finally
                 {
@@ -141,6 +145,11 @@ namespace HueHue.Helpers
                     }
                 }
             }
+        }
+
+        public  bool IsRunning()
+        {
+            return running;
         }
 
         public void Dispose()

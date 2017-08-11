@@ -2,6 +2,9 @@
 
 namespace HueHue.Helpers
 {
+    /// <summary>
+    /// Represents and stores/load Properties.Settings.Default
+    /// </summary>
     public class AppSettings : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

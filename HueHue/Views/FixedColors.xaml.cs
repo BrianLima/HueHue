@@ -18,7 +18,7 @@ namespace HueHue
             GridFixedColorSettings.DataContext = settings;
 
             //Check the current effect
-            if (Properties.Settings.Default.CurrentMode == 1)
+            if (settings.CurrentMode == 1)
             {
                 colorPicker2.Visibility = Visibility.Visible;
                 labelRandom.Visibility = Visibility.Collapsed;

@@ -195,7 +195,7 @@ namespace HueHue.Helpers
             FixedColor(); //Fill the strip with the color
         }
 
-        public static void Black()
+        public static void ShutOff()
         {
             foreach (LEDBulb LED in LEDs)
             {

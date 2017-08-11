@@ -30,7 +30,8 @@ namespace HueHue
                 Effects.LEDs.Add(new LEDBulb());
             }
 
-            icon = new TrayIcon();
+            //The tray icon can control effects too
+            icon = new TrayIcon(settings, stream, this);
 
             //The app was auto started by windows from the user's startup folder
             if (settings.AutoStart && Environment.GetCommandLineArgs().Length > 1)
@@ -45,7 +46,7 @@ namespace HueHue
             StartStop();
         }
 
-        private void StartStop()
+        public void StartStop()
         {
             if (!isRunning)
             {
@@ -71,6 +72,8 @@ namespace HueHue
                 {
                 }
             }
+
+            icon.UpdateTrayLabel();
         }
 
         private void comboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -93,9 +96,13 @@ namespace HueHue
                     frame.Navigate(new SnakeMode(settings));
                     break;
                 case 5:
-                    Effects.Black();
+                    //Effects.ShutOff(); Breath?
                     break;
-
+                case 6:
+                    frame.NavigationService.RemoveBackEntry();
+                    frame.Content = "LED's currently shut off";
+                    Effects.ShutOff();
+                    break;
                 default:
                     break;
             }
