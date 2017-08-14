@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Drawing;
 
 namespace HueHue.Helpers
 {
@@ -22,6 +23,8 @@ namespace HueHue.Helpers
             this._auto_start = Properties.Settings.Default.AutoStart;
             this._minimize = Properties.Settings.Default.Minimize;
             this._auto_run = Properties.Settings.Default.AutoRun;
+            this._color_one = Properties.Settings.Default.ColorOne;
+            this._color_two = Properties.Settings.Default.ColorTwo;
         }
 
         /// <summary>
@@ -78,6 +81,14 @@ namespace HueHue.Helpers
                     break;
                 case "AutoRun":
                     Properties.Settings.Default.AutoRun = _auto_run;
+                    Properties.Settings.Default.Save();
+                    break;
+                case "ColorOne":
+                    Properties.Settings.Default.ColorOne = _color_one;
+                    Properties.Settings.Default.Save();
+                    break;
+                case "ColorTwo":
+                    Properties.Settings.Default.ColorTwo = _color_two;
                     Properties.Settings.Default.Save();
                     break;
                 default:
@@ -193,5 +204,24 @@ namespace HueHue.Helpers
             set { _auto_run = value; OnPropertyChanged("AutoRun"); }
         }
 
+        private Color _color_one;
+        /// <summary>
+        /// Gets or sets the first color the app uses for effects
+        /// </summary>
+        public Color ColorOne
+        {
+            get { return _color_one; }
+            set { _color_one = value; OnPropertyChanged("ColorOne"); }
+        }
+
+        private Color _color_two;
+        /// <summary>
+        /// Gets or sets the second color the app uses for effects
+        /// </summary>
+        public Color ColorTwo
+        {
+            get { return _color_two; }
+            set { _color_two = value; OnPropertyChanged("ColorTwo"); }
+        }
     }
 }

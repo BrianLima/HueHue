@@ -1,4 +1,7 @@
-﻿namespace HueHue.Helpers
+﻿using System;
+using System.Drawing;
+
+namespace HueHue.Helpers
 {
     public class LEDBulb
     {
@@ -8,6 +11,14 @@
             this.g = 255;
             this.b = 255;
         }
+
+        public LEDBulb(byte r, byte g, byte b)
+        {
+            this.r = r;
+            this.g = g;
+            this.b = b;
+        }
+
         private byte r;
 
         public byte R
@@ -38,6 +49,11 @@
         {
             get { return _id; }
             set { _id = value; }
+        }
+
+        public static explicit operator LEDBulb(Color v)
+        {
+            return new LEDBulb(v.R, v.G, v.B);
         }
     }
 }

@@ -25,8 +25,8 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <controls:ColorCanvas  R="{Binding R}" G="{Binding G}" B="{Binding B}" x:Name="colorPicker" Margin="10,10,0,91" HorizontalAlignment="Left" Width="343" SelectedColorChanged="colorPicker_SelectedColorChanged"/>
-                <controls:ColorCanvas  R="{Binding R}" G="{Binding G}" B="{Binding B}" x:Name="colorPicker2" Margin="358,10,0,91" HorizontalAlignment="Left" Width="343" SelectedColorChanged="colorPicker2_SelectedColorChanged"/>
+                <controls:ColorCanvas x:Name="colorPicker" Margin="10,10,0,91" HorizontalAlignment="Left" Width="343" SelectedColorChanged="colorPicker_SelectedColorChanged"/>
+                <controls:ColorCanvas R="{Binding R}" G="{Binding G}" B="{Binding B}" x:Name="colorPicker2" Margin="358,10,0,91" HorizontalAlignment="Left" Width="343" SelectedColorChanged="colorPicker2_SelectedColorChanged"/>
                 <Grid x:Name="GridFixedColorSettings" Margin="10,375,367,0">
                     <ToggleButton x:Name="breathToggle" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="{Binding Breath}" Height="18" HorizontalAlignment="Right" Width="46" />
                     <Label Content="Breathing:" Margin="0,-4,286,0" VerticalAlignment="Top" Height="26"/>

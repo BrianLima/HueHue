@@ -61,13 +61,13 @@ namespace HueHue.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string LastColor {
+        [global::System.Configuration.DefaultSettingValueAttribute("Red")]
+        public global::System.Drawing.Color ColorOne {
             get {
-                return ((string)(this["LastColor"]));
+                return ((global::System.Drawing.Color)(this["ColorOne"]));
             }
             set {
-                this["LastColor"] = value;
+                this["ColorOne"] = value;
             }
         }
         
@@ -145,13 +145,13 @@ namespace HueHue.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string LastColorTwo {
+        [global::System.Configuration.DefaultSettingValueAttribute("Blue")]
+        public global::System.Drawing.Color ColorTwo {
             get {
-                return ((string)(this["LastColorTwo"]));
+                return ((global::System.Drawing.Color)(this["ColorTwo"]));
             }
             set {
-                this["LastColorTwo"] = value;
+                this["ColorTwo"] = value;
             }
         }
         

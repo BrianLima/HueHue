@@ -24,6 +24,7 @@ namespace HueHue
 
             GridMain.DataContext = settings;
             Effects.Setup(settings.TotalLeds);
+            Effects.ColorOne = (LEDBulb)settings.ColorOne;
 
             //The tray icon can control effects too
             icon = new TrayIcon(settings, stream, this);

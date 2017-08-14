@@ -11,8 +11,8 @@
     <Setting Name="TotalLeds" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">90</Value>
     </Setting>
-    <Setting Name="LastColor" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="ColorOne" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Red</Value>
     </Setting>
     <Setting Name="BreathDelay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
@@ -32,8 +32,8 @@
     <Setting Name="Length" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
-    <Setting Name="LastColorTwo" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="ColorTwo" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Blue</Value>
     </Setting>
     <Setting Name="AutoStart" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
