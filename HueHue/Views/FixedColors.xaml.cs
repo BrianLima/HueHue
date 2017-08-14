@@ -16,21 +16,16 @@ namespace HueHue
         {
             InitializeComponent();
             settings = _settings;
-            GridFixedColorSettings.DataContext = settings;
 
             //Check the current effect
             if (settings.CurrentMode == 1)
             {
                 colorPicker2.Visibility = Visibility.Visible;
-                labelRandom.Visibility = Visibility.Collapsed;
-                randomToggle.Visibility = Visibility.Collapsed;
                 colorZone.Content = "Alternate Colors";
             }
             else
             {
                 colorPicker2.Visibility = Visibility.Collapsed;
-                labelRandom.Visibility = Visibility.Visible;
-                randomToggle.Visibility = Visibility.Visible;
                 colorZone.Content = "Fixed Color";
             }
 
