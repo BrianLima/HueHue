@@ -39,6 +39,14 @@ namespace HueHue.Views
             };
             timer.Tick += Timer_Tick;
             timer.Start();
+
+            //I couldn't in ANY way make it bind the color properly, at least this works
+            //Binding each value from the RGB is broken
+            //Binding the color it self conflicts because the controler uses System.Windows.Media.Color instead of System.Drawing.Color
+            //I give up, this is it, MVVM for a later day.
+            colorPicker.SelectedColor = System.Windows.Media.Color.FromArgb(settings.ColorOne.A, settings.ColorOne.R, settings.ColorOne.G, settings.ColorOne.B);
+
+            colorPicker2.SelectedColor = System.Windows.Media.Color.FromArgb(settings.ColorTwo.A, settings.ColorTwo.R, settings.ColorTwo.G, settings.ColorTwo.B);
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -51,6 +59,8 @@ namespace HueHue.Views
             Effects.ColorOne.B = e.NewValue.Value.B;
             Effects.ColorOne.G = e.NewValue.Value.G;
             Effects.ColorOne.R = e.NewValue.Value.R;
+
+            settings.ColorOne = System.Drawing.Color.FromArgb(e.NewValue.Value.R, e.NewValue.Value.G, e.NewValue.Value.B);
         }
 
         private void colorPicker2_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
@@ -58,6 +68,8 @@ namespace HueHue.Views
             Effects.ColorTwo.B = e.NewValue.Value.B;
             Effects.ColorTwo.G = e.NewValue.Value.G;
             Effects.ColorTwo.R = e.NewValue.Value.R;
+
+            settings.ColorTwo = System.Drawing.Color.FromArgb(e.NewValue.Value.R, e.NewValue.Value.G, e.NewValue.Value.B);
         }
 
         private void sliderSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
