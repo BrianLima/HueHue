@@ -24,7 +24,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" Grid.ColumnSpan="2" VerticalAlignment="Stretch" Margin="0,0,-0.4,0.4">
-            <Button  Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 Margin="0,0,-1.4,0" HorizontalAlignment="Right"
                 ToolTip="Settings/About" VerticalAlignment="Top" Click="Button_Click_1">
                 <materialDesign:PackIcon Kind="Settings" Height="24" Width="24" />
@@ -72,7 +72,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button  Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                     HorizontalAlignment="Right"
                     ToolTip="Settings/About" Click="Button_Click_1" Margin="0,0,10,10" Height="40" VerticalAlignment="Bottom">
                 <materialDesign:PackIcon Kind="PlaylistPlus" Height="24" Width="24" />

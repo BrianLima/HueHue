@@ -25,6 +25,7 @@ namespace HueHue.Helpers
             this._auto_run = Properties.Settings.Default.AutoRun;
             this._color_one = Properties.Settings.Default.ColorOne;
             this._color_two = Properties.Settings.Default.ColorTwo;
+            this._dark_mode = Properties.Settings.Default.DarkMode;
         }
 
         /// <summary>
@@ -89,6 +90,10 @@ namespace HueHue.Helpers
                     break;
                 case "ColorTwo":
                     Properties.Settings.Default.ColorTwo = _color_two;
+                    Properties.Settings.Default.Save();
+                    break;
+                case "DarkMode":
+                    Properties.Settings.Default.DarkMode = _dark_mode;
                     Properties.Settings.Default.Save();
                     break;
                 default:
@@ -222,6 +227,16 @@ namespace HueHue.Helpers
         {
             get { return _color_two; }
             set { _color_two = value; OnPropertyChanged("ColorTwo"); }
+        }
+
+        private bool _dark_mode;
+        /// <summary>
+        /// Gets or sets if the app is in dark mode
+        /// </summary>
+        public bool DarkMode
+        {
+            get { return _dark_mode; }
+            set { _dark_mode = value; OnPropertyChanged("DarkMode"); }
         }
     }
 }

@@ -23,7 +23,7 @@ namespace HueHue.Helpers
         private CancellationTokenSource _cancellationTokenSource;
         private readonly Stopwatch _stopwatch = new Stopwatch();
 
-        internal string[] GetPorts()
+        public static string[] GetPorts()
         {
             return SerialPort.GetPortNames();
         }

@@ -13,5 +13,6 @@ namespace HueHue
     /// </summary>
     public partial class App : Application
     {
+
     }
 }

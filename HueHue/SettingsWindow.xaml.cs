@@ -4,6 +4,9 @@ using System;
 using System.Windows;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
+using MaterialDesignColors;
+using MaterialDesignThemes;
+using MaterialDesignThemes.Wpf;
 
 namespace HueHue
 {
@@ -12,15 +15,16 @@ namespace HueHue
     /// </summary>
     public partial class SettingsWindow : Window
     {
-        private SerialStream stream;
-        public SettingsWindow(AppSettings _settings, SerialStream _stream)
+        PaletteHelper helper = new PaletteHelper();
+        AppSettings settings;
+
+        public SettingsWindow(AppSettings _settings)
         {
             InitializeComponent();
             grid_settings.DataContext = _settings;
-            stream = _stream;
-            comboBox_ComPort.ItemsSource = stream.GetPorts();
+            comboBox_ComPort.ItemsSource = SerialStream.GetPorts();
 
-            stream.Stop(); //Stop the communication with the arduino, it might cause problems if some settings are changed while it's running
+            settings = _settings;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -90,6 +94,15 @@ namespace HueHue
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void toggle_mode_CheckChanged(object sender, RoutedEventArgs e)
+        {
+            helper.SetLightDark(settings.DarkMode);
         }
     }
 }

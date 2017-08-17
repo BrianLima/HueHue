@@ -1,5 +1,6 @@
 ﻿using HueHue.Helpers;
 using HueHue.Views;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -26,6 +27,12 @@ namespace HueHue
             GridMain.DataContext = settings;
             Effects.Setup(settings.TotalLeds);
             Effects.ColorOne = (LEDBulb)settings.ColorOne;
+
+            if (settings.DarkMode)
+            {
+                PaletteHelper helper = new PaletteHelper();
+                helper.SetLightDark(settings.DarkMode);
+            }
 
             //The tray icon can control effects too
             icon = new TrayIcon(settings, stream, this);
@@ -141,9 +148,13 @@ namespace HueHue
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            SettingsWindow window = new SettingsWindow(settings, stream);
+            stream.Stop(); //Stop the communication with the arduino, it might cause problems if some settings are changed while it's running
+
+            SettingsWindow window = new SettingsWindow(settings);
             window.ShowDialog();
             buttonStart.Content = "Start";
+
+            stream.Start();
         }
     }
 }
