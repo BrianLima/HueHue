@@ -1,6 +1,7 @@
 ﻿using HueHue.Helpers;
 using HueHue.Views;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace HueHue
@@ -38,6 +39,10 @@ namespace HueHue
                     StartStop();
                 }
             }
+
+            List<Device> devices = new List<Device> { new Device() { Name = "Arduino", Type = "Arduino", Icon = "/Icons/Devices/Arduino.png" } };
+
+            ListDevices.ItemsSource = devices;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
