@@ -12,24 +12,18 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="Segoe UI Light" Height="721.556" Closing="Window_Closing" StateChanged="Window_StateChanged">
+        FontFamily="Segoe UI" Height="700" Closing="Window_Closing" StateChanged="Window_StateChanged">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="37*"/>
-            <RowDefinition Height="193*"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
             <RowDefinition Height="232"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="246.4"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" Grid.ColumnSpan="2" VerticalAlignment="Stretch" Margin="0,0,-0.4,0.4">
-            <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                Margin="0,0,-1.4,0" HorizontalAlignment="Right"
-                ToolTip="Settings/About" VerticalAlignment="Top" Click="Button_Click_1">
-                <materialDesign:PackIcon Kind="Settings" Height="24" Width="24" />
-            </Button>
-        </materialDesign:ColorZone>
+        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" Grid.ColumnSpan="2" VerticalAlignment="Stretch" Margin="0,0,-0.4,0.4" Content="HueHue" />
         <Grid x:Name="GridMain" Margin="10,7,5.4,10" Grid.Row="2" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="52"/>
@@ -54,18 +48,13 @@
             </materialDesign:ColorZone>
         </Grid>
         <Frame x:Name="frame" Content="No effect selected or LED's current shut off" BorderThickness="2" Grid.Column="1" Margin="9.6,9.6,9.6,10" Grid.Row="1"  NavigationUIVisibility="Hidden" Grid.RowSpan="2">
-            <Frame.BorderBrush>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop x:Name="colorFrame1" Color="#FF00D1FF"/>
-                    <GradientStop x:Name="colorFrame2" Color="#FFF90000" Offset="1"/>
-                </LinearGradientBrush>
-            </Frame.BorderBrush>
+
         </Frame>
         <Grid Margin="10,9.6,5.4,10" Grid.Row="1">
             <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Top" Height="47">
-                <TextBlock HorizontalAlignment="Left" Margin="-6,-6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="61" Text="My devices"/>
+                <TextBlock HorizontalAlignment="Left" Margin="-6,-6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="81" Text="My devices"/>
             </materialDesign:ColorZone>
-            <ListBox Margin="0,52,0,60" x:Name="ListDevices">
+            <ListBox Margin="0,52,0,0.4" x:Name="ListDevices">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Views:DeviceModel />
@@ -74,9 +63,14 @@
             </ListBox>
             <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                     HorizontalAlignment="Right"
-                    ToolTip="Settings/About" Click="Button_Click_1" Margin="0,0,10,10" Height="40" VerticalAlignment="Bottom">
+                    ToolTip="Add new device" Click="Button_Click_1" Margin="0,26,6,0" Height="40" VerticalAlignment="Top">
                 <materialDesign:PackIcon Kind="PlaylistPlus" Height="24" Width="24" />
             </Button>
         </Grid>
+        <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                Margin="0,10,9.6,0" HorizontalAlignment="Right"
+                ToolTip="Settings/About" VerticalAlignment="Top" Click="Button_Click_1" Grid.Column="1">
+            <materialDesign:PackIcon Kind="Settings" Height="24" Width="24" />
+        </Button>
     </Grid>
 </Window>

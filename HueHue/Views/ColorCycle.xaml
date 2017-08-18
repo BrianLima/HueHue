@@ -15,7 +15,7 @@
 
         <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Content="Color Cycle"/>
         <Grid Margin="10,6,8,13" Grid.Row="1" x:Name="gridSettings">
-            <Slider x:Name="sliderSpeed" Value="{Binding Speed}" HorizontalAlignment="Left" Margin="50,0,0,0" Width="230" Minimum="50" Maximum="3000" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" ValueChanged="sliderSpeed_ValueChanged"/>
+            <Slider x:Name="sliderSpeed" Value="{Binding Speed}" HorizontalAlignment="Left" Margin="50,0,0,0" Width="230" Minimum="10" Maximum="3000" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" ValueChanged="sliderSpeed_ValueChanged"/>
             <Label Content="Speed:" Margin="0,35,0,0" HorizontalAlignment="Left" Width="46" Height="26" VerticalAlignment="Top"/>
             <Label Content="*Speed in miliseconds" Margin="0,61,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="126"/>
 

@@ -20,19 +20,21 @@
         </Grid.RowDefinitions>
         <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Content="Snake Colors" Grid.ColumnSpan="2" Margin="0,0,0.4,3"/>
         <!--https://wpfcolorpickercontrol.codeplex.com/-->
-        <ScrollViewer VerticalScrollBarVisibility="Hidden" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0.4,0">
+        <ScrollViewer VerticalScrollBarVisibility="Hidden" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0.4,0" HorizontalScrollBarVisibility="Auto">
             <Grid  HorizontalAlignment="Left" Height="461" Grid.Row="1" VerticalAlignment="Top" Width="720" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <controls:ColorCanvas  R="{Binding R}" G="{Binding G}" B="{Binding B}" x:Name="colorPicker" Margin="10,10,0,91" HorizontalAlignment="Left" Width="343" SelectedColorChanged="colorPicker_SelectedColorChanged" Background="{x:Null}" BorderBrush="{x:Null}" UsingAlphaChannel="False"/>
                 <controls:ColorCanvas  R="{Binding R}" G="{Binding G}" B="{Binding B}" x:Name="colorPicker2" Margin="358,10,0,91" HorizontalAlignment="Left" Width="343" SelectedColorChanged="colorPicker2_SelectedColorChanged" Background="{x:Null}" BorderBrush="{x:Null}" UsingAlphaChannel="False"/>
-                <Grid x:Name="GridSnakeColorSettings" Margin="10,375,10,0">
-                    <Slider x:Name="sliderSpeed" Value="{Binding Speed}" HorizontalAlignment="Right" Margin="0,0,253,22.8" Width="165" Minimum="50" Maximum="3000" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Bottom" ValueChanged="sliderSpeed_ValueChanged"/>
-                    <Label Content="Speed:" HorizontalAlignment="Right" Margin="0,0,422,14.8" Height="26" VerticalAlignment="Bottom"/>
-                    <Slider x:Name="sliderWidth" Value="{Binding Length}" HorizontalAlignment="Right" Margin="0,10,473,0" VerticalAlignment="Top" Width="165" Height="53" Minimum="1" Maximum="30" Style="{StaticResource MaterialDesignDiscreteSlider}" ValueChanged="sliderWidth_ValueChanged"/>
-                    <Label Content="Width:" HorizontalAlignment="Right" Margin="0,0,638,14.8" Height="26" VerticalAlignment="Bottom"/>
-                    <Label Content="*Speed in miliseconds" Margin="0,0,10,9.8" HorizontalAlignment="Right" Width="126" Height="26" VerticalAlignment="Bottom"/>
+                <Grid x:Name="GridSnakeColorSettings" Margin="10,375,10,10">
+                    <Slider x:Name="sliderSpeed" Value="{Binding Speed}" HorizontalAlignment="Right" Margin="0,-5,234,27.8" Width="165" Minimum="10" Maximum="3000" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Bottom" ValueChanged="sliderSpeed_ValueChanged"/>
+                    <Label Content="Speed:" HorizontalAlignment="Right" Margin="0,0,399,27.8" Height="26" VerticalAlignment="Bottom"/>
+                    <Slider x:Name="sliderWidth" Value="{Binding Length}" HorizontalAlignment="Right" Margin="0,-5,485,0" VerticalAlignment="Top" Width="165" Height="53" Minimum="1" Maximum="30" Style="{StaticResource MaterialDesignDiscreteSlider}" ValueChanged="sliderWidth_ValueChanged"/>
+                    <Label Content="Width:" Margin="0,0,0,32.8" HorizontalAlignment="Left" Width="45" Height="26" VerticalAlignment="Bottom"/>
+                    <Label Content="*Speed in miliseconds" Margin="0,0,264,4.8" HorizontalAlignment="Right" Width="126" Height="23" VerticalAlignment="Bottom" FontSize="8"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="215,20,0,0" TextWrapping="Wrap" Text="{Binding Length}" VerticalAlignment="Top" Width="35"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="460,20,0,0" TextWrapping="Wrap" Text="{Binding Speed}" VerticalAlignment="Top" Width="35"/>
                 </Grid>
             </Grid>
         </ScrollViewer>

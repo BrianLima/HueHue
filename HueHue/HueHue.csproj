@@ -119,6 +119,9 @@
     <Compile Include="Views\ColorCycle.xaml.cs">
       <DependentUpon>ColorCycle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RainbowMode.xaml.cs">
+      <DependentUpon>RainbowMode.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TrayIcon.xaml.cs">
       <DependentUpon>TrayIcon.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ColorCycle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RainbowMode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
