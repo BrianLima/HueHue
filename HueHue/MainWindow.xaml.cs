@@ -28,11 +28,6 @@ namespace HueHue
             Effects.Setup(settings.TotalLeds);
             Effects.ColorOne = (LEDBulb)settings.ColorOne;
 
-            if (settings.DarkMode)
-            {
-                PaletteHelper helper = new PaletteHelper();
-                helper.SetLightDark(settings.DarkMode);
-            }
 
             //The tray icon can control effects too
             icon = new TrayIcon(settings, stream, this);
@@ -47,7 +42,13 @@ namespace HueHue
                 }
             }
 
-            List<Device> devices = new List<Device> { new Device() { Name = "Arduino", Type = "Arduino", Icon = "/Icons/Devices/Arduino.png" } };
+            if (settings.DarkMode)
+            {
+                PaletteHelper helper = new PaletteHelper();
+                helper.SetLightDark(settings.DarkMode);
+            }
+
+            List<Device> devices = new List<Device> { new Device() { Name = "Arduino", Type = "Arduino", Icon = "/HueHue;component/Icons/Devices/Arduino.png" } };
 
             ListDevices.ItemsSource = devices;
         }

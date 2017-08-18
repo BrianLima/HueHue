@@ -53,7 +53,7 @@
                 <TextBlock HorizontalAlignment="Left" Margin="-6,-6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="61" Text="Settings"/>
             </materialDesign:ColorZone>
         </Grid>
-        <Frame x:Name="frame" Content="No effect selected or LED's current shut off" BorderThickness="2" Grid.Column="1" Height="598" Margin="9.6,9.6,9.6,0" Grid.Row="1" VerticalAlignment="Top"  NavigationUIVisibility="Hidden" Grid.RowSpan="2">
+        <Frame x:Name="frame" Content="No effect selected or LED's current shut off" BorderThickness="2" Grid.Column="1" Margin="9.6,9.6,9.6,10" Grid.Row="1"  NavigationUIVisibility="Hidden" Grid.RowSpan="2">
             <Frame.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop x:Name="colorFrame1" Color="#FF00D1FF"/>
