@@ -96,6 +96,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\Arduino.cs" />
     <Compile Include="Helpers\BasicSpectrumProvider.cs" />
     <Compile Include="Helpers\Device.cs" />
     <Compile Include="Helpers\Effects.cs" />

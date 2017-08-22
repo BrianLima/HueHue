@@ -8,11 +8,17 @@ using HueHue.Properties;
 
 namespace HueHue.Helpers
 {
-    public class SerialStream : IDisposable
+    /// <summary>
+    /// ComPort communication logic for Arduino devices running HueHueClient scrip 
+    /// </summary>
+    public class SerialStream : Device, IDisposable
     {
         public SerialStream()
         {
+            Console.Write("Init serial Stream");
         }
+
+        public virtual string COM_PORT { get; set; }
 
         private ILogger _log = LogManager.GetCurrentClassLogger();
         private bool running = false;
@@ -23,12 +29,19 @@ namespace HueHue.Helpers
         private CancellationTokenSource _cancellationTokenSource;
         private readonly Stopwatch _stopwatch = new Stopwatch();
 
+        /// <summary>
+        /// Returns a list of COMPorts available on the current PC
+        /// </summary>
+        /// <returns></returns>
         public static string[] GetPorts()
         {
             return SerialPort.GetPortNames();
         }
 
-        public void Start()
+        /// <summary>
+        /// Starts communication with this arduino
+        /// </summary>
+        public override void Start()
         {
             _log.Debug("Start called.");
             if (_workerThread != null) return;
@@ -43,7 +56,10 @@ namespace HueHue.Helpers
             running = true;
         }
 
-        public void Stop()
+        /// <summary>
+        /// Stops communication with this arduino
+        /// </summary>
+        public override void Stop()
         {
             _log.Debug("Stop called.");
             if (_workerThread == null) return;
@@ -82,7 +98,7 @@ namespace HueHue.Helpers
             var cancellationToken = (CancellationToken)tokenObject;
             SerialPort serialPort = null;
 
-            if (String.IsNullOrEmpty(Settings.Default.COM_PORT)) return;
+            if (String.IsNullOrEmpty(COM_PORT)) return;
 
             //retry after exceptions
             while (!cancellationToken.IsCancellationRequested)
@@ -90,7 +106,7 @@ namespace HueHue.Helpers
                 try
                 {
                     const int baudRate = 1000000; // 115200;
-                    serialPort = new SerialPort(Settings.Default.COM_PORT, baudRate);
+                    serialPort = new SerialPort(COM_PORT, baudRate);
                     serialPort.Open();
 
                     //send frame data
@@ -146,7 +162,7 @@ namespace HueHue.Helpers
             }
         }
 
-        public  bool IsRunning()
+        public bool IsRunning()
         {
             return running;
         }

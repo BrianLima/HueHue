@@ -14,23 +14,26 @@ namespace HueHue
     {
         bool isRunning = false;
         AppSettings settings;
-        SerialStream stream;
         TrayIcon icon;
+        List<Device> devices;
 
         public MainWindow()
         {
             InitializeComponent();
 
             settings = new AppSettings();
-            stream = new SerialStream();
 
             GridMain.DataContext = settings;
             Effects.Setup(settings.TotalLeds);
             Effects.ColorOne = (LEDBulb)settings.ColorOne;
+            Effects.ColorTwo = (LEDBulb)settings.ColorTwo;
 
+
+            //This will hold all the devices currently connected to the PC
+            devices = new List<Device> { new Arduino(settings.COMPort) };
 
             //The tray icon can control effects too
-            icon = new TrayIcon(settings, stream, this);
+            icon = new TrayIcon(settings, null, this);
 
             //The app was auto started by windows from the user's startup folder
             if (Environment.GetCommandLineArgs() != null)
@@ -48,7 +51,6 @@ namespace HueHue
                 helper.SetLightDark(settings.DarkMode);
             }
 
-            List<Device> devices = new List<Device> { new Device() { Name = "Arduino", Type = "Arduino", Icon = "/HueHue;component/Icons/Devices/Arduino.png" } };
 
             ListDevices.ItemsSource = devices;
         }
@@ -66,7 +68,10 @@ namespace HueHue
                 buttonStart.Content = "Stop";
                 try
                 {
-                    stream.Start();
+                    foreach (Device device in devices)
+                    {
+                        device.Start();
+                    }
                 }
                 catch (Exception)
                 {
@@ -78,7 +83,10 @@ namespace HueHue
                 buttonStart.Content = "Start";
                 try
                 {
-                    stream.Stop();
+                    foreach (Device device in devices)
+                    {
+                        device.Stop();
+                    }
                 }
                 catch (Exception)
                 {
@@ -129,7 +137,10 @@ namespace HueHue
             else
             {
                 icon.Close();
-                stream.Stop();
+                foreach (Device device in devices)
+                {
+                    device.Stop();
+                }
             }
         }
 
@@ -149,13 +160,20 @@ namespace HueHue
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            stream.Stop(); //Stop the communication with the arduino, it might cause problems if some settings are changed while it's running
+            foreach (Device device in devices)
+            {
+                device.Stop();
+            }
+            //Stop the communication with the arduino, it might cause problems if some settings are changed while it's running
 
             SettingsWindow window = new SettingsWindow(settings);
             window.ShowDialog();
             buttonStart.Content = "Start";
 
-            stream.Start();
+            foreach (Device device in devices)
+            {
+                device.Stop();
+            }
         }
     }
 }
