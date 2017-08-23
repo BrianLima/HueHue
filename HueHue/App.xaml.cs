@@ -3,10 +3,6 @@ using HueHue.Views;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace HueHue
@@ -18,7 +14,7 @@ namespace HueHue
     {
         public static AppSettings settings;
         public static List<Device> devices;
-        public static bool isRunning { get; private set; } 
+        public static bool isRunning { get; private set; }
         public static TrayIcon icon;
         public static PaletteHelper helper;
 
@@ -28,6 +24,10 @@ namespace HueHue
             helper = new PaletteHelper();
 
             devices = new List<Device> { new Arduino(settings.COMPort) };
+
+            Effects.Setup(App.settings.TotalLeds);
+            Effects.ColorOne = (LEDBulb)App.settings.ColorOne;
+            Effects.ColorTwo = (LEDBulb)App.settings.ColorTwo;
 
             MainWindow window = new MainWindow();
             icon = new TrayIcon(window);
@@ -41,6 +41,7 @@ namespace HueHue
             {
                 device.Stop();
             }
+            icon.Close();
         }
 
         public static void StartStopDevices()

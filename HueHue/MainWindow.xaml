@@ -58,6 +58,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Views:DeviceModel />
+                        
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

@@ -1,7 +1,6 @@
 ﻿using HueHue.Helpers;
 using HueHue.Views;
 using System;
-using System.Collections.Generic;
 using System.Windows;
 
 namespace HueHue
@@ -16,13 +15,6 @@ namespace HueHue
             InitializeComponent();
 
             GridMain.DataContext = App.settings;
-            Effects.Setup(App.settings.TotalLeds);
-            Effects.ColorOne = (LEDBulb)App.settings.ColorOne;
-            Effects.ColorTwo = (LEDBulb)App.settings.ColorTwo;
-
-            //This will hold all the devices currently connected to the PC
-
-            //The tray icon can control effects too
 
             //The app was auto started by windows from the user's startup folder
             if (Environment.GetCommandLineArgs() != null)
@@ -95,10 +87,7 @@ namespace HueHue
             }
             else
             {
-                foreach (Device device in App.devices)
-                {
-                    device.Stop();
-                }
+                Application.Current.Shutdown();
             }
         }
 

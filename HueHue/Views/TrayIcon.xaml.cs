@@ -1,5 +1,4 @@
 ﻿using Hardcodet.Wpf.TaskbarNotification;
-using System.Diagnostics;
 using System.Windows;
 
 namespace HueHue.Views
@@ -31,7 +30,7 @@ namespace HueHue.Views
 
         private void MenuItem_Quit_Click(object sender, RoutedEventArgs e)
         {
-            Process.GetCurrentProcess().Kill();
+            Application.Current.Shutdown();
         }
 
         private void MenuItem_ShutOff_Click(object sender, RoutedEventArgs e)
