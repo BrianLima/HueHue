@@ -80,8 +80,8 @@ namespace HueHue.Helpers
             outputStream = new byte[_messagePreamble.Length + (Settings.Default.TotalLeds * colorsPerLed) + 2]; //3 colors per led, +1 for the brightness +1 to tell a specific effect
             Buffer.BlockCopy(_messagePreamble, 0, outputStream, 0, _messagePreamble.Length);
 
-            outputStream[counter++] = Properties.Settings.Default.Breath ? (byte)1 : (byte)0; //If the user wants to use a breath effect this will be 1 and the arduino will handle the brightness, else it's 0 andit will use the next byte as brightness
-            outputStream[counter++] = Properties.Settings.Default.Brightness; //Set the brightness as the first byte after the preamble
+            outputStream[counter++] = App.settings.Breath ? (byte)1 : (byte)0; //If the user wants to use a breath effect this will be 1 and the arduino will handle the brightness, else it's 0 andit will use the next byte as brightness
+            outputStream[counter++] = App.settings.Brightness; //Set the brightness as the first byte after the preamble
 
             foreach (LEDBulb bulb in Effects.LEDs)
             {

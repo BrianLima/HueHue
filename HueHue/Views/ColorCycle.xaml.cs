@@ -12,13 +12,12 @@ namespace HueHue.Views
     public partial class ColorCycle : UserControl
     {
         DispatcherTimer timer;
-        AppSettings settings;
 
-        public ColorCycle(AppSettings _settings)
+        public ColorCycle()
         {
             InitializeComponent();
 
-            gridSettings.DataContext = settings;
+            gridSettings.DataContext = App.settings;
 
             //Starts with Red
             Effects.ColorOne.R = 255;
@@ -27,9 +26,8 @@ namespace HueHue.Views
 
             Effects.ResetStep();
 
-            settings = _settings;
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(settings.Speed);
+            timer.Interval = TimeSpan.FromMilliseconds(App.settings.Speed);
             timer.Tick += Timer_Tick;
             timer.Start();
         }

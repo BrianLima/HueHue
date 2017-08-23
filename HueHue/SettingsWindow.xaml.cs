@@ -4,9 +4,6 @@ using System;
 using System.Windows;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
-using MaterialDesignColors;
-using MaterialDesignThemes;
-using MaterialDesignThemes.Wpf;
 
 namespace HueHue
 {
@@ -15,16 +12,11 @@ namespace HueHue
     /// </summary>
     public partial class SettingsWindow : Window
     {
-        PaletteHelper helper = new PaletteHelper();
-        AppSettings settings;
-
-        public SettingsWindow(AppSettings _settings)
+        public SettingsWindow()
         {
             InitializeComponent();
-            grid_settings.DataContext = _settings;
+            grid_settings.DataContext = App.settings;
             comboBox_ComPort.ItemsSource = SerialStream.GetPorts();
-
-            settings = _settings;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -102,7 +94,7 @@ namespace HueHue
 
         private void toggle_mode_CheckChanged(object sender, RoutedEventArgs e)
         {
-            helper.SetLightDark(settings.DarkMode);
+            App.helper.SetLightDark(App.settings.DarkMode);
         }
     }
 }

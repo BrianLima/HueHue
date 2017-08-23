@@ -42,7 +42,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="30,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="34" Text="Effect:" Grid.Row="1"/>
             <Slider x:Name="slider" Value="{Binding Brightness}" HorizontalAlignment="Right" Margin="0,27,10,0" VerticalAlignment="Top" Width="152" Height="53" Minimum="0" Maximum="255" Style="{StaticResource MaterialDesignDiscreteSlider}" Grid.Row="1"/>
             <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="3,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="61" Text="Brightness:" Grid.Row="1"/>
-            <Button x:Name="buttonStart" Content="Start" Margin="146,10.4,10,93.4" Click="Button_Click" Height="Auto" Grid.Row="2"/>
+            <Button x:Name="buttonStart" Content="Start" Margin="146,10.4,10,93.4" Click="Button_Click" Height="Auto" Grid.Row="2" RenderTransformOrigin="0.5,0.503"/>
             <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,0,5">
                 <TextBlock HorizontalAlignment="Left" Margin="-6,-6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="61" Text="Settings"/>
             </materialDesign:ColorZone>

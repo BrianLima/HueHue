@@ -1,5 +1,4 @@
 ﻿using Hardcodet.Wpf.TaskbarNotification;
-using HueHue.Helpers;
 using System.Diagnostics;
 using System.Windows;
 
@@ -10,16 +9,12 @@ namespace HueHue.Views
     /// </summary>
     public partial class TrayIcon : Window
     {
-        private AppSettings settings;
-        private SerialStream stream;
         private MainWindow mainWindow;
 
-        public TrayIcon(AppSettings _settings, SerialStream _stream, MainWindow _mainWindow)
+        public TrayIcon(MainWindow _mainWindow)
         {
             InitializeComponent();
 
-            this.settings = _settings;
-            this.stream = _stream;
             this.mainWindow = _mainWindow;
         }
 
@@ -41,44 +36,44 @@ namespace HueHue.Views
 
         private void MenuItem_ShutOff_Click(object sender, RoutedEventArgs e)
         {
-            settings.CurrentMode = 6; //Shut off leds
+            App.settings.CurrentMode = 6; //Shut off leds
         }
 
         private void MenuItem_FixedColor_Click(object sender, RoutedEventArgs e)
         {
-            settings.CurrentMode = 0;
+            App.settings.CurrentMode = 0;
         }
 
         private void MenuItem_AlternateColors_Click(object sender, RoutedEventArgs e)
         {
-            settings.CurrentMode = 1;
+            App.settings.CurrentMode = 1;
         }
 
         private void MenuItem_MusicMode_Click(object sender, RoutedEventArgs e)
         {
-            settings.CurrentMode = 2;
+            App.settings.CurrentMode = 2;
         }
 
         private void MenuItem_ColorCycling_Click(object sender, RoutedEventArgs e)
         {
-            settings.CurrentMode = 3;
+            App.settings.CurrentMode = 3;
         }
 
         private void MenuItem_SnakeColor_Click(object sender, RoutedEventArgs e)
         {
-            settings.CurrentMode = 4;
+            App.settings.CurrentMode = 4;
         }
 
         private void MenuItem_StartStop_Click(object sender, RoutedEventArgs e)
         {
-            mainWindow.StartStop();
+            App.StartStopDevices();
 
             UpdateTrayLabel();
         }
 
         public void UpdateTrayLabel()
         {
-            if (!stream.IsRunning())
+            if (!App.isRunning)
             {
                 item_start_stop.Header = "Start";
             }
