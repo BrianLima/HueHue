@@ -87,7 +87,13 @@
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DeviceModel.xaml.cs">
+    <Compile Include="Views\Devices\AddArduinoView.xaml.cs">
+      <DependentUpon>AddArduinoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Devices\AddDeviceView.xaml.cs">
+      <DependentUpon>AddDeviceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Devices\DeviceModel.xaml.cs">
       <DependentUpon>DeviceModel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FixedColors.xaml.cs">
@@ -115,7 +121,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DeviceModel.xaml">
+    <Page Include="Views\Devices\AddArduinoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Devices\AddDeviceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Devices\DeviceModel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

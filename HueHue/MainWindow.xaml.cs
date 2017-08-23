@@ -1,5 +1,6 @@
 ﻿using HueHue.Helpers;
 using HueHue.Views;
+using HueHue.Views.Devices;
 using System;
 using System.Windows;
 
@@ -111,6 +112,12 @@ namespace HueHue
             SettingsWindow window = new SettingsWindow();
             window.ShowDialog();
             buttonStart.Content = "Start";
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            AddDeviceView view = new AddDeviceView();
+            view.Show();
         }
     }
 }

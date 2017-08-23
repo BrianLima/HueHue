@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="HueHue.Views.Devices.AddArduinoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:HueHue.Views.Devices"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="Segoe UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Button Content="Add" Margin="0,0,10,10" Height="32" HorizontalAlignment="Right" Width="75" VerticalAlignment="Bottom" Click="Button_Click"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="50" Source="/HueHue;component/Icons/Devices/Arduino.png"/>
+        <Label Content="Setup a new Arduino" HorizontalAlignment="Left" Margin="65,20,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="80,227,0,0" VerticalAlignment="Top" Width="120" x:Name="ComboBox_ports"/>
+        <Label Content="COM Port:" HorizontalAlignment="Left" Margin="10,227,0,0" VerticalAlignment="Top"/>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top"/>
+        <TextBox Height="90" Margin="10,96,10,0" TextWrapping="Wrap" Text="Much hax wow" VerticalAlignment="Top" x:Name="TextBox_script" BorderBrush="#FFB39DDB" BorderThickness="1"/>
+        <Label Content="First, upload this script to your Arduino:" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="80,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</UserControl>

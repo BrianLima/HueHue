@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="Segoe UI Light"
+        FontFamily="Segoe UI"
         Title="Additional Settings" Height="600" Width="600">
     <Grid>
         <Grid.ColumnDefinitions>

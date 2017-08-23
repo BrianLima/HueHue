@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="HueHue.Views.DeviceModel"
+﻿<UserControl x:Class="HueHue.Views.Devices.DeviceModel"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,6 +10,6 @@
     <Grid>
         <Image HorizontalAlignment="Left" Height="30" Margin="0,2,0,0" VerticalAlignment="Top" Width="30" Source="{Binding Icon}"/>
         <TextBlock HorizontalAlignment="Left" Margin="35,9,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="120"/>
-        <Rectangle Fill="{DynamicResource PrimaryHueLightBrush }" Height="3" Margin="50,0,0,0" VerticalAlignment="Bottom" RadiusY="1.5" RadiusX="1.5" HorizontalAlignment="Left" Width="100"/>
+        <Rectangle Fill="{DynamicResource PrimaryHueLightBrush}" Height="3" Margin="50,0,0,0" VerticalAlignment="Bottom" RadiusY="1.5" RadiusX="1.5" HorizontalAlignment="Left" Width="100"/>
     </Grid>
 </UserControl>

@@ -1,0 +1,27 @@
+﻿<Window x:Class="HueHue.Views.Devices.AddDeviceView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:HueHue.Views.Devices"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="Segoe UI"
+        Title="Add a new device" Height="500" Width="500">
+    <Grid>
+        <ComboBox x:Name="comboBox" SelectedIndex="0" Margin="89,10,197,0" VerticalAlignment="Top" Height="30">
+            <Label Content="Arduino/HueHue Client" />
+            <Label Content="Asus Aura Device"/>
+            <Label Content="Razer Chroma Device"/>
+            <Label Content="Corsair CUE Device"/>
+            <Label Content="MSI Mystic Light Device"/>
+            <Label Content="Logitech Device"/>
+            <Label Content="NZXT HUE+"/>
+        </ComboBox>
+        <Label Content="Device type:" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top"/>
+        <Frame Content="Frame" Margin="10,45,10,10" x:Name="Frame"/>
+    </Grid>
+
+</Window>

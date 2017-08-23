@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HueHue.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +14,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HueHue.Views
+namespace HueHue.Views.Devices
 {
     /// <summary>
-    /// Interaction logic for DeviceModel.xaml
+    /// Interaction logic for AddArduinoView.xaml
     /// </summary>
-    public partial class DeviceModel : UserControl
+    public partial class AddArduinoView : UserControl
     {
-        public DeviceModel()
+        public AddArduinoView()
         {
             InitializeComponent();
+            ComboBox_ports.ItemsSource = SerialStream.GetPorts();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

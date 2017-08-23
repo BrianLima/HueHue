@@ -1,4 +1,4 @@
-﻿<Window xmlns:Views="clr-namespace:HueHue.Views"  x:Class="HueHue.MainWindow"
+﻿<Window xmlns:Devices="clr-namespace:HueHue.Views.Devices"  xmlns:Views="clr-namespace:HueHue.Views"  x:Class="HueHue.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -57,14 +57,12 @@
             <ListBox Margin="0,52,0,0.4" x:Name="ListDevices">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Views:DeviceModel />
-                        
+                        <Devices:DeviceModel />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                    HorizontalAlignment="Right"
-                    ToolTip="Add new device" Click="Button_Click_1" Margin="0,26,6,0" Height="40" VerticalAlignment="Top">
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" HorizontalAlignment="Right"
+                    ToolTip="Add new device" Click="Button_Click_2" Margin="0,26,6,0" Height="40" VerticalAlignment="Top">
                 <materialDesign:PackIcon Kind="PlaylistPlus" Height="24" Width="24" />
             </Button>
         </Grid>
