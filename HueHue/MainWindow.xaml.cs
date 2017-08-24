@@ -23,13 +23,9 @@ namespace HueHue
                 if (App.settings.AutoStart && Environment.GetCommandLineArgs().Length > 1)
                 {
                     this.Minimize();
-                    App.StartStopDevices();
+                    App.StartDevices();
+                    buttonStart.Content = "Stop";
                 }
-            }
-
-            if (App.settings.DarkMode)
-            {
-                App.helper.SetLightDark(App.settings.DarkMode);
             }
 
             ListDevices.ItemsSource = App.devices;
@@ -38,6 +34,7 @@ namespace HueHue
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             App.StartStopDevices();
+
             if (App.isRunning)
             {
                 buttonStart.Content = "Stop";
@@ -106,18 +103,22 @@ namespace HueHue
             App.icon.ShowStandardBalloon();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_ShowSettings_Click (object sender, RoutedEventArgs e)
         {
             //Stop the communication with the arduino, it might cause problems if some settings are changed while it's running
+            App.StopDevices();
             SettingsWindow window = new SettingsWindow();
             window.ShowDialog();
-            buttonStart.Content = "Start";
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void Button_AddArduino_Click(object sender, RoutedEventArgs e)
+        {
             AddDeviceView view = new AddDeviceView();
-            view.Show();
+            view.ShowDialog();
         }
     }
 }

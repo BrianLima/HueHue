@@ -28,6 +28,11 @@ namespace HueHue.Helpers
             this._dark_mode = Properties.Settings.Default.DarkMode;
         }
 
+        public void Save()
+        {
+            Properties.Settings.Default.Save();
+        }
+
         /// <summary>
         /// Updates properties
         /// </summary>
@@ -41,60 +46,46 @@ namespace HueHue.Helpers
             {
                 case "CurrentMode":
                     Properties.Settings.Default.CurrentMode = _current_mode;
-                    Properties.Settings.Default.Save();
                     break;
                 case "Brightness":
                     Properties.Settings.Default.Brightness = _brightness;
-                    Properties.Settings.Default.Save();
                     break;
                 case "TotalLeds":
                     Properties.Settings.Default.TotalLeds = _total_leds;
-                    Properties.Settings.Default.Save();
                     Effects.Setup(_total_leds);
                     break;
                 case "COMPort":
                     Properties.Settings.Default.COM_PORT = _com_port;
-                    Properties.Settings.Default.Save();
                     break;
                 case "Breath":
                     Properties.Settings.Default.Breath = _breath;
-                    Properties.Settings.Default.Save();
                     break;
                 case "Random":
                     Properties.Settings.Default.Random = _random;
-                    Properties.Settings.Default.Save();
                     break;
                 case "Speed":
                     Properties.Settings.Default.Speed = _speed;
-                    Properties.Settings.Default.Save();
                     break;
                 case "Length":
                     Properties.Settings.Default.Length = _length;
-                    Properties.Settings.Default.Save();
                     break;
                 case "AutoStart":
                     Properties.Settings.Default.AutoStart = _auto_start;
-                    Properties.Settings.Default.Save();
                     break;
                 case "Minimize":
                     Properties.Settings.Default.Minimize = _minimize;
-                    Properties.Settings.Default.Save();
                     break;
                 case "AutoRun":
                     Properties.Settings.Default.AutoRun = _auto_run;
-                    Properties.Settings.Default.Save();
                     break;
                 case "ColorOne":
                     Properties.Settings.Default.ColorOne = _color_one;
-                    Properties.Settings.Default.Save();
                     break;
                 case "ColorTwo":
                     Properties.Settings.Default.ColorTwo = _color_two;
-                    Properties.Settings.Default.Save();
                     break;
                 case "DarkMode":
                     Properties.Settings.Default.DarkMode = _dark_mode;
-                    Properties.Settings.Default.Save();
                     break;
                 default:
                     break;

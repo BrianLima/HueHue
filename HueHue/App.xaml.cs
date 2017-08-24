@@ -33,10 +33,17 @@ namespace HueHue
             icon = new TrayIcon(window);
 
             window.Show();
+
+            if (App.settings.DarkMode)
+            {
+                App.helper.SetLightDark(App.settings.DarkMode);
+            }
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
+            settings.Save();
+
             foreach (Device device in devices)
             {
                 device.Stop();
@@ -44,35 +51,45 @@ namespace HueHue
             icon.Close();
         }
 
+        public static void StartDevices()
+        {
+            isRunning = true;
+            try
+            {
+                foreach (Device device in App.devices)
+                {
+                    device.Start();
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        public static void StopDevices()
+        {
+            isRunning = false;
+            try
+            {
+                foreach (Device device in App.devices)
+                {
+                    device.Stop();
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
         public static void StartStopDevices()
         {
             if (!isRunning)
             {
-                isRunning = true;
-                try
-                {
-                    foreach (Device device in App.devices)
-                    {
-                        device.Start();
-                    }
-                }
-                catch (Exception)
-                {
-                }
+                StartDevices();
             }
             else
             {
-                isRunning = false;
-                try
-                {
-                    foreach (Device device in App.devices)
-                    {
-                        device.Stop();
-                    }
-                }
-                catch (Exception)
-                {
-                }
+                StopDevices();
             }
 
             icon.UpdateTrayLabel();

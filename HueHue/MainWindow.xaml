@@ -13,6 +13,13 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="Segoe UI" Height="700" Closing="Window_Closing" StateChanged="Window_StateChanged">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -23,7 +30,7 @@
             <ColumnDefinition Width="246.4"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" Grid.ColumnSpan="2" VerticalAlignment="Stretch" Margin="0,0,-0.4,0.4" Content="HueHue" />
+        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryDark" Grid.ColumnSpan="2" VerticalAlignment="Stretch" Margin="0,0,-0.4,0.4" />
         <Grid x:Name="GridMain" Margin="10,7,5.4,10" Grid.Row="2" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="52"/>
@@ -61,14 +68,31 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" HorizontalAlignment="Right"
-                    ToolTip="Add new device" Click="Button_Click_2" Margin="0,26,6,0" Height="40" VerticalAlignment="Top">
-                <materialDesign:PackIcon Kind="PlaylistPlus" Height="24" Width="24" />
-            </Button>
+            <materialDesign:PopupBox Style="{DynamicResource MaterialDesignMultiFloatingActionPopupBox}"
+                                         PopupMode="Click"
+                                         PlacementMode="BottomAndAlignCentres"
+                                         ToolTipService.Placement="Right"
+                                         ToolTip="Add a device"
+                                         Margin="0,30,9.6,0" HorizontalAlignment="Right" Height="35" VerticalAlignment="Top" Width="35">
+                <StackPanel>
+                    <Button ToolTip="Two" Style="{DynamicResource MaterialDesignRaisedLightButton }" Click="Button_AddArduino_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Icons/Devices/Arduino.png" Margin="0,0,0,0" />
+                            <TextBlock Text="Add Arduino" Margin="5,0,0,0" />
+                        </StackPanel>
+                    </Button>
+                    <Button ToolTip="Two" Style="{DynamicResource MaterialDesignRaisedLightButton }" Click="Button_AddArduino_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Icons/Devices/AURA-sync.png" Margin="0,0,0,0" />
+                            <TextBlock Text="Add Aura Device" Margin="5,0,0,0" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </materialDesign:PopupBox>
         </Grid>
         <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 Margin="0,10,9.6,0" HorizontalAlignment="Right"
-                ToolTip="Settings/About" VerticalAlignment="Top" Click="Button_Click_1" Grid.Column="1">
+                ToolTip="Settings/About" VerticalAlignment="Top" Click="Button_ShowSettings_Click" Grid.Column="1">
             <materialDesign:PackIcon Kind="Settings" Height="24" Width="24" />
         </Button>
     </Grid>

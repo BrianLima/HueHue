@@ -11,7 +11,6 @@ namespace HueHue.Views.Devices
         {
             InitializeComponent();
             Frame.Navigate(new AddArduinoView());
-            
         }
     }
 }
