@@ -107,6 +107,7 @@ namespace HueHue.Helpers
         /// <param name="length">Lenght of the snake</param>
         public static void Snake(int length)
         {
+            Console.WriteLine(step);
             if (step + length == LEDs.Count + length) //When the snake is completely out of bounds, reset its step
             {
                 ResetStep();

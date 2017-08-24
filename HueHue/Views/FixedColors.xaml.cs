@@ -64,7 +64,7 @@ namespace HueHue
             Effects.ColorTwo.G = e.NewValue.Value.G;
             Effects.ColorTwo.R = e.NewValue.Value.R;
 
-            App.settings.ColorTwo = Color.FromArgb(e.NewValue.Value.B, e.NewValue.Value.G, e.NewValue.Value.R);
+            App.settings.ColorTwo = Color.FromArgb(e.NewValue.Value.R, e.NewValue.Value.G, e.NewValue.Value.B);
 
             FillColor();
         }
