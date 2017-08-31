@@ -52,7 +52,7 @@ namespace HueHue.Views
         {
             var size = FftSize.Fft4096;
 
-            _MusicSpectrum.CreateSpectrum();
+           _MusicSpectrum.CreateSpectrum();
             //render the spectrum
             //GenerateLineSpectrum();
            // GenerateVoice3DPrintSpectrum();
@@ -128,7 +128,7 @@ namespace HueHue.Views
 
         private void SetupSampleSource(ISampleSource aSampleSource)
         {
-            const FftSize fftSize = FftSize.Fft4096;
+            const FftSize fftSize = FftSize.Fft64;
             //create a spectrum provider which provides fft data based on some input
             var spectrumProvider = new BasicSpectrumProvider(aSampleSource.WaveFormat.Channels,
                 aSampleSource.WaveFormat.SampleRate, fftSize);
@@ -139,7 +139,7 @@ namespace HueHue.Views
             {
                 SpectrumProvider = spectrumProvider,
                 UseAverage = true,
-                Count = 90,
+                Count = 30,
                 IsXLogScale = true,
                 ScalingStrategy = ScalingStrategy.Sqrt
             };

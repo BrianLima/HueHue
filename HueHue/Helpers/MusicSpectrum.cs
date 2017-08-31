@@ -15,7 +15,7 @@ namespace HueHue.Helpers
         public MusicSpectrum(FftSize fftSize)
         {
             FftSize = fftSize;
-            SpectrumResolution = 3;
+            SpectrumResolution = 6;
         }
 
         public int Count { get; internal set; }
@@ -27,18 +27,39 @@ namespace HueHue.Helpers
             SpectrumPointData[] spectrumPoints = CalculateSpectrumPoints(255, fftBuffer);
             if (spectrumPoints[0].Value > 0)
             {
-                Effects.ColorOne.R = (byte)(spectrumPoints[0].Value);
+                Effects.ColorOne.R = CalculateScale(spectrumPoints[0].Value);
             }
             if (spectrumPoints[1].Value > 0)
             {
-                Effects.ColorOne.G = (byte)((2*spectrumPoints[1].Value));
+                Effects.ColorOne.G = CalculateScale(spectrumPoints[0].Value);
             }
             if (spectrumPoints[2].Value > 0)
             {
-                Effects.ColorOne.B = (byte) ((2-spectrumPoints[2].Value));
+                Effects.ColorOne.B = CalculateScale(spectrumPoints[0].Value);
             }
         }
 
+        private double minimum;
+        private double maximum;
 
+        public byte CalculateScale(double value)
+        {
+            if (value == 0)
+            {
+                return 0;
+            }
+            else if (value < minimum)
+            {
+                minimum = value;
+            }
+            else if (value > maximum)
+            {
+                maximum = value;
+            }
+
+            var x = 255/maximum;
+
+            return (byte)(x*value);
+        }
     }
 }

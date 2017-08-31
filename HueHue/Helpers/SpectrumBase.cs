@@ -12,7 +12,7 @@ namespace HueHue.Helpers
 {
     public class SpectrumBase:INotifyPropertyChanged
     {
-        private const int ScaleFactorLinear = 9;
+        private const int ScaleFactorLinear = 1;
         protected const int ScaleFactorSqr = 2;
         protected const double MinDbValue = -90;
         protected const double MaxDbValue = 0;
@@ -199,7 +199,7 @@ namespace HueHue.Helpers
 
                     if (value > maxValue)
                         value = maxValue;
-
+                    _useAverage = false;
                     if (_useAverage && spectrumPointIndex > 0)
                         value = (lastValue + value) / 2.0;
 
@@ -213,7 +213,7 @@ namespace HueHue.Helpers
 
                 //value = 0;
             }
-            Console.WriteLine(dataPoints[0].Value.ToString());
+            Console.WriteLine(dataPoints[0].Value.ToString() + "             " + dataPoints[1].Value.ToString() + "                " + dataPoints[2].Value.ToString());
             return dataPoints.ToArray();
         }
 
