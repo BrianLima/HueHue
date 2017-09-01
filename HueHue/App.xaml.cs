@@ -3,6 +3,7 @@ using HueHue.Views;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace HueHue
@@ -13,7 +14,7 @@ namespace HueHue
     public partial class App : Application
     {
         public static AppSettings settings;
-        public static List<Device> devices;
+        public static ObservableCollection<Device> devices;
         public static bool isRunning { get; private set; }
         public static TrayIcon icon;
         public static PaletteHelper helper;
@@ -23,7 +24,7 @@ namespace HueHue
             settings = new AppSettings();
             helper = new PaletteHelper();
 
-            devices = new List<Device> { new Arduino(settings.COMPort) };
+            devices = new ObservableCollection<Device> { new Arduino(settings.COMPort, "Arduino") };
 
             Effects.Setup(App.settings.TotalLeds);
             Effects.ColorOne = (LEDBulb)App.settings.ColorOne;

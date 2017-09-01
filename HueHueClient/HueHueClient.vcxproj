@@ -84,6 +84,7 @@
     <Text Include="HueHueClient.ino">
       <FileType>CppCode</FileType>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </Text>
   </ItemGroup>
   <ItemGroup>

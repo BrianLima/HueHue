@@ -1,18 +1,8 @@
 ﻿using HueHue.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Reflection;
 
 namespace HueHue.Views.Devices
 {
@@ -24,12 +14,36 @@ namespace HueHue.Views.Devices
         public AddArduinoView()
         {
             InitializeComponent();
+
             ComboBox_ports.ItemsSource = SerialStream.GetPorts();
+
+            if (ComboBox_ports.Items.Count > 0)
+            {
+                ComboBox_ports.SelectedIndex = ComboBox_ports.Items.Count - 1;
+            }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Add_Click(object sender, RoutedEventArgs e)
         {
+            App.devices.Add(new Arduino(ComboBox_ports.Text, TextBoxName.Text));
+        }
 
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+
+            using (Stream stream = assembly.GetManifestResourceStream(@"HueHue.Resources.HueHueClient.ino"))
+            {
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    TextBox_script.Text = reader.ReadToEnd();
+                }
+            }
+        }
+
+        private void Button_Clipboard_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(TextBox_script.Text);
         }
     }
 }

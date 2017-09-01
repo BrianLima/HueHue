@@ -9,17 +9,27 @@
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="Segoe UI"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
     <Grid>
-        <Button Content="Add" Margin="0,0,10,10" Height="32" HorizontalAlignment="Right" Width="75" VerticalAlignment="Bottom" Click="Button_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"/>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Button Content="Add" Margin="0,0,10,10" Height="32" HorizontalAlignment="Right" Width="75" VerticalAlignment="Bottom" Click="Button_Add_Click" Grid.Row="2"/>
         <Image HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="50" Source="/HueHue;component/Icons/Devices/Arduino.png"/>
         <Label Content="Setup a new Arduino" HorizontalAlignment="Left" Margin="65,20,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="80,227,0,0" VerticalAlignment="Top" Width="120" x:Name="ComboBox_ports"/>
-        <Label Content="COM Port:" HorizontalAlignment="Left" Margin="10,227,0,0" VerticalAlignment="Top"/>
-        <Label Content="Name:" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top"/>
-        <TextBox Height="90" Margin="10,96,10,0" TextWrapping="Wrap" Text="Much hax wow" VerticalAlignment="Top" x:Name="TextBox_script" BorderBrush="#FFB39DDB" BorderThickness="1"/>
-        <Label Content="First, upload this script to your Arduino:" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="80,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Margin="80,27,0,0" VerticalAlignment="Top" x:Name="ComboBox_ports" Grid.Row="2" HorizontalAlignment="Left" Width="120"/>
+        <Label Content="COM Port:" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+        <TextBox Margin="10,6,10,9" TextWrapping="Wrap" x:Name="TextBox_script" BorderBrush="#FFB39DDB" BorderThickness="1" Grid.Row="1"/>
+        <Label Content="First, upload this script to your Arduino:" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
+        <TextBox Height="23" Margin="80,4,100,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="2" Text="Arduino" x:Name="TextBoxName"/>
+        <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                Margin="0,0,10,90" HorizontalAlignment="Right"
+                ToolTip="Copy to clipboard" VerticalAlignment="Bottom" Click="Button_Clipboard_Click" Grid.Row="1" Grid.RowSpan="2">
+            <materialDesign:PackIcon Kind="ClipboardText" Height="24" Width="24" />
+        </Button>
 
     </Grid>
 </UserControl>

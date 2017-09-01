@@ -194,6 +194,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <EmbeddedResource Include="Resources\HueHueClient.ino">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -228,6 +231,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\Devices\RazerChroma.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HueHueClient\HueHueClient.vcxproj">
+      <Project>{c5f80730-f44f-4478-bdae-6634efc2ca88}</Project>
+      <Name>HueHueClient</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

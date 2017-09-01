@@ -29,26 +29,6 @@
 54	            };
 </Source>
       </BreakPoint>
-      <BreakPoint Index="2" Name="MainWindow.xaml.cs, line 15 character 9" Id="8acd7f57-5b96-4d51-a403-cb89b68e8318" Enabled="1" Message="" MessageTextType="2" PreProcessedMessage="" Condition="" ConditionType="1" CurrentHits="0" File="c:\users\brian\documents\github\huehue\huehue\mainwindow.xaml.cs" FileLine="15" FileColumn="9" FunctionName="HueHue.MainWindow.MainWindow()" FunctionLineOffset="2" FunctionColumnOffset="1" HitCountTarget="1" HitCountType="1" Language="C#" LocationType="3" Tag="&lt;vmbp Id='8acd7f57-5b96-4d51-a403-cb89b68e8318'/&gt;" Type="1" ToString="System.__ComObject" BreakWhenHit="1">
-        <Source>8	{
-9	    /// &lt;summary&gt;
-10	    /// Interaction logic for MainWindow.xaml
-11	    /// &lt;/summary&gt;
-12	    public partial class MainWindow : Window
-13	    {
-14	        public MainWindow()
---&gt;15	        {
-16	            InitializeComponent();
-17	
-18	            GridMain.DataContext = App.settings;
-19	
-20	            //The app was auto started by windows from the user's startup folder
-21	            if (Environment.GetCommandLineArgs() != null)
-22	            {
-23	                if (App.settings.AutoStart &amp;&amp; Environment.GetCommandLineArgs().Length &gt; 1)
-24	                {
-</Source>
-      </BreakPoint>
     </BreakPoints>
   </Program>
 </VisualMicro>
