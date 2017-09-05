@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows.Media;
 
 namespace HueHue.Helpers
 {
@@ -51,9 +52,19 @@ namespace HueHue.Helpers
             set { _id = value; }
         }
 
-        public static explicit operator LEDBulb(Color v)
+        public static explicit operator LEDBulb(System.Drawing.Color v)
         {
             return new LEDBulb(v.R, v.G, v.B);
+        }
+
+        public static explicit operator LEDBulb(System.Windows.Media.Color v)
+        {
+            return new LEDBulb(v.R, v.G, v.B);
+        }
+
+        public static explicit operator System.Drawing.Color(LEDBulb v)
+        {
+            return System.Drawing.Color.FromArgb(v.R, v.G, v.B);
         }
     }
 }

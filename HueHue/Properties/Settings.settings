@@ -6,7 +6,7 @@
       <Value Profile="(Default)">COM4</Value>
     </Setting>
     <Setting Name="CurrentMode" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">4</Value>
     </Setting>
     <Setting Name="TotalLeds" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">90</Value>

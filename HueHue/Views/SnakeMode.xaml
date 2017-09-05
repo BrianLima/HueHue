@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HueHue.Views"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:controls="clr-namespace:ColorPickerLib.Controls;assembly=ColorPickerLib"
+             xmlns:controls="clr-namespace:ColorTools;assembly=ColorTools"
              mc:Ignorable="d" 
              FontFamily="Segoe UI"
              d:DesignHeight="500" d:DesignWidth="710">
@@ -19,14 +19,13 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Content="Snake Colors" Grid.ColumnSpan="2" Margin="0,0,0.4,3"/>
-        <!--https://wpfcolorpickercontrol.codeplex.com/-->
         <ScrollViewer VerticalScrollBarVisibility="Hidden" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0.4,0" HorizontalScrollBarVisibility="Auto">
             <Grid  HorizontalAlignment="Left" Height="461" Grid.Row="1" VerticalAlignment="Top" Width="720" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <controls:ColorCanvas  R="{Binding R}" G="{Binding G}" B="{Binding B}" x:Name="colorPicker" Margin="10,10,0,91" HorizontalAlignment="Left" Width="343" SelectedColorChanged="colorPicker_SelectedColorChanged" Background="{x:Null}" BorderBrush="{x:Null}" UsingAlphaChannel="False"/>
-                <controls:ColorCanvas  R="{Binding R}" G="{Binding G}" B="{Binding B}" x:Name="colorPicker2" Margin="358,10,0,91" HorizontalAlignment="Left" Width="343" SelectedColorChanged="colorPicker2_SelectedColorChanged" Background="{x:Null}" BorderBrush="{x:Null}" UsingAlphaChannel="False"/>
+                <controls:ColorControlPanel x:Name="colorPicker" Margin="10,10,0,288" HorizontalAlignment="Left" Width="410" DockAlphaVisibility="Hidden" ColorChanged="colorPicker_ColorChanged" TextForeground="{DynamicResource MaterialDesignBody}" Foreground="{DynamicResource MaterialDesignPaper}"/>
+                <controls:ColorControlPanel x:Name="colorPicker2" Margin="10,178,0,120" HorizontalAlignment="Left" Width="410"  DockAlphaVisibility="Hidden" ColorChanged="colorPicker2_ColorChanged" TextForeground="{DynamicResource MaterialDesignBody}" Foreground="{DynamicResource MaterialDesignPaper}"/>
                 <Grid x:Name="GridSnakeColorSettings" Margin="10,375,10,10">
                     <Slider x:Name="sliderSpeed" Value="{Binding Speed}" HorizontalAlignment="Right" Margin="0,-5,234,27.8" Width="165" Minimum="10" Maximum="3000" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Bottom" ValueChanged="sliderSpeed_ValueChanged"/>
                     <Label Content="Speed:" HorizontalAlignment="Right" Margin="0,0,399,27.8" Height="26" VerticalAlignment="Bottom"/>

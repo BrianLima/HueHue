@@ -1,7 +1,8 @@
 ﻿using HueHue.Helpers;
-using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
+using Drawing = System.Drawing;
+using Media = System.Windows.Media;
 
 namespace HueHue
 {
@@ -22,7 +23,7 @@ namespace HueHue
             }
             else
             {
-                colorPicker2.Visibility = Visibility.Collapsed;
+                colorPicker2.Visibility = Visibility.Hidden;
                 colorZone.Content = "Fixed Color";
             }
 
@@ -30,18 +31,25 @@ namespace HueHue
             //Binding each value from the RGB is broken
             //Binding the color it self conflicts because the controler uses System.Windows.Media.Color instead of System.Drawing.Color
             //I give up, this is it, MVVM for a later day.
-            colorPicker.SelectedColor =System.Windows.Media.Color.FromArgb(App.settings.ColorOne.A, App.settings.ColorOne.R, App.settings.ColorOne.G, App.settings.ColorOne.B);
+            colorPicker.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(App.settings.ColorOne.A, App.settings.ColorOne.R, App.settings.ColorOne.G, App.settings.ColorOne.B));
+            colorPicker.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(App.settings.ColorOne.A, App.settings.ColorOne.R, App.settings.ColorOne.G, App.settings.ColorOne.B));
 
-            colorPicker2.SelectedColor = System.Windows.Media.Color.FromArgb(App.settings.ColorTwo.A, App.settings.ColorTwo.R, App.settings.ColorTwo.G, App.settings.ColorTwo.B);
+            colorPicker2.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(App.settings.ColorTwo.A, App.settings.ColorTwo.R, App.settings.ColorTwo.G, App.settings.ColorTwo.B));
+            colorPicker2.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(App.settings.ColorTwo.A, App.settings.ColorTwo.R, App.settings.ColorTwo.G, App.settings.ColorTwo.B));
         }
 
-        private void colorPicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<System.Windows.Media.Color?> e)
+        private void colorPicker_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
         {
-            Effects.ColorOne.R = e.NewValue.Value.R;
-            Effects.ColorOne.G = e.NewValue.Value.G;
-            Effects.ColorOne.B = e.NewValue.Value.B;
+            Effects.ColorOne = (LEDBulb)e.CurrentColor;
+            App.settings.ColorOne = (Drawing.Color)Effects.ColorOne;
 
-            App.settings.ColorOne = Color.FromArgb(e.NewValue.Value.R, e.NewValue.Value.G, e.NewValue.Value.B);
+            FillColor();
+        }
+
+        private void colorPicker2_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
+        {
+            Effects.ColorTwo = (LEDBulb)e.CurrentColor;
+            App.settings.ColorTwo = (Drawing.Color)Effects.ColorTwo;
 
             FillColor();
         }
@@ -56,17 +64,6 @@ namespace HueHue
             {
                 Effects.TwoAlternateColor();
             }
-        }
-
-        private void colorPicker2_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<System.Windows.Media.Color?> e)
-        {
-            Effects.ColorTwo.B = e.NewValue.Value.B;
-            Effects.ColorTwo.G = e.NewValue.Value.G;
-            Effects.ColorTwo.R = e.NewValue.Value.R;
-
-            App.settings.ColorTwo = Color.FromArgb(e.NewValue.Value.R, e.NewValue.Value.G, e.NewValue.Value.B);
-
-            FillColor();
         }
     }
 }
