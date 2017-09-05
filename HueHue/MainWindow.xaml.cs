@@ -117,8 +117,8 @@ namespace HueHue
 
         private void Button_AddArduino_Click(object sender, RoutedEventArgs e)
         {
-            AddDeviceView view = new AddDeviceView();
-            view.ShowDialog();
+            frame.Navigate(new AddArduinoView());
+            //AddDeviceView view = new AddDeviceView();
         }
     }
 }
