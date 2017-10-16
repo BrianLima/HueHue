@@ -111,6 +111,7 @@ namespace HueHue
             item.Click += Item_Click;
             context.Items.Add(item);
 
+            panel.ContextMenu = context;
 
             StackColors.Children.Add(panel);
         }
