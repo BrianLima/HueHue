@@ -9,7 +9,7 @@
              x:Class="HueHue.FixedColors"
              mc:Ignorable="d" 
              FontFamily="Segoe UI"
-             d:DesignHeight="510" d:DesignWidth="600" >
+             d:DesignHeight="510" d:DesignWidth="450" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -27,6 +27,5 @@
                 ToolTip="Add Color" VerticalAlignment="Bottom" Click="Button_Add_Color_Click" Grid.Row="1">
             <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" />
         </Button>
-
     </Grid>
 </UserControl>

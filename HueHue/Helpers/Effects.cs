@@ -11,7 +11,7 @@ namespace HueHue.Helpers
         /// <summary>
         /// List of colors the "Fixed Color" effect is based
         /// </summary>
-        public static List<LEDBulb> Colors = new  List<LEDBulb>();
+        public static List<LEDBulb> Colors = new List<LEDBulb>();
 
         /// <summary>
         /// Color for animated effects
@@ -55,10 +55,20 @@ namespace HueHue.Helpers
 
             while (count < LEDs.Count)
             {
+                if (count >= LEDs.Count)
+                {
+                    return;
+                }
+
                 foreach (var color in Colors)
                 {
                     LEDs[count] = color;
                     count++;
+
+                    if (count >= LEDs.Count)
+                    {
+                        return;
+                    }
                 }
             }
         }
@@ -227,7 +237,7 @@ namespace HueHue.Helpers
         {
             foreach (LEDBulb LED in LEDs)
             {
-                LED.R =0;
+                LED.R = 0;
                 LED.B = 0;
                 LED.G = 0;
             }

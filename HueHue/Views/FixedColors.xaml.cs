@@ -1,10 +1,7 @@
 ﻿using HueHue.Helpers;
 using System.Windows;
 using System.Windows.Controls;
-using Drawing = System.Drawing;
 using Media = System.Windows.Media;
-using MaterialDesignColors;
-using MaterialDesignThemes;
 using ColorTools;
 
 namespace HueHue
@@ -107,6 +104,13 @@ namespace HueHue
             panel.TextForeground = (Media.Brush)Application.Current.TryFindResource("MaterialDesignBody"); //(Media.Brush)((Style)FindResource("MaterialDesignBody"));
             panel.Foreground = (Media.Brush)Application.Current.TryFindResource("MaterialDesignPaper"); //(Media.Brush)((Style)FindResource("MaterialDesignBody"));
             panel.ColorChanged += colorPicker_ColorChanged;
+
+            ContextMenu context = new ContextMenu();
+            MenuItem item = new MenuItem();
+            item.Header = "Remove";
+            item.Click += Item_Click;
+            context.Items.Add(item);
+
 
             StackColors.Children.Add(panel);
         }

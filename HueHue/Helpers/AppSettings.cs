@@ -32,19 +32,34 @@ namespace HueHue.Helpers
             if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "/Colors.json"))
             {
                 File.Create(AppDomain.CurrentDomain.BaseDirectory + "/Colors.json");
+                this._colors = new List<LEDBulb>() { new LEDBulb() { R = 255, G = 0, B = 0 } };
+            }
+            else
+            {
+                this._colors = JsonConvert.DeserializeObject<List<LEDBulb>>(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Colors.json"));
             }
 
-            this._colors = JsonConvert.DeserializeObject<List<LEDBulb>>(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Colors.json"));
-            if (this._colors == null)
+            if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "/Devices.json"))
             {
-                //Probably first time running the app, start a new list of leds
-                this._colors = new List<LEDBulb>() { new LEDBulb() { R = 255, G = 0, B = 0 } };
+                File.Create(AppDomain.CurrentDomain.BaseDirectory + "/Devices.json");
+                this._devices = new List<Device>();
+            }
+            else
+            {
+                this._devices = JsonConvert.DeserializeObject<List<Device>>(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Devices.json"));
+            }
+
+            if (_devices == null)
+            {
+                _devices = new List<Device>();
             }
         }
 
         public void Save()
         {
             Properties.Settings.Default.Save();
+            SaveColors();
+            SaveDevices();
         }
 
         /// <summary>
@@ -95,6 +110,9 @@ namespace HueHue.Helpers
                 case "Colors":
                     SaveColors();
                     break;
+                case "Devices":
+                    SaveDevices();
+                    break;
                 case "DarkMode":
                     Properties.Settings.Default.DarkMode = _dark_mode;
                     break;
@@ -103,6 +121,18 @@ namespace HueHue.Helpers
             }
         }
 
+        /// <summary>
+        /// Serializes all the devices the user setup to a JSON file
+        /// </summary>
+        private void SaveDevices()
+        {
+            var json = JsonConvert.SerializeObject(_devices);
+            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "/Devices.json", json);
+        }
+
+        /// <summary>
+        /// Serializes all the colors the user has set to a JSON file
+        /// </summary>
         private void SaveColors()
         {
             var json = JsonConvert.SerializeObject(_colors);
@@ -219,7 +249,7 @@ namespace HueHue.Helpers
 
         private List<LEDBulb> _colors;
         /// <summary>
-        /// 
+        /// List of colors the user is using
         /// </summary>
         public List<LEDBulb> Colors
         {
@@ -227,6 +257,15 @@ namespace HueHue.Helpers
             set { _colors = value; OnPropertyChanged("Colors"); }
         }
 
+        private List<Device> _devices;
+        /// <summary>
+        /// List of devices the user has
+        /// </summary>
+        public List<Device> Devices
+        {
+            get { return _devices; }
+            set { _devices = value; }
+        }
 
         private bool _dark_mode;
         /// <summary>
