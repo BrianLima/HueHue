@@ -3,6 +3,9 @@ using System.Windows;
 using System.Windows.Controls;
 using Drawing = System.Drawing;
 using Media = System.Windows.Media;
+using MaterialDesignColors;
+using MaterialDesignThemes;
+using ColorTools;
 
 namespace HueHue
 {
@@ -15,41 +18,60 @@ namespace HueHue
         {
             InitializeComponent();
 
-            //Check the current effect
-            if (App.settings.CurrentMode == 1)
+            for (int i = 0; i < Effects.Colors.Count; i++)
             {
-                colorPicker2.Visibility = Visibility.Visible;
-                colorZone.Content = "Alternate Colors";
+                ColorControlPanel panel = new ColorControlPanel();
+                panel.Margin = new Thickness(10);
+
+                //I couldn't in ANY way make it bind the color properly, at least this works
+                //Binding each value from the RGB is broken
+                //Binding the color it self conflicts because the controler uses System.Windows.Media.Color instead of System.Drawing.Color
+                //I give up, this is it, MVVM for a later day.
+
+                panel.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[i].R, Effects.Colors[i].G, Effects.Colors[i].B));
+                panel.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[i].R, Effects.Colors[i].G, Effects.Colors[i].B));
+                panel.DockAlphaVisibility = Visibility.Hidden;
+                panel.TextForeground = (Media.Brush)Application.Current.TryFindResource("MaterialDesignBody"); //(Media.Brush)((Style)FindResource("MaterialDesignBody"));
+                panel.Foreground = (Media.Brush)Application.Current.TryFindResource("MaterialDesignPaper"); //(Media.Brush)((Style)FindResource("MaterialDesignBody"));
+                panel.ColorChanged += colorPicker_ColorChanged;
+
+                ContextMenu context = new ContextMenu();
+                MenuItem item = new MenuItem();
+                item.Header = "Remove";
+                item.Click += Item_Click;
+                context.Items.Add(item);
+
+                panel.ContextMenu = context;
+                StackColors.Children.Add(panel);
             }
-            else
+        }
+
+        private void Item_Click(object sender, RoutedEventArgs e)
+        {
+            if (StackColors.Children.Count > 1)
             {
-                colorPicker2.Visibility = Visibility.Hidden;
-                colorZone.Content = "Fixed Color";
+                //Get the parent of the menuitem
+                MenuItem menuItem = sender as MenuItem;
+                ColorControlPanel color = null;
+                if (menuItem != null)
+                {
+                    color = ((ContextMenu)menuItem.Parent).PlacementTarget as ColorControlPanel;
+                }
+
+                //Get it's index in the stack
+                int index = StackColors.Children.IndexOf(color as UIElement);
+
+                //Remove the color and the stack
+                Effects.Colors.RemoveAt(index);
+                StackColors.Children.Remove(color);
             }
-
-            //I couldn't in ANY way make it bind the color properly, at least this works
-            //Binding each value from the RGB is broken
-            //Binding the color it self conflicts because the controler uses System.Windows.Media.Color instead of System.Drawing.Color
-            //I give up, this is it, MVVM for a later day.
-            colorPicker.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(App.settings.ColorOne.A, App.settings.ColorOne.R, App.settings.ColorOne.G, App.settings.ColorOne.B));
-            colorPicker.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(App.settings.ColorOne.A, App.settings.ColorOne.R, App.settings.ColorOne.G, App.settings.ColorOne.B));
-
-            colorPicker2.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(App.settings.ColorTwo.A, App.settings.ColorTwo.R, App.settings.ColorTwo.G, App.settings.ColorTwo.B));
-            colorPicker2.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(App.settings.ColorTwo.A, App.settings.ColorTwo.R, App.settings.ColorTwo.G, App.settings.ColorTwo.B));
         }
 
         private void colorPicker_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
         {
-            Effects.ColorOne = (LEDBulb)e.CurrentColor;
-            App.settings.ColorOne = (Drawing.Color)Effects.ColorOne;
+            int index = StackColors.Children.IndexOf(sender as UIElement);
 
-            FillColor();
-        }
-
-        private void colorPicker2_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
-        {
-            Effects.ColorTwo = (LEDBulb)e.CurrentColor;
-            App.settings.ColorTwo = (Drawing.Color)Effects.ColorTwo;
+            Effects.Colors[index] = (LEDBulb)e.CurrentColor;
 
             FillColor();
         }
@@ -64,6 +86,29 @@ namespace HueHue
             {
                 Effects.TwoAlternateColor();
             }
+        }
+
+        private void Button_Add_Color_Click(object sender, RoutedEventArgs e)
+        {
+            Effects.Colors.Add(new LEDBulb() { R = 255, G = 0, B = 0 });
+
+            ColorControlPanel panel = new ColorControlPanel();
+            panel.Margin = new Thickness(10);
+
+            int i = Effects.Colors.Count - 1;
+
+            //I couldn't in ANY way make it bind the color properly, at least this works
+            //Binding each value from the RGB is broken
+            //Binding the color it self conflicts because the controler uses System.Windows.Media.Color instead of System.Drawing.Color
+            //I give up, this is it, MVVM for a later day.
+            panel.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[i].R, Effects.Colors[i].G, Effects.Colors[i].B));
+            panel.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[i].R, Effects.Colors[i].G, Effects.Colors[i].B));
+            panel.DockAlphaVisibility = Visibility.Hidden;
+            panel.TextForeground = (Media.Brush)Application.Current.TryFindResource("MaterialDesignBody"); //(Media.Brush)((Style)FindResource("MaterialDesignBody"));
+            panel.Foreground = (Media.Brush)Application.Current.TryFindResource("MaterialDesignPaper"); //(Media.Brush)((Style)FindResource("MaterialDesignBody"));
+            panel.ColorChanged += colorPicker_ColorChanged;
+
+            StackColors.Children.Add(panel);
         }
     }
 }

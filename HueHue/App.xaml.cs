@@ -27,8 +27,14 @@ namespace HueHue
             devices = new ObservableCollection<Device> { new Arduino(settings.COMPort, "Arduino") };
 
             Effects.Setup(App.settings.TotalLeds);
-            Effects.ColorOne = (LEDBulb)App.settings.ColorOne;
-            Effects.ColorTwo = (LEDBulb)App.settings.ColorTwo;
+
+            foreach (var item in settings.Colors)
+            {
+                Effects.Colors.Add(item);
+            }
+
+            //Effects.Colors.Add((LEDBulb)App.settings.ColorOne);
+            //Effects.Colors.Add((LEDBulb)App.settings.ColorTwo);
 
             MainWindow window = new MainWindow();
             icon = new TrayIcon(window);
@@ -43,6 +49,8 @@ namespace HueHue
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
+            settings.Colors = Effects.Colors;
+
             settings.Save();
 
             foreach (Device device in devices)

@@ -9,7 +9,7 @@
              x:Class="HueHue.FixedColors"
              mc:Ignorable="d" 
              FontFamily="Segoe UI"
-             d:DesignHeight="510" d:DesignWidth="720" >
+             d:DesignHeight="510" d:DesignWidth="600" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -18,16 +18,15 @@
             <RowDefinition Height="60"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,0,4"/>
-        <materialDesign:PackIcon Kind="Brush" Height="24" Width="24" Margin="0,10,10,0" HorizontalAlignment="Right" />
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="0,1,0,0">
-            <Grid  HorizontalAlignment="Left" Height="461" Grid.Row="1" VerticalAlignment="Top" Width="720" Grid.RowSpan="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <controls:ColorControlPanel x:Name="colorPicker" Margin="10,10,0,277" HorizontalAlignment="Left" Width="410" ColorChanged="colorPicker_ColorChanged" DockAlphaVisibility="Hidden"  TextForeground="{DynamicResource MaterialDesignBody}" Foreground="{DynamicResource MaterialDesignPaper}"/>
-                <controls:ColorControlPanel x:Name="colorPicker2" Margin="10,189,0,98" HorizontalAlignment="Left" Width="410" ColorChanged="colorPicker2_ColorChanged" DockAlphaVisibility="Hidden" TextForeground="{DynamicResource MaterialDesignBody}" Foreground="{DynamicResource MaterialDesignPaper}"/>
-            </Grid>
+        <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,0,4" Content="Fixed Colors"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="0,1,10,10" x:Name="s">
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical" x:Name="StackColors" CanVerticallyScroll="True"/>
         </ScrollViewer>
+        <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                Margin="0,0,10,10" HorizontalAlignment="Right"
+                ToolTip="Add Color" VerticalAlignment="Bottom" Click="Button_Add_Color_Click" Grid.Row="1">
+            <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" />
+        </Button>
+
     </Grid>
 </UserControl>

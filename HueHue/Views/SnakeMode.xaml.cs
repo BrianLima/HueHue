@@ -32,6 +32,9 @@ namespace HueHue.Views
 
             GridSnakeColorSettings.DataContext = App.settings;
 
+            Effects.ColorOne = Effects.Colors[0];
+            Effects.ColorTwo = Effects.Colors[1];
+
             timer = new DispatcherTimer()
             {
                 Interval = TimeSpan.FromMilliseconds(App.settings.Speed)
@@ -43,24 +46,22 @@ namespace HueHue.Views
             //Binding each value from the RGB is broken
             //Binding the color it self conflicts because the controler uses System.Windows.Media.Color instead of System.Drawing.Color
             //I give up, this is it, MVVM for a later day.
-            colorPicker.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(App.settings.ColorOne.A, App.settings.ColorOne.R, App.settings.ColorOne.G, App.settings.ColorOne.B));
-            colorPicker.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(App.settings.ColorOne.A, App.settings.ColorOne.R, App.settings.ColorOne.G, App.settings.ColorOne.B));
+            colorPicker.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
+            colorPicker.InitialColorBrush =  new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
 
-            colorPicker2.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(App.settings.ColorTwo.A, App.settings.ColorTwo.R, App.settings.ColorTwo.G, App.settings.ColorTwo.B));
-            colorPicker2.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(App.settings.ColorTwo.A, App.settings.ColorTwo.R, App.settings.ColorTwo.G, App.settings.ColorTwo.B));
+            colorPicker2.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[1].R, Effects.Colors[1].G, Effects.Colors[1].B));
+            colorPicker2.InitialColorBrush =  new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[1].R, Effects.Colors[1].G, Effects.Colors[1].B));
         }
 
 
         private void colorPicker_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
         {
-            Effects.ColorOne = (LEDBulb)e.CurrentColor;
-            App.settings.ColorOne = (Drawing.Color)Effects.ColorOne;
+            Effects.Colors[0] = (LEDBulb)e.CurrentColor;
         }
 
         private void colorPicker2_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
         {
-            Effects.ColorTwo = (LEDBulb)e.CurrentColor;
-            App.settings.ColorTwo = (Drawing.Color)Effects.ColorTwo;
+            Effects.Colors[1] = (LEDBulb)e.CurrentColor;
         }
 
         private void sliderSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -72,6 +73,7 @@ namespace HueHue.Views
                 timer.Start();
             }
         }
+
         private void Timer_Tick(object sender, EventArgs e)
         {
             Effects.Snake(App.settings.Length);

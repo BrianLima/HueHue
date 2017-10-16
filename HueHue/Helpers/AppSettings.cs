@@ -1,5 +1,9 @@
-﻿using System.ComponentModel;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 
 namespace HueHue.Helpers
 {
@@ -23,9 +27,19 @@ namespace HueHue.Helpers
             this._auto_start = Properties.Settings.Default.AutoStart;
             this._minimize = Properties.Settings.Default.Minimize;
             this._auto_run = Properties.Settings.Default.AutoRun;
-            this._color_one = Properties.Settings.Default.ColorOne;
-            this._color_two = Properties.Settings.Default.ColorTwo;
             this._dark_mode = Properties.Settings.Default.DarkMode;
+
+            if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "/Colors.json"))
+            {
+                File.Create(AppDomain.CurrentDomain.BaseDirectory + "/Colors.json");
+            }
+
+            this._colors = JsonConvert.DeserializeObject<List<LEDBulb>>(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Colors.json"));
+            if (this._colors == null)
+            {
+                //Probably first time running the app, start a new list of leds
+                this._colors = new List<LEDBulb>() { new LEDBulb() { R = 255, G = 0, B = 0 } };
+            }
         }
 
         public void Save()
@@ -78,11 +92,8 @@ namespace HueHue.Helpers
                 case "AutoRun":
                     Properties.Settings.Default.AutoRun = _auto_run;
                     break;
-                case "ColorOne":
-                    Properties.Settings.Default.ColorOne = _color_one;
-                    break;
-                case "ColorTwo":
-                    Properties.Settings.Default.ColorTwo = _color_two;
+                case "Colors":
+                    SaveColors();
                     break;
                 case "DarkMode":
                     Properties.Settings.Default.DarkMode = _dark_mode;
@@ -90,6 +101,12 @@ namespace HueHue.Helpers
                 default:
                     break;
             }
+        }
+
+        private void SaveColors()
+        {
+            var json = JsonConvert.SerializeObject(_colors);
+            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "/Colors.json", json);
         }
 
         private int _current_mode;
@@ -200,25 +217,16 @@ namespace HueHue.Helpers
             set { _auto_run = value; OnPropertyChanged("AutoRun"); }
         }
 
-        private Color _color_one;
+        private List<LEDBulb> _colors;
         /// <summary>
-        /// Gets or sets the first color the app uses for effects
+        /// 
         /// </summary>
-        public Color ColorOne
+        public List<LEDBulb> Colors
         {
-            get { return _color_one; }
-            set { _color_one = value; OnPropertyChanged("ColorOne"); }
+            get { return _colors; }
+            set { _colors = value; OnPropertyChanged("Colors"); }
         }
 
-        private Color _color_two;
-        /// <summary>
-        /// Gets or sets the second color the app uses for effects
-        /// </summary>
-        public Color ColorTwo
-        {
-            get { return _color_two; }
-            set { _color_two = value; OnPropertyChanged("ColorTwo"); }
-        }
 
         private bool _dark_mode;
         /// <summary>

@@ -53,21 +53,18 @@ namespace HueHue
                     frame.Navigate(new FixedColors());
                     break;
                 case 1:
-                    frame.Navigate(new FixedColors());
-                    break;
-                case 2:
                     frame.Navigate(new MusicMode());
                     break;
-                case 3:
+                case 2:
                     frame.Navigate(new ColorCycle());
                     break;
-                case 4:
+                case 3:
                     frame.Navigate(new SnakeMode());
                     break;
-                case 5:
+                case 4:
                     //Effects.ShutOff(); Breath?
                     break;
-                case 6:
+                case 5:
                     frame.NavigationService.RemoveBackEntry();
                     frame.Content = "LED's currently shut off";
                     Effects.ShutOff();

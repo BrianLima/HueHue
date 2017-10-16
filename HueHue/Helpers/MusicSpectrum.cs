@@ -27,15 +27,15 @@ namespace HueHue.Helpers
             SpectrumPointData[] spectrumPoints = CalculateSpectrumPoints(255, fftBuffer);
             if (spectrumPoints[0].Value > 0)
             {
-                Effects.ColorOne.R = CalculateScale(spectrumPoints[0].Value);
+                Effects.Colors[0].R = CalculateScale(spectrumPoints[0].Value);
             }
             if (spectrumPoints[1].Value > 0)
             {
-                Effects.ColorOne.G = CalculateScale(spectrumPoints[0].Value);
+                Effects.Colors[0].G = CalculateScale(spectrumPoints[0].Value);
             }
             if (spectrumPoints[2].Value > 0)
             {
-                Effects.ColorOne.B = CalculateScale(spectrumPoints[0].Value);
+                Effects.Colors[0].B = CalculateScale(spectrumPoints[0].Value);
             }
         }
 

@@ -20,9 +20,9 @@ namespace HueHue.Views
             gridSettings.DataContext = App.settings;
 
             //Starts with Red
-            Effects.ColorOne.R = 255;
-            Effects.ColorOne.G = 0;
-            Effects.ColorOne.B = 0;
+            Effects.Colors[0].R = 255;
+            Effects.Colors[0].G = 0;
+            Effects.Colors[0].B = 0;
 
             Effects.ResetStep();
 

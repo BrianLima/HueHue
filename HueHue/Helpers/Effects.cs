@@ -8,10 +8,16 @@ namespace HueHue.Helpers
     /// </summary>
     public static class Effects
     {
-        //The colors the effect will be based on
-        public static LEDBulb ColorOne = new LEDBulb();
-        public static LEDBulb ColorTwo = new LEDBulb();
-        public static LEDBulb ColorThree = new LEDBulb();
+        /// <summary>
+        /// List of colors the "Fixed Color" effect is based
+        /// </summary>
+        public static List<LEDBulb> Colors = new  List<LEDBulb>();
+
+        /// <summary>
+        /// Color for animated effects
+        /// </summary>
+        public static LEDBulb ColorOne { get; set; }
+        public static LEDBulb ColorTwo { get; set; }
 
         /// <summary>
         /// Strip of LEDs representing the LEDs attached to the Arduino
@@ -41,15 +47,19 @@ namespace HueHue.Helpers
         private static int step;
 
         /// <summary>
-        /// Fills a entire LED strip with a solid color
+        /// Fills a entire LED strip with the List<Colors> the user wants
         /// </summary>
         public static void FixedColor()
         {
-            foreach (LEDBulb LED in LEDs)
+            int count = 0;
+
+            while (count < LEDs.Count)
             {
-                LED.R = ColorOne.R;
-                LED.B = ColorOne.B;
-                LED.G = ColorOne.G;
+                foreach (var color in Colors)
+                {
+                    LEDs[count] = color;
+                    count++;
+                }
             }
         }
 
@@ -62,15 +72,15 @@ namespace HueHue.Helpers
             {
                 if (i % 2 == 0)
                 {
-                    LEDs[i].R = ColorOne.R;
-                    LEDs[i].G = ColorOne.G;
-                    LEDs[i].B = ColorOne.B;
+                    LEDs[i].R = Colors[0].R;
+                    LEDs[i].G = Colors[0].G;
+                    LEDs[i].B = Colors[0].B;
                 }
                 else
                 {
-                    LEDs[i].R = ColorTwo.R;
-                    LEDs[i].G = ColorTwo.G;
-                    LEDs[i].B = ColorTwo.B;
+                    LEDs[i].R = Colors[1].R;
+                    LEDs[i].G = Colors[1].G;
+                    LEDs[i].B = Colors[1].B;
                 }
             }
         }
@@ -78,9 +88,9 @@ namespace HueHue.Helpers
         public static void RandomColor(List<LEDBulb> LEDs)
         {
             Random random = new Random();
-            ColorOne.R = (byte)random.Next(255);
-            ColorOne.G = (byte)random.Next(255);
-            ColorOne.B = (byte)random.Next(255);
+            Colors[0].R = (byte)random.Next(255);
+            Colors[0].G = (byte)random.Next(255);
+            Colors[0].B = (byte)random.Next(255);
 
             FixedColor();
         }
@@ -126,13 +136,13 @@ namespace HueHue.Helpers
                     {
                         for (int j = 0; j < length; j++) //Loop through the snake
                         {
-                            LEDs[i + j] = ColorTwo; //Set color on the snake
+                            LEDs[i + j] = Colors[1]; //Set color on the snake
                         }
                         i += length; //Move the strip counter foward
                     }
                     else
                     {
-                        LEDs[i] = ColorOne; //Sets colors for non "snake" leds
+                        LEDs[i] = Colors[0]; //Sets colors for non "snake" leds
                     }
                 }
                 step++;
@@ -141,11 +151,11 @@ namespace HueHue.Helpers
             {
                 for (int i = 0; i < step; i++)
                 {
-                    LEDs[i] = ColorTwo;
+                    LEDs[i] = Colors[1];
                 }
                 for (int i = step; i < LEDs.Count; i++)
                 {
-                    LEDs[i] = ColorOne;
+                    LEDs[i] = Colors[0];
                 }
                 step++;
             }
@@ -159,52 +169,52 @@ namespace HueHue.Helpers
         {
             if (step == 1) //Started with Red, transition to Yellow
             {
-                ColorOne.G++;
+                Colors[0].G++;
 
-                if (ColorOne.G == 255)
+                if (Colors[0].G == 255)
                 {
                     step++;
                 }
             }
             else if (step == 2) //From Yellow to Green
             {
-                ColorOne.R--;
+                Colors[0].R--;
 
-                if (ColorOne.R == 0)
+                if (Colors[0].R == 0)
                 {
                     step++;
                 }
             }
             else if (step == 3) //From Green to Alice Blue
             {
-                ColorOne.B++;
+                Colors[0].B++;
 
-                if (ColorOne.B == 255)
+                if (Colors[0].B == 255)
                 {
                     step++;
                 }
             }
             else if (step == 4) //From Alice Blue to Blue
             {
-                ColorOne.G--;
+                Colors[0].G--;
 
-                if (ColorOne.G == 0)
+                if (Colors[0].G == 0)
                 {
                     step++;
                 }
             }
             else if (step == 5) // From Blue to Pink/Purple
             {
-                ColorOne.R++;
-                if (ColorOne.R == 255)
+                Colors[0].R++;
+                if (Colors[0].R == 255)
                 {
                     step++;
                 }
             }
             else if (step == 6) //From Pink/Purple to Red
             {
-                ColorOne.B--;
-                if (ColorOne.B == 0)
+                Colors[0].B--;
+                if (Colors[0].B == 0)
                 {
                     ResetStep(); //We Cycled all the basic colors, reset and start again
                 }

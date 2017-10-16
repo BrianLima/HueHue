@@ -85,18 +85,17 @@ namespace HueHue.Helpers
 
             foreach (LEDBulb bulb in Effects.LEDs)
             {
-                if (App.settings.CurrentMode ==2)
+                if (App.settings.CurrentMode == 1)
                 {
-                    outputStream[counter++] = Effects.ColorOne.B;
-                    outputStream[counter++] = Effects.ColorOne.G;
-                    outputStream[counter++] = Effects.ColorOne.R;
+                    outputStream[counter++] = Effects.Colors[0].B;
+                    outputStream[counter++] = Effects.Colors[0].G;
+                    outputStream[counter++] = Effects.Colors[0].R;
                 }
                 else
                 {
-                outputStream[counter++] = bulb.B; // blue
-                outputStream[counter++] = bulb.G; // green
-                outputStream[counter++] = bulb.R; // red
-
+                    outputStream[counter++] = bulb.B; // blue
+                    outputStream[counter++] = bulb.G; // green
+                    outputStream[counter++] = bulb.R; // red
                 }
             }
 
