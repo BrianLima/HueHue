@@ -49,9 +49,14 @@ namespace HueHue.Helpers
                 this._devices = JsonConvert.DeserializeObject<List<Device>>(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Devices.json"));
             }
 
+            //Just in case one of the lists failed to parse and returned null, start a new list to prevent errors
             if (_devices == null)
             {
                 _devices = new List<Device>();
+            }
+            if (_colors == null)
+            {
+                _colors = new List<LEDBulb>() { new LEDBulb() { R = 255, G = 0, B = 0 } };
             }
         }
 

@@ -26,10 +26,14 @@ namespace HueHue.Views.Devices
         private void Button_Add_Click(object sender, RoutedEventArgs e)
         {
             App.devices.Add(new Arduino(ComboBox_ports.Text, TextBoxName.Text));
-            var parent = this.Parent as Frame;
-            if (parent.CanGoBack)
+            var parent = this.Parent;
+            MainWindow.framex.GoBack();
+            if (parent != null)
             {
-                parent.GoBack();
+                //if (parent.CanGoBack)
+                //{
+                //    parent.GoBack();
+                //}
             }
         }
 

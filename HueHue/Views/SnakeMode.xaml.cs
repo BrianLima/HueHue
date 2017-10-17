@@ -1,19 +1,8 @@
 ﻿using HueHue.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
-using Drawing = System.Drawing;
 using Media = System.Windows.Media;
 
 
@@ -32,9 +21,6 @@ namespace HueHue.Views
 
             GridSnakeColorSettings.DataContext = App.settings;
 
-            Effects.ColorOne = Effects.Colors[0];
-            Effects.ColorTwo = Effects.Colors[1];
-
             timer = new DispatcherTimer()
             {
                 Interval = TimeSpan.FromMilliseconds(App.settings.Speed)
@@ -42,15 +28,21 @@ namespace HueHue.Views
             timer.Tick += Timer_Tick;
             timer.Start();
 
+            //Snake mode has a minimum of two colorsfor the effects
+            while (Effects.Colors.Count < 2)
+            {
+                Effects.Colors.Add(new LEDBulb(255, 255, 255));
+            }
+
             //I couldn't in ANY way make it bind the color properly, at least this works
             //Binding each value from the RGB is broken
             //Binding the color it self conflicts because the controler uses System.Windows.Media.Color instead of System.Drawing.Color
             //I give up, this is it, MVVM for a later day.
             colorPicker.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
-            colorPicker.InitialColorBrush =  new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
+            colorPicker.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
 
             colorPicker2.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[1].R, Effects.Colors[1].G, Effects.Colors[1].B));
-            colorPicker2.InitialColorBrush =  new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[1].R, Effects.Colors[1].G, Effects.Colors[1].B));
+            colorPicker2.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[1].R, Effects.Colors[1].G, Effects.Colors[1].B));
         }
 
 
@@ -81,12 +73,16 @@ namespace HueHue.Views
 
         private void Grid_Unloaded(object sender, RoutedEventArgs e)
         {
-            timer.Stop();
         }
 
         private void sliderWidth_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             Effects.ResetStep();
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            timer.Stop();
         }
     }
 }

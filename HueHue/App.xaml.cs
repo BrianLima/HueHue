@@ -24,7 +24,10 @@ namespace HueHue
             helper = new PaletteHelper();
             devices = new ObservableCollection<Device>();
 
-            settings.Devices.ForEach(x=> devices.Add(x));
+            foreach (var device in settings.Devices)
+            {
+                devices.Add(device);
+            }
            
             Effects.Setup(App.settings.TotalLeds);
 

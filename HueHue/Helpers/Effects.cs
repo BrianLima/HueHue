@@ -14,12 +14,6 @@ namespace HueHue.Helpers
         public static List<LEDBulb> Colors = new List<LEDBulb>();
 
         /// <summary>
-        /// Color for animated effects
-        /// </summary>
-        public static LEDBulb ColorOne { get; set; }
-        public static LEDBulb ColorTwo { get; set; }
-
-        /// <summary>
         /// Strip of LEDs representing the LEDs attached to the Arduino
         /// </summary>
         public static List<LEDBulb> LEDs;

@@ -47,6 +47,8 @@ namespace HueHue
 
         private void comboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
+            frame.NavigationService.RemoveBackEntry();
+
             switch (comboBox.SelectedIndex)
             {
                 case 0:

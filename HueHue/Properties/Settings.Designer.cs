@@ -37,7 +37,7 @@ namespace HueHue.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int CurrentMode {
             get {
                 return ((int)(this["CurrentMode"]));
@@ -56,18 +56,6 @@ namespace HueHue.Properties {
             }
             set {
                 this["TotalLeds"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Red")]
-        public global::System.Drawing.Color ColorOne {
-            get {
-                return ((global::System.Drawing.Color)(this["ColorOne"]));
-            }
-            set {
-                this["ColorOne"] = value;
             }
         }
         
@@ -140,18 +128,6 @@ namespace HueHue.Properties {
             }
             set {
                 this["Length"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Blue")]
-        public global::System.Drawing.Color ColorTwo {
-            get {
-                return ((global::System.Drawing.Color)(this["ColorTwo"]));
-            }
-            set {
-                this["ColorTwo"] = value;
             }
         }
         

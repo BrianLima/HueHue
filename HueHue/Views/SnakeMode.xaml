@@ -8,7 +8,7 @@
              xmlns:controls="clr-namespace:ColorTools;assembly=ColorTools"
              mc:Ignorable="d" 
              FontFamily="Segoe UI"
-             d:DesignHeight="500" d:DesignWidth="710">
+             d:DesignHeight="500" d:DesignWidth="710" Unloaded="UserControl_Unloaded">
     <Grid Unloaded="Grid_Unloaded">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -19,8 +19,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Content="Snake Colors" Grid.ColumnSpan="2" Margin="0,0,0.4,3"/>
-        <ScrollViewer VerticalScrollBarVisibility="Hidden" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0.4,0" HorizontalScrollBarVisibility="Auto">
-            <Grid  HorizontalAlignment="Left" Height="461" Grid.Row="1" VerticalAlignment="Top" Width="720" Grid.RowSpan="2">
+        <ScrollViewer VerticalScrollBarVisibility="Hidden" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,10,0" HorizontalScrollBarVisibility="Auto">
+            <Grid  HorizontalAlignment="Left" Height="461" Grid.Row="1" VerticalAlignment="Top" Width="700" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>

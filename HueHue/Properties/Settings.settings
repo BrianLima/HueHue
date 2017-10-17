@@ -6,13 +6,10 @@
       <Value Profile="(Default)">COM4</Value>
     </Setting>
     <Setting Name="CurrentMode" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">4</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="TotalLeds" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">90</Value>
-    </Setting>
-    <Setting Name="ColorOne" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Red</Value>
     </Setting>
     <Setting Name="BreathDelay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
@@ -31,9 +28,6 @@
     </Setting>
     <Setting Name="Length" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
-    </Setting>
-    <Setting Name="ColorTwo" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Blue</Value>
     </Setting>
     <Setting Name="AutoStart" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

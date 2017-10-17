@@ -53,9 +53,7 @@
                 <TextBlock HorizontalAlignment="Left" Margin="-6,-6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="61" Text="Settings"/>
             </materialDesign:ColorZone>
         </Grid>
-        <Frame x:Name="frame" Content="No effect selected or LED's current shut off" BorderThickness="2" Grid.Column="1" Margin="9.6,9.6,9.6,10" Grid.Row="1"  NavigationUIVisibility="Hidden" Grid.RowSpan="2">
-
-        </Frame>
+        <Frame x:Name="frame" Content="No effect selected or LED's current shut off" BorderThickness="2" Grid.Column="1" Margin="9.6,9.6,9.6,10" Grid.Row="1"  NavigationUIVisibility="Hidden" Grid.RowSpan="2"/>
         <Grid Margin="10,9.6,5.4,10" Grid.Row="1">
             <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Top" Height="47">
                 <TextBlock HorizontalAlignment="Left" Margin="-6,-6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="81" Text="My devices"/>
