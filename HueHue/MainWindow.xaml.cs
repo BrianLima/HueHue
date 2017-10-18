@@ -82,15 +82,14 @@ namespace HueHue
                 default:
                     break;
             }
-
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            e.Cancel = true;
-
             if (App.settings.Minimize)
             {
+                e.Cancel = true;
+
                 Minimize();
             }
             else
@@ -99,7 +98,6 @@ namespace HueHue
 
                 Application.Current.Shutdown();
             }
-
         }
 
         private void Window_StateChanged(object sender, System.EventArgs e)
