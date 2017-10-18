@@ -27,7 +27,7 @@ namespace HueHue.Views.Devices
         {
             App.devices.Add(new Arduino(ComboBox_ports.Text, TextBoxName.Text));
             var parent = this.Parent;
-            MainWindow.framex.GoBack();
+
             if (parent != null)
             {
                 //if (parent.CanGoBack)

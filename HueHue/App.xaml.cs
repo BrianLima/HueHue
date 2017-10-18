@@ -69,7 +69,7 @@ namespace HueHue
             isRunning = true;
             try
             {
-                foreach (Device device in App.devices)
+                foreach (var device in App.devices)
                 {
                     device.Start();
                 }

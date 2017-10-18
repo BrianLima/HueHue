@@ -47,8 +47,11 @@ namespace HueHue
 
         private void comboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            frame.NavigationService.RemoveBackEntry();
+            NavigateModes();
+        }
 
+        public void NavigateModes()
+        {
             switch (comboBox.SelectedIndex)
             {
                 case 0:
@@ -74,6 +77,7 @@ namespace HueHue
                 default:
                     break;
             }
+
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -102,7 +106,7 @@ namespace HueHue
             App.icon.ShowStandardBalloon();
         }
 
-        private void Button_ShowSettings_Click (object sender, RoutedEventArgs e)
+        private void Button_ShowSettings_Click(object sender, RoutedEventArgs e)
         {
             //Stop the communication with the arduino, it might cause problems if some settings are changed while it's running
             App.StopDevices();

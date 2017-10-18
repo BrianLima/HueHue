@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HueHue.Helpers
+﻿namespace HueHue.Helpers
 {
     class Arduino : SerialStream
     {
@@ -12,7 +6,7 @@ namespace HueHue.Helpers
         /// Represents an Arduino running HueHueClient connected to the user's PC
         /// </summary>
         /// <param name="_COM_PORT">COM Port which the arduino is connected</param>
-        /// <param name="_COM_PORT">Name for the device on the list</param>
+        /// <param name="_Name">Name for the device on the list</param>
 
         public Arduino(string _COM_PORT, string _Name)
         {

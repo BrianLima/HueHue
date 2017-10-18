@@ -46,7 +46,12 @@ namespace HueHue.Helpers
             }
             else
             {
+                DeviceConverter con = new DeviceConverter();
+                //JsonReader r;
+                //r.Read();
+                //this._devices = con.ReadJson()
                 this._devices = JsonConvert.DeserializeObject<List<Device>>(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Devices.json"));
+
             }
 
             //Just in case one of the lists failed to parse and returned null, start a new list to prevent errors
