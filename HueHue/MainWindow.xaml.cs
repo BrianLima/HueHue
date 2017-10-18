@@ -3,6 +3,7 @@ using HueHue.Views;
 using HueHue.Views.Devices;
 using System;
 using System.Windows;
+using System.ComponentModel;
 
 namespace HueHue
 {
@@ -22,9 +23,13 @@ namespace HueHue
             {
                 if (App.settings.AutoStart && Environment.GetCommandLineArgs().Length > 1)
                 {
-                    this.Minimize();
+                    Minimize();
                     App.StartDevices();
                     buttonStart.Content = "Stop";
+                }
+                else
+                {
+                    this.Show();
                 }
             }
 
@@ -82,19 +87,24 @@ namespace HueHue
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            e.Cancel = true;
+
             if (App.settings.Minimize)
             {
                 Minimize();
             }
             else
             {
+                base.OnClosing(e);
+
                 Application.Current.Shutdown();
             }
+
         }
 
         private void Window_StateChanged(object sender, System.EventArgs e)
         {
-            if (WindowState == WindowState.Minimized)
+            if (this.WindowState == WindowState.Minimized)
             {
                 Minimize();
             }
@@ -102,8 +112,11 @@ namespace HueHue
 
         private void Minimize()
         {
-            Hide();
-            App.icon.ShowStandardBalloon();
+            this.Hide();
+            if (App.icon != null)
+            {
+                App.icon.ShowStandardBalloon();
+            }
         }
 
         private void Button_ShowSettings_Click(object sender, RoutedEventArgs e)

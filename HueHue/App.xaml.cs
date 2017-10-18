@@ -37,9 +37,9 @@ namespace HueHue
             }
 
             MainWindow window = new MainWindow();
-            icon = new TrayIcon(window);
+            this.MainWindow = window;
 
-            window.Show();
+            icon = new TrayIcon(window);
 
             if (App.settings.DarkMode)
             {

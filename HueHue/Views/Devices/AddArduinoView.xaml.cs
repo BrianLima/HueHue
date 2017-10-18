@@ -26,14 +26,12 @@ namespace HueHue.Views.Devices
         private void Button_Add_Click(object sender, RoutedEventArgs e)
         {
             App.devices.Add(new Arduino(ComboBox_ports.Text, TextBoxName.Text));
-            var parent = this.Parent;
 
-            if (parent != null)
+            //Find the main navigation frame on the MainWindow, go back because the user has finished adding this device
+            var MainFrame = App.Current.MainWindow.FindName("frame") as Frame;
+            if (MainFrame.CanGoBack)
             {
-                //if (parent.CanGoBack)
-                //{
-                //    parent.GoBack();
-                //}
+                MainFrame.GoBack();
             }
         }
 

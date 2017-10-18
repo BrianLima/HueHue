@@ -82,7 +82,17 @@ namespace HueHue.Views
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            timer.Stop();
+            if (Application.Current.MainWindow != null)
+            {
+                if (Application.Current.MainWindow.WindowState != WindowState.Minimized)
+                {
+                    timer.Stop();
+                }
+            }
+            else
+            {
+                timer.Stop();
+            }
         }
     }
 }

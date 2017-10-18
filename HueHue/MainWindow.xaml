@@ -12,7 +12,8 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="Segoe UI" Height="700" Closing="Window_Closing" StateChanged="Window_StateChanged">
+        FontFamily="Segoe UI" Height="700" Title="HueHue LED Control"
+        Closing="Window_Closing" StateChanged="Window_StateChanged">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
