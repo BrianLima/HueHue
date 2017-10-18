@@ -29,9 +29,9 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="246.4"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryDark" Grid.ColumnSpan="2" VerticalAlignment="Stretch" Margin="0,0,-262,0" />
+        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryDark" Grid.ColumnSpan="2" VerticalAlignment="Stretch" />
         <Grid x:Name="GridMain" Margin="10,7,5.4,10" Grid.Row="2" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="52"/>
@@ -95,9 +95,10 @@
             </materialDesign:PopupBox>
         </Grid>
         <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                Margin="0,10,-252,0" HorizontalAlignment="Right"
+                Margin="0,10,9.6,0" HorizontalAlignment="Right"
                 ToolTip="Settings/About" VerticalAlignment="Top" Click="Button_ShowSettings_Click" Grid.Column="1">
             <materialDesign:PackIcon Kind="Settings" Height="24" Width="24" />
         </Button>
+        <materialDesign:Snackbar  Grid.Column="1" Margin="10,0,216,0" Grid.Row="2" x:Name="snackBar" MessageQueue="{materialDesign:MessageQueue}" Style="{DynamicResource SnackbarMessage}" materialDesign:ShadowAssist.ShadowDepth="Depth2"/>
     </Grid>
 </Window>

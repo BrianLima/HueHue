@@ -4,6 +4,7 @@ using HueHue.Views.Devices;
 using System;
 using System.Windows;
 using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace HueHue
 {
@@ -94,8 +95,6 @@ namespace HueHue
             }
             else
             {
-                base.OnClosing(e);
-
                 Application.Current.Shutdown();
             }
         }
@@ -132,6 +131,17 @@ namespace HueHue
         private void Button_AddArduino_Click(object sender, RoutedEventArgs e)
         {
             frame.Navigate(new AddArduinoView());
+        }
+
+        public void DisplaySnackbar()
+        {
+            //use the message queue to send a message.
+            var messageQueue = snackBar.MessageQueue;
+            var message = "Device added";
+
+            //the message queue can be called from any thread
+            Task.Factory.StartNew(() => messageQueue.Enqueue(message));
+
         }
     }
 }
