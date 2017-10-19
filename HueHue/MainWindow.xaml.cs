@@ -3,7 +3,6 @@ using HueHue.Views;
 using HueHue.Views.Devices;
 using System;
 using System.Windows;
-using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace HueHue
@@ -20,18 +19,31 @@ namespace HueHue
             GridMain.DataContext = App.settings;
 
             //The app was auto started by windows from the user's startup folder
-            if (Environment.GetCommandLineArgs() != null)
+            var startArg = Environment.GetCommandLineArgs();
+            if (startArg != null && App.settings.AutoStart)
             {
-                if (App.settings.AutoStart && Environment.GetCommandLineArgs().Length > 1)
+                if (startArg.Length > 1)
                 {
-                    Minimize();
-                    App.StartDevices();
-                    buttonStart.Content = "Stop";
+                    if (startArg[1].ToString().Contains("autostart"))
+                    {
+                        System.Windows.Forms.MessageBox.Show("autostart");
+                        Minimize();
+                        App.StartDevices();
+                        buttonStart.Content = "Stop";
+                    }
+                    else
+                    {
+                        this.Show();
+                    }
                 }
                 else
                 {
                     this.Show();
                 }
+            }
+            else
+            {
+                this.Show();
             }
 
             ListDevices.ItemsSource = App.devices;
@@ -141,7 +153,17 @@ namespace HueHue
 
             //the message queue can be called from any thread
             Task.Factory.StartNew(() => messageQueue.Enqueue(message));
+        }
 
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListDevices.SelectedIndex < 0)
+            {
+                return;
+            }
+            App.devices.RemoveAt(ListDevices.SelectedIndex);
+
+            App.SaveDevices();
         }
     }
 }

@@ -23,9 +23,14 @@
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical" x:Name="StackColors" CanVerticallyScroll="True"/>
         </ScrollViewer>
         <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                Margin="0,0,10,10" HorizontalAlignment="Right"
+                Margin="0,0,55,10" HorizontalAlignment="Right"
                 ToolTip="Add Color" VerticalAlignment="Bottom" Click="Button_Add_Color_Click" Grid.Row="1">
             <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" />
+        </Button>
+        <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                Margin="0,0,10,10" HorizontalAlignment="Right"
+                ToolTip="Save Colors" VerticalAlignment="Bottom" Click="Button_Click" Grid.Row="1">
+            <materialDesign:PackIcon Kind="ContentSaveAll" Height="24" Width="24" />
         </Button>
     </Grid>
 </UserControl>

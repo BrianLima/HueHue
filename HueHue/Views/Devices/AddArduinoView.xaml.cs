@@ -27,12 +27,14 @@ namespace HueHue.Views.Devices
         {
             App.devices.Add(new Arduino(ComboBox_ports.Text, TextBoxName.Text));
 
-            var q = App.Current.MainWindow as MainWindow;
+            var main = App.Current.MainWindow as MainWindow;
 
-            q.DisplaySnackbar();
+            main.DisplaySnackbar();
+
+            App.SaveDevices();
 
             //Find the main navigation frame on the MainWindow, go back because the user has finished adding this device
-            var MainFrame = q.FindName("frame") as Frame;
+            var MainFrame = main.FindName("frame") as Frame;
             if (MainFrame.CanGoBack)
             {
                 MainFrame.GoBack();

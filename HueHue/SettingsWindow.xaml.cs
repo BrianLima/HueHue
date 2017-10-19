@@ -1,5 +1,4 @@
-﻿using HueHue.Helpers;
-using IWshRuntimeLibrary;
+﻿using IWshRuntimeLibrary;
 using System;
 using System.Windows;
 using System.Text.RegularExpressions;
@@ -16,7 +15,6 @@ namespace HueHue
         {
             InitializeComponent();
             grid_settings.DataContext = App.settings;
-            comboBox_ComPort.ItemsSource = SerialStream.GetPorts();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

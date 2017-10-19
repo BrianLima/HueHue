@@ -60,6 +60,11 @@
                 <TextBlock HorizontalAlignment="Left" Margin="-6,-6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="81" Text="My devices"/>
             </materialDesign:ColorZone>
             <ListBox Margin="0,52,0,0.4" x:Name="ListDevices">
+                <ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Remove this Device" Click="MenuItem_Click"/>
+                    </ContextMenu>
+                </ListBox.ContextMenu>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Devices:DeviceModel />

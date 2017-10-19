@@ -31,6 +31,8 @@ namespace HueHue
                 panel.TextForeground = (Media.Brush)Application.Current.TryFindResource("MaterialDesignBody"); //(Media.Brush)((Style)FindResource("MaterialDesignBody"));
                 panel.Foreground = (Media.Brush)Application.Current.TryFindResource("MaterialDesignPaper"); //(Media.Brush)((Style)FindResource("MaterialDesignBody"));
                 panel.ColorChanged += colorPicker_ColorChanged;
+                panel.LostMouseCapture += Panel_LostMouseCapture;
+                panel.LostKeyboardFocus += Panel_LostKeyboardFocus;
 
                 ContextMenu context = new ContextMenu();
                 MenuItem item = new MenuItem();
@@ -41,6 +43,21 @@ namespace HueHue
                 panel.ContextMenu = context;
                 StackColors.Children.Add(panel);
             }
+        }
+
+        private void Panel_LostKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
+        {
+            App.settings.Colors = Effects.Colors;
+        }
+
+        private void Panel_LostMouseCapture(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            App.settings.Colors = Effects.Colors;
+        }
+
+        private void Panel_LostFocus(object sender, RoutedEventArgs e)
+        {
+            App.settings.Colors = Effects.Colors; 
         }
 
         private void Item_Click(object sender, RoutedEventArgs e)
@@ -101,8 +118,8 @@ namespace HueHue
             panel.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[i].R, Effects.Colors[i].G, Effects.Colors[i].B));
             panel.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[i].R, Effects.Colors[i].G, Effects.Colors[i].B));
             panel.DockAlphaVisibility = Visibility.Hidden;
-            panel.TextForeground = (Media.Brush)Application.Current.TryFindResource("MaterialDesignBody"); //(Media.Brush)((Style)FindResource("MaterialDesignBody"));
-            panel.Foreground = (Media.Brush)Application.Current.TryFindResource("MaterialDesignPaper"); //(Media.Brush)((Style)FindResource("MaterialDesignBody"));
+            panel.TextForeground = (Media.Brush)Application.Current.TryFindResource("MaterialDesignBody");
+            panel.Foreground = (Media.Brush)Application.Current.TryFindResource("MaterialDesignPaper");
             panel.ColorChanged += colorPicker_ColorChanged;
 
             ContextMenu context = new ContextMenu();
@@ -114,6 +131,13 @@ namespace HueHue
             panel.ContextMenu = context;
 
             StackColors.Children.Add(panel);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //So i added this button as i can't find any event that gets galled EVERY TIME the user leaves the control
+            //I added some events so that we avoid losing the color the user setted if the app is force quited tho
+            App.settings.Colors = Effects.Colors;
         }
     }
 }

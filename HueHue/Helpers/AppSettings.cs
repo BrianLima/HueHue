@@ -15,7 +15,6 @@ namespace HueHue.Helpers
 
         public AppSettings()
         {
-            this._com_port = Properties.Settings.Default.COM_PORT;
             this._current_mode = Properties.Settings.Default.CurrentMode;
             this._total_leds = Properties.Settings.Default.TotalLeds;
             this._brightness = Properties.Settings.Default.Brightness;
@@ -62,8 +61,6 @@ namespace HueHue.Helpers
         public void Save()
         {
             Properties.Settings.Default.Save();
-            SaveColors();
-            SaveDevices();
         }
 
         /// <summary>
@@ -86,9 +83,6 @@ namespace HueHue.Helpers
                 case "TotalLeds":
                     Properties.Settings.Default.TotalLeds = _total_leds;
                     Effects.Setup(_total_leds);
-                    break;
-                case "COMPort":
-                    Properties.Settings.Default.COM_PORT = _com_port;
                     break;
                 case "Breath":
                     Properties.Settings.Default.Breath = _breath;
@@ -171,16 +165,6 @@ namespace HueHue.Helpers
         {
             get { return _total_leds; }
             set { _total_leds = value; OnPropertyChanged("TotalLeds"); }
-        }
-
-        private string _com_port;
-        /// <summary>
-        /// Gets or sets the current com_port
-        /// </summary>
-        public string COMPort
-        {
-            get { return _com_port; }
-            set { _com_port = value; OnPropertyChanged("COMPort"); }
         }
 
         private bool _breath;
@@ -268,7 +252,7 @@ namespace HueHue.Helpers
         public List<Device> Devices
         {
             get { return _devices; }
-            set { _devices = value; }
+            set { _devices = value; OnPropertyChanged("Devices"); }
         }
 
         private bool _dark_mode;

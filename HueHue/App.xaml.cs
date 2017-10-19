@@ -2,6 +2,7 @@
 using HueHue.Views;
 using MaterialDesignThemes.Wpf;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 
@@ -47,12 +48,20 @@ namespace HueHue
             }
         }
 
-        private void Application_Exit(object sender, ExitEventArgs e)
+        public static void SaveDevices()
         {
+            settings.Devices = new List<Device>();
+
             foreach (var item in devices)
             {
                 settings.Devices.Add(item);
             }
+        } 
+
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            SaveDevices();
+
             settings.Colors = Effects.Colors;
 
             settings.Save();
