@@ -29,7 +29,7 @@ namespace HueHue.Views.Devices
 
             var main = App.Current.MainWindow as MainWindow;
 
-            main.DisplaySnackbar();
+            main.DisplaySnackbar("Arduino Added!");
 
             App.SaveDevices();
 

@@ -38,28 +38,30 @@
                 <RowDefinition Height="105.6"/>
                 <RowDefinition Height="140.8"/>
             </Grid.RowDefinitions>
-            <ComboBox x:Name="comboBox" SelectedIndex="{Binding CurrentMode}" Margin="75,9,17,0" VerticalAlignment="Top" Height="30" SelectionChanged="comboBox_SelectionChanged" Grid.Row="1">
+            <ComboBox x:Name="comboBox" SelectedIndex="{Binding CurrentMode}" Margin="75,0,11.6,0" VerticalAlignment="Top" Height="30" SelectionChanged="comboBox_SelectionChanged" Grid.Row="1">
                 <Label Content="Fixed Color" />
                 <Label Content="Music Mode"/>
                 <Label Content="Color Cycling"/>
                 <Label Content="Snake Color"/>
-                <Label Content="Breathing"/>
+                <Label Content="Rainbow Colors"/>
                 <Label Content="Shut Off"/>
             </ComboBox>
-            <TextBlock HorizontalAlignment="Left" Margin="30,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="34" Text="Effect:" Grid.Row="1"/>
-            <Slider x:Name="slider" Value="{Binding Brightness}" HorizontalAlignment="Right" Margin="0,27,10,0" VerticalAlignment="Top" Width="152" Height="53" Minimum="0" Maximum="255" Style="{StaticResource MaterialDesignDiscreteSlider}" Grid.Row="1"/>
-            <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="3,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="61" Text="Brightness:" Grid.Row="1"/>
+            <TextBlock HorizontalAlignment="Left" Margin="0,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="64" Text="Effect:" Grid.Row="1" RenderTransformOrigin="0.561,0.346"/>
+            <Slider x:Name="slider" Value="{Binding Brightness}" HorizontalAlignment="Right" Margin="0,12,2.6,0" VerticalAlignment="Top" Width="159" Height="53" Minimum="0" Maximum="255" Style="{StaticResource MaterialDesignDiscreteSlider}" Grid.Row="1"/>
+            <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="0,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="64" Text="Brightness:" Grid.Row="1"/>
             <Button x:Name="buttonStart" Content="Start" Margin="146,10.4,10,93.4" Click="Button_Click" Height="Auto" Grid.Row="2" RenderTransformOrigin="0.5,0.503"/>
             <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,0,5">
                 <TextBlock HorizontalAlignment="Left" Margin="-6,-6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="61" Text="Settings"/>
             </materialDesign:ColorZone>
+            <ToggleButton x:Name="toggle_breath" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,71,119.6,0" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="{Binding Breath}" Height="25" HorizontalAlignment="Right" Width="36" Unchecked="toggle_breath_Unchecked" Checked="toggle_breath_Checked" Grid.Row="1" />
+            <TextBlock HorizontalAlignment="Left" Margin="0,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="64" Text="Breathing:" Grid.Row="1"/>
         </Grid>
         <Frame x:Name="frame" Content="No effect selected or LED's current shut off" BorderThickness="2" Grid.Column="1" Margin="9.6,9.6,9.6,10" Grid.Row="1"  NavigationUIVisibility="Hidden" Grid.RowSpan="2"/>
         <Grid Margin="10,9.6,5.4,10" Grid.Row="1">
-            <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Top" Height="47">
+            <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Top" Height="52" Margin="0,0,-0.4,0">
                 <TextBlock HorizontalAlignment="Left" Margin="-6,-6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="81" Text="My devices"/>
             </materialDesign:ColorZone>
-            <ListBox Margin="0,52,0,0.4" x:Name="ListDevices">
+            <ListBox Margin="0,57,-0.4,0.4" x:Name="ListDevices">
                 <ListBox.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Remove this Device" Click="MenuItem_Click"/>

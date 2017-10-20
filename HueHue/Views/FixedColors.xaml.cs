@@ -28,8 +28,7 @@ namespace HueHue
                 panel.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[i].R, Effects.Colors[i].G, Effects.Colors[i].B));
                 panel.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[i].R, Effects.Colors[i].G, Effects.Colors[i].B));
                 panel.DockAlphaVisibility = Visibility.Hidden;
-                panel.TextForeground = (Media.Brush)Application.Current.TryFindResource("MaterialDesignBody"); //(Media.Brush)((Style)FindResource("MaterialDesignBody"));
-                panel.Foreground = (Media.Brush)Application.Current.TryFindResource("MaterialDesignPaper"); //(Media.Brush)((Style)FindResource("MaterialDesignBody"));
+                panel.Style = (Style)FindResource("StyleColorControlPanel");
                 panel.ColorChanged += colorPicker_ColorChanged;
                 panel.LostMouseCapture += Panel_LostMouseCapture;
                 panel.LostKeyboardFocus += Panel_LostKeyboardFocus;

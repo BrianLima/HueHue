@@ -24,8 +24,8 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <controls:ColorControlPanel x:Name="colorPicker" Margin="10,10,0,172" HorizontalAlignment="Left" Width="430" DockAlphaVisibility="Hidden" ColorChanged="colorPicker_ColorChanged" TextForeground="{DynamicResource MaterialDesignBody}" Foreground="{DynamicResource MaterialDesignPaper}"/>
-                <controls:ColorControlPanel x:Name="colorPicker2" Margin="10,178,0,0" HorizontalAlignment="Left" Width="430"  DockAlphaVisibility="Hidden" ColorChanged="colorPicker2_ColorChanged" TextForeground="{DynamicResource MaterialDesignBody}" Foreground="{DynamicResource MaterialDesignPaper}"/>
+                <controls:ColorControlPanel x:Name="colorPicker" Margin="10,10,0,176" HorizontalAlignment="Left" Width="430" DockAlphaVisibility="Hidden" ColorChanged="colorPicker_ColorChanged" Style="{DynamicResource StyleColorControlPanel}" />
+                <controls:ColorControlPanel x:Name="colorPicker2" Margin="10,178,0,0" HorizontalAlignment="Left" Width="430"  DockAlphaVisibility="Hidden" ColorChanged="colorPicker2_ColorChanged" Style="{DynamicResource StyleColorControlPanel}" />
             </Grid>
         </ScrollViewer>
         <Grid x:Name="GridSnakeColorSettings" Margin="10,8.333,0,5" Grid.Row="2" HorizontalAlignment="Left" Width="440">

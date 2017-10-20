@@ -26,7 +26,6 @@ namespace HueHue
                 {
                     if (startArg[1].ToString().Contains("autostart"))
                     {
-                        System.Windows.Forms.MessageBox.Show("autostart");
                         Minimize();
                         App.StartDevices();
                         buttonStart.Content = "Stop";
@@ -44,6 +43,11 @@ namespace HueHue
             else
             {
                 this.Show();
+            }
+
+            if (App.devices.Count == 0)
+            {
+                DisplaySnackbar("It seems that you don't have any devices setup! Why don't you start by addding some?");
             }
 
             ListDevices.ItemsSource = App.devices;
@@ -85,7 +89,7 @@ namespace HueHue
                     frame.Navigate(new SnakeMode());
                     break;
                 case 4:
-                    //Effects.ShutOff(); Breath?
+                    frame.Navigate(new RainbowMode());
                     break;
                 case 5:
                     frame.NavigationService.RemoveBackEntry();
@@ -145,14 +149,13 @@ namespace HueHue
             frame.Navigate(new AddArduinoView());
         }
 
-        public void DisplaySnackbar()
+        public void DisplaySnackbar(string Message)
         {
             //use the message queue to send a message.
             var messageQueue = snackBar.MessageQueue;
-            var message = "Device added";
 
             //the message queue can be called from any thread
-            Task.Factory.StartNew(() => messageQueue.Enqueue(message));
+            Task.Factory.StartNew(() => messageQueue.Enqueue(Message));
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -164,6 +167,16 @@ namespace HueHue
             App.devices.RemoveAt(ListDevices.SelectedIndex);
 
             App.SaveDevices();
+        }
+
+        private void toggle_breath_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void toggle_breath_Unchecked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
