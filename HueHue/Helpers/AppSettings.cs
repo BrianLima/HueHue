@@ -15,6 +15,7 @@ namespace HueHue.Helpers
 
         public AppSettings()
         {
+
             this._current_mode = Properties.Settings.Default.CurrentMode;
             this._total_leds = Properties.Settings.Default.TotalLeds;
             this._brightness = Properties.Settings.Default.Brightness;
@@ -26,6 +27,9 @@ namespace HueHue.Helpers
             this._minimize = Properties.Settings.Default.Minimize;
             this._auto_run = Properties.Settings.Default.AutoRun;
             this._dark_mode = Properties.Settings.Default.DarkMode;
+            this._version = Properties.Settings.Default.Version;
+
+            CheckVersion();
 
             if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "/Colors.json"))
             {
@@ -55,6 +59,18 @@ namespace HueHue.Helpers
             if (_colors == null)
             {
                 _colors = new List<LEDBulb>() { new LEDBulb() { R = 255, G = 0, B = 0 } };
+            }
+        }
+
+        private void CheckVersion()
+        {
+            string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+            if (version != this.Version)
+            {
+                Properties.Settings.Default.Upgrade();
+                this.Version = version;
+                Save();
             }
         }
 
@@ -113,6 +129,9 @@ namespace HueHue.Helpers
                     break;
                 case "DarkMode":
                     Properties.Settings.Default.DarkMode = _dark_mode;
+                    break;
+                case "Version":
+                    Properties.Settings.Default.Version = _version;
                     break;
                 default:
                     break;
@@ -263,6 +282,16 @@ namespace HueHue.Helpers
         {
             get { return _dark_mode; }
             set { _dark_mode = value; OnPropertyChanged("DarkMode"); }
+        }
+
+        private string _version;
+        /// <summary>
+        /// Gets or sets the current version of the app
+        /// </summary>
+        public string Version
+        {
+            get { return _version; }
+            set { _version = value; OnPropertyChanged("Version"); }
         }
     }
 }
