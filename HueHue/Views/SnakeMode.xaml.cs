@@ -71,10 +71,6 @@ namespace HueHue.Views
             Effects.Snake(App.settings.Length);
         }
 
-        private void Grid_Unloaded(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void sliderWidth_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             Effects.ResetStep();

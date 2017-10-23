@@ -9,7 +9,7 @@
              mc:Ignorable="d" 
              FontFamily="Segoe UI"
              d:DesignHeight="500" d:DesignWidth="460" Unloaded="UserControl_Unloaded" x:Name="frame">
-    <Grid Unloaded="Grid_Unloaded">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>

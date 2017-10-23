@@ -19,6 +19,11 @@ namespace HueHue.Helpers
         public static List<LEDBulb> LEDs;
 
         /// <summary>
+        /// Step used for some effects
+        /// </summary>
+        private static int step;
+
+        /// <summary>
         /// Resets and setup de LEDs strip
         /// </summary>
         /// <param name="TotalLEDs">Amount of LEDs on the Strip</param>
@@ -35,10 +40,20 @@ namespace HueHue.Helpers
             }
         }
 
-        /// <summary>
-        /// Step used for effects
-        /// </summary>
-        private static int step;
+        internal static void Rainbow()
+        {
+            step++;
+            for (int i = 0; i < LEDs.Count; i++)
+            {
+                LEDs[i].R = (byte)step++;
+                LEDs[i].G = (byte)step++;
+                LEDs[i].B = (byte)step++;
+            }
+            if (step + 3 >= 255)
+            {
+                ResetStep();
+            }
+        }
 
         /// <summary>
         /// Fills a entire LED strip with the List<Colors> the user wants

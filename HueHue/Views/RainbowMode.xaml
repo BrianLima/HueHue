@@ -5,8 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HueHue.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
+             d:DesignHeight="300" d:DesignWidth="300" Unloaded="UserControl_Unloaded">
+    <Grid x:Name="GridRainbow">
+        <Slider x:Name="sliderSpeed" Value="{Binding Speed}" HorizontalAlignment="Right" Margin="0,0,129.667,245" Width="165" Minimum="10" Maximum="3000" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Bottom" ValueChanged="sliderSpeed_ValueChanged"/>
+        <Label Content="*Speed in miliseconds" Margin="10,0,0,222" Height="23" VerticalAlignment="Bottom" FontSize="8" HorizontalAlignment="Left" Width="126"/>
+
     </Grid>
 </UserControl>
