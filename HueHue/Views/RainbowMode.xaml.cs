@@ -32,6 +32,17 @@ namespace HueHue.Views
             Effects.Rainbow(App.settings.Center, App.settings.Width, 
                 App.settings.FrequencyR/10, App.settings.FrequencyG/10, App.settings.FrequencyB/10, 
                 App.settings.PhaseR, App.settings.PhaseG, App.settings.PhaseB);
+
+            App.settings.FrequencyR+= .01M;
+            App.settings.FrequencyG+= .01M;
+            App.settings.FrequencyB+= .01M;
+
+            if (App.settings.FrequencyR >= 10)
+            {
+                App.settings.FrequencyR = 0;
+                App.settings.FrequencyG = 0;
+                App.settings.FrequencyB = 0;
+            }
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)

@@ -52,9 +52,7 @@ namespace HueHue.Helpers
         /// <param name="phaseR"></param>
         /// <param name="phaseG"></param>
         /// <param name="phaseB"></param>
-        public static void Rainbow(int center, int width,
-            decimal frequencyR, decimal frequencyG, decimal frequencyB, 
-            int phaseR, int phaseG, int phaseB)
+        public static void Rainbow(int center, int width, decimal frequencyR, decimal frequencyG, decimal frequencyB, int phaseR, int phaseG, int phaseB)
         {
             for (var i = 0; i < LEDs.Count; ++i)
             {
