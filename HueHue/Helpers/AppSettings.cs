@@ -28,6 +28,14 @@ namespace HueHue.Helpers
             this._auto_run = Properties.Settings.Default.AutoRun;
             this._dark_mode = Properties.Settings.Default.DarkMode;
             this._version = Properties.Settings.Default.Version;
+            this._frequency_r = Properties.Settings.Default.FrequencyR;
+            this. _frequency_g = Properties.Settings.Default.FrequencyG;
+            this._frequency_b = Properties.Settings.Default.FrequencyB;
+            this._phase_r = Properties.Settings.Default.PhaseR;
+            this._phase_g = Properties.Settings.Default.PhaseG;
+            this._phase_b = Properties.Settings.Default.PhaseB;
+            this._center = Properties.Settings.Default.Center;
+            this._width = Properties.Settings.Default.Width;
 
             CheckVersion();
 
@@ -132,6 +140,21 @@ namespace HueHue.Helpers
                     break;
                 case "Version":
                     Properties.Settings.Default.Version = _version;
+                    break;
+                case "FrequencyR":
+                    Properties.Settings.Default.FrequencyR = _frequency_r;
+                    break;
+                case "FrequencyG":
+                    Properties.Settings.Default.FrequencyG = _frequency_g;
+                    break;
+                case "FrequencyB":
+                    Properties.Settings.Default.FrequencyB = _frequency_b;
+                    break;
+                case "Center":
+                    Properties.Settings.Default.Center = _center;
+                    break;
+                case "Width":
+                    Properties.Settings.Default.Width = _width;
                     break;
                 default:
                     break;
@@ -293,5 +316,86 @@ namespace HueHue.Helpers
             get { return _version; }
             set { _version = value; OnPropertyChanged("Version"); }
         }
+
+        private decimal _frequency_r;
+        /// <summary>
+        /// Gets or sets the frequency for Red color
+        /// </summary>
+        public decimal FrequencyR
+        {
+            get { return _frequency_r; }
+            set { _frequency_r = value; OnPropertyChanged("FrequencyR"); }
+        }
+
+        private int _phase_r;
+        /// <summary>
+        /// Gets or sets the Phase for R
+        /// </summary>
+        public int PhaseR
+        {
+            get { return _phase_r; }
+            set { _phase_r = value; OnPropertyChanged("PhaseR"); }
+        }
+
+        private decimal _frequency_g;
+        /// <summary>
+        /// Gets or sets the frequency for G
+        /// </summary>
+        public decimal FrequencyG
+        {
+            get { return _frequency_g; }
+            set { _frequency_g = value; OnPropertyChanged("FrequencyG"); }
+        }
+
+        private int _phase_g;
+        /// <summary>
+        /// Gets or sets the phase for G
+        /// </summary>
+        public int PhaseG
+        {
+            get { return _phase_g; }
+            set { _phase_g = value; OnPropertyChanged("PhaseG"); }
+        }
+
+        private decimal _frequency_b;
+        /// <summary>
+        /// Gets or sets the frequency for B
+        /// </summary>
+        public decimal FrequencyB
+        {
+            get { return _frequency_b; }
+            set { _frequency_b = value; OnPropertyChanged("FrequencyB"); }
+        }
+
+        private int _phase_b;
+        /// <summary>
+        /// Gets or sets the phase for B
+        /// </summary>
+        public int PhaseB
+        {
+            get { return _phase_b; }
+            set { _phase_b = value; OnPropertyChanged("PhaseB"); }
+        }
+
+        private int _center;
+        /// <summary>
+        /// Gets or sets the Center for rainbow effect
+        /// </summary>
+        public int Center
+        {
+            get { return _center; }
+            set { _center = value; OnPropertyChanged("Center"); }
+        }
+
+        private int _width;
+        /// <summary>
+        /// Gets or sets the Width for Rainbow effects
+        /// </summary>
+        public int Width
+        {
+            get { return _width; }
+            set { _width = value; OnPropertyChanged("Width"); }
+        }
+
     }
 }

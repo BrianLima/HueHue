@@ -1,18 +1,7 @@
 ﻿using HueHue.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace HueHue.Views
@@ -40,7 +29,9 @@ namespace HueHue.Views
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            Effects.Rainbow();
+            Effects.Rainbow(App.settings.Center, App.settings.Width, 
+                App.settings.FrequencyR/10, App.settings.FrequencyG/10, App.settings.FrequencyB/10, 
+                App.settings.PhaseR, App.settings.PhaseG, App.settings.PhaseB);
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
@@ -65,6 +56,35 @@ namespace HueHue.Views
                 timer.Stop();
                 timer.Interval = TimeSpan.FromMilliseconds(e.NewValue);
                 timer.Start();
+            }
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (((ComboBox)sender).SelectedIndex)
+            {
+                case 1: //Sets Rainbow effect to normal rainbow
+                    App.settings.FrequencyR = 0.3M;
+                    App.settings.FrequencyG = 0.3M;
+                    App.settings.FrequencyB = 0.3M;
+                    App.settings.PhaseR = 0;
+                    App.settings.PhaseG = 2;
+                    App.settings.PhaseB = 4;
+                    App.settings.Center = 127;
+                    App.settings.Width = 128;
+                    break;
+                case 2: //Sets Rainbow effect to Pastel colors
+                    App.settings.FrequencyR = 0.3M;
+                    App.settings.FrequencyG = 0.3M;
+                    App.settings.FrequencyB = 0.3M;
+                    App.settings.PhaseR = 0;
+                    App.settings.PhaseG = 2;
+                    App.settings.PhaseB = 4;
+                    App.settings.Center = 230;
+                    App.settings.Width = 25;
+                    break;
+                default: //Do nothing
+                    break;
             }
         }
     }

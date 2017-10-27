@@ -181,13 +181,109 @@ namespace HueHue.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public string Version {
             get {
                 return ((string)(this["Version"]));
             }
             set {
                 this["Version"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public decimal FrequencyR {
+            get {
+                return ((decimal)(this["FrequencyR"]));
+            }
+            set {
+                this["FrequencyR"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int PhaseR {
+            get {
+                return ((int)(this["PhaseR"]));
+            }
+            set {
+                this["PhaseR"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public decimal FrequencyG {
+            get {
+                return ((decimal)(this["FrequencyG"]));
+            }
+            set {
+                this["FrequencyG"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int PhaseG {
+            get {
+                return ((int)(this["PhaseG"]));
+            }
+            set {
+                this["PhaseG"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public decimal FrequencyB {
+            get {
+                return ((decimal)(this["FrequencyB"]));
+            }
+            set {
+                this["FrequencyB"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int PhaseB {
+            get {
+                return ((int)(this["PhaseB"]));
+            }
+            set {
+                this["PhaseB"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("127")]
+        public int Center {
+            get {
+                return ((int)(this["Center"]));
+            }
+            set {
+                this["Center"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("128")]
+        public int Width {
+            get {
+                return ((int)(this["Width"]));
+            }
+            set {
+                this["Width"] = value;
             }
         }
     }

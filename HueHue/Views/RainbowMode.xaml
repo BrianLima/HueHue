@@ -1,14 +1,56 @@
-﻿<UserControl x:Class="HueHue.Views.RainbowMode"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HueHue.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="HueHue.Views.RainbowMode"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Unloaded="UserControl_Unloaded">
-    <Grid x:Name="GridRainbow">
-        <Slider x:Name="sliderSpeed" Value="{Binding Speed}" HorizontalAlignment="Right" Margin="0,0,129.667,245" Width="165" Minimum="10" Maximum="3000" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Bottom" ValueChanged="sliderSpeed_ValueChanged"/>
-        <Label Content="*Speed in miliseconds" Margin="10,0,0,222" Height="23" VerticalAlignment="Bottom" FontSize="8" HorizontalAlignment="Left" Width="126"/>
+             d:DesignHeight="450" d:DesignWidth="450" Unloaded="UserControl_Unloaded">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,0,0.578" Content="Rainbow Colors"/>
+        <ScrollViewer Margin="-1,10,10,0" Grid.Row="1">
+            <Grid x:Name="GridRainbow">
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="251,23,-17,0" TextWrapping="Wrap" Text="{Binding Speed}" VerticalAlignment="Top" Width="49"/>
+                <Label Content="Speed:" HorizontalAlignment="Left" Margin="33,29,0,0" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="251,52,-17,0" TextWrapping="Wrap" Text="{Binding FrequencyR}" VerticalAlignment="Top" Width="49"/>
+                <Label Content="Frequency R:" HorizontalAlignment="Left" Margin="1,58,0,0" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="251,87,-17,0" TextWrapping="Wrap" Text="{Binding PhaseR}" VerticalAlignment="Top" Width="49"/>
+                <Label Content="Phase R:" HorizontalAlignment="Left" Margin="25,93,0,0" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="251,122,-17,0" TextWrapping="Wrap" Text="{Binding FrequencyG}" VerticalAlignment="Top" Width="49"/>
+                <Label Content="Frequency G:" HorizontalAlignment="Left" Margin="0,128,0,0" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="251,157,-17,0" TextWrapping="Wrap" Text="{Binding PhaseG}" VerticalAlignment="Top" Width="49"/>
+                <Label Content="Phase G:" HorizontalAlignment="Left" Margin="21,163,0,0" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="251,186,-17,0" TextWrapping="Wrap" Text="{Binding FrequencyB}" VerticalAlignment="Top" Width="49"/>
+                <Label Content="Frequency B:" HorizontalAlignment="Left" Margin="2,192,0,0" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="251,215,-17,0" TextWrapping="Wrap" Text="{Binding PhaseB}" VerticalAlignment="Top" Width="49"/>
+                <Label Content="Phase B:" HorizontalAlignment="Left" Margin="25,221,0,0" VerticalAlignment="Top"/>
+                <ComboBox HorizontalAlignment="Left" SelectionChanged="ComboBox_SelectionChanged" SelectedIndex="0" Margin="84,0,0,0" VerticalAlignment="Top" Width="159">
+                    <ComboBoxItem Content="Custom" />
+                    <ComboBoxItem Content="Full Range"/>
+                    <ComboBoxItem Content="Pastel Colors" />
+                </ComboBox>
+                <Label Content="Preset:" HorizontalAlignment="Left" Margin="34,0,0,0" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="251,250,-17,0" TextWrapping="Wrap" Text="{Binding Center}" VerticalAlignment="Top" Width="49"/>
+                <Label Content="Center:" HorizontalAlignment="Left" Margin="31,253,0,0" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="251,279,-17,0" TextWrapping="Wrap" Text="{Binding Width}" VerticalAlignment="Top" Width="49"/>
+                <Label Content="Width:" HorizontalAlignment="Left" Margin="34,285,0,0" VerticalAlignment="Top"/>
+                <Slider x:Name="sliderSpeed" Value="{Binding Speed}" Margin="79,0,0,0" Minimum="10" Maximum="3000" Style="{StaticResource MaterialDesignDiscreteSlider}" ValueChanged="sliderSpeed_ValueChanged" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
+                <Slider x:Name="sliderSpeed_Copy" Value="{Binding FrequencyR}" Margin="79,29,0,0" Minimum="1" Maximum="30" SmallChange="1" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" ValueChanged="sliderSpeed_ValueChanged" HorizontalAlignment="Left" Width="172"/>
+                <Slider x:Name="sliderSpeed_Copy1" Value="{Binding PhaseR}" Margin="79,64,0,0" Minimum="0" Maximum="8" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" ValueChanged="sliderSpeed_ValueChanged" HorizontalAlignment="Left" Width="172"/>
+                <Slider x:Name="sliderSpeed_Copy2" Value="{Binding FrequencyG}" Margin="79,99,0,0" Minimum="1" Maximum="30" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" ValueChanged="sliderSpeed_ValueChanged" HorizontalAlignment="Left" Width="172"/>
+                <Slider x:Name="sliderSpeed_Copy3" Value="{Binding PhaseG}" Margin="79,134,0,0" Minimum="0" Maximum="8" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" ValueChanged="sliderSpeed_ValueChanged" HorizontalAlignment="Left" Width="172"/>
+                <Slider x:Name="sliderSpeed_Copy4" Value="{Binding FrequencyB}" Margin="79,163,0,0" Minimum="1" Maximum="30" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" ValueChanged="sliderSpeed_ValueChanged" HorizontalAlignment="Left" Width="172"/>
+                <Slider x:Name="sliderSpeed_Copy5" Value="{Binding PhaseB}" Margin="79,192,0,0" Minimum="0" Maximum="8" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" ValueChanged="sliderSpeed_ValueChanged" HorizontalAlignment="Left" Width="172"/>
+                <Slider x:Name="sliderSpeed_Copy6" Value="{Binding Center}" Margin="79,227,0,0" Minimum="1" Maximum="255" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" ValueChanged="sliderSpeed_ValueChanged" HorizontalAlignment="Left" Width="172"/>
+                <Slider x:Name="sliderSpeed_Copy7" Value="{Binding Width}" Margin="79,256,0,0" Minimum="1" Maximum="255" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" ValueChanged="sliderSpeed_ValueChanged" HorizontalAlignment="Left" Width="172"/>
+
+            </Grid>
+        </ScrollViewer>
 
     </Grid>
 </UserControl>

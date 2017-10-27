@@ -40,18 +40,29 @@ namespace HueHue.Helpers
             }
         }
 
-        internal static void Rainbow()
+        /// <summary>
+        /// Applies the rainbow effect on the LED strip
+        /// https://krazydad.com/tutorials/makecolors.php
+        /// </summary>
+        /// <param name="center"></param>
+        /// <param name="width"></param>
+        /// <param name="frequencyR"></param>
+        /// <param name="frequencyG"></param>
+        /// <param name="frequencyB"></param>
+        /// <param name="phaseR"></param>
+        /// <param name="phaseG"></param>
+        /// <param name="phaseB"></param>
+        public static void Rainbow(int center, int width,
+            decimal frequencyR, decimal frequencyG, decimal frequencyB, 
+            int phaseR, int phaseG, int phaseB)
         {
-            step++;
-            for (int i = 0; i < LEDs.Count; i++)
+            for (var i = 0; i < LEDs.Count; ++i)
             {
-                LEDs[i].R = (byte)step++;
-                LEDs[i].G = (byte)step++;
-                LEDs[i].B = (byte)step++;
-            }
-            if (step + 3 >= 255)
-            {
-                ResetStep();
+                var red = Math.Sin((double)(frequencyR * i + phaseR)) * width + center;
+                var grn = Math.Sin((double)(frequencyB * i + phaseG)) * width + center;
+                var blu = Math.Sin((double)(frequencyG * i + phaseB)) * width + center;
+
+                LEDs[i] = new LEDBulb((byte)red, (byte)grn, (byte)blu);
             }
         }
 
