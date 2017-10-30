@@ -41,6 +41,16 @@ namespace HueHue.Helpers
         }
 
         /// <summary>
+        /// Shifts the LEDs to the right, placing the last one at first
+        /// </summary>
+        public static void ShiftRight()
+        {
+            LEDs.Insert(0, LEDs[LEDs.Count - 1]);
+            LEDs.RemoveAt(LEDs.Count-1);
+        }
+
+
+        /// <summary>
         /// Applies the rainbow effect on the LED strip
         /// https://krazydad.com/tutorials/makecolors.php
         /// </summary>
@@ -52,7 +62,7 @@ namespace HueHue.Helpers
         /// <param name="phaseR"></param>
         /// <param name="phaseG"></param>
         /// <param name="phaseB"></param>
-        public static void Rainbow(int center, int width, decimal frequencyR, decimal frequencyG, decimal frequencyB, int phaseR, int phaseG, int phaseB)
+        public static void CalcRainbow(int center, int width, decimal frequencyR, decimal frequencyG, decimal frequencyB, int phaseR, int phaseG, int phaseB)
         {
             for (var i = 0; i < LEDs.Count; ++i)
             {

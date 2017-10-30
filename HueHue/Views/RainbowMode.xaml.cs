@@ -29,20 +29,8 @@ namespace HueHue.Views
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            Effects.Rainbow(App.settings.Center, App.settings.Width, 
-                App.settings.FrequencyR/10, App.settings.FrequencyG/10, App.settings.FrequencyB/10, 
-                App.settings.PhaseR, App.settings.PhaseG, App.settings.PhaseB);
+            Effects.ShiftRight();
 
-            App.settings.FrequencyR+= .01M;
-            App.settings.FrequencyG+= .01M;
-            App.settings.FrequencyB+= .01M;
-
-            if (App.settings.FrequencyR >= 10)
-            {
-                App.settings.FrequencyR = 0;
-                App.settings.FrequencyG = 0;
-                App.settings.FrequencyB = 0;
-            }
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
@@ -68,6 +56,10 @@ namespace HueHue.Views
                 timer.Interval = TimeSpan.FromMilliseconds(e.NewValue);
                 timer.Start();
             }
+            Effects.CalcRainbow(App.settings.Center, App.settings.Width,
+                App.settings.FrequencyR / 10, App.settings.FrequencyG / 10, App.settings.FrequencyB / 10,
+                App.settings.PhaseR, App.settings.PhaseG, App.settings.PhaseB);
+
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -97,6 +89,14 @@ namespace HueHue.Views
                 default: //Do nothing
                     break;
             }
+        }
+
+        private void sliderSpeed_Copy7_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Effects.CalcRainbow(App.settings.Center, App.settings.Width,
+                                App.settings.FrequencyR / 10, App.settings.FrequencyG / 10, App.settings.FrequencyB / 10,
+                                App.settings.PhaseR, App.settings.PhaseG, App.settings.PhaseB);
+
         }
     }
 }
