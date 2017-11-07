@@ -164,7 +164,7 @@ namespace HueHue.Helpers
         /// <summary>
         /// Serializes all the devices the user setup to a JSON file
         /// </summary>
-        private void SaveDevices()
+        public void SaveDevices()
         {
             var json = JsonConvert.SerializeObject(_devices);
             File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "/Devices.json", json);
@@ -173,7 +173,7 @@ namespace HueHue.Helpers
         /// <summary>
         /// Serializes all the colors the user has set to a JSON file
         /// </summary>
-        private void SaveColors()
+        public void SaveColors()
         {
             var json = JsonConvert.SerializeObject(_colors);
             File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "/Colors.json", json);

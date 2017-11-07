@@ -27,7 +27,7 @@ namespace HueHue
                     if (startArg[1].ToString().Contains("autostart"))
                     {
                         Minimize();
-                        App.StartDevices();
+                        App.StartStopDevices();
                         buttonStart.Content = "Stop";
                     }
                     else
@@ -47,7 +47,7 @@ namespace HueHue
 
             if (App.devices.Count == 0)
             {
-                DisplaySnackbar("It seems that you don't have any devices setup! Why don't you start by addding some?");
+                DisplaySnackbar("You don't have any devices!");
             }
 
             ListDevices.ItemsSource = App.devices;
@@ -135,7 +135,10 @@ namespace HueHue
         private void Button_ShowSettings_Click(object sender, RoutedEventArgs e)
         {
             //Stop the communication with the arduino, it might cause problems if some settings are changed while it's running
-            App.StopDevices();
+            if (App.isRunning)
+            {
+                App.StartStopDevices();
+            }
             SettingsWindow window = new SettingsWindow();
             window.ShowDialog();
         }

@@ -42,6 +42,8 @@ namespace HueHue
                 panel.ContextMenu = context;
                 StackColors.Children.Add(panel);
             }
+
+            FillColor();
         }
 
         private void Panel_LostKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
@@ -117,9 +119,11 @@ namespace HueHue
             panel.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[i].R, Effects.Colors[i].G, Effects.Colors[i].B));
             panel.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[i].R, Effects.Colors[i].G, Effects.Colors[i].B));
             panel.DockAlphaVisibility = Visibility.Hidden;
-            panel.TextForeground = (Media.Brush)Application.Current.TryFindResource("MaterialDesignBody");
-            panel.Foreground = (Media.Brush)Application.Current.TryFindResource("MaterialDesignPaper");
+            panel.Style = (Style)FindResource("StyleColorControlPanel");
             panel.ColorChanged += colorPicker_ColorChanged;
+            panel.LostMouseCapture += Panel_LostMouseCapture;
+            panel.LostKeyboardFocus += Panel_LostKeyboardFocus;
+
 
             ContextMenu context = new ContextMenu();
             MenuItem item = new MenuItem();

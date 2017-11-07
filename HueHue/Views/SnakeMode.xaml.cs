@@ -43,17 +43,20 @@ namespace HueHue.Views
 
             colorPicker2.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[1].R, Effects.Colors[1].G, Effects.Colors[1].B));
             colorPicker2.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[1].R, Effects.Colors[1].G, Effects.Colors[1].B));
+            Effects.FillSNakeStrip();
         }
 
 
         private void colorPicker_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
         {
             Effects.Colors[0] = (LEDBulb)e.CurrentColor;
+            Effects.FillSNakeStrip();
         }
 
         private void colorPicker2_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
         {
             Effects.Colors[1] = (LEDBulb)e.CurrentColor;
+            Effects.FillSNakeStrip();
         }
 
         private void sliderSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -68,12 +71,12 @@ namespace HueHue.Views
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            Effects.Snake(App.settings.Length);
+            Effects.ShiftRight();
         }
 
         private void sliderWidth_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            Effects.ResetStep();
+            Effects.FillSNakeStrip();
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)

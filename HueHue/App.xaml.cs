@@ -46,16 +46,20 @@ namespace HueHue
             {
                 App.helper.SetLightDark(App.settings.DarkMode);
             }
+
+            settings.SaveDevices();
         }
 
         public static void SaveDevices()
         {
-            settings.Devices = new List<Device>();
+            var store = new List<Device>();
 
             foreach (var item in devices)
             {
-                settings.Devices.Add(item);
+                store.Add(item);
             }
+
+            settings.Devices = store; 
         } 
 
         private void Application_Exit(object sender, ExitEventArgs e)
@@ -70,10 +74,11 @@ namespace HueHue
             {
                 device.Stop();
             }
+
             icon.Close();
         }
 
-        public static void StartDevices()
+        private static void StartDevices()
         {
             isRunning = true;
             try
@@ -88,7 +93,7 @@ namespace HueHue
             }
         }
 
-        public static void StopDevices()
+        private static void StopDevices()
         {
             isRunning = false;
             try

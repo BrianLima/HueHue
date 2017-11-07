@@ -21,6 +21,7 @@ namespace HueHue.Views
             {
                 Interval = TimeSpan.FromMilliseconds(App.settings.Speed)
             };
+
             timer.Tick += Timer_Tick;
             timer.Start();
 
@@ -30,7 +31,6 @@ namespace HueHue.Views
         private void Timer_Tick(object sender, EventArgs e)
         {
             Effects.ShiftRight();
-
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
@@ -45,6 +45,7 @@ namespace HueHue.Views
             else
             {
                 timer.Stop();
+                timer = null;
             }
         }
 
@@ -56,10 +57,10 @@ namespace HueHue.Views
                 timer.Interval = TimeSpan.FromMilliseconds(e.NewValue);
                 timer.Start();
             }
+
             Effects.CalcRainbow(App.settings.Center, App.settings.Width,
                 App.settings.FrequencyR / 10, App.settings.FrequencyG / 10, App.settings.FrequencyB / 10,
                 App.settings.PhaseR, App.settings.PhaseG, App.settings.PhaseB);
-
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

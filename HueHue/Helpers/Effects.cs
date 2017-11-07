@@ -46,7 +46,7 @@ namespace HueHue.Helpers
         public static void ShiftRight()
         {
             LEDs.Insert(0, LEDs[LEDs.Count - 1]);
-            LEDs.RemoveAt(LEDs.Count-1);
+            LEDs.RemoveAt(LEDs.Count - 1);
         }
 
 
@@ -142,6 +142,25 @@ namespace HueHue.Helpers
         }
 
         /// <summary>
+        /// Fills the strip first with Colors[0] for the length of App.settings.Length
+        /// The fills the rest of the strip with Colors[1]
+        /// </summary>
+        public static void FillSNakeStrip()
+        {
+            for (int i = 0; i < LEDs.Count; i++)
+            {
+                if (i < App.settings.Length) //Defines the "snake"
+                {
+                    LEDs[i] = Colors[0];
+                }
+                else
+                {
+                    LEDs[i] = Colors[1];
+                }
+            }
+        }
+
+        /// <summary>
         /// Resets the position of the snake, preventing out of bounds errors
         /// </summary>
         public static void ResetStep()
@@ -153,51 +172,52 @@ namespace HueHue.Helpers
         /// Logic for the SnakeColor effect
         /// </summary>
         /// <param name="length">Lenght of the snake</param>
-        public static void Snake(int length)
-        {
-            Console.WriteLine(step);
-            if (step + length == LEDs.Count + length) //When the snake is completely out of bounds, reset its step
-            {
-                ResetStep();
-            }
+        //public static void Snake(int length) //Why did i even did this to my self?
+        //“Why are we still here? Just to suffer? Every night, I can feel my leg… and my arm… even my fingers.The body I’ve lost… the comrades I’ve lost… won’t stop hurting… It’s like they’re all still there.You feel it, too, don’t you?”
+        //{
+        //    Console.WriteLine(step);
+        //    if (step + length == LEDs.Count + length) //When the snake is completely out of bounds, reset its step
+        //    {
+        //        ResetStep();
+        //    }
 
-            if (step + length > LEDs.Count) //If the snake is going out of bounds, decrease its size so it actually fits the strip
-            {
-                length -= ((step + length) - LEDs.Count);
-            }
+        //    if (step + length > LEDs.Count) //If the snake is going out of bounds, decrease its size so it actually fits the strip
+        //    {
+        //        length -= ((step + length) - LEDs.Count);
+        //    }
 
-            if (step >= length) //The snake is fully out ( ° ʖ °)
-            {
-                for (int i = 0; i < LEDs.Count; i++) //Loops through the strip
-                {
-                    if (i == step) //Starting point from the "Tail" of the snake 
-                    {
-                        for (int j = 0; j < length; j++) //Loop through the snake
-                        {
-                            LEDs[i + j] = Colors[1]; //Set color on the snake
-                        }
-                        i += length; //Move the strip counter foward
-                    }
-                    else
-                    {
-                        LEDs[i] = Colors[0]; //Sets colors for non "snake" leds
-                    }
-                }
-                step++;
-            }
-            else //The snake is coming out ( ° ʖ °)
-            {
-                for (int i = 0; i < step; i++)
-                {
-                    LEDs[i] = Colors[1];
-                }
-                for (int i = step; i < LEDs.Count; i++)
-                {
-                    LEDs[i] = Colors[0];
-                }
-                step++;
-            }
-        }
+        //    if (step >= length) //The snake is fully out ( ° ʖ °)
+        //    {
+        //        for (int i = 0; i < LEDs.Count; i++) //Loops through the strip
+        //        {
+        //            if (i == step) //Starting point from the "Tail" of the snake 
+        //            {
+        //                for (int j = 0; j < length; j++) //Loop through the snake
+        //                {
+        //                    LEDs[i + j] = Colors[1]; //Set color on the snake
+        //                }
+        //                i += length; //Move the strip counter foward
+        //            }
+        //            else
+        //            {
+        //                LEDs[i] = Colors[0]; //Sets colors for non "snake" leds
+        //            }
+        //        }
+        //        step++;
+        //    }
+        //    else //The snake is coming out ( ° ʖ °)
+        //    {
+        //        for (int i = 0; i < step; i++)
+        //        {
+        //            LEDs[i] = Colors[1];
+        //        }
+        //        for (int i = step; i < LEDs.Count; i++)
+        //        {
+        //            LEDs[i] = Colors[0];
+        //        }
+        //        step++;
+        //    }
+        //}
 
         /// <summary>
         /// Cycles through all the basic colors
