@@ -28,11 +28,9 @@ namespace HueHue.Views
 
             GridRainbow.DataContext = App.settings;
 
-
             Effects.CalcRainbow(App.settings.Center, App.settings.Width,
                 App.settings.FrequencyR / 10, App.settings.FrequencyG / 10, App.settings.FrequencyB / 10,
                 App.settings.PhaseR, App.settings.PhaseG, App.settings.PhaseB);
-
         }
 
         private async void Timer_Tick(object sender, EventArgs e)

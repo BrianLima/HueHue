@@ -64,14 +64,17 @@ namespace HueHue.Helpers
         /// <param name="phaseB"></param>
         public static void CalcRainbow(int center, int width, decimal frequencyR, decimal frequencyG, decimal frequencyB, int phaseR, int phaseG, int phaseB)
         {
-            for (var i = 0; i < LEDs.Count; ++i)
+            for (int i = 0; i < LEDs.Count / 2; ++i)
             {
                 var red = Math.Sin((double)(frequencyR * i + phaseR)) * width + center;
-                var grn = Math.Sin((double)(frequencyB * i + phaseG)) * width + center;
-                var blu = Math.Sin((double)(frequencyG * i + phaseB)) * width + center;
+                var grn = Math.Sin((double)(frequencyG * i + phaseG)) * width + center;
+                var blu = Math.Sin((double)(frequencyB * i + phaseB)) * width + center;
 
                 LEDs[i] = new LEDBulb((byte)red, (byte)grn, (byte)blu);
+                //To make the rainbow effect less jarring to the eye and more smooth, a workaround is to fill half the strip with it and then just mirror it along so it ends and starts with the same color
+                LEDs[LEDs.Count - i - 1] = new LEDBulb((byte)red, (byte)grn, (byte)blu);
             }
+
         }
 
         /// <summary>
