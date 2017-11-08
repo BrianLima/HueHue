@@ -1,10 +1,10 @@
 ﻿using HueHue.Helpers;
 using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using Media = System.Windows.Media;
-
 
 namespace HueHue.Views
 {
@@ -46,7 +46,6 @@ namespace HueHue.Views
             Effects.FillSNakeStrip();
         }
 
-
         private void colorPicker_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
         {
             Effects.Colors[0] = (LEDBulb)e.CurrentColor;
@@ -61,7 +60,7 @@ namespace HueHue.Views
 
         private void sliderSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (timer != null)
+            if (timer != null && this.IsLoaded)
             {
                 timer.Stop();
                 timer.Interval = TimeSpan.FromMilliseconds(e.NewValue);
@@ -69,9 +68,9 @@ namespace HueHue.Views
             }
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private async void Timer_Tick(object sender, EventArgs e)
         {
-            Effects.ShiftRight();
+            await Task.Run(() => Effects.ShiftRight());
         }
 
         private void sliderWidth_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -85,6 +84,7 @@ namespace HueHue.Views
             {
                 if (Application.Current.MainWindow.WindowState != WindowState.Minimized)
                 {
+                    //timer.Tick += null;
                     timer.Stop();
                 }
             }

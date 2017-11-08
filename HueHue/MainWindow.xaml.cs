@@ -21,13 +21,15 @@ namespace HueHue
             //The app was auto started by windows from the user's startup folder
             var startArg = Environment.GetCommandLineArgs();
 
+            bool autoStarted = false;
+
             if (startArg != null && App.settings.AutoStart)
             {
                 foreach (var arg in startArg)
                 {
                     if (arg.Contains("autostart"))
                     {
-                        System.Windows.Forms.MessageBox.Show(arg);
+                        autoStarted = true;
                         Minimize();
                         App.StartStopDevices();
                         buttonStart.Content = "Stop";
@@ -35,17 +37,18 @@ namespace HueHue
                     }
                 }
             }
-            else
+
+            if (!autoStarted)
             {
                 this.Show();
             }
+
+            ListDevices.ItemsSource = App.devices;
 
             if (App.devices.Count == 0)
             {
                 DisplaySnackbar("You don't have any devices!");
             }
-
-            ListDevices.ItemsSource = App.devices;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
