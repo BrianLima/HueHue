@@ -84,8 +84,8 @@ namespace HueHue.Helpers
                     return JsonConvert.DeserializeObject<Arduino>(jo.ToString(), SpecifiedSubclassConversion);
                 case "Aura":
                     return JsonConvert.DeserializeObject<Arduino>(jo.ToString(), SpecifiedSubclassConversion);
-                case "Chroma":
-                    return JsonConvert.DeserializeObject<Arduino>(jo.ToString(), SpecifiedSubclassConversion);
+                case "Chroma Keyboard":
+                    return JsonConvert.DeserializeObject<RazerChroma>(jo.ToString(), SpecifiedSubclassConversion);
 
                 default:
                     throw new Exception();

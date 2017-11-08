@@ -86,16 +86,16 @@
                             <TextBlock Text="HueHue Client" Margin="5,0,0,0" />
                         </StackPanel>
                     </Button>
+                    <Button ToolTip="Add a new Razer Chroma Device" Style="{DynamicResource MaterialDesignRaisedLightButton }" Click="Button_AddRazerChroma_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Icons/Devices/RazerChroma.png" Margin="0,0,0,0"  RenderOptions.BitmapScalingMode="HighQuality"/>
+                            <TextBlock Text="Razer Chroma Device" Margin="5,0,0,0" />
+                        </StackPanel>
+                    </Button>
                     <Button ToolTip="Add a new Asus Aura Device" Style="{DynamicResource MaterialDesignRaisedLightButton }" Click="Button_AddArduino_Click" Margin="0,0,0,10">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Icons/Devices/AURA-sync.png" Margin="0,0,0,0"  RenderOptions.BitmapScalingMode="HighQuality"/>
                             <TextBlock Text="Asus Aura Device" Margin="5,0,0,0" />
-                        </StackPanel>
-                    </Button>
-                    <Button ToolTip="Add a new Razer Chroma Device" Style="{DynamicResource MaterialDesignRaisedLightButton }" Click="Button_AddArduino_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="Icons/Devices/RazerChroma.png" Margin="0,0,0,0"  RenderOptions.BitmapScalingMode="HighQuality"/>
-                            <TextBlock Text="Razer Chroma Device" Margin="5,0,0,0" />
                         </StackPanel>
                     </Button>
                 </StackPanel>

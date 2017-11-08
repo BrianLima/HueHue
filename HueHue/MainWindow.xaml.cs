@@ -179,5 +179,10 @@ namespace HueHue
         {
 
         }
+
+        private void Button_AddRazerChroma_Click(object sender, RoutedEventArgs e)
+        {
+            frame.Navigate(new AddRazerChromaView());
+        }
     }
 }
