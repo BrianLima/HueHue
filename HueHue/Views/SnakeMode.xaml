@@ -33,13 +33,13 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Slider x:Name="sliderSpeed" Value="{Binding Speed}" HorizontalAlignment="Right" Margin="0,0,49.667,22" Width="165" Minimum="10" Maximum="3000" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Bottom" ValueChanged="sliderSpeed_ValueChanged"/>
             <Label Content="Speed:" HorizontalAlignment="Right" Margin="0,3,160.667,0" Height="26" VerticalAlignment="Top" Width="50"/>
-            <Slider x:Name="sliderWidth" Value="{Binding Length}" HorizontalAlignment="Right" Margin="0,3,45,0" VerticalAlignment="Top" Width="165" Height="53" Minimum="1" Maximum="30" Style="{StaticResource MaterialDesignDiscreteSlider}" ValueChanged="sliderWidth_ValueChanged" Grid.Column="1"/>
             <Label Content="Width:" Margin="10.333,0,0,0" HorizontalAlignment="Left" Width="45" Height="26" VerticalAlignment="Top" Grid.Column="1"/>
             <Label Content="*Speed in miliseconds" Margin="10,0,0,-1" Height="23" VerticalAlignment="Bottom" FontSize="8" HorizontalAlignment="Left" Width="126"/>
             <TextBox HorizontalAlignment="Left" Height="23" Margin="170.333,27,0,0" TextWrapping="Wrap" Text="{Binding Length}" VerticalAlignment="Top" Width="35" Grid.Column="1"/>
             <TextBox HorizontalAlignment="Left" Height="23" Margin="170,27,0,0" TextWrapping="Wrap" Text="{Binding Speed}" VerticalAlignment="Top" Width="35"/>
+            <Slider x:Name="sliderSpeed" Value="{Binding Speed}" HorizontalAlignment="Right" Margin="0,0,49.667,22" Width="165" Minimum="10" Maximum="3000" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Bottom" ValueChanged="sliderSpeed_ValueChanged"/>
+            <Slider x:Name="sliderWidth" Value="{Binding Length}" HorizontalAlignment="Right" Margin="0,3,45,0" VerticalAlignment="Top" Width="165" Height="53" Minimum="1" Maximum="30" Style="{StaticResource MaterialDesignDiscreteSlider}" ValueChanged="sliderWidth_ValueChanged" Grid.Column="1"/>
         </Grid>
     </Grid>
 </UserControl>

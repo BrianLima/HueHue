@@ -36,16 +36,16 @@ namespace HueHue.Views
         private PitchShifter _pitchShifter;
 //        private LineSpectrum _lineSpectrum; //TODO: create my handlers and converters from the audio spectrum to the RGB spectrum
 //        private VoicePrint3DSpectrum _voicePrint3DSpectrum;
-        DispatcherTimer timer1;
+        DispatcherTimer timer;
         private MusicSpectrum _MusicSpectrum;
 
         public MusicMode()
         {
             InitializeComponent();
-            timer1 = new DispatcherTimer();
+            timer = new DispatcherTimer();
             //timer1.
-            timer1.Interval = new TimeSpan(0, 0, 0, 0, 16);
-            timer1.Tick += Timer1_Tick;
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 16);
+            timer.Tick += Timer1_Tick;
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -97,7 +97,7 @@ namespace HueHue.Views
             //play the audio
             _soundIn.Start();
 
-            timer1.Start();
+            timer.Start();
 
             //propertyGridTop.SelectedObject = _lineSpectrum;
             //propertyGridBottom.SelectedObject = _voicePrint3DSpectrum;
@@ -105,7 +105,7 @@ namespace HueHue.Views
 
         private void Stop()
         {
-            timer1.Stop();
+            timer.Stop();
 
             if (_soundOut != null)
             {
@@ -163,8 +163,19 @@ namespace HueHue.Views
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            Stop();
-            timer1.Stop();
+            if (Application.Current.MainWindow != null)
+            {
+                if (Application.Current.MainWindow.WindowState != WindowState.Minimized)
+                {
+                    Stop();
+                    timer.Stop();
+                }
+            }
+            else
+            {
+                Stop();
+                timer.Stop();
+            }
         }
     }
 }

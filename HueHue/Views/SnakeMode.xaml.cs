@@ -84,7 +84,6 @@ namespace HueHue.Views
             {
                 if (Application.Current.MainWindow.WindowState != WindowState.Minimized)
                 {
-                    //timer.Tick += null;
                     timer.Stop();
                 }
             }

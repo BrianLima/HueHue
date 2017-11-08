@@ -1,5 +1,6 @@
 ﻿using HueHue.Helpers;
 using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -26,11 +27,17 @@ namespace HueHue.Views
             timer.Start();
 
             GridRainbow.DataContext = App.settings;
+
+
+            Effects.CalcRainbow(App.settings.Center, App.settings.Width,
+                App.settings.FrequencyR / 10, App.settings.FrequencyG / 10, App.settings.FrequencyB / 10,
+                App.settings.PhaseR, App.settings.PhaseG, App.settings.PhaseB);
+
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private async void Timer_Tick(object sender, EventArgs e)
         {
-            Effects.ShiftRight();
+            await Task.Run(() => Effects.ShiftRight());
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
@@ -45,22 +52,21 @@ namespace HueHue.Views
             else
             {
                 timer.Stop();
-                timer = null;
             }
         }
 
         private void sliderSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (timer != null)
+            if (timer != null && this.IsLoaded)
             {
                 timer.Stop();
                 timer.Interval = TimeSpan.FromMilliseconds(e.NewValue);
                 timer.Start();
-            }
 
-            Effects.CalcRainbow(App.settings.Center, App.settings.Width,
-                App.settings.FrequencyR / 10, App.settings.FrequencyG / 10, App.settings.FrequencyB / 10,
-                App.settings.PhaseR, App.settings.PhaseG, App.settings.PhaseB);
+                Effects.CalcRainbow(App.settings.Center, App.settings.Width,
+                    App.settings.FrequencyR / 10, App.settings.FrequencyG / 10, App.settings.FrequencyB / 10,
+                    App.settings.PhaseR, App.settings.PhaseG, App.settings.PhaseB);
+            }
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -92,12 +98,16 @@ namespace HueHue.Views
             }
         }
 
-        private void sliderSpeed_Copy7_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void sliders_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            Effects.CalcRainbow(App.settings.Center, App.settings.Width,
+            if (timer != null && this.IsLoaded)
+            {
+                Effects.CalcRainbow(App.settings.Center, App.settings.Width,
                                 App.settings.FrequencyR / 10, App.settings.FrequencyG / 10, App.settings.FrequencyB / 10,
                                 App.settings.PhaseR, App.settings.PhaseG, App.settings.PhaseB);
 
+                combo_preset.SelectedIndex = 0;
+            }
         }
     }
 }

@@ -29,7 +29,7 @@
                 <Label Content="Frequency B:" HorizontalAlignment="Left" Margin="2,192,0,0" VerticalAlignment="Top"/>
                 <TextBox HorizontalAlignment="Left" Height="24" Margin="251,215,-17,0" TextWrapping="Wrap" Text="{Binding PhaseB}" VerticalAlignment="Top" Width="49"/>
                 <Label Content="Phase B:" HorizontalAlignment="Left" Margin="25,221,0,0" VerticalAlignment="Top"/>
-                <ComboBox HorizontalAlignment="Left" SelectionChanged="ComboBox_SelectionChanged" SelectedIndex="0" Margin="84,0,0,0" VerticalAlignment="Top" Width="159">
+                <ComboBox HorizontalAlignment="Left" SelectionChanged="ComboBox_SelectionChanged" SelectedIndex="0" Margin="84,0,0,0" VerticalAlignment="Top" Width="159" x:Name="combo_preset">
                     <ComboBoxItem Content="Custom" />
                     <ComboBoxItem Content="Full Range"/>
                     <ComboBoxItem Content="Pastel Colors" />
@@ -40,15 +40,14 @@
                 <TextBox HorizontalAlignment="Left" Height="24" Margin="251,279,-17,0" TextWrapping="Wrap" Text="{Binding Width}" VerticalAlignment="Top" Width="49"/>
                 <Label Content="Width:" HorizontalAlignment="Left" Margin="34,285,0,0" VerticalAlignment="Top"/>
                 <Slider x:Name="sliderSpeed" Value="{Binding Speed}" Margin="79,0,0,0" Minimum="10" Maximum="3000" Style="{StaticResource MaterialDesignDiscreteSlider}" ValueChanged="sliderSpeed_ValueChanged" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
-                <Slider x:Name="sliderSpeed_Copy" Value="{Binding FrequencyR}" Margin="79,29,0,0" Minimum="1" Maximum="30" SmallChange="1" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
-                <Slider x:Name="sliderSpeed_Copy1" ValueChanged="sliderSpeed_Copy7_ValueChanged" Value="{Binding PhaseR}" Margin="79,64,0,0" Minimum="0" Maximum="8" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
-                <Slider x:Name="sliderSpeed_Copy2" ValueChanged="sliderSpeed_Copy7_ValueChanged" Value="{Binding FrequencyG}" Margin="79,99,0,0" Minimum="1" Maximum="30" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
-                <Slider x:Name="sliderSpeed_Copy3" ValueChanged="sliderSpeed_Copy7_ValueChanged" Value="{Binding PhaseG}" Margin="79,134,0,0" Minimum="0" Maximum="8" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
-                <Slider x:Name="sliderSpeed_Copy4" ValueChanged="sliderSpeed_Copy7_ValueChanged" Value="{Binding FrequencyB}" Margin="79,163,0,0" Minimum="1" Maximum="30" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
-                <Slider x:Name="sliderSpeed_Copy5" ValueChanged="sliderSpeed_Copy7_ValueChanged" Value="{Binding PhaseB}" Margin="79,192,0,0" Minimum="0" Maximum="8" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
-                <Slider x:Name="sliderSpeed_Copy6" ValueChanged="sliderSpeed_Copy7_ValueChanged" Value="{Binding Center}" Margin="79,227,0,0" Minimum="1" Maximum="255" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
-                <Slider x:Name="sliderSpeed_Copy7" ValueChanged="sliderSpeed_Copy7_ValueChanged" Value="{Binding Width}" Margin="79,256,0,0" Minimum="1" Maximum="255" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
-
+                <Slider Value="{Binding FrequencyR}" Margin="79,29,0,0" Minimum="1" Maximum="30" SmallChange="1" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
+                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding PhaseR}" Margin="79,64,0,0" Minimum="0" Maximum="8" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
+                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding FrequencyG}" Margin="79,99,0,0" Minimum="1" Maximum="30" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
+                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding PhaseG}" Margin="79,134,0,0" Minimum="0" Maximum="8" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
+                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding FrequencyB}" Margin="79,163,0,0" Minimum="1" Maximum="30" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
+                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding PhaseB}" Margin="79,192,0,0" Minimum="0" Maximum="8" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
+                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding Center}" Margin="79,227,0,0" Minimum="1" Maximum="255" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
+                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding Width}" Margin="79,256,0,0" Minimum="1" Maximum="255" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
             </Grid>
         </ScrollViewer>
 
