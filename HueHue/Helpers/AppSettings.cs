@@ -15,7 +15,6 @@ namespace HueHue.Helpers
 
         public AppSettings()
         {
-
             this._current_mode = Properties.Settings.Default.CurrentMode;
             this._total_leds = Properties.Settings.Default.TotalLeds;
             this._brightness = Properties.Settings.Default.Brightness;
@@ -29,7 +28,7 @@ namespace HueHue.Helpers
             this._dark_mode = Properties.Settings.Default.DarkMode;
             this._version = Properties.Settings.Default.Version;
             this._frequency_r = Properties.Settings.Default.FrequencyR;
-            this. _frequency_g = Properties.Settings.Default.FrequencyG;
+            this._frequency_g = Properties.Settings.Default.FrequencyG;
             this._frequency_b = Properties.Settings.Default.FrequencyB;
             this._phase_r = Properties.Settings.Default.PhaseR;
             this._phase_g = Properties.Settings.Default.PhaseG;

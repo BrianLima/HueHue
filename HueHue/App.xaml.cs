@@ -37,10 +37,12 @@ namespace HueHue
                 Effects.Colors.Add(item);
             }
 
+            icon = new TrayIcon();
+
             MainWindow window = new MainWindow();
+
             this.MainWindow = window;
 
-            icon = new TrayIcon(window);
 
             if (App.settings.DarkMode)
             {

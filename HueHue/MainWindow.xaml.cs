@@ -20,24 +20,19 @@ namespace HueHue
 
             //The app was auto started by windows from the user's startup folder
             var startArg = Environment.GetCommandLineArgs();
+
             if (startArg != null && App.settings.AutoStart)
             {
-                if (startArg.Length > 1)
+                foreach (var arg in startArg)
                 {
-                    if (startArg[1].ToString().Contains("autostart"))
+                    if (arg.Contains("autostart"))
                     {
+                        System.Windows.Forms.MessageBox.Show(arg);
                         Minimize();
                         App.StartStopDevices();
                         buttonStart.Content = "Stop";
+                        break;
                     }
-                    else
-                    {
-                        this.Show();
-                    }
-                }
-                else
-                {
-                    this.Show();
                 }
             }
             else

@@ -8,13 +8,9 @@ namespace HueHue.Views
     /// </summary>
     public partial class TrayIcon : Window
     {
-        private MainWindow mainWindow;
-
-        public TrayIcon(MainWindow _mainWindow)
+        public TrayIcon()
         {
             InitializeComponent();
-
-            this.mainWindow = _mainWindow;
         }
 
         public void ShowStandardBalloon()
