@@ -1,18 +1,9 @@
 ﻿using HueHue.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Corale.Colore.Core;
+using static HueHue.Helpers.Device;
 
 namespace HueHue.Views.Devices
 {
@@ -21,18 +12,56 @@ namespace HueHue.Views.Devices
     /// </summary>
     public partial class AddRazerChromaView : UserControl
     {
+        SubType Subtype;
+
         public AddRazerChromaView()
         {
             InitializeComponent();
+
+            if (!Chroma.SdkAvailable)
+            {
+                var main = App.Current.MainWindow as MainWindow;
+
+                main.DisplaySnackbar("Install the Razer Chroma SDK before continuing!");
+            }
+
+            ComboBox_SubType.SelectedIndex = 0;
+        }
+
+        private void GetSubType()
+        {
+            switch (ComboBox_SubType.SelectedIndex)
+            {
+                case 0:
+                    Subtype = RazerChroma.SubType.Keyboard;
+                    break;
+                case 1:
+                    Subtype = RazerChroma.SubType.Mouse;
+                    break;
+                case 2:
+                    Subtype = RazerChroma.SubType.Headset;
+                    break;
+                case 3:
+                    Subtype = RazerChroma.SubType.Mousepad;
+                    break;
+                case 4:
+                    Subtype = RazerChroma.SubType.Keypad;
+                    break;
+                default:
+                    Subtype = RazerChroma.SubType.All;
+                    break;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            App.devices.Add(new RazerChroma("Chroma Keyboard", "Keyboard"));
+            GetSubType();
+
+            App.devices.Add(new RazerChroma("Chroma", Subtype, TextBoxName.Text));
 
             var main = App.Current.MainWindow as MainWindow;
 
-            main.DisplaySnackbar("Razer Chroma Device Added!");
+            main.DisplaySnackbar(String.Format("Razer Chroma {0} Added!", Subtype.ToString()));
 
             App.SaveDevices();
 
@@ -42,6 +71,17 @@ namespace HueHue.Views.Devices
             {
                 MainFrame.GoBack();
             }
+        }
+
+        private void ComboBox_SubType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GetSubType();
+            TextBoxName.Text = "Chroma " + Subtype.ToString();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://developer.razerzone.com/works-with-chroma/download/");
         }
     }
 }

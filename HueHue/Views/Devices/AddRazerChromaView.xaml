@@ -3,11 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:HueHue.Views.Devices"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="45,71,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="68"/>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Button Content="Add" Margin="0,0,10,10" Height="32" HorizontalAlignment="Right" Width="75" VerticalAlignment="Bottom" Click="Button_Click" Grid.Row="2"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="50" Source="/HueHue;component/Icons/Devices/RazerChroma.png" Stretch="UniformToFill"  RenderOptions.BitmapScalingMode="HighQuality"/>
+        <Label Content="Setup a new Razer Chroma Device" HorizontalAlignment="Left" Margin="65,20,0,0" VerticalAlignment="Top" Height="26" Width="190"/>
+        <ComboBox Margin="80,27,0,0" VerticalAlignment="Top" x:Name="ComboBox_SubType" Grid.Row="2" HorizontalAlignment="Left" Width="120" Height="29" SelectionChanged="ComboBox_SubType_SelectionChanged">
+            <ComboBoxItem Content="Keyboard"/>
+            <ComboBoxItem Content="Mouse"/>
+            <ComboBoxItem Content="Headset"/>
+            <ComboBoxItem Content="Mousepad"/>
+            <ComboBoxItem Content="Keypad" />
+            <ComboBoxItem Content="All Devices"/>
+        </ComboBox>
+        <Label Content="Type:" HorizontalAlignment="Left" Margin="18,30,0,0" VerticalAlignment="Top" Grid.Row="2" Height="26" Width="37"/>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" Grid.Row="2" Height="26" Width="45"/>
+        <Grid Margin="10,7,10,22" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="188"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="First, download and install the Razer Chroma SDK on your PC:" TextWrapping="Wrap" Height="33" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
+            <Button Content="Download Chroma SDK" Margin="3.6,33,3.4,0" VerticalAlignment="Top" Grid.Column="1" Click="Button_Click_1"/>
+            <TextBlock Text="Now, make sure that the Razer SDK service is running, and just complete the setup below." Margin="0,70,0,0" TextWrapping="Wrap" Height="33" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
+
+        </Grid>
+        <TextBox Height="23" Margin="80,4,100,0" TextWrapping="WrapWithOverflow" VerticalAlignment="Top" Grid.Row="2" Text="Chroma" x:Name="TextBoxName"/>
 
     </Grid>
 </UserControl>

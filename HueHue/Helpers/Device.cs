@@ -11,6 +11,22 @@ namespace HueHue.Helpers
     [JsonConverter(typeof(DeviceConverter))]
     public abstract class Device
     {
+        /// <summary>
+        /// Stores the SubType(Keyboard, Mouse, etc...) of a SDK supported device
+        /// </summary>
+        public enum SubType 
+        {
+            Keyboard,
+            Mouse,
+            Headset,
+            Mousepad,
+            Keypad,
+            All
+            //IF you are going to add a new device type, say a RGB refrigerator, 
+            //please, add it on the last position to avoid conflicts with devices added prior
+            //because when serialized, it is stored as a index on Devices.json.
+        }
+
         private string _type;
         /// <summary>
         /// Type of the device, ie: Arduino, Aura Device, RazerChroma Device, CUE device
@@ -39,6 +55,14 @@ namespace HueHue.Helpers
         {
             get { return _icon; }
             set { _icon = value; }
+        }
+
+        private SubType _subType;
+
+        public SubType subType
+        {
+            get { return _subType; }
+            set { _subType = value; }
         }
 
         /// <summary>
@@ -84,9 +108,8 @@ namespace HueHue.Helpers
                     return JsonConvert.DeserializeObject<Arduino>(jo.ToString(), SpecifiedSubclassConversion);
                 case "Aura":
                     return JsonConvert.DeserializeObject<Arduino>(jo.ToString(), SpecifiedSubclassConversion);
-                case "Chroma Keyboard":
+                case "Chroma":
                     return JsonConvert.DeserializeObject<RazerChroma>(jo.ToString(), SpecifiedSubclassConversion);
-
                 default:
                     throw new Exception();
             }
