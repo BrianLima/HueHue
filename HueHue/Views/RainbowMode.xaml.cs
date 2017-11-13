@@ -35,7 +35,10 @@ namespace HueHue.Views
 
         private async void Timer_Tick(object sender, EventArgs e)
         {
-            await Task.Run(() => Effects.ShiftRight());
+            if (timer != null && this.IsLoaded)
+            {
+                await Task.Run(() => Effects.ShiftRight());
+            }
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
@@ -72,9 +75,9 @@ namespace HueHue.Views
             switch (((ComboBox)sender).SelectedIndex)
             {
                 case 1: //Sets Rainbow effect to normal rainbow
-                    App.settings.FrequencyR = 0.3M;
-                    App.settings.FrequencyG = 0.3M;
-                    App.settings.FrequencyB = 0.3M;
+                    App.settings.FrequencyR = 1M;
+                    App.settings.FrequencyG = 2M;
+                    App.settings.FrequencyB = 3M;
                     App.settings.PhaseR = 0;
                     App.settings.PhaseG = 2;
                     App.settings.PhaseB = 4;
@@ -82,9 +85,9 @@ namespace HueHue.Views
                     App.settings.Width = 128;
                     break;
                 case 2: //Sets Rainbow effect to Pastel colors
-                    App.settings.FrequencyR = 0.3M;
-                    App.settings.FrequencyG = 0.3M;
-                    App.settings.FrequencyB = 0.3M;
+                    App.settings.FrequencyR = 3M;
+                    App.settings.FrequencyG = 3M;
+                    App.settings.FrequencyB = 3M;
                     App.settings.PhaseR = 0;
                     App.settings.PhaseG = 2;
                     App.settings.PhaseB = 4;

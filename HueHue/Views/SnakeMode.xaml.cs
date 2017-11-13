@@ -21,18 +21,18 @@ namespace HueHue.Views
 
             GridSnakeColorSettings.DataContext = App.settings;
 
+            //Snake mode has a minimum of two colors for the effect
+            while (Effects.Colors.Count < 2)
+            {
+                Effects.Colors.Add(new LEDBulb(255, 255, 255));
+            }
+
             timer = new DispatcherTimer()
             {
                 Interval = TimeSpan.FromMilliseconds(App.settings.Speed)
             };
             timer.Tick += Timer_Tick;
             timer.Start();
-
-            //Snake mode has a minimum of two colorsfor the effects
-            while (Effects.Colors.Count < 2)
-            {
-                Effects.Colors.Add(new LEDBulb(255, 255, 255));
-            }
 
             //I couldn't in ANY way make it bind the color properly, at least this works
             //Binding each value from the RGB is broken
@@ -43,19 +43,29 @@ namespace HueHue.Views
 
             colorPicker2.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[1].R, Effects.Colors[1].G, Effects.Colors[1].B));
             colorPicker2.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[1].R, Effects.Colors[1].G, Effects.Colors[1].B));
+
             Effects.FillSNakeStrip();
+
+            //I think this is a good limit
+            sliderWidth.Maximum = Effects.LEDs.Count / 2;
         }
 
         private void colorPicker_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
         {
-            Effects.Colors[0] = (LEDBulb)e.CurrentColor;
-            Effects.FillSNakeStrip();
+            if (timer != null && this.IsLoaded)
+            {
+                Effects.Colors[0] = (LEDBulb)e.CurrentColor;
+                Effects.FillSNakeStrip();
+            }
         }
 
         private void colorPicker2_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
         {
-            Effects.Colors[1] = (LEDBulb)e.CurrentColor;
-            Effects.FillSNakeStrip();
+            if (timer != null && this.IsLoaded)
+            {
+                Effects.Colors[1] = (LEDBulb)e.CurrentColor;
+                Effects.FillSNakeStrip();
+            }
         }
 
         private void sliderSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -70,12 +80,18 @@ namespace HueHue.Views
 
         private async void Timer_Tick(object sender, EventArgs e)
         {
-            await Task.Run(() => Effects.ShiftRight());
+            if (timer != null && this.IsLoaded)
+            {
+                await Task.Run(() => Effects.ShiftRight());
+            }
         }
 
         private void sliderWidth_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            Effects.FillSNakeStrip();
+            if (timer != null && this.IsLoaded)
+            {
+                Effects.FillSNakeStrip();
+            }
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)

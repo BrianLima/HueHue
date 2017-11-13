@@ -45,13 +45,13 @@
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="FrequencyR" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">3</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="PhaseR" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="FrequencyG" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">3</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="PhaseG" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2</Value>

@@ -1,18 +1,27 @@
 ﻿using System;
-using System.Drawing;
-using System.Windows.Media;
 
 namespace HueHue.Helpers
 {
     public class LEDBulb
     {
+        /// <summary>
+        /// Initializes with a new Random color
+        /// </summary>
         public LEDBulb()
         {
-            this.r = 255;
-            this.g = 255;
-            this.b = 255;
+            Random random = new Random();
+
+            this.r = (byte)random.Next(255);
+            this.g = (byte)random.Next(255);
+            this.b = (byte)random.Next(255);
         }
 
+        /// <summary>
+        /// Initilizes with a determined color
+        /// </summary>
+        /// <param name="r"></param>
+        /// <param name="g"></param>
+        /// <param name="b"></param>
         public LEDBulb(byte r, byte g, byte b)
         {
             this.r = r;

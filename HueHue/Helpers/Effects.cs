@@ -49,7 +49,6 @@ namespace HueHue.Helpers
             LEDs.RemoveAt(LEDs.Count - 1);
         }
 
-
         /// <summary>
         /// Applies the rainbow effect on the LED strip
         /// https://krazydad.com/tutorials/makecolors.php
@@ -74,7 +73,6 @@ namespace HueHue.Helpers
                 //To make the rainbow effect less jarring to the eye and more smooth, a workaround is to fill half the strip with it and then just mirror it along so it ends and starts with the same color
                 LEDs[LEDs.Count - i - 1] = new LEDBulb((byte)red, (byte)grn, (byte)blu);
             }
-
         }
 
         /// <summary>
@@ -124,16 +122,6 @@ namespace HueHue.Helpers
                     LEDs[i].B = Colors[1].B;
                 }
             }
-        }
-
-        public static void RandomColor(List<LEDBulb> LEDs)
-        {
-            Random random = new Random();
-            Colors[0].R = (byte)random.Next(255);
-            Colors[0].G = (byte)random.Next(255);
-            Colors[0].B = (byte)random.Next(255);
-
-            FixedColor();
         }
 
         /// <summary>
@@ -280,8 +268,12 @@ namespace HueHue.Helpers
                     ResetStep(); //We Cycled all the basic colors, reset and start again
                 }
             }
-
-            FixedColor(); //Fill the strip with the color
+            
+            //Fill the strip with the color
+            for (int i = 0; i < LEDs.Count; i++)
+            {
+                LEDs[i] = Colors[0];
+            }
         }
 
         public static void ShutOff()

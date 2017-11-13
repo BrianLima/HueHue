@@ -44,7 +44,7 @@ namespace HueHue.Views
 
         private void sliderSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (timer != null)
+            if (timer != null && this.IsLoaded)
             {
                 timer.Stop();
                 timer.Interval = TimeSpan.FromMilliseconds(e.NewValue);
