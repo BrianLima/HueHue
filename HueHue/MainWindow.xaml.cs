@@ -90,6 +90,9 @@ namespace HueHue
                     frame.Navigate(new RainbowMode());
                     break;
                 case 5:
+                    frame.Navigate(new JoystickMode());
+                    break;
+                case 6:
                     frame.NavigationService.RemoveBackEntry();
                     frame.Content = "LED's currently shut off";
                     Effects.ShutOff();
