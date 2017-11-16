@@ -44,6 +44,7 @@
                 <Label Content="Color Cycling"/>
                 <Label Content="Snake Color"/>
                 <Label Content="Rainbow Colors"/>
+                <Label Content="Joystick Reactive"/>
                 <Label Content="Shut Off"/>
             </ComboBox>
             <TextBlock HorizontalAlignment="Left" Margin="0,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="64" Text="Effect:" Grid.Row="1" RenderTransformOrigin="0.561,0.346"/>
