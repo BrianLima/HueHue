@@ -45,16 +45,13 @@ namespace HueHue.Helpers
             var cancellationToken = (CancellationToken)tokenObject;
             while (!cancellationToken.IsCancellationRequested)
             {
-                //15 so we aproach 60~70 fps
-                Task.Delay(15, cancellationToken).Wait(cancellationToken);
-
                 try
                 {
                     switch (subType)
                     {
                         case SubType.Keyboard:
                             var keyboardGrid = Corale.Colore.Razer.Keyboard.Effects.Custom.Create();
-                            // Loop through all Rows
+                            //Loop through all Rows
                             for (var r = 0; r < Corale.Colore.Razer.Keyboard.Constants.MaxRows; r++)
                             {
                                 //Loop through all Columns
@@ -65,7 +62,7 @@ namespace HueHue.Helpers
                                 }
                             }
 
-                            /*await Task.Run(() => */Chroma.Instance.Keyboard.SetCustom(keyboardGrid)/*)*/;
+                            await Task.Run(() => Chroma.Instance.Keyboard.SetCustom(keyboardGrid));
                             break;
                         case SubType.Mouse:
                             var mouseCustom = Corale.Colore.Razer.Mouse.Effects.Custom.Create();
@@ -73,12 +70,12 @@ namespace HueHue.Helpers
                             {
                                 mouseCustom[i] = (new Color(Effects.LEDs[i].R, Effects.LEDs[i].G, Effects.LEDs[i].B));
                             }
-                            /*await Task.Run(() => */Chroma.Instance.Mouse.SetCustom(mouseCustom)/*)*/;
+                            await Task.Run(() => Chroma.Instance.Mouse.SetCustom(mouseCustom));
                             break;
                         case SubType.Headset: //LEDs on a headset for some reason doesn't seem to be adressable
-                            //var headCustom = Corale.Colore.Razer.Headset.Effects.Static;
+                                              //var headCustom = Corale.Colore.Razer.Headset.Effects.Static;
 
-                            /*await Task.Run(() => */Chroma.Instance.Headset.SetAll(new Color(Effects.LEDs[0].R, Effects.LEDs[0].G, Effects.LEDs[0].B))/*)*/;
+                            await Task.Run(() => Chroma.Instance.Headset.SetAll(new Color(Effects.LEDs[0].R, Effects.LEDs[0].G, Effects.LEDs[0].B)));
                             break;
                         case SubType.Mousepad:
                             var padCustom = Corale.Colore.Razer.Mousepad.Effects.Custom.Create();
@@ -86,7 +83,7 @@ namespace HueHue.Helpers
                             {
                                 padCustom[i] = (new Color(Effects.LEDs[i].R, Effects.LEDs[i].G, Effects.LEDs[i].B));
                             }
-                            /*await Task.Run(() =>*/ Chroma.Instance.Mousepad.SetCustom(padCustom)/*)*/;
+                            await Task.Run(() => Chroma.Instance.Mousepad.SetCustom(padCustom));
                             break;
                         case SubType.Keypad:
                             var keypadGrid = Corale.Colore.Razer.Keypad.Effects.Custom.Create();
@@ -100,14 +97,16 @@ namespace HueHue.Helpers
                                     keypadGrid[r, c] = (new Color(Effects.LEDs[c].R, Effects.LEDs[c].G, Effects.LEDs[c].B));
                                 }
                             }
-
-                            /*await Task.Run(() => */Chroma.Instance.Keypad.SetCustom(keypadGrid)/*)*/; break;
+                            await Task.Run(() => Chroma.Instance.Keypad.SetCustom(keypadGrid)); break;
                         case SubType.All:
-                            /*await Task.Run(() => */Chroma.Instance.SetAll(new Color(Effects.LEDs[0].R, Effects.LEDs[0].G, Effects.LEDs[0].B))/*)*/;
+                            await Task.Run(() => Chroma.Instance.SetAll(new Color(Effects.LEDs[0].R, Effects.LEDs[0].G, Effects.LEDs[0].B)));
                             break;
                         default:
                             break;
                     }
+
+                    //15 so we aproach 60~70 fps
+                    Task.Delay(15, cancellationToken).Wait(cancellationToken);
                 }
                 catch (Exception ex)
                 {
@@ -124,7 +123,6 @@ namespace HueHue.Helpers
             _cancellationTokenSource = null;
             _workerThread.Join();
             _workerThread = null;
-            _workerThread.Abort();
             running = false;
             Chroma.Instance.Uninitialize();
         }
