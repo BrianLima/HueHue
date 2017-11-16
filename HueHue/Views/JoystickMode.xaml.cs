@@ -30,21 +30,29 @@ namespace HueHue.Views
         {
             InitializeComponent();
 
-            GetInput();
+            //GetInput();
 
             timer = new DispatcherTimer()
             {
                 Interval = TimeSpan.FromMilliseconds(App.settings.Speed)
             };
             timer.Tick += Timer_Tick;
-            timer.Start();
+
+            JoystickHelper
+                h = new JoystickHelper();
+
+            combo_joysticks.ItemsSource = h.GetJoysticks();
+
+            //timer.Start();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
             //LEDBulb color = new LEDBulb();
             joystick.Poll();
+
             var datas = joystick.GetBufferedData();
+
             foreach (var state in datas)
             {
                 string button = state.ToString();
@@ -69,11 +77,10 @@ namespace HueHue.Views
                 {
                     Effects.Colors[0] = new LEDBulb(255, 128, 0);
                 }
-                LabelTest.Content = state.Value;
             }
             // = color;
             Effects.FixedColor();
-                //Console.WriteLine(state);
+            //Console.WriteLine(state);
         }
 
         void GetInput()
@@ -99,8 +106,8 @@ namespace HueHue.Views
             if (joystickGuid == Guid.Empty)
             {
                 Console.WriteLine("No joystick/Gamepad found.");
-                Console.ReadKey();
-                Environment.Exit(1);
+                //Console.ReadKey();
+                //Environment.Exit(1);
             }
 
             // Instantiate the joystick
@@ -114,7 +121,7 @@ namespace HueHue.Views
                 Console.WriteLine("Effect available {0}", effectInfo.Name);
 
             // Set BufferSize in order to use buffered data.
-            joystick.Properties.BufferSize = 128;
+            joystick.Properties.BufferSize =  128;
 
             // Acquire the joystick
             joystick.Acquire();

@@ -97,11 +97,15 @@
     <Compile Include="Helpers\BasicSpectrumProvider.cs" />
     <Compile Include="Helpers\Device.cs" />
     <Compile Include="Helpers\Effects.cs" />
+    <Compile Include="Helpers\JoystickHelper.cs" />
     <Compile Include="Helpers\MusicSpectrum.cs" />
     <Compile Include="Helpers\RazerChroma.cs" />
     <Compile Include="Helpers\SpectrumBase.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ButtonToColor.xaml.cs">
+      <DependentUpon>ButtonToColor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Devices\AddArduinoView.xaml.cs">
       <DependentUpon>AddArduinoView.xaml</DependentUpon>
@@ -140,6 +144,10 @@
       <DependentUpon>SnakeMode.xaml</DependentUpon>
     </Compile>
     <Page Include="SettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ButtonToColor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

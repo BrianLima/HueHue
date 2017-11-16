@@ -4,21 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:controls="clr-namespace:ColorTools;assembly=ColorTools"
              xmlns:local="clr-namespace:HueHue.Views"
              mc:Ignorable="d" 
              d:DesignHeight="510" d:DesignWidth="450">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="155"/>
+            <ColumnDefinition Width="Auto" MinWidth="136"/>
+            <ColumnDefinition Width="155*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
+            <RowDefinition Height="Auto" MinHeight="83"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,0,4" Content="Joystick Responsive"/>
-
-        <Label Content="Label" HorizontalAlignment="Left" Margin="94,148,0,0" VerticalAlignment="Top" x:Name="LabelTest"/>
-        <ComboBox HorizontalAlignment="Left" Margin="111,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+        <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,0,4" Content="Joystick Responsive" Grid.ColumnSpan="3"/>
+        <ComboBox Margin="106,10,10,0" Grid.Row="1" VerticalAlignment="Top" Height="28" Grid.ColumnSpan="3" x:Name="combo_joysticks"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,22,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Selected Joystick:" VerticalAlignment="Top" Height="16" Width="91"/>
+        <StackPanel HorizontalAlignment="Left" Height="191" Margin="10,169,0,0" Grid.Row="2" VerticalAlignment="Top" Width="430" Grid.ColumnSpan="3"/>
+        <Button Content="Add Buttons" Margin="10,43,5,0" Grid.Row="1" VerticalAlignment="Top" Grid.Column="1"/>
 
     </Grid>
 </UserControl>
