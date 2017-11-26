@@ -44,7 +44,10 @@ namespace HueHue.Views
 
             guids = joystickHelper.GetGuids();
             combo_joysticks.ItemsSource = joystickHelper.GetJoystickNames(guids);
-
+            if (combo_joysticks.Items.Count > 0)
+            {
+                combo_joysticks.SelectedIndex = 0;
+            }
             timer.Start();
         }
 
@@ -105,7 +108,13 @@ namespace HueHue.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            combo_joysticks.ItemsSource = joystickHelper.GetGuids();
+            guids = joystickHelper.GetGuids();
+            combo_joysticks.ItemsSource = joystickHelper.GetJoystickNames(guids);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            joystick = joystickHelper.HookJoystick(guids[combo_joysticks.SelectedIndex]);
         }
     }
 }

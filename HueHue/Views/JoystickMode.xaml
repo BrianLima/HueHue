@@ -18,11 +18,11 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,0,4" Content="Joystick Responsive"/>
-        <ComboBox Margin="109,10,136,0" Grid.Row="1" VerticalAlignment="Top" Height="28" x:Name="combo_joysticks" SelectionChanged="combo_joysticks_SelectionChanged"/>
+        <ComboBox Margin="109,14,114.6,0" Grid.Row="1" VerticalAlignment="Top" Height="28" x:Name="combo_joysticks" SelectionChanged="combo_joysticks_SelectionChanged"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,22,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Selected Joystick:" VerticalAlignment="Top" Height="16" Width="94"/>
         <StackPanel HorizontalAlignment="Left" Height="191" Margin="10,169,0,0" Grid.Row="2" VerticalAlignment="Top" Width="430"/>
-        <Button Content="Bind Buttons" Margin="0,47,10,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="121"/>
-        <Button Content="Refresh" HorizontalAlignment="Right" Margin="0,10,10,0" Grid.Row="1" VerticalAlignment="Top" Width="121" Click="Button_Click"/>
+        <Button Content="Start" Margin="0,47,9.6,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="100" Click="Button_Click_1"/>
+        <Button Content="Refresh" HorizontalAlignment="Right" Margin="0,10,9.6,0" Grid.Row="1" VerticalAlignment="Top" Width="100" Click="Button_Click"/>
 
     </Grid>
 </UserControl>
