@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using SharpDX.DirectInput;
 using System.Windows.Threading;
 using HueHue.Helpers;
+using MaterialDesignThemes.Wpf;
 
 namespace HueHue.Views
 {
@@ -24,6 +25,7 @@ namespace HueHue.Views
     public partial class JoystickMode : UserControl
     {
         DispatcherTimer timer;
+        List<ButtonColor> buttonsToColors;
         List<Guid> guids;
         Joystick joystick;
         JoystickHelper joystickHelper;
@@ -44,6 +46,9 @@ namespace HueHue.Views
 
             guids = joystickHelper.GetGuids();
             combo_joysticks.ItemsSource = joystickHelper.GetJoystickNames(guids);
+            buttonsToColors = new List<ButtonColor>();
+            stackButtonsColors.DataContext = buttonsToColors;
+
             if (combo_joysticks.Items.Count > 0)
             {
                 combo_joysticks.SelectedIndex = 0;
@@ -97,7 +102,7 @@ namespace HueHue.Views
         {
             timer.Stop();
 
-            if (joystick!= null)
+            if (joystick != null)
             {
                 joystick.Unacquire();
                 joystick.Dispose();
@@ -115,6 +120,17 @@ namespace HueHue.Views
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             joystick = joystickHelper.HookJoystick(guids[combo_joysticks.SelectedIndex]);
+        }
+
+        private async void Button_AddButtonColor_Click(object sender, RoutedEventArgs e)
+        {
+            var newButton = await DialogHost.Show(new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, dialogHost));
+            buttonsToColors.Add((ButtonColor)newButton);
+        }
+
+        private void dialogHost_DialogClosing(object sender, MaterialDesignThemes.Wpf.DialogClosingEventArgs eventArgs)
+        {
+
         }
     }
 }

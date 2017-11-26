@@ -65,4 +65,22 @@ namespace HueHue.Helpers
         }
     }
 
+    public class ButtonColor
+    {
+        private LEDBulb _color;
+
+        public LEDBulb Color
+        {
+            get { return _color; }
+            set { _color = value; }
+        }
+
+        private JoystickOffset _button;
+
+        public JoystickOffset Button
+        {
+            get { return _button; }
+            set { _button = value; }
+        }
+    }
 }

@@ -14,15 +14,30 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
-            <RowDefinition Height="Auto" MinHeight="83"/>
+            <RowDefinition Height="Auto" MinHeight="84.8"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,0,4" Content="Joystick Responsive"/>
+        <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,-0.4,4" Content="Joystick Responsive"/>
         <ComboBox Margin="109,14,114.6,0" Grid.Row="1" VerticalAlignment="Top" Height="28" x:Name="combo_joysticks" SelectionChanged="combo_joysticks_SelectionChanged"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,22,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Selected Joystick:" VerticalAlignment="Top" Height="16" Width="94"/>
-        <StackPanel HorizontalAlignment="Left" Height="191" Margin="10,169,0,0" Grid.Row="2" VerticalAlignment="Top" Width="430"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,22,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="94"><Run Text="Selected Joystick:"/></TextBlock>
+        <StackPanel HorizontalAlignment="Left" Height="251" Margin="10,7.2,0,0" Grid.Row="2" VerticalAlignment="Top" Width="430" x:Name="stackButtonsColors"/>
         <Button Content="Start" Margin="0,47,9.6,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="100" Click="Button_Click_1"/>
         <Button Content="Refresh" HorizontalAlignment="Right" Margin="0,10,9.6,0" Grid.Row="1" VerticalAlignment="Top" Width="100" Click="Button_Click"/>
+        <ComboBox Margin="10,47,114.6,0" Grid.Row="1" VerticalAlignment="Top" Height="28">
+            <ComboBoxItem>If Multiple buttons, color LEDs alternated</ComboBoxItem>
+            <ComboBoxItem>If Multiple buttons, divide the strip in sections</ComboBoxItem>
+        </ComboBox>
+        <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                Margin="0,0,9.6,10.4" HorizontalAlignment="Right"
+                ToolTip="Add Button to Color" VerticalAlignment="Bottom" Click="Button_AddButtonColor_Click" Grid.Row="2">
+            <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" />
+        </Button>
+        <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                Margin="0,0,54.6,10.4" HorizontalAlignment="Right"
+                ToolTip="Add Button to Brightness" VerticalAlignment="Bottom" Click="Button_AddButtonColor_Click" Grid.Row="2">
+            <materialDesign:PackIcon Kind="Brightness6" Height="24" Width="24"/>
+        </Button>
+        <materialDesign:DialogHost  x:Name="dialogHost" CloseOnClickAway="True" Margin="10,10.2,9.6,10.4" Grid.Row="2" DialogClosing="dialogHost_DialogClosing" />
 
     </Grid>
 </UserControl>
