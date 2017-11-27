@@ -19,6 +19,7 @@
                 <Setter Property="TextBoxBackground" Value="{DynamicResource MaterialDesignPaper}"/>
                 <Setter Property="Foreground" Value="{DynamicResource MaterialDesignPaper}"/>
                 <Setter Property="TextBoxBorder" Value="{DynamicResource MaterialDesignPaper}"/>
+                <Setter Property="DockAlphaVisibility" Value="Hidden"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

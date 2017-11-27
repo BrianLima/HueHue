@@ -8,15 +8,16 @@
              xmlns:local="clr-namespace:HueHue.Views"
              FontFamily="Segoe UI"
              mc:Ignorable="d" 
-             d:DesignHeight="230" d:DesignWidth="450">
+             d:DesignHeight="204.276" d:DesignWidth="450">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" MinWidth="200"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <controls:ColorControlPanel Margin="10,58,10,10" Style="{StaticResource StyleColorControlPanel}" Grid.ColumnSpan="2" />
-        <Button Content="Bind Button to Color" Margin="10,10,10,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <Label Content="X Button Binded" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="96"/>
-        <Rectangle Fill="{DynamicResource PrimaryHueLightBrush}" Height="3" Margin="10,0" VerticalAlignment="Bottom" RadiusY="1.5" RadiusX="1.5" Grid.ColumnSpan="2"/>
+        <Rectangle Fill="{DynamicResource PrimaryHueLightBrush}" Height="5" Margin="81,0" VerticalAlignment="Bottom" RadiusY="2.333" RadiusX="2.333" Grid.ColumnSpan="2"/>
+        <controls:ColorControlPanel Margin="10" Style="{StaticResource StyleColorControlPanel}" Grid.ColumnSpan="2" x:Name="colorPanel" />
+        <Label Content="{Binding}" HorizontalContentAlignment="Left" HorizontalAlignment="Right" Margin="0,102,10,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="111" x:Name="labelBindedButton"/>
+        <Label Content="Binded Button:" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,102,121,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="114"/>
+
     </Grid>
 </UserControl>

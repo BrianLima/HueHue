@@ -16,6 +16,7 @@ using SharpDX.DirectInput;
 using System.Windows.Threading;
 using HueHue.Helpers;
 using MaterialDesignThemes.Wpf;
+using System.Collections.ObjectModel;
 
 namespace HueHue.Views
 {
@@ -25,7 +26,7 @@ namespace HueHue.Views
     public partial class JoystickMode : UserControl
     {
         DispatcherTimer timer;
-        List<ButtonColor> buttonsToColors;
+        ObservableCollection<ButtonColor> buttonsToColors;
         List<Guid> guids;
         Joystick joystick;
         JoystickHelper joystickHelper;
@@ -46,13 +47,23 @@ namespace HueHue.Views
 
             guids = joystickHelper.GetGuids();
             combo_joysticks.ItemsSource = joystickHelper.GetJoystickNames(guids);
-            buttonsToColors = new List<ButtonColor>();
-            stackButtonsColors.DataContext = buttonsToColors;
+            buttonsToColors = new ObservableCollection<ButtonColor>();
 
             if (combo_joysticks.Items.Count > 0)
             {
                 combo_joysticks.SelectedIndex = 0;
             }
+
+            for (int i = 0; i < 5; i++)
+            {
+                buttonsToColors.Add(new ButtonColor() { Button = JoystickOffset.Buttons0, Color = new LEDBulb() });
+            }
+
+            foreach (var item in buttonsToColors)
+            {
+                StackColors.Children.Add(new ButtonToColor(item));
+            }
+
             timer.Start();
         }
 
@@ -63,38 +74,20 @@ namespace HueHue.Views
                 return;
             }
 
-            //LEDBulb color = new LEDBulb();
             joystick.Poll();
 
             joystick.GetCurrentState();
-
             var datas = joystick.GetBufferedData();
 
             foreach (var state in datas)
             {
-                string button = state.ToString();
-
-                if (button.Contains("Buttons5"))
+                ButtonColor PressedColor = (ButtonColor)buttonsToColors.Select(x => x.Button == state.Offset);
+                if (PressedColor != null)
                 {
-                    Effects.Colors[0] = new LEDBulb(0, 255, 0);
-                }
-                else if (button.Contains("Buttons1"))
-                {
-                    Effects.Colors[0] = new LEDBulb(255, 0, 0);
-                }
-                else if (button.Contains("Buttons0"))
-                {
-                    Effects.Colors[0] = new LEDBulb(255, 255, 0);
-                }
-                else if (button.Contains("Buttons2"))
-                {
-                    Effects.Colors[0] = new LEDBulb(0, 0, 255);
-                }
-                else if (button.Contains("Buttons3"))
-                {
-                    Effects.Colors[0] = new LEDBulb(255, 128, 0);
+                    Effects.Colors[0] = PressedColor.Color;
                 }
             }
+
             Effects.FixedColor();
         }
 
@@ -126,6 +119,7 @@ namespace HueHue.Views
         {
             var newButton = await DialogHost.Show(new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, dialogHost));
             buttonsToColors.Add((ButtonColor)newButton);
+            StackColors.Children.Add(new ButtonToColor(buttonsToColors[buttonsToColors.Count - 1]));
         }
 
         private void dialogHost_DialogClosing(object sender, MaterialDesignThemes.Wpf.DialogClosingEventArgs eventArgs)

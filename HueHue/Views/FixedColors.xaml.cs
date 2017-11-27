@@ -3,6 +3,8 @@ using System.Windows;
 using System.Windows.Controls;
 using Media = System.Windows.Media;
 using ColorTools;
+using System.Windows.Threading;
+using System.Threading.Tasks;
 
 namespace HueHue
 {
@@ -11,6 +13,8 @@ namespace HueHue
     /// </summary>
     public partial class FixedColors : UserControl
     {
+        static DispatcherTimer timer;
+
         public FixedColors()
         {
             InitializeComponent();
@@ -44,6 +48,17 @@ namespace HueHue
             }
 
             FillColor();
+
+            timer = new DispatcherTimer() { Interval = new System.TimeSpan(App.settings.Speed) };
+            timer.Tick += Timer_Tick;
+        }
+
+        private async void Timer_Tick(object sender, System.EventArgs e)
+        {
+            if (timer != null && this.IsLoaded)
+            {
+                await Task.Run(() => Effects.ShiftRight());
+            }
         }
 
         private void Panel_LostKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
@@ -93,13 +108,13 @@ namespace HueHue
 
         private void FillColor()
         {
-            if (App.settings.CurrentMode == 0)
+            //if (App.settings.CurrentMode == 0)
             {
                 Effects.FixedColor();
             }
-            else
+            //else
             {
-                Effects.TwoAlternateColor();
+                //Effects.TwoAlternateColor();
             }
         }
 
@@ -141,6 +156,33 @@ namespace HueHue
             //So i added this button as i can't find any event that gets galled EVERY TIME the user leaves the control
             //I added some events so that we avoid losing the color the user setted if the app is force quited tho
             App.settings.Colors = Effects.Colors;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (timer.IsEnabled)
+            {
+                timer.Stop();
+            }
+            else
+            {
+                timer.Start();
+            }
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (Application.Current.MainWindow != null)
+            {
+                if (Application.Current.MainWindow.WindowState != WindowState.Minimized)
+                {
+                    timer.Stop();
+                }
+            }
+            else
+            {
+                timer.Stop();
+            }
         }
     }
 }
