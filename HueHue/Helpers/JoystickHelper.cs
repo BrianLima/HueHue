@@ -65,7 +65,7 @@ namespace HueHue.Helpers
         }
     }
 
-    public class ButtonColor
+    public class JoystickButtonToColor
     {
         private LEDBulb _color;
 

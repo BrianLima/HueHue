@@ -286,5 +286,41 @@ namespace HueHue.Properties {
                 this["Width"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int JoystickMultipleButtons {
+            get {
+                return ((int)(this["JoystickMultipleButtons"]));
+            }
+            set {
+                this["JoystickMultipleButtons"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int JoystickUseDefault {
+            get {
+                return ((int)(this["JoystickUseDefault"]));
+            }
+            set {
+                this["JoystickUseDefault"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int JoystickSelected {
+            get {
+                return ((int)(this["JoystickSelected"]));
+            }
+            set {
+                this["JoystickSelected"] = value;
+            }
+        }
     }
 }

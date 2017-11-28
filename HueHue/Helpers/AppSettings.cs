@@ -35,6 +35,8 @@ namespace HueHue.Helpers
             this._phase_b = Properties.Settings.Default.PhaseB;
             this._center = Properties.Settings.Default.Center;
             this._width = Properties.Settings.Default.Width;
+            this._joystick_multiple_buttons = Properties.Settings.Default.JoystickMultipleButtons;
+            this._joystick_use_default = Properties.Settings.Default.JoystickUseDefault;
 
             CheckVersion();
 
@@ -154,6 +156,15 @@ namespace HueHue.Helpers
                     break;
                 case "Width":
                     Properties.Settings.Default.Width = _width;
+                    break;
+                case "JoystickMultipleButtons":
+                    Properties.Settings.Default.JoystickMultipleButtons = _joystick_multiple_buttons;
+                    break;
+                case "JoystickUseDefault":
+                    Properties.Settings.Default.JoystickUseDefault = _joystick_use_default;
+                    break;
+                case "JoystickSelected":
+                    Properties.Settings.Default.JoystickSelected = _joystick_selected;
                     break;
                 default:
                     break;
@@ -396,5 +407,34 @@ namespace HueHue.Helpers
             set { _width = value; OnPropertyChanged("Width"); }
         }
 
+        private int _joystick_multiple_buttons;
+        /// <summary>
+        /// Gets or sets what the app will do when multiple buttons are pressed
+        /// </summary>
+        public int JoystickMultipleButtons
+        {
+            get { return _joystick_multiple_buttons; }
+            set { _joystick_multiple_buttons = value; OnPropertyChanged("JoystickMultipleButtons"); }
+        }
+
+        private int _joystick_use_default;
+        /// <summary>
+        /// Gets or sets if the app should return to a default color when the user releases a button
+        /// </summary>
+        public int JoystickUseDefault
+        {
+            get { return _joystick_use_default; }
+            set { _joystick_use_default = value; OnPropertyChanged("JoystickUseDefault"); }
+        }
+
+        private int _joystick_selected;
+        /// <summary>
+        /// Gets or sets the selected joystick by the user
+        /// </summary>
+        public int JoystickSelected
+        {
+            get { return _joystick_selected; }
+            set { _joystick_selected = value; OnPropertyChanged("JoystickSelected"); }
+        }
     }
 }

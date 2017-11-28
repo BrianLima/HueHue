@@ -28,7 +28,7 @@ namespace HueHue.Views
         DialogHost parent;
         Joystick joystick;
         DispatcherTimer timer;
-        public ButtonColor buttonColor;
+        public JoystickButtonToColor buttonColor;
         bool firstRun = true;
 
         public AddButton(Guid _guid, JoystickHelper helper, DialogHost _parent)
@@ -57,7 +57,7 @@ namespace HueHue.Views
                     JoystickUpdate x = datas[0];
                     if (x.Offset != JoystickOffset.Buttons4 && x.Value > 0)
                     {
-                        buttonColor = new ButtonColor { Button = x.Offset, Color = new LEDBulb() };
+                        buttonColor = new JoystickButtonToColor { Button = x.Offset, Color = new LEDBulb() };
 
                         DialogHost.CloseDialogCommand.Execute(buttonColor, null);
                     }

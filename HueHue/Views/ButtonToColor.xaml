@@ -15,7 +15,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Rectangle Fill="{DynamicResource PrimaryHueLightBrush}" Height="5" Margin="81,0" VerticalAlignment="Bottom" RadiusY="2.333" RadiusX="2.333" Grid.ColumnSpan="2"/>
-        <controls:ColorControlPanel Margin="10" Style="{StaticResource StyleColorControlPanel}" Grid.ColumnSpan="2" x:Name="colorPanel" />
+        <controls:ColorControlPanel Margin="10" Style="{StaticResource StyleColorControlPanel}" Grid.ColumnSpan="2" x:Name="colorPanel" x:FieldModifier="public" />
         <Label Content="{Binding}" HorizontalContentAlignment="Left" HorizontalAlignment="Right" Margin="0,102,10,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="111" x:Name="labelBindedButton"/>
         <Label Content="Binded Button:" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,102,121,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="114"/>
 

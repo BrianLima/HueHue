@@ -13,6 +13,7 @@ using Media = System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ColorTools;
 
 namespace HueHue.Views
 {
@@ -21,7 +22,7 @@ namespace HueHue.Views
     /// </summary>
     public partial class ButtonToColor : UserControl
     {
-        public ButtonToColor(ButtonColor buttonColor)
+        public ButtonToColor(JoystickButtonToColor buttonColor)
         {
             InitializeComponent();
 

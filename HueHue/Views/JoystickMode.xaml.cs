@@ -17,6 +17,7 @@ using System.Windows.Threading;
 using HueHue.Helpers;
 using MaterialDesignThemes.Wpf;
 using System.Collections.ObjectModel;
+using ColorTools;
 
 namespace HueHue.Views
 {
@@ -26,7 +27,7 @@ namespace HueHue.Views
     public partial class JoystickMode : UserControl
     {
         DispatcherTimer timer;
-        ObservableCollection<ButtonColor> buttonsToColors;
+        ObservableCollection<JoystickButtonToColor> buttonsToColors;
         List<Guid> guids;
         Joystick joystick;
         JoystickHelper joystickHelper;
@@ -35,7 +36,7 @@ namespace HueHue.Views
         {
             InitializeComponent();
 
-            //GetInput();
+            gridSettings.DataContext = App.settings;
 
             timer = new DispatcherTimer()
             {
@@ -45,26 +46,26 @@ namespace HueHue.Views
 
             joystickHelper = new JoystickHelper();
 
-            guids = joystickHelper.GetGuids();
-            combo_joysticks.ItemsSource = joystickHelper.GetJoystickNames(guids);
-            buttonsToColors = new ObservableCollection<ButtonColor>();
+            RefreshJoysticks();
 
-            if (combo_joysticks.Items.Count > 0)
-            {
-                combo_joysticks.SelectedIndex = 0;
-            }
-
-            for (int i = 0; i < 5; i++)
-            {
-                buttonsToColors.Add(new ButtonColor() { Button = JoystickOffset.Buttons0, Color = new LEDBulb() });
-            }
+            buttonsToColors = new ObservableCollection<JoystickButtonToColor>();
 
             foreach (var item in buttonsToColors)
             {
-                StackColors.Children.Add(new ButtonToColor(item));
+                var panel = new ButtonToColor(item);
+                panel.colorPanel.ColorChanged += ColorPanel_ColorChanged;
+
+                StackColors.Children.Add(panel);
             }
 
             timer.Start();
+        }
+
+        private void ColorPanel_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
+        {
+            int index = StackColors.Children.IndexOf(((Grid)(((ColorControlPanel)sender).Parent)).Parent as UIElement);
+
+            buttonsToColors[index].Color = (LEDBulb)e.CurrentColor;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -81,7 +82,7 @@ namespace HueHue.Views
 
             foreach (var state in datas)
             {
-                ButtonColor PressedColor = (ButtonColor)buttonsToColors.Select(x => x.Button == state.Offset);
+                JoystickButtonToColor PressedColor = (JoystickButtonToColor)buttonsToColors.Select(x => x.Button == state.Offset);
                 if (PressedColor != null)
                 {
                     Effects.Colors[0] = PressedColor.Color;
@@ -106,6 +107,11 @@ namespace HueHue.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            RefreshJoysticks();
+        }
+
+        private void RefreshJoysticks()
+        {
             guids = joystickHelper.GetGuids();
             combo_joysticks.ItemsSource = joystickHelper.GetJoystickNames(guids);
         }
@@ -118,13 +124,25 @@ namespace HueHue.Views
         private async void Button_AddButtonColor_Click(object sender, RoutedEventArgs e)
         {
             var newButton = await DialogHost.Show(new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, dialogHost));
-            buttonsToColors.Add((ButtonColor)newButton);
+            buttonsToColors.Add((JoystickButtonToColor)newButton);
             StackColors.Children.Add(new ButtonToColor(buttonsToColors[buttonsToColors.Count - 1]));
         }
 
         private void dialogHost_DialogClosing(object sender, MaterialDesignThemes.Wpf.DialogClosingEventArgs eventArgs)
         {
 
+        }
+
+        private void combo_MultipleButtons_Copy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (((ComboBox)sender).SelectedIndex > 0)
+            {
+                gridDefaultColor.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                gridDefaultColor.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }
