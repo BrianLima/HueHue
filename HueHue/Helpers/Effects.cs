@@ -125,6 +125,34 @@ namespace HueHue.Helpers
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pressedButtons"></param>
+        /// <param name="spotLength"></param>
+        public static void JoystickMode(List<JoystickButtonToColor> pressedButtons, int spotLength)
+        {
+            for (int i = 0; i < LEDs.Count; i++)
+            {
+                foreach (var item in pressedButtons)
+                {
+                    if (spotLength == 0)
+                    {
+                        LEDs[i] = item.Color;
+                        i++;
+                    }
+                    else
+                    {
+                        for (int j = 0; j < spotLength; j++)
+                        {
+                            LEDs[i] = item.Color;
+                            i++;
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Placeholder
         /// </summary>
         public static void Music() /// selo rob de codigos bonito
@@ -268,7 +296,7 @@ namespace HueHue.Helpers
                     ResetStep(); //We Cycled all the basic colors, reset and start again
                 }
             }
-            
+
             //Fill the strip with the color
             for (int i = 0; i < LEDs.Count; i++)
             {

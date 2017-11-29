@@ -28,6 +28,7 @@ namespace HueHue.Views
     {
         DispatcherTimer timer;
         ObservableCollection<JoystickButtonToColor> buttonsToColors;
+        List<JoystickButtonToColor> pressedButtons;
         List<Guid> guids;
         Joystick joystick;
         JoystickHelper joystickHelper;
@@ -94,6 +95,15 @@ namespace HueHue.Views
                 {
                     if (Pressed.ButtonType == JoystickButtonToColor.ButtonTypeEnum.Color)
                     {
+                        if (state.Value > 0)
+                        {
+                            pressedButtons.Add(Pressed);
+                        }
+                        else
+                        {
+                            pressedButtons.Remove(Pressed);
+                        }
+
                         Effects.Colors[0] = Pressed.Color;
                     }
                     else
@@ -110,7 +120,7 @@ namespace HueHue.Views
                 }
             }
 
-            Effects.FixedColor();
+            Effects.JoystickMode(pressedButtons, 5);
         }
 
         private void combo_joysticks_SelectionChanged(object sender, SelectionChangedEventArgs e)

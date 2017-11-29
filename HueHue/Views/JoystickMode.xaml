@@ -16,6 +16,7 @@
             <RowDefinition Height="52"/>
             <RowDefinition Height="103"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <materialDesign:DialogHost x:Name="dialogHost" CloseOnClickAway="True" />
@@ -23,8 +24,9 @@
             <controls:ColorControlPanel Margin="10,29,10,10" Style="{StaticResource StyleColorControlPanel}"/>
             <Label Content="Default Color:" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top"/>
         </Grid>
+        <Slider Grid.Row="3" Margin="184,0,114,0" />
         <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,0,4" Content="Joystick Responsive"/>
-        <Border BorderBrush="{StaticResource PrimaryHueMidBrush}" Margin="10" Grid.Row="3" BorderThickness="1">
+        <Border BorderBrush="{StaticResource PrimaryHueMidBrush}" Margin="10" Grid.Row="4" BorderThickness="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="3" Margin="0,9,-1,0">
                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical" x:Name="StackColors" CanVerticallyScroll="True"/>
             </ScrollViewer>
@@ -37,6 +39,7 @@
             <ComboBox Margin="174,37,105,0" VerticalAlignment="Top" Height="28" x:Name="combo_MultipleButtons" SelectedIndex="{Binding JoystickMultipleButtons}">
                 <ComboBoxItem Content="Color LEDs alternated"/>
                 <ComboBoxItem Content="Divide the strip in sections"/>
+                <ComboBoxItem Content="Divide the strip in halfs"/>
             </ComboBox>
 
             <ComboBox Margin="174,70,105,0" VerticalAlignment="Top" Height="28" x:Name="combo_MultipleButtons_Copy" SelectedIndex="{Binding JoystickUseDefault}" SelectionChanged="combo_MultipleButtons_Copy_SelectionChanged">
@@ -49,13 +52,14 @@
 
         <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 Margin="0,0,12,10" HorizontalAlignment="Right"
-                ToolTip="Add Button to Color" VerticalAlignment="Bottom" Click="Button_AddButtonColor_Click" Grid.Row="3">
+                ToolTip="Add Button to Color" VerticalAlignment="Bottom" Click="Button_AddButtonColor_Click" Grid.Row="4">
             <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" />
         </Button>
         <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 Margin="0,0,57,10" HorizontalAlignment="Right"
-                ToolTip="Add Button to Brightness" VerticalAlignment="Bottom" Click="Button_AddButtonBrightness_Click" Grid.Row="3">
+                ToolTip="Add Button to Brightness" VerticalAlignment="Bottom" Click="Button_AddButtonBrightness_Click" Grid.Row="4">
             <materialDesign:PackIcon Kind="Brightness6" Height="24" Width="24"/>
         </Button>
+        <TextBlock Text="Section Length:" HorizontalAlignment="Left" Margin="97,0,0,0" Grid.Row="3" VerticalAlignment="Top" Width="82"/>
     </Grid>
 </UserControl>
