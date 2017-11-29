@@ -50,6 +50,11 @@ namespace HueHue.Views
 
             buttonsToColors = new ObservableCollection<JoystickButtonToColor>();
 
+            for (int i = 0; i < 5; i++)
+            {
+                buttonsToColors.Add(new JoystickButtonToColor() { Button = JoystickOffset.Buttons0, ButtonType = JoystickButtonToColor.ButtonTypeEnum.Color, Color = new LEDBulb(), });
+            }
+
             foreach (var item in buttonsToColors)
             {
                 var panel = new ButtonToColor(item);
@@ -64,6 +69,8 @@ namespace HueHue.Views
         private void ColorPanel_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
         {
             int index = StackColors.Children.IndexOf(((Grid)(((ColorControlPanel)sender).Parent)).Parent as UIElement);
+
+            ((ButtonToColor)StackColors.Children[index]).rectangle.Fill = new SolidColorBrush(Color.FromRgb(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B));
 
             buttonsToColors[index].Color = (LEDBulb)e.CurrentColor;
         }

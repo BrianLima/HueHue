@@ -16,9 +16,10 @@ namespace HueHue.Views
         {
             InitializeComponent();
 
-            this.colorPanel.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, buttonColor.Color.R, buttonColor.Color.G, buttonColor.Color.B));
-            this.colorPanel.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, buttonColor.Color.R, buttonColor.Color.G, buttonColor.Color.B));
+            this.colorPanel.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromRgb(buttonColor.Color.R, buttonColor.Color.G, buttonColor.Color.B));
+            this.colorPanel.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromRgb(buttonColor.Color.R, buttonColor.Color.G, buttonColor.Color.B));
             this.labelBindedButton.DataContext = buttonColor.Button;
+            this.rectangle.Fill = new Media.SolidColorBrush((Media.Color.FromRgb(buttonColor.Color.R, buttonColor.Color.G, buttonColor.Color.B)));
         }
 
         private void Button_Expand_Click(object sender, RoutedEventArgs e)
@@ -28,10 +29,12 @@ namespace HueHue.Views
             if (expanded)
             {
                 colorPanel.Visibility = Visibility.Visible;
+                this.icon.Kind = MaterialDesignThemes.Wpf.PackIconKind.ArrowDown;
             }
             else
             {
                 colorPanel.Visibility = Visibility.Collapsed;
+                this.icon.Kind = MaterialDesignThemes.Wpf.PackIconKind.ArrowRight;
             }
         }
     }

@@ -25,9 +25,9 @@
         <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 Margin="10,0,0,0" HorizontalAlignment="Left"
                 ToolTip="Add Button to Brightness" Click="Button_Expand_Click" Height="36" VerticalAlignment="Top" Grid.Row="0" Width="36">
-            <materialDesign:PackIcon Kind="ArrowRight" Height="24" Width="24"/>
+            <materialDesign:PackIcon Kind="ArrowRight" Height="24" Width="24" x:Name="icon"/>
         </Button>
-        <Rectangle Fill="{Binding ElementName=colorPanel, Path=SelectedColorBrush}" Margin="0,5,10,0" RadiusY="2.333" RadiusX="2.333" HorizontalAlignment="Right" Width="26" Height="26" VerticalAlignment="Top"/>
+        <Rectangle Margin="414,5,0,0" RadiusY="4" RadiusX="4" HorizontalAlignment="Left" Width="26" Height="26" VerticalAlignment="Top" x:Name="rectangle" x:FieldModifier="public"/>
         <Label Content="Color:" HorizontalAlignment="Left" Margin="371,5,0,0" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>
