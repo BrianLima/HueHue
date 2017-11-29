@@ -27,7 +27,7 @@ namespace HueHue.Views
     public partial class JoystickMode : UserControl
     {
         DispatcherTimer timer;
-        ObservableCollection<JoystickButtonToColor> listButtonsToColors;
+        ObservableCollection<JoystickButtonToColor> buttonsToColors;
         List<Guid> guids;
         Joystick joystick;
         JoystickHelper joystickHelper;
@@ -48,14 +48,9 @@ namespace HueHue.Views
 
             RefreshJoysticks();
 
-            listButtonsToColors = new ObservableCollection<JoystickButtonToColor>();
+            buttonsToColors = new ObservableCollection<JoystickButtonToColor>();
 
-            for (int i = 0; i < 5; i++)
-            {
-
-            }
-
-            foreach (var item in listButtonsToColors)
+            foreach (var item in buttonsToColors)
             {
                 var panel = new ButtonToColor(item);
                 panel.colorPanel.ColorChanged += ColorPanel_ColorChanged;
@@ -70,7 +65,7 @@ namespace HueHue.Views
         {
             int index = StackColors.Children.IndexOf(((Grid)(((ColorControlPanel)sender).Parent)).Parent as UIElement);
 
-            listButtonsToColors[index].Color = (LEDBulb)e.CurrentColor;
+            buttonsToColors[index].Color = (LEDBulb)e.CurrentColor;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -87,13 +82,8 @@ namespace HueHue.Views
 
             foreach (var state in datas)
             {
-<<<<<<< HEAD
-                JoystickButtonToColor PressedColor = (JoystickButtonToColor)listButtonsToColors.Select(x => x.Button == state.Offset);
-                if (PressedColor != null)
-=======
                 JoystickButtonToColor Pressed = buttonsToColors.FirstOrDefault(x => x.Button == state.Offset);
                 if (Pressed != null)
->>>>>>> 73f4b49500b0ef76ee99aba3f03da0c42cdb381a
                 {
                     if (Pressed.ButtonType == JoystickButtonToColor.ButtonTypeEnum.Color)
                     {
@@ -147,16 +137,6 @@ namespace HueHue.Views
 
         private async void Button_AddButtonColor_Click(object sender, RoutedEventArgs e)
         {
-<<<<<<< HEAD
-            var newButton = await DialogHost.Show(new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, dialogHost));
-            listButtonsToColors.Add((JoystickButtonToColor)newButton);
-            StackColors.Children.Add(new ButtonToColor(listButtonsToColors[listButtonsToColors.Count - 1]));
-        }
-
-        private void dialogHost_DialogClosing(object sender, MaterialDesignThemes.Wpf.DialogClosingEventArgs eventArgs)
-        {
-
-=======
             var view = new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, JoystickButtonToColor.ButtonTypeEnum.Color);
             var newButton = await DialogHost.Show(view);
             var x = (JoystickButtonToColor)newButton;
@@ -165,7 +145,6 @@ namespace HueHue.Views
             var panel = new ButtonToColor(buttonsToColors[buttonsToColors.Count - 1]);
             panel.colorPanel.ColorChanged += ColorPanel_ColorChanged;
             StackColors.Children.Add(panel);
->>>>>>> 73f4b49500b0ef76ee99aba3f03da0c42cdb381a
         }
 
         private void combo_MultipleButtons_Copy_SelectionChanged(object sender, SelectionChangedEventArgs e)
