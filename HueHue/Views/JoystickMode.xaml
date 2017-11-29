@@ -18,10 +18,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
-        <materialDesign:DialogHost  x:Name="dialogHost" CloseOnClickAway="True" DialogClosing="dialogHost_DialogClosing">
-        </materialDesign:DialogHost>
-
+        <materialDesign:DialogHost x:Name="dialogHost" CloseOnClickAway="True" />
         <Grid HorizontalAlignment="Left" Margin="10,0,0,10" Grid.Row="2" Width="430" x:Name="gridDefaultColor" Visibility="Collapsed">
             <controls:ColorControlPanel Margin="10,29,10,10" Style="{StaticResource StyleColorControlPanel}"/>
             <Label Content="Default Color:" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top"/>
@@ -57,7 +54,7 @@
         </Button>
         <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                 Margin="0,0,57,10" HorizontalAlignment="Right"
-                ToolTip="Add Button to Brightness" VerticalAlignment="Bottom" Click="Button_AddButtonColor_Click" Grid.Row="3">
+                ToolTip="Add Button to Brightness" VerticalAlignment="Bottom" Click="Button_AddButtonBrightness_Click" Grid.Row="3">
             <materialDesign:PackIcon Kind="Brightness6" Height="24" Width="24"/>
         </Button>
     </Grid>

@@ -1,22 +1,10 @@
 ﻿using HueHue.Helpers;
 using MaterialDesignThemes.Wpf;
-using Newtonsoft.Json;
 using SharpDX.DirectInput;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
+using static HueHue.Helpers.JoystickButtonToColor;
 
 namespace HueHue.Views
 {
@@ -25,18 +13,18 @@ namespace HueHue.Views
     /// </summary>
     public partial class AddButton : UserControl
     {
-        DialogHost parent;
         Joystick joystick;
         DispatcherTimer timer;
         public JoystickButtonToColor buttonColor;
         bool firstRun = true;
+        ButtonTypeEnum buttonType;
 
-        public AddButton(Guid _guid, JoystickHelper helper, DialogHost _parent)
+        public AddButton(Guid _guid, JoystickHelper helper, ButtonTypeEnum _buttonType)
         {
             InitializeComponent();
 
-            this.parent = _parent;
             joystick = helper.HookJoystick(_guid);
+            buttonType = _buttonType;
 
             timer = new DispatcherTimer() { Interval = new TimeSpan(20) };
             timer.Tick += Timer_Tick;
@@ -57,8 +45,8 @@ namespace HueHue.Views
                     JoystickUpdate x = datas[0];
                     if (x.Offset != JoystickOffset.Buttons4 && x.Value > 0)
                     {
-                        buttonColor = new JoystickButtonToColor { Button = x.Offset, Color = new LEDBulb() };
-
+                        buttonColor = new JoystickButtonToColor { Button = x.Offset, Color = new LEDBulb(), ButtonType = buttonType, PressedBrightness = 64, ReleasedBrightness = 255 };
+                        timer.Stop();
                         DialogHost.CloseDialogCommand.Execute(buttonColor, null);
                     }
                 }
@@ -69,7 +57,6 @@ namespace HueHue.Views
 
         private void UserControl_DialogClosing(object sender, DialogClosingEventArgs eventArgs)
         {
-            //return buttonColor;
         }
     }
 }
