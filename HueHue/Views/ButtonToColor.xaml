@@ -8,16 +8,26 @@
              xmlns:local="clr-namespace:HueHue.Views"
              FontFamily="Segoe UI"
              mc:Ignorable="d" 
-             d:DesignHeight="204.276" d:DesignWidth="450">
+             d:DesignWidth="450">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" MinWidth="200"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="450"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Fill="{DynamicResource PrimaryHueLightBrush}" Height="5" Margin="81,0" VerticalAlignment="Bottom" RadiusY="2.333" RadiusX="2.333" Grid.ColumnSpan="2"/>
-        <controls:ColorControlPanel Margin="10" Style="{StaticResource StyleColorControlPanel}" Grid.ColumnSpan="2" x:Name="colorPanel" x:FieldModifier="public" />
-        <Label Content="{Binding}" HorizontalContentAlignment="Left" HorizontalAlignment="Right" Margin="0,102,10,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="111" x:Name="labelBindedButton"/>
-        <Label Content="Binded Button:" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,102,121,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="114"/>
-
+        <Rectangle Fill="{DynamicResource PrimaryHueLightBrush}" Height="5" Margin="81,4,81,0" VerticalAlignment="Top" RadiusY="2.333" RadiusX="2.333" Grid.Row="2"/>
+        <controls:ColorControlPanel Margin="10,0" Style="{StaticResource StyleColorControlPanel}" x:Name="colorPanel" x:FieldModifier="public" Grid.Row="1" Visibility="Collapsed" Height="167" VerticalAlignment="Top" />
+        <Label Content="{Binding}" HorizontalContentAlignment="Left" HorizontalAlignment="Right" Margin="0,5,195,0" VerticalAlignment="Top" Height="26" Width="111" x:Name="labelBindedButton" />
+        <Label Content="Binded Button:" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="51,5,0,0" VerticalAlignment="Top" Height="26" Width="88"/>
+        <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                Margin="10,0,0,0" HorizontalAlignment="Left"
+                ToolTip="Add Button to Brightness" Click="Button_Expand_Click" Height="36" VerticalAlignment="Top" Grid.Row="0" Width="36">
+            <materialDesign:PackIcon Kind="ArrowRight" Height="24" Width="24"/>
+        </Button>
+        <Rectangle Fill="{Binding ElementName=colorPanel, Path=SelectedColorBrush}" Margin="0,5,10,0" RadiusY="2.333" RadiusX="2.333" HorizontalAlignment="Right" Width="26" Height="26" VerticalAlignment="Top"/>
+        <Label Content="Color:" HorizontalAlignment="Left" Margin="371,5,0,0" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

@@ -1,19 +1,7 @@
 ﻿using HueHue.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using Media = System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using ColorTools;
 
 namespace HueHue.Views
 {
@@ -22,6 +10,8 @@ namespace HueHue.Views
     /// </summary>
     public partial class ButtonToColor : UserControl
     {
+        bool expanded = false;
+
         public ButtonToColor(JoystickButtonToColor buttonColor)
         {
             InitializeComponent();
@@ -31,9 +21,18 @@ namespace HueHue.Views
             this.labelBindedButton.DataContext = buttonColor.Button;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Expand_Click(object sender, RoutedEventArgs e)
         {
+            expanded = !expanded;
 
+            if (expanded)
+            {
+                colorPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                colorPanel.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

@@ -27,7 +27,7 @@ namespace HueHue.Views
     public partial class JoystickMode : UserControl
     {
         DispatcherTimer timer;
-        ObservableCollection<JoystickButtonToColor> buttonsToColors;
+        ObservableCollection<JoystickButtonToColor> listButtonsToColors;
         List<Guid> guids;
         Joystick joystick;
         JoystickHelper joystickHelper;
@@ -48,9 +48,14 @@ namespace HueHue.Views
 
             RefreshJoysticks();
 
-            buttonsToColors = new ObservableCollection<JoystickButtonToColor>();
+            listButtonsToColors = new ObservableCollection<JoystickButtonToColor>();
 
-            foreach (var item in buttonsToColors)
+            for (int i = 0; i < 5; i++)
+            {
+
+            }
+
+            foreach (var item in listButtonsToColors)
             {
                 var panel = new ButtonToColor(item);
                 panel.colorPanel.ColorChanged += ColorPanel_ColorChanged;
@@ -65,7 +70,7 @@ namespace HueHue.Views
         {
             int index = StackColors.Children.IndexOf(((Grid)(((ColorControlPanel)sender).Parent)).Parent as UIElement);
 
-            buttonsToColors[index].Color = (LEDBulb)e.CurrentColor;
+            listButtonsToColors[index].Color = (LEDBulb)e.CurrentColor;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -82,7 +87,7 @@ namespace HueHue.Views
 
             foreach (var state in datas)
             {
-                JoystickButtonToColor PressedColor = (JoystickButtonToColor)buttonsToColors.Select(x => x.Button == state.Offset);
+                JoystickButtonToColor PressedColor = (JoystickButtonToColor)listButtonsToColors.Select(x => x.Button == state.Offset);
                 if (PressedColor != null)
                 {
                     Effects.Colors[0] = PressedColor.Color;
@@ -124,8 +129,8 @@ namespace HueHue.Views
         private async void Button_AddButtonColor_Click(object sender, RoutedEventArgs e)
         {
             var newButton = await DialogHost.Show(new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, dialogHost));
-            buttonsToColors.Add((JoystickButtonToColor)newButton);
-            StackColors.Children.Add(new ButtonToColor(buttonsToColors[buttonsToColors.Count - 1]));
+            listButtonsToColors.Add((JoystickButtonToColor)newButton);
+            StackColors.Children.Add(new ButtonToColor(listButtonsToColors[listButtonsToColors.Count - 1]));
         }
 
         private void dialogHost_DialogClosing(object sender, MaterialDesignThemes.Wpf.DialogClosingEventArgs eventArgs)
