@@ -87,10 +87,29 @@ namespace HueHue.Views
 
             foreach (var state in datas)
             {
+<<<<<<< HEAD
                 JoystickButtonToColor PressedColor = (JoystickButtonToColor)listButtonsToColors.Select(x => x.Button == state.Offset);
                 if (PressedColor != null)
+=======
+                JoystickButtonToColor Pressed = buttonsToColors.FirstOrDefault(x => x.Button == state.Offset);
+                if (Pressed != null)
+>>>>>>> 73f4b49500b0ef76ee99aba3f03da0c42cdb381a
                 {
-                    Effects.Colors[0] = PressedColor.Color;
+                    if (Pressed.ButtonType == JoystickButtonToColor.ButtonTypeEnum.Color)
+                    {
+                        Effects.Colors[0] = Pressed.Color;
+                    }
+                    else
+                    {
+                        if (state.Value != 32511) //Guitar strum bar is centered
+                        {
+                            App.settings.Brightness = Pressed.PressedBrightness;
+                        }
+                        else
+                        {
+                            App.settings.Brightness = Pressed.ReleasedBrightness;
+                        }
+                    }
                 }
             }
 
@@ -128,6 +147,7 @@ namespace HueHue.Views
 
         private async void Button_AddButtonColor_Click(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
             var newButton = await DialogHost.Show(new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, dialogHost));
             listButtonsToColors.Add((JoystickButtonToColor)newButton);
             StackColors.Children.Add(new ButtonToColor(listButtonsToColors[listButtonsToColors.Count - 1]));
@@ -136,6 +156,16 @@ namespace HueHue.Views
         private void dialogHost_DialogClosing(object sender, MaterialDesignThemes.Wpf.DialogClosingEventArgs eventArgs)
         {
 
+=======
+            var view = new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, JoystickButtonToColor.ButtonTypeEnum.Color);
+            var newButton = await DialogHost.Show(view);
+            var x = (JoystickButtonToColor)newButton;
+            x.ButtonType = JoystickButtonToColor.ButtonTypeEnum.Color; //TODO: REMOVE POG
+            buttonsToColors.Add(x);
+            var panel = new ButtonToColor(buttonsToColors[buttonsToColors.Count - 1]);
+            panel.colorPanel.ColorChanged += ColorPanel_ColorChanged;
+            StackColors.Children.Add(panel);
+>>>>>>> 73f4b49500b0ef76ee99aba3f03da0c42cdb381a
         }
 
         private void combo_MultipleButtons_Copy_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -148,6 +178,17 @@ namespace HueHue.Views
             {
                 gridDefaultColor.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private async void Button_AddButtonBrightness_Click(object sender, RoutedEventArgs e)
+        {
+            var view = new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, JoystickButtonToColor.ButtonTypeEnum.Color);
+            var newButton = await DialogHost.Show(view);
+            var x = (JoystickButtonToColor)newButton;
+            x.ButtonType = JoystickButtonToColor.ButtonTypeEnum.Brightness; //TODO: REMOVE POG
+            buttonsToColors.Add(x);
+            var panel = new ButtonToBrightness(buttonsToColors[buttonsToColors.Count - 1]);
+            StackColors.Children.Add(panel);
         }
     }
 }

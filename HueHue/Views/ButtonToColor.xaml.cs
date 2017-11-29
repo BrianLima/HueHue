@@ -1,5 +1,8 @@
 ﻿using HueHue.Helpers;
+<<<<<<< HEAD
 using System.Windows;
+=======
+>>>>>>> 73f4b49500b0ef76ee99aba3f03da0c42cdb381a
 using System.Windows.Controls;
 using Media = System.Windows.Media;
 
@@ -20,6 +23,7 @@ namespace HueHue.Views
             this.colorPanel.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, buttonColor.Color.R, buttonColor.Color.G, buttonColor.Color.B));
             this.labelBindedButton.DataContext = buttonColor.Button;
         }
+<<<<<<< HEAD
 
         private void Button_Expand_Click(object sender, RoutedEventArgs e)
         {
@@ -34,5 +38,7 @@ namespace HueHue.Views
                 colorPanel.Visibility = Visibility.Collapsed;
             }
         }
+=======
+>>>>>>> 73f4b49500b0ef76ee99aba3f03da0c42cdb381a
     }
 }

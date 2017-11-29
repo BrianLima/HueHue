@@ -107,6 +107,9 @@
     <Compile Include="Views\AddButton.xaml.cs">
       <DependentUpon>AddButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ButtonToBrightness.xaml.cs">
+      <DependentUpon>ButtonToBrightness.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ButtonToColor.xaml.cs">
       <DependentUpon>ButtonToColor.xaml</DependentUpon>
     </Compile>
@@ -151,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ButtonToBrightness.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

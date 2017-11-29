@@ -65,8 +65,16 @@ namespace HueHue.Helpers
         }
     }
 
+    
+
     public class JoystickButtonToColor
     {
+        public enum ButtonTypeEnum
+        {
+            Color,
+            Brightness
+        }
+
         private LEDBulb _color;
 
         public LEDBulb Color
@@ -82,5 +90,30 @@ namespace HueHue.Helpers
             get { return _button; }
             set { _button = value; }
         }
+
+        private ButtonTypeEnum _button_type;
+
+        public ButtonTypeEnum ButtonType
+        {
+            get { return _button_type; }
+            set { _button_type = value; }
+        }
+
+        private byte _pressed_brightness;
+
+        public byte PressedBrightness
+        {
+            get { return _pressed_brightness; }
+            set { _pressed_brightness = value; }
+        }
+
+        private byte _released_brightness;
+
+        public byte ReleasedBrightness
+        {
+            get { return _released_brightness; }
+            set { _released_brightness = value; }
+        }
+
     }
 }
