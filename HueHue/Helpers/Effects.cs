@@ -131,7 +131,13 @@ namespace HueHue.Helpers
         /// <param name="spotLength"></param>
         public static void JoystickMode(List<JoystickButtonToColor> pressedButtons, int spotLength)
         {
-            for (int i = 0; i < LEDs.Count; i++)
+            if (pressedButtons.Count == 0)
+            {
+                return;
+            }
+
+            int i = 0;
+            while (i < LEDs.Count)
             {
                 foreach (var item in pressedButtons)
                 {
@@ -144,8 +150,14 @@ namespace HueHue.Helpers
                     {
                         for (int j = 0; j < spotLength; j++)
                         {
+                            if (i >= LEDs.Count)
+                            {
+                                break;
+                            }
+
                             LEDs[i] = item.Color;
                             i++;
+
                         }
                     }
                 }

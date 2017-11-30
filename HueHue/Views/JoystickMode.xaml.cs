@@ -50,11 +50,7 @@ namespace HueHue.Views
             RefreshJoysticks();
 
             buttonsToColors = new ObservableCollection<JoystickButtonToColor>();
-
-            for (int i = 0; i < 5; i++)
-            {
-                buttonsToColors.Add(new JoystickButtonToColor() { Button = JoystickOffset.Buttons0, ButtonType = JoystickButtonToColor.ButtonTypeEnum.Color, Color = new LEDBulb(), });
-            }
+            pressedButtons = new List<JoystickButtonToColor>();
 
             foreach (var item in buttonsToColors)
             {
@@ -104,7 +100,7 @@ namespace HueHue.Views
                             pressedButtons.Remove(Pressed);
                         }
 
-                        Effects.Colors[0] = Pressed.Color;
+                        //Effects.Colors[0] = Pressed.Color;
                     }
                     else
                     {
