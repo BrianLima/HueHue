@@ -127,7 +127,7 @@ namespace HueHue.Helpers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="pressedButtons"></param>
+        /// <param name="pressedButtons">List of currently pressed buttons</param>
         /// <param name="spotLength"></param>
         public static void JoystickMode(List<JoystickButtonToColor> pressedButtons, int spotLength)
         {

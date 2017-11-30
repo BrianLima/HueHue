@@ -18,6 +18,8 @@ using HueHue.Helpers;
 using MaterialDesignThemes.Wpf;
 using System.Collections.ObjectModel;
 using ColorTools;
+using Media = System.Windows.Media;
+
 
 namespace HueHue.Views
 {
@@ -51,6 +53,9 @@ namespace HueHue.Views
 
             buttonsToColors = new ObservableCollection<JoystickButtonToColor>();
             pressedButtons = new List<JoystickButtonToColor>();
+
+            DefaultColor.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
+            DefaultColor.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
 
             foreach (var item in buttonsToColors)
             {
@@ -99,8 +104,6 @@ namespace HueHue.Views
                         {
                             pressedButtons.Remove(Pressed);
                         }
-
-                        //Effects.Colors[0] = Pressed.Color;
                     }
                     else
                     {
@@ -116,7 +119,15 @@ namespace HueHue.Views
                 }
             }
 
-            Effects.JoystickMode(pressedButtons, 5);
+            if (pressedButtons.Count == 0 && App.settings.JoystickUseDefault > 0)
+            {
+                Effects.FixedColor();
+            }
+            else
+            {
+                Effects.JoystickMode(pressedButtons, App.settings.Length);
+            }
+
         }
 
         private void combo_joysticks_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -160,15 +171,17 @@ namespace HueHue.Views
             StackColors.Children.Add(panel);
         }
 
-        private void combo_MultipleButtons_Copy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void combo_MultipleButtons_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (((ComboBox)sender).SelectedIndex > 0)
+            if (((ComboBox)sender).SelectedIndex == 1)
             {
-                gridDefaultColor.Visibility = Visibility.Visible;
+                sliderSection.Visibility = Visibility.Visible;
+                textSection.Visibility = Visibility.Visible;
             }
             else
             {
-                gridDefaultColor.Visibility = Visibility.Collapsed;
+                sliderSection.Visibility = Visibility.Collapsed;
+                textSection.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -181,6 +194,30 @@ namespace HueHue.Views
             buttonsToColors.Add(x);
             var panel = new ButtonToBrightness(buttonsToColors[buttonsToColors.Count - 1]);
             StackColors.Children.Add(panel);
+        }
+
+        private void combo_UseDefault_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (((ComboBox)sender).SelectedIndex > 0)
+            {
+                gridDefaultColor.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                gridDefaultColor.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void ColorControlPanel_ColorChanged(object sender, ColorControlPanel.ColorChangedEventArgs e)
+        {
+            if (Effects.Colors.Count == 0)
+            {
+                return;
+            }
+
+            Effects.Colors[0] = (LEDBulb)e.CurrentColor;
+
+            Effects.FixedColor();
         }
     }
 }
