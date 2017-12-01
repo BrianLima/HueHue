@@ -35,6 +35,8 @@ namespace HueHue.Views
         Joystick joystick;
         JoystickHelper joystickHelper;
 
+        int selectedJoystickIndex;
+
         public JoystickMode()
         {
             InitializeComponent();
@@ -51,7 +53,28 @@ namespace HueHue.Views
 
             RefreshJoysticks();
 
+            combo_joysticks.DataContext = selectedJoystickIndex;
+
+            for (int i = 0; i < guids.Count; i++)
+            {
+                if (guids[i].ToString() == App.settings.JoystickSelected)
+                {
+                    selectedJoystickIndex = i;
+                }
+            }
+
             buttonsToColors = new ObservableCollection<JoystickButtonToColor>();
+
+            if (guids.Count > 0)
+            {
+                foreach (var item in joystickHelper.LoadJoystickButtons(guids[selectedJoystickIndex]))
+                {
+                    buttonsToColors.Add(item);
+                }
+
+                HookSelectedJoystick();
+            }
+
             pressedButtons = new List<JoystickButtonToColor>();
 
             DefaultColor.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
@@ -66,6 +89,7 @@ namespace HueHue.Views
             }
 
             timer.Start();
+
         }
 
         private void ColorPanel_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
@@ -127,17 +151,30 @@ namespace HueHue.Views
             {
                 Effects.JoystickMode(pressedButtons, App.settings.Length);
             }
-
         }
 
         private void combo_joysticks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (guids.Count <= 0)
+            {
+                return;
+            }
+
             timer.Stop();
 
             if (joystick != null)
             {
                 joystick.Unacquire();
                 joystick.Dispose();
+            }
+
+            App.settings.JoystickSelected = guids[selectedJoystickIndex].ToString();
+
+            HookSelectedJoystick();
+
+            foreach (var item in joystickHelper.LoadJoystickButtons(guids[selectedJoystickIndex]))
+            {
+                buttonsToColors.Add(item);
             }
 
             timer.Start();
@@ -154,7 +191,7 @@ namespace HueHue.Views
             combo_joysticks.ItemsSource = joystickHelper.GetJoystickNames(guids);
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void HookSelectedJoystick()
         {
             joystick = joystickHelper.HookJoystick(guids[combo_joysticks.SelectedIndex]);
         }
@@ -168,7 +205,15 @@ namespace HueHue.Views
             buttonsToColors.Add(x);
             var panel = new ButtonToColor(buttonsToColors[buttonsToColors.Count - 1]);
             panel.colorPanel.ColorChanged += ColorPanel_ColorChanged;
+            panel.colorPanel.MouseLeave += ColorPanel_MouseLeave;
             StackColors.Children.Add(panel);
+
+            joystickHelper.SaveJoystickButtons(buttonsToColors.ToList(), guids[selectedJoystickIndex]);
+        }
+
+        private void ColorPanel_MouseLeave(object sender, MouseEventArgs e)
+        {
+            joystickHelper.SaveJoystickButtons(buttonsToColors.ToList(), guids[selectedJoystickIndex]);
         }
 
         private void combo_MultipleButtons_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -314,9 +314,9 @@ namespace HueHue.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int JoystickSelected {
+        public string JoystickSelected {
             get {
-                return ((int)(this["JoystickSelected"]));
+                return ((string)(this["JoystickSelected"]));
             }
             set {
                 this["JoystickSelected"] = value;

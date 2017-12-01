@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using SharpDX.DirectInput;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace HueHue.Helpers
 {
@@ -63,9 +65,35 @@ namespace HueHue.Helpers
 
             return result;
         }
-    }
 
-    
+        /// <summary>
+        /// Saves the list of buttons of the currently configured joystick
+        /// </summary>
+        /// <param name="buttons"></param>
+        /// <param name="guid"></param>
+        public void SaveJoystickButtons(List<JoystickButtonToColor> buttons, Guid guid)
+        {
+            var json = JsonConvert.SerializeObject(buttons);
+            File.WriteAllText(App.settings.AppData + guid.ToString() + ".json" , json);
+        }
+
+        /// <summary>
+        /// Checks if a file with a List<JoystickButtonToCollor> for a said joystick exists 
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns>A list of buttons for the said joystick</returns>
+        public List<JoystickButtonToColor> LoadJoystickButtons(Guid guid)
+        {
+            List<JoystickButtonToColor> result = new List<JoystickButtonToColor>();
+
+            if (File.Exists(App.settings.AppData + guid.ToString() + ".json"))
+            {
+                result = JsonConvert.DeserializeObject<List<JoystickButtonToColor>>(File.ReadAllText(App.settings.AppData + guid.ToString() + ".json"));
+            }
+
+            return result;
+        }
+    }
 
     public class JoystickButtonToColor
     {

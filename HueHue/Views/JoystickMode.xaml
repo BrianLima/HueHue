@@ -23,7 +23,7 @@
             <controls:ColorControlPanel x:Name="DefaultColor" Margin="10,29,10,10" Style="{StaticResource StyleColorControlPanel}" ColorChanged="ColorControlPanel_ColorChanged"/>
             <Label Content="Default Color:" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top"/>
         </Grid>
-        <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,0,4" Content="Joystick Responsive"/>
+        <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,0,4" Content="Joystick Reactive"/>
         <Border BorderBrush="{StaticResource PrimaryHueMidBrush}" Margin="10" Grid.Row="4" BorderThickness="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="3" Margin="0,9,-1,0">
                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical" x:Name="StackColors" CanVerticallyScroll="True"/>
@@ -34,9 +34,8 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <ComboBox Margin="174,4,105,0" VerticalAlignment="Top" Height="28" x:Name="combo_joysticks" SelectionChanged="combo_joysticks_SelectionChanged" SelectedIndex="{Binding JoystickSelected}"/>
+            <ComboBox Margin="174,4,105,0" VerticalAlignment="Top" Height="28" x:Name="combo_joysticks" SelectionChanged="combo_joysticks_SelectionChanged" SelectedIndex="{Binding /}"/>
             <TextBlock HorizontalAlignment="Left" Margin="75,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="94"><Run Text="Selected Joystick:"/></TextBlock>
-            <Button Content="Start" Margin="0,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="100" Click="Button_Click_1"/>
             <Button Content="Refresh" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Click="Button_Click"/>
             <ComboBox Margin="174,37,105,0" VerticalAlignment="Top" Height="28" x:Name="combo_MultipleButtons" SelectedIndex="{Binding JoystickMultipleButtons}" SelectionChanged="combo_MultipleButtons_SelectionChanged">
                 <ComboBoxItem Content="Color LEDs alternated"/>

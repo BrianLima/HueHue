@@ -12,6 +12,7 @@ namespace HueHue.Helpers
     public class AppSettings : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        public DirectoryInfo AppData = new DirectoryInfo(Environment.ExpandEnvironmentVariables("%appdata%") + @"/Briano/HueHue/");
 
         public AppSettings()
         {
@@ -40,24 +41,29 @@ namespace HueHue.Helpers
 
             CheckVersion();
 
-            if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "/Colors.json"))
+            if (!Directory.Exists(AppData.FullName))
             {
-                File.Create(AppDomain.CurrentDomain.BaseDirectory + "/Colors.json");
+                Directory.CreateDirectory(AppData.FullName);
+            }
+
+            if (!File.Exists(AppData.FullName + "Colors.json"))
+            {
+                File.Create(AppData.FullName + "Colors.json");
                 this._colors = new List<LEDBulb>() { new LEDBulb() { R = 255, G = 0, B = 0 } };
             }
             else
             {
-                this._colors = JsonConvert.DeserializeObject<List<LEDBulb>>(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Colors.json"));
+                this._colors = JsonConvert.DeserializeObject<List<LEDBulb>>(File.ReadAllText(AppData.FullName + "Colors.json"));
             }
 
-            if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "/Devices.json"))
+            if (!File.Exists(AppData.FullName + "Devices.json"))
             {
-                File.Create(AppDomain.CurrentDomain.BaseDirectory + "/Devices.json");
+                File.Create(AppData.FullName + "Devices.json");
                 this._devices = new List<Device>();
             }
             else
             {
-                this._devices = JsonConvert.DeserializeObject<List<Device>>(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Devices.json"));
+                this._devices = JsonConvert.DeserializeObject<List<Device>>(File.ReadAllText(AppData.FullName + "Devices.json"));
             }
 
             //Just in case one of the lists failed to parse and returned null, start a new list to prevent errors
@@ -177,7 +183,7 @@ namespace HueHue.Helpers
         public void SaveDevices()
         {
             var json = JsonConvert.SerializeObject(_devices);
-            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "/Devices.json", json);
+            File.WriteAllText(AppData.FullName + "Devices.json", json);
         }
 
         /// <summary>
@@ -186,7 +192,7 @@ namespace HueHue.Helpers
         public void SaveColors()
         {
             var json = JsonConvert.SerializeObject(_colors);
-            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "/Colors.json", json);
+            File.WriteAllText(AppData.FullName + "Colors.json", json);
         }
 
         private int _current_mode;
@@ -427,11 +433,11 @@ namespace HueHue.Helpers
             set { _joystick_use_default = value; OnPropertyChanged("JoystickUseDefault"); }
         }
 
-        private int _joystick_selected;
+        private string _joystick_selected;
         /// <summary>
         /// Gets or sets the selected joystick by the user
         /// </summary>
-        public int JoystickSelected
+        public string JoystickSelected
         {
             get { return _joystick_selected; }
             set { _joystick_selected = value; OnPropertyChanged("JoystickSelected"); }
