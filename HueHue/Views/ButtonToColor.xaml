@@ -23,11 +23,11 @@
         <Label Content="{Binding}" HorizontalContentAlignment="Left" HorizontalAlignment="Right" Margin="0,5,195,0" VerticalAlignment="Top" Height="26" Width="111" x:Name="labelBindedButton" />
         <Label Content="Binded Button:" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="51,5,0,0" VerticalAlignment="Top" Height="26" Width="88"/>
         <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                Margin="10,0,0,0" HorizontalAlignment="Left"
-                ToolTip="Add Button to Brightness" Click="Button_Expand_Click" Height="36" VerticalAlignment="Top" Grid.Row="0" Width="36">
+                Margin="14,5,0,0" HorizontalAlignment="Left"
+                ToolTip="Add Button to Brightness" Click="Button_Expand_Click" Height="30" VerticalAlignment="Top" Grid.Row="0" Width="32">
             <materialDesign:PackIcon Kind="ArrowRight" Height="24" Width="24" x:Name="icon"/>
         </Button>
-        <Rectangle Margin="414,5,0,0" RadiusY="4" RadiusX="4" HorizontalAlignment="Left" Width="26" Height="26" VerticalAlignment="Top" x:Name="rectangle" x:FieldModifier="public"/>
+        <Button Margin="414,5,0,0" HorizontalAlignment="Left" Width="26" Height="26" VerticalAlignment="Top" x:Name="rectangle" x:FieldModifier="public" Click="Button_Expand_Click" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
         <Label Content="Color:" HorizontalAlignment="Left" Margin="371,5,0,0" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

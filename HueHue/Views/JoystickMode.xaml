@@ -7,7 +7,7 @@
              xmlns:controls="clr-namespace:ColorTools;assembly=ColorTools"
              xmlns:local="clr-namespace:HueHue.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="510" d:DesignWidth="450">
+             d:DesignHeight="510" d:DesignWidth="450" Unloaded="UserControl_Unloaded" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -26,7 +26,8 @@
         <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,0,4" Content="Joystick Reactive"/>
         <Border BorderBrush="{StaticResource PrimaryHueMidBrush}" Margin="10" Grid.Row="4" BorderThickness="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="3" Margin="0,9,-1,0">
-                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical" x:Name="StackColors" CanVerticallyScroll="True"/>
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical" x:Name="StackColors" CanVerticallyScroll="True">
+                </StackPanel>
             </ScrollViewer>
         </Border>
         <Grid Margin="10,1,10,5" Grid.Row="1" x:Name="gridSettings">
@@ -34,15 +35,13 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <ComboBox Margin="174,4,105,0" VerticalAlignment="Top" Height="28" x:Name="combo_joysticks" SelectionChanged="combo_joysticks_SelectionChanged" SelectedIndex="{Binding /}"/>
+            <ComboBox Margin="174,4,105,0" VerticalAlignment="Top" Height="28" x:Name="combo_joysticks" SelectionChanged="combo_joysticks_SelectionChanged"/>
             <TextBlock HorizontalAlignment="Left" Margin="75,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="94"><Run Text="Selected Joystick:"/></TextBlock>
             <Button Content="Refresh" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Click="Button_Click"/>
             <ComboBox Margin="174,37,105,0" VerticalAlignment="Top" Height="28" x:Name="combo_MultipleButtons" SelectedIndex="{Binding JoystickMultipleButtons}" SelectionChanged="combo_MultipleButtons_SelectionChanged">
                 <ComboBoxItem Content="Color LEDs alternated"/>
                 <ComboBoxItem Content="Divide the strip in sections"/>
-                <ComboBoxItem Content="Divide the strip in halfs"/>
             </ComboBox>
-
             <ComboBox Margin="174,70,105,0" VerticalAlignment="Top" Height="28" x:Name="combo_UseDefault" SelectedIndex="{Binding JoystickUseDefault}" SelectionChanged="combo_UseDefault_SelectionChanged">
                 <ComboBoxItem Content="Do nothing"/>
                 <ComboBoxItem Content="Return to a default Color"/>
@@ -54,13 +53,13 @@
         </Grid>
 
         <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                Margin="0,0,12,10" HorizontalAlignment="Right"
-                ToolTip="Add Button to Color" VerticalAlignment="Bottom" Click="Button_AddButtonColor_Click" Grid.Row="4">
+                Margin="0,0,11.6,14.4" HorizontalAlignment="Right"
+                ToolTip="Add Button to Color" VerticalAlignment="Bottom" Click="Button_AddButtonColor_Click" Grid.Row="3">
             <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" />
         </Button>
         <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                Margin="0,0,57,10" HorizontalAlignment="Right"
-                ToolTip="Add Button to Brightness" VerticalAlignment="Bottom" Click="Button_AddButtonBrightness_Click" Grid.Row="4">
+                Margin="0,0,56.6,14.4" HorizontalAlignment="Right"
+                ToolTip="Add Button to Brightness" VerticalAlignment="Bottom" Click="Button_AddButtonBrightness_Click" Grid.Row="3">
             <materialDesign:PackIcon Kind="Brightness6" Height="24" Width="24"/>
         </Button>
     </Grid>

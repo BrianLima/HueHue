@@ -24,7 +24,7 @@ namespace HueHue.Views
             //Snake mode has a minimum of two colors for the effect
             while (Effects.Colors.Count < 2)
             {
-                Effects.Colors.Add(new LEDBulb(255, 255, 255));
+                Effects.Colors.Add(new LEDBulb());
             }
 
             timer = new DispatcherTimer()

@@ -38,6 +38,7 @@ namespace HueHue.Helpers
             this._width = Properties.Settings.Default.Width;
             this._joystick_multiple_buttons = Properties.Settings.Default.JoystickMultipleButtons;
             this._joystick_use_default = Properties.Settings.Default.JoystickUseDefault;
+            this.JoystickSelected = Properties.Settings.Default.JoystickSelected;
 
             CheckVersion();
 

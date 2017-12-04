@@ -12,7 +12,7 @@ namespace HueHue.Views
         {
             InitializeComponent();
 
-            this.DataContext = joystickButtonToColor;
+            gridMain.DataContext = joystickButtonToColor;
         }
     }
 }

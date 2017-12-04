@@ -19,7 +19,7 @@ namespace HueHue.Views
             this.colorPanel.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromRgb(buttonColor.Color.R, buttonColor.Color.G, buttonColor.Color.B));
             this.colorPanel.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromRgb(buttonColor.Color.R, buttonColor.Color.G, buttonColor.Color.B));
             this.labelBindedButton.DataContext = buttonColor.Button;
-            this.rectangle.Fill = new Media.SolidColorBrush((Media.Color.FromRgb(buttonColor.Color.R, buttonColor.Color.G, buttonColor.Color.B)));
+            this.rectangle.Background = new Media.SolidColorBrush((Media.Color.FromRgb(buttonColor.Color.R, buttonColor.Color.G, buttonColor.Color.B)));
         }
 
         private void Button_Expand_Click(object sender, RoutedEventArgs e)

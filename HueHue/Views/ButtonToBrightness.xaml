@@ -7,17 +7,17 @@
              xmlns:local="clr-namespace:HueHue.Views"
              mc:Ignorable="d" 
              d:DesignHeight="102.533" d:DesignWidth="300">
-    <Grid>
+    <Grid x:Name="gridMain">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Slider Margin="5.4,49,10,0" VerticalAlignment="Top" Grid.Column="1" x:Name="PressedBrightness" Value="{Binding Pressedrightness}" Minimum="0" Maximum="255"/>
-        <Label Content="Pressed Brightness:" HorizontalAlignment="Left" Margin="20,41,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <Label Content="Released Brightness:" Margin="11,72,166,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <Slider Margin="5.4,75,10,0" VerticalAlignment="Top" Grid.Column="1" Value="{Binding ReleasedBrightness}" Minimum="0" Maximum="255"/>
+        <Slider Margin="4.4,8,9,0" VerticalAlignment="Top" Grid.Column="1" x:Name="PressedBrightness" Value="{Binding PressedBrightness}" Style="{StaticResource MaterialDesignDiscreteSlider}" Minimum="0" Maximum="255"/>
+        <Label Content="Pressed Brightness:" HorizontalAlignment="Left" Margin="20,36,0,0" VerticalAlignment="Top"/>
+        <Label Content="Released Brightness:" Margin="11,62,166,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <Label Content="Binded Button:" Margin="45,10,0.6,0" VerticalAlignment="Top"/>
         <Label Content="{Binding Button}" Margin="4.4,10,10,0" VerticalAlignment="Top" Grid.Column="1" x:Name="BindedButton" Height="26"/>
-
+        <Rectangle Margin="81,91,81,0" RadiusY="4" RadiusX="4" x:Name="rectangle" x:FieldModifier="public" Grid.ColumnSpan="2" Fill="{StaticResource PrimaryHueLightBrush}" Height="4" VerticalAlignment="Top"/>
+        <Slider Margin="3.4,33,10,0" VerticalAlignment="Top" Grid.Column="1" Value="{Binding ReleasedBrightness}" Style="{StaticResource MaterialDesignDiscreteSlider}" Minimum="0" Maximum="255"/>
     </Grid>
 </UserControl>
