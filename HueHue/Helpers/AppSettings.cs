@@ -38,7 +38,8 @@ namespace HueHue.Helpers
             this._width = Properties.Settings.Default.Width;
             this._joystick_multiple_buttons = Properties.Settings.Default.JoystickMultipleButtons;
             this._joystick_use_default = Properties.Settings.Default.JoystickUseDefault;
-            this.JoystickSelected = Properties.Settings.Default.JoystickSelected;
+            this._joystick_selected = Properties.Settings.Default.JoystickSelected;
+            this._breath_randomize = Properties.Settings.Default.BreathRandomize;
 
             CheckVersion();
 
@@ -50,7 +51,7 @@ namespace HueHue.Helpers
             if (!File.Exists(AppData.FullName + "Colors.json"))
             {
                 File.Create(AppData.FullName + "Colors.json");
-                this._colors = new List<LEDBulb>() { new LEDBulb() { R = 255, G = 0, B = 0 } };
+                this._colors = new List<LEDBulb>() { new LEDBulb() { } };
             }
             else
             {
@@ -74,7 +75,7 @@ namespace HueHue.Helpers
             }
             if (_colors == null)
             {
-                _colors = new List<LEDBulb>() { new LEDBulb() { R = 255, G = 0, B = 0 } };
+                _colors = new List<LEDBulb>() { new LEDBulb() { } };
             }
         }
 
@@ -172,6 +173,9 @@ namespace HueHue.Helpers
                     break;
                 case "JoystickSelected":
                     Properties.Settings.Default.JoystickSelected = _joystick_selected;
+                    break;
+                case "BreathRandomize":
+                    Properties.Settings.Default.BreathRandomize = _breath_randomize;
                     break;
                 default:
                     break;
@@ -443,5 +447,16 @@ namespace HueHue.Helpers
             get { return _joystick_selected; }
             set { _joystick_selected = value; OnPropertyChanged("JoystickSelected"); }
         }
+
+        private bool _breath_randomize;
+        /// <summary>
+        /// Gets or sets if every time the brightness fade away, the color should change
+        /// </summary>
+        public bool BreathRandomize
+        {
+            get { return _breath_randomize; }
+            set { _breath_randomize = value; OnPropertyChanged("BreathRandomize"); }
+        }
+
     }
 }

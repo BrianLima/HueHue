@@ -322,5 +322,17 @@ namespace HueHue.Properties {
                 this["JoystickSelected"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool BreathRandomize {
+            get {
+                return ((bool)(this["BreathRandomize"]));
+            }
+            set {
+                this["BreathRandomize"] = value;
+            }
+        }
     }
 }

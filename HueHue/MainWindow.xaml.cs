@@ -98,7 +98,12 @@ namespace HueHue
                     frame.Navigate(new JoystickMode());
                     App.settings.Save();
                     break;
+
                 case 6:
+                    frame.Navigate(new BreathMode());
+                    App.settings.Save();
+                    break;
+                case 7:
                     frame.NavigationService.RemoveBackEntry();
                     frame.Content = "LED's currently shut off";
                     Effects.ShutOff();
