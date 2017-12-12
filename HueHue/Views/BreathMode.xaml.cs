@@ -27,6 +27,7 @@ namespace HueHue.Views
         CancellationTokenSource _cancellationTokenSource;
         private bool running = false;
         bool increase;
+        int brightness = 0;
 
         public BreathMode()
         {
@@ -50,29 +51,32 @@ namespace HueHue.Views
             {
                 try
                 {
-                    if (App.settings.Brightness == 0)
+                    if (increase)
+                    {
+                        brightness += App.settings.Length;
+                    }
+                    else
+                    {
+                        brightness -= App.settings.Length;
+                    }
+
+                    if (brightness <= 0)
                     {
                         increase = true;
                         if (App.settings.BreathRandomize)
                         {
                             Effects.Colors[0] = new LEDBulb();
                             Effects.FixedColor();
+                            brightness = 0;
                         }
                     }
-                    else if (App.settings.Brightness == 255)
+                    else if (brightness >= 255)
                     {
+                        brightness = 255;
                         increase = false;
                     }
 
-                    if (increase)
-                    {
-                        App.settings.Brightness++;
-                    }
-                    else
-                    {
-                        App.settings.Brightness--;
-                    }
-
+                    App.settings.Brightness = (byte)brightness;
                     Task.Delay(App.settings.Speed, cancellationToken).Wait(cancellationToken);
 
                 }

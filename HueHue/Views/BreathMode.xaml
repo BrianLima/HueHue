@@ -15,12 +15,14 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,0,12" Content="Breath Mode"/>
-        <Grid x:Name="gridMain" HorizontalAlignment="Left" Height="237" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="405">
+        <Grid x:Name="gridMain" HorizontalAlignment="Left" Height="270" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="405">
             <Slider x:Name="sliderSection" Value="{Binding Speed}" HorizontalAlignment="Right" Margin="0,-26,0,0" VerticalAlignment="Top" Width="197" Height="54" Minimum="1" Maximum="3000" Style="{StaticResource MaterialDesignDiscreteSlider}"/>
             <TextBlock HorizontalAlignment="Left" Margin="125,12,0,0" TextWrapping="Wrap" Text="Speed:" VerticalAlignment="Top"/>
-            <TextBlock HorizontalAlignment="Left" Margin="10,31,0,0" TextWrapping="Wrap" Text="Randomize color every loop:" VerticalAlignment="Top"/>
-            <ToggleButton x:Name="toggle_mode" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,31,160,0" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="{Binding BreathRandomize}" Height="16" HorizontalAlignment="Right" Width="32" Unchecked="toggle_mode_Unchecked" Checked="toggle_mode_Unchecked" />
-            <controls:ColorControlPanel x:Name="colorPanel" Margin="0,54,0,10" Style="{StaticResource StyleColorControlPanel}" ColorChanged="DefaultColor_ColorChanged"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,54,0,0" TextWrapping="Wrap" Text="Randomize color every loop:" VerticalAlignment="Top"/>
+            <ToggleButton x:Name="toggle_mode" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,54,160,0" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="{Binding BreathRandomize}" Height="16" HorizontalAlignment="Right" Width="32" Unchecked="toggle_mode_Unchecked" Checked="toggle_mode_Unchecked" />
+            <controls:ColorControlPanel x:Name="colorPanel" Margin="0,90,0,10" Style="{StaticResource StyleColorControlPanel}" ColorChanged="DefaultColor_ColorChanged"/>
+            <Slider x:Name="sliderSection_Copy" Value="{Binding Length}" HorizontalAlignment="Right" Margin="0,-5,0,0" VerticalAlignment="Top" Width="197" Height="54" Minimum="1" Maximum="10" Style="{StaticResource MaterialDesignDiscreteSlider}"/>
+            <TextBlock HorizontalAlignment="Left" Margin="56,33,0,0" TextWrapping="Wrap" Text="Increase in steps of:" VerticalAlignment="Top"/>
 
         </Grid>
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using Spectrum;
 
 namespace HueHue.Helpers
 {
@@ -9,11 +10,16 @@ namespace HueHue.Helpers
         /// </summary>
         public LEDBulb()
         {
+            //Feeding varied seeds trying to creat more random numbers
             Random random = new Random();
 
-            this.r = (byte)random.Next(255);
-            this.g = (byte)random.Next(255);
-            this.b = (byte)random.Next(255);
+            //Generating a random color via the HSL colorspace and then convert it to
+            //Tradicional RGB, this makes the software generate randomized, yet saturated colors
+            var BaseColor = new Color.HSL(random.Next(0, 360), .99, .5).ToRGB();
+
+            this.r = BaseColor.R;
+            this.g = BaseColor.G;
+            this.b = BaseColor.B;
         }
 
         /// <summary>
