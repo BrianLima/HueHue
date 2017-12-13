@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Spectrum;
 
 namespace HueHue.Helpers
 {
@@ -51,27 +52,15 @@ namespace HueHue.Helpers
 
         /// <summary>
         /// Applies the rainbow effect on the LED strip
-        /// https://krazydad.com/tutorials/makecolors.php
         /// </summary>
-        /// <param name="center"></param>
-        /// <param name="width"></param>
-        /// <param name="frequencyR"></param>
-        /// <param name="frequencyG"></param>
-        /// <param name="frequencyB"></param>
-        /// <param name="phaseR"></param>
-        /// <param name="phaseG"></param>
-        /// <param name="phaseB"></param>
-        public static void CalcRainbow(int center, int width, decimal frequencyR, decimal frequencyG, decimal frequencyB, int phaseR, int phaseG, int phaseB)
+        public static void CalcRainbow(double Saturation, double Lightness)
         {
-            for (int i = 0; i < LEDs.Count / 2; ++i)
-            {
-                var red = Math.Sin((double)(frequencyR * i + phaseR)) * width + center;
-                var grn = Math.Sin((double)(frequencyG * i + phaseG)) * width + center;
-                var blu = Math.Sin((double)(frequencyB * i + phaseB)) * width + center;
+            decimal HSLstep = 360M / LEDs.Count;
 
-                LEDs[i] = new LEDBulb((byte)red, (byte)grn, (byte)blu);
-                //To make the rainbow effect less jarring to the eye and more smooth, a workaround is to fill half the strip with it and then just mirror it along so it ends and starts with the same color
-                LEDs[LEDs.Count - i - 1] = new LEDBulb((byte)red, (byte)grn, (byte)blu);
+            for (int i = 0; i < LEDs.Count; i++)
+            {
+                //The HSL ColorSpace is WAY better do calculate this type of effect
+                LEDs[i] = new Color.HSL((double)Math.Ceiling(i * HSLstep), Saturation, Lightness);
             }
         }
 

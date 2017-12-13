@@ -44,29 +44,11 @@
     <Setting Name="Version" Type="System.String" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="FrequencyR" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">1</Value>
+    <Setting Name="Saturation" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">10</Value>
     </Setting>
-    <Setting Name="PhaseR" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="FrequencyG" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">2</Value>
-    </Setting>
-    <Setting Name="PhaseG" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">2</Value>
-    </Setting>
-    <Setting Name="FrequencyB" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">3</Value>
-    </Setting>
-    <Setting Name="PhaseB" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">4</Value>
-    </Setting>
-    <Setting Name="Center" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">127</Value>
-    </Setting>
-    <Setting Name="Width" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">128</Value>
+    <Setting Name="Lightness" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="JoystickMultipleButtons" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>

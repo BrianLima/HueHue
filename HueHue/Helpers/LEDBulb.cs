@@ -10,12 +10,11 @@ namespace HueHue.Helpers
         /// </summary>
         public LEDBulb()
         {
-            //Feeding varied seeds trying to creat more random numbers
             Random random = new Random();
 
             //Generating a random color via the HSL colorspace and then convert it to
             //Tradicional RGB, this makes the software generate randomized, yet saturated colors
-            var BaseColor = new Color.HSL(random.Next(0, 360), .99, .5).ToRGB();
+            var BaseColor = new Color.HSL(random.Next(0, 360), 1, .5).ToRGB();
 
             this.r = BaseColor.R;
             this.g = BaseColor.G;
@@ -80,6 +79,12 @@ namespace HueHue.Helpers
         public static explicit operator System.Drawing.Color(LEDBulb v)
         {
             return System.Drawing.Color.FromArgb(v.R, v.G, v.B);
+        }
+
+        public static implicit operator LEDBulb(Color.HSL hsl)
+        {
+            var rgb = hsl.ToRGB();
+            return new LEDBulb(rgb.R, rgb.G, rgb.B);
         }
     }
 }

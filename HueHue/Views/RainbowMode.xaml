@@ -16,43 +16,17 @@
         <ScrollViewer Margin="-1,10,10,0" Grid.Row="1">
             <Grid x:Name="GridRainbow">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="424"/>
                 </Grid.ColumnDefinitions>
                 <TextBox HorizontalAlignment="Left" Height="24" Margin="251,23,0,0" TextWrapping="Wrap" Text="{Binding Speed}" VerticalAlignment="Top" Width="49"/>
                 <Label Content="Speed:" HorizontalAlignment="Left" Margin="33,29,0,0" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="24" Margin="251,52,0,0" TextWrapping="Wrap" Text="{Binding FrequencyR}" VerticalAlignment="Top" Width="49"/>
-                <Label Content="Frequency R:" HorizontalAlignment="Left" Margin="1,58,0,0" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="24" Margin="251,87,0,0" TextWrapping="Wrap" Text="{Binding PhaseR}" VerticalAlignment="Top" Width="49"/>
-                <Label Content="Phase R:" HorizontalAlignment="Left" Margin="25,93,0,0" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="24" Margin="251,122,0,0" TextWrapping="Wrap" Text="{Binding FrequencyG}" VerticalAlignment="Top" Width="49"/>
-                <Label Content="Frequency G:" HorizontalAlignment="Left" Margin="0,128,0,0" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="24" Margin="251,157,0,0" TextWrapping="Wrap" Text="{Binding PhaseG}" VerticalAlignment="Top" Width="49"/>
-                <Label Content="Phase G:" HorizontalAlignment="Left" Margin="21,163,0,0" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="24" Margin="251,186,0,0" TextWrapping="Wrap" Text="{Binding FrequencyB}" VerticalAlignment="Top" Width="49"/>
-                <Label Content="Frequency B:" HorizontalAlignment="Left" Margin="2,192,0,0" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="24" Margin="251,215,0,0" TextWrapping="Wrap" Text="{Binding PhaseB}" VerticalAlignment="Top" Width="49"/>
-                <Label Content="Phase B:" HorizontalAlignment="Left" Margin="25,221,0,0" VerticalAlignment="Top"/>
-                <ComboBox HorizontalAlignment="Left" SelectionChanged="ComboBox_SelectionChanged" SelectedIndex="0" Margin="84,0,0,0" VerticalAlignment="Top" Width="159" x:Name="combo_preset">
-                    <ComboBoxItem Content="Custom" />
-                    <ComboBoxItem Content="Full Range"/>
-                    <ComboBoxItem Content="Pastel Colors" />
-                </ComboBox>
-                <Label Content="Preset:" HorizontalAlignment="Left" Margin="34,0,0,0" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="24" Margin="251,250,0,0" TextWrapping="Wrap" Text="{Binding Center}" VerticalAlignment="Top" Width="49"/>
-                <Label Content="Center:" HorizontalAlignment="Left" Margin="31,253,0,0" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="24" Margin="251,279,0,0" TextWrapping="Wrap" Text="{Binding Width}" VerticalAlignment="Top" Width="49"/>
-                <Label Content="Width:" HorizontalAlignment="Left" Margin="34,285,0,0" VerticalAlignment="Top"/>
-                <Slider x:Name="sliderSpeed" Value="{Binding Speed}" Margin="79,0,0,0" Minimum="10" Maximum="3000" Style="{StaticResource MaterialDesignDiscreteSlider}" ValueChanged="sliderSpeed_ValueChanged" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
-                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding FrequencyR}" Margin="79,29,0,0" Minimum="1" Maximum="30" SmallChange="1" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
-                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding PhaseR}" Margin="79,64,0,0" Minimum="0" Maximum="8" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
-                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding FrequencyG}" Margin="79,99,0,0" Minimum="1" Maximum="30" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
-                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding PhaseG}" Margin="79,134,0,0" Minimum="0" Maximum="8" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
-                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding FrequencyB}" Margin="79,163,0,0" Minimum="1" Maximum="30" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
-                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding PhaseB}" Margin="79,192,0,0" Minimum="0" Maximum="8" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
-                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding Center}" Margin="79,227,0,0" Minimum="1" Maximum="255" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
-                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding Width}" Margin="79,256,0,0" Minimum="1" Maximum="255" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
-                <TextBlock Grid.Column="1" Margin="10" TextWrapping="Wrap" Text="This mode calculates a wave of colors and moves it along the strip, it's fully customizable, so try to make it your own! Got a cool looking effect? Share it with the community!"/>
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="251,53,0,0" TextWrapping="Wrap" Text="{Binding Saturation}" VerticalAlignment="Top" Width="49"/>
+                <Label Content="Saturation:" HorizontalAlignment="Left" Margin="12,59,0,0" VerticalAlignment="Top"/>
+                <Slider x:Name="sliderSpeed" Value="{Binding Speed}" Margin="79,0,0,0" Minimum="1" Maximum="3000" Style="{StaticResource MaterialDesignDiscreteSlider}" ValueChanged="sliderSpeed_ValueChanged" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
+                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding Saturation}" Margin="79,30,0,0" Minimum="1" Maximum="10" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="251,82,0,0" TextWrapping="Wrap" Text="{Binding Lightness}" VerticalAlignment="Top" Width="49"/>
+                <Label Content="Lightness:" HorizontalAlignment="Left" Margin="12,88,0,0" VerticalAlignment="Top"/>
+                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding Lightness}" Margin="79,59,0,0" Minimum="1" Maximum="10" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172"/>
             </Grid>
         </ScrollViewer>
     </Grid>
