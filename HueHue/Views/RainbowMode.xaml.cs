@@ -28,7 +28,7 @@ namespace HueHue.Views
 
             GridRainbow.DataContext = App.settings;
 
-            Effects.CalcRainbow(App.settings.Length, App.settings.Saturation / 10, App.settings.Lightness / 10);
+            Effects.CalcRainbow(App.settings.Saturation / 10, App.settings.Lightness / 10);
         }
 
         private async void Timer_Tick(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace HueHue.Views
                 timer.Interval = TimeSpan.FromMilliseconds(e.NewValue);
                 timer.Start();
 
-                Effects.CalcRainbow(App.settings.Length, App.settings.Saturation / 10, App.settings.Lightness /10);
+                Effects.CalcRainbow(App.settings.Saturation / 10, App.settings.Lightness /10);
             }
         }
 
@@ -70,7 +70,7 @@ namespace HueHue.Views
         {
             if (timer != null && this.IsLoaded)
             {
-                Effects.CalcRainbow(App.settings.Length, App.settings.Saturation / 10, App.settings.Lightness / 10);
+                Effects.CalcRainbow(App.settings.Saturation / 10, App.settings.Lightness / 10);
             }
         }
     }
