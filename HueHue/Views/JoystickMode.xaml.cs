@@ -12,7 +12,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Threading;
 using Media = System.Windows.Media;
 
 namespace HueHue.Views
@@ -188,16 +187,8 @@ namespace HueHue.Views
 
             buttonsToColors = new ObservableCollection<JoystickButtonToColor>();
 
-            //if (joystick != null)
-            //{
-            //    joystick.Unacquire();
-            //    joystick.Dispose();
-            //}
-
             App.settings.JoystickSelected = guids[combo_joysticks.SelectedIndex].ToString();
             App.settings.Save();
-
-            //HookSelectedJoystick();
 
             foreach (var item in joystickHelper.LoadJoystickButtons(guids[combo_joysticks.SelectedIndex]))
             {
@@ -265,10 +256,15 @@ namespace HueHue.Views
         private async void Button_AddButtonColor_Click(object sender, RoutedEventArgs e)
         {
             var view = new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, JoystickButtonToColor.ButtonTypeEnum.Color);
-            var newButton = await DialogHost.Show(view);
-            var x = (JoystickButtonToColor)newButton;
-            x.ButtonType = JoystickButtonToColor.ButtonTypeEnum.Color; //TODO: REMOVE POG
-            buttonsToColors.Add(x);
+            JoystickButtonToColor newButton = (JoystickButtonToColor)await DialogHost.Show(view);
+
+            if (newButton == null)
+            {
+                return;
+            }
+
+            newButton.ButtonType = JoystickButtonToColor.ButtonTypeEnum.Color; //TODO: REMOVE POG
+            buttonsToColors.Add(newButton);
             var panel = new ButtonColorPicker(buttonsToColors[buttonsToColors.Count - 1]);
             panel.colorPanel.ColorChanged += ColorPanel_ColorChanged;
             panel.colorPanel.MouseLeave += ColorPanel_MouseLeave;
@@ -308,10 +304,15 @@ namespace HueHue.Views
         private async void Button_AddButtonBrightness_Click(object sender, RoutedEventArgs e)
         {
             var view = new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, JoystickButtonToColor.ButtonTypeEnum.Color);
-            var newButton = await DialogHost.Show(view);
-            var x = (JoystickButtonToColor)newButton;
-            x.ButtonType = JoystickButtonToColor.ButtonTypeEnum.Brightness; //TODO: REMOVE POG
-            buttonsToColors.Add(x);
+            JoystickButtonToColor newButton = (JoystickButtonToColor)await DialogHost.Show(view);
+
+            if (newButton == null)
+            {
+                return;
+            }
+
+            newButton.ButtonType = JoystickButtonToColor.ButtonTypeEnum.Brightness; //TODO: REMOVE POG
+            buttonsToColors.Add(newButton);
             var panel = new ButtonBrightnessPicker(buttonsToColors[buttonsToColors.Count - 1]);
             ContextMenu context = new ContextMenu();
             MenuItem menu = new MenuItem();
