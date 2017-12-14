@@ -1,20 +1,10 @@
 ﻿using HueHue.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Media = System.Windows.Media;
 
 namespace HueHue.Views
 {
@@ -25,7 +15,6 @@ namespace HueHue.Views
     {
         Thread _workerThread;
         CancellationTokenSource _cancellationTokenSource;
-        private bool running = false;
         bool increase;
         int brightness = 0;
 
@@ -35,10 +24,12 @@ namespace HueHue.Views
 
             gridMain.DataContext = App.settings;
 
+            colorPanel.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
+            colorPanel.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
+
             _cancellationTokenSource = new CancellationTokenSource();
             _workerThread = new Thread(BackgroundWorker_DoWork) { Name = "BreathEffect", IsBackground = true };
             _workerThread.Start(_cancellationTokenSource.Token);
-
 
             App.settings.Brightness = 0;
         }
@@ -99,7 +90,6 @@ namespace HueHue.Views
             _cancellationTokenSource = null;
             _workerThread.Join();
             _workerThread = null;
-            running = false;
         }
 
         private void toggle_mode_Unchecked(object sender, RoutedEventArgs e)

@@ -47,7 +47,7 @@ namespace HueHue.Views
                     {
                         buttonColor = new JoystickButtonToColor { Button = x.Offset, Color = new LEDBulb(), ButtonType = buttonType, PressedBrightness = 64, ReleasedBrightness = 255 };
                         timer.Stop();
-                        DialogHost.CloseDialogCommand.Execute(buttonColor, null);
+                        DialogHost.CloseDialogCommand.Execute(buttonColor, this);
                     }
                 }
             }

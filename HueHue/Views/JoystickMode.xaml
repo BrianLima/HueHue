@@ -7,7 +7,7 @@
              xmlns:controls="clr-namespace:ColorTools;assembly=ColorTools"
              xmlns:local="clr-namespace:HueHue.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="510" d:DesignWidth="450" Unloaded="UserControl_Unloaded" >
+             d:DesignHeight="510" d:DesignWidth="450" Unloaded="UserControl_Unloaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -18,7 +18,6 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <materialDesign:DialogHost x:Name="dialogHost" CloseOnClickAway="True" />
         <Grid HorizontalAlignment="Left" Margin="10,0,0,10" Grid.Row="2" Width="430" x:Name="gridDefaultColor" Visibility="Collapsed">
             <controls:ColorControlPanel x:Name="DefaultColor" Margin="10,29,10,10" Style="{StaticResource StyleColorControlPanel}" ColorChanged="ColorControlPanel_ColorChanged"/>
             <Label Content="Default Color:" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top"/>
@@ -26,8 +25,7 @@
         <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,0,4" Content="Joystick Reactive"/>
         <Border BorderBrush="{StaticResource PrimaryHueMidBrush}" Margin="10" Grid.Row="4" BorderThickness="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="3" Margin="0,9,-1,0">
-                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical" x:Name="StackColors" CanVerticallyScroll="True">
-                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical" x:Name="StackColors" CanVerticallyScroll="True"/>
             </ScrollViewer>
         </Border>
         <Grid Margin="10,1,10,5" Grid.Row="1" x:Name="gridSettings">
@@ -62,5 +60,6 @@
                 ToolTip="Add Button to Brightness" VerticalAlignment="Bottom" Click="Button_AddButtonBrightness_Click" Grid.Row="3">
             <materialDesign:PackIcon Kind="Brightness6" Height="24" Width="24"/>
         </Button>
+        <materialDesign:DialogHost x:Name="dialogHost" CloseOnClickAway="True" Grid.RowSpan="4" />
     </Grid>
 </UserControl>

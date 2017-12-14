@@ -23,6 +23,11 @@ namespace HueHue.Helpers
                 results.Add(deviceInstance.InstanceGuid);
             }
 
+            foreach (var deviceInstance in directInput.GetDevices(DeviceType.Gamepad, DeviceEnumerationFlags.AllDevices))
+            {
+                results.Add(deviceInstance.InstanceGuid);
+            }
+
             foreach (var deviceInstance in directInput.GetDevices(DeviceType.ControlDevice, DeviceEnumerationFlags.AllDevices))
             {
                 results.Add(deviceInstance.InstanceGuid);

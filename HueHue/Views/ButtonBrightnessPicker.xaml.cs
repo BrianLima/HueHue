@@ -6,9 +6,9 @@ namespace HueHue.Views
     /// <summary>
     /// Interaction logic for AddButtonToBrightness.xaml
     /// </summary>
-    public partial class ButtonToBrightness : UserControl
+    public partial class ButtonBrightnessPicker : UserControl
     {
-        public ButtonToBrightness(JoystickButtonToColor joystickButtonToColor)
+        public ButtonBrightnessPicker(JoystickButtonToColor joystickButtonToColor)
         {
             InitializeComponent();
 

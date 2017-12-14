@@ -113,11 +113,11 @@
     <Compile Include="Views\BreathMode.xaml.cs">
       <DependentUpon>BreathMode.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ButtonToBrightness.xaml.cs">
-      <DependentUpon>ButtonToBrightness.xaml</DependentUpon>
+    <Compile Include="Views\ButtonBrightnessPicker.xaml.cs">
+      <DependentUpon>ButtonBrightnessPicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ButtonToColor.xaml.cs">
-      <DependentUpon>ButtonToColor.xaml</DependentUpon>
+    <Compile Include="Views\ButtonColorPicker.xaml.cs">
+      <DependentUpon>ButtonColorPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Devices\AddArduinoView.xaml.cs">
       <DependentUpon>AddArduinoView.xaml</DependentUpon>
@@ -167,11 +167,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ButtonToBrightness.xaml">
+    <Page Include="Views\ButtonBrightnessPicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ButtonToColor.xaml">
+    <Page Include="Views\ButtonColorPicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

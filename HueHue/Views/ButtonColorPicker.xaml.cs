@@ -8,11 +8,11 @@ namespace HueHue.Views
     /// <summary>
     /// Interaction logic for ButtonToColor.xaml
     /// </summary>
-    public partial class ButtonToColor : UserControl
+    public partial class ButtonColorPicker : UserControl
     {
         bool expanded = false;
 
-        public ButtonToColor(JoystickButtonToColor buttonColor)
+        public ButtonColorPicker(JoystickButtonToColor buttonColor)
         {
             InitializeComponent();
 

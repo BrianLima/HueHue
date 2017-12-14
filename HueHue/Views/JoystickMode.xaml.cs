@@ -1,23 +1,18 @@
-﻿using System;
+﻿using ColorTools;
+using HueHue.Helpers;
+using MaterialDesignThemes.Wpf;
+using SharpDX.DirectInput;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using SharpDX.DirectInput;
 using System.Windows.Threading;
-using HueHue.Helpers;
-using MaterialDesignThemes.Wpf;
-using System.Collections.ObjectModel;
-using ColorTools;
 using Media = System.Windows.Media;
 
 namespace HueHue.Views
@@ -27,11 +22,13 @@ namespace HueHue.Views
     /// </summary>
     public partial class JoystickMode : UserControl
     {
-        DispatcherTimer timer;
+        private Thread _workerThread;
+        private CancellationTokenSource _cancellationTokenSource;
+        bool running = false;
+
         ObservableCollection<JoystickButtonToColor> buttonsToColors;
         List<JoystickButtonToColor> pressedButtons;
         List<Guid> guids;
-        Joystick joystick;
         JoystickHelper joystickHelper;
 
         public JoystickMode()
@@ -41,12 +38,6 @@ namespace HueHue.Views
             Application.Current.Exit += Current_Exit;
 
             gridSettings.DataContext = App.settings;
-
-            timer = new DispatcherTimer()
-            {
-                Interval = TimeSpan.FromMilliseconds(10)
-            };
-            timer.Tick += Timer_Tick;
 
             joystickHelper = new JoystickHelper();
             buttonsToColors = new ObservableCollection<JoystickButtonToColor>();
@@ -59,6 +50,7 @@ namespace HueHue.Views
                 if (guids[i].ToString() == App.settings.JoystickSelected)
                 {
                     combo_joysticks.SelectedIndex = i;
+                    Start();
                 }
             }
 
@@ -66,71 +58,123 @@ namespace HueHue.Views
             DefaultColor.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
         }
 
+        private void Start()
+        {
+            if (_workerThread != null) return;
+
+            selectedjoystick = combo_joysticks.SelectedIndex;
+
+
+            _cancellationTokenSource = new CancellationTokenSource();
+            _workerThread = new Thread(BackgroundWorker_DoWork)
+            {
+                Name = "Joystick Hook",
+                IsBackground = true
+            };
+            _workerThread.Start(_cancellationTokenSource.Token);
+            running = true;
+        }
+
+        public void Stop()
+        {
+            if (_workerThread == null) return;
+
+            _cancellationTokenSource.Cancel();
+            _cancellationTokenSource = null;
+            _workerThread.Join();
+            _workerThread = null;
+            running = false;
+        }
+
+        int selectedjoystick;
+
+        private void BackgroundWorker_DoWork(object tokenObject)
+        {
+            var cancellationToken = (CancellationToken)tokenObject;
+            Joystick joystick = joystickHelper.HookJoystick(guids[selectedjoystick]); ;
+
+            while (!cancellationToken.IsCancellationRequested)
+            {
+                try
+                {
+                    if (joystick == null)
+                    {
+                        return;
+                    }
+
+                    joystick.Poll();
+
+                    joystick.GetCurrentState();
+                    var datas = joystick.GetBufferedData();
+
+                    foreach (var state in datas)
+                    {
+                        JoystickButtonToColor Pressed = buttonsToColors.FirstOrDefault(x => x.Button == state.Offset);
+                        if (Pressed != null)
+                        {
+                            if (Pressed.ButtonType == JoystickButtonToColor.ButtonTypeEnum.Color)
+                            {
+                                if (state.Value > 0)
+                                {
+                                    pressedButtons.Add(Pressed);
+                                }
+                                else
+                                {
+                                    pressedButtons.Remove(Pressed);
+                                }
+                            }
+                            else
+                            {
+                                if (state.Value != 32511) //Guitar strum bar is centered
+                                {
+                                    App.settings.Brightness = Pressed.PressedBrightness;
+                                }
+                                else
+                                {
+                                    App.settings.Brightness = Pressed.ReleasedBrightness;
+                                }
+                            }
+                        }
+                    }
+
+                    if (pressedButtons.Count == 0 && App.settings.JoystickUseDefault > 0)
+                    {
+                        Effects.FixedColor();
+                    }
+                    else
+                    {
+                        Effects.JoystickMode(pressedButtons, App.settings.Length);
+                    }
+
+                    Task.Delay(16, cancellationToken).Wait(cancellationToken); //60 FPS
+                }
+                catch (OperationCanceledException)
+                {
+                    return;
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
         private void Current_Exit(object sender, ExitEventArgs e)
         {
-            timer.Stop();
-            joystickHelper.SaveJoystickButtons(buttonsToColors.ToList(), guids[combo_joysticks.SelectedIndex]);
+            Stop();
+            if (combo_joysticks.SelectedIndex >= 0)
+            {
+                joystickHelper.SaveJoystickButtons(buttonsToColors.ToList(), guids[combo_joysticks.SelectedIndex]);
+            }
         }
 
         private void ColorPanel_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
         {
             int index = StackColors.Children.IndexOf(((Grid)(((ColorControlPanel)sender).Parent)).Parent as UIElement);
 
-            ((ButtonToColor)StackColors.Children[index]).rectangle.Background = new SolidColorBrush(Color.FromRgb(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B));
+            ((ButtonColorPicker)StackColors.Children[index]).rectangle.Background = new SolidColorBrush(Color.FromRgb(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B));
 
             buttonsToColors[index].Color = (LEDBulb)e.CurrentColor;
-        }
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            if (joystick == null || !this.IsLoaded)
-            {
-                return;
-            }
-
-            joystick.Poll();
-
-            joystick.GetCurrentState();
-            var datas = joystick.GetBufferedData();
-
-            foreach (var state in datas)
-            {
-                JoystickButtonToColor Pressed = buttonsToColors.FirstOrDefault(x => x.Button == state.Offset);
-                if (Pressed != null)
-                {
-                    if (Pressed.ButtonType == JoystickButtonToColor.ButtonTypeEnum.Color)
-                    {
-                        if (state.Value > 0)
-                        {
-                            pressedButtons.Add(Pressed);
-                        }
-                        else
-                        {
-                            pressedButtons.Remove(Pressed);
-                        }
-                    }
-                    else
-                    {
-                        if (state.Value != 32511) //Guitar strum bar is centered
-                        {
-                            App.settings.Brightness = Pressed.PressedBrightness;
-                        }
-                        else
-                        {
-                            App.settings.Brightness = Pressed.ReleasedBrightness;
-                        }
-                    }
-                }
-            }
-
-            if (pressedButtons.Count == 0 && App.settings.JoystickUseDefault > 0)
-            {
-                Effects.FixedColor();
-            }
-            else
-            {
-                Effects.JoystickMode(pressedButtons, App.settings.Length);
-            }
         }
 
         private void combo_joysticks_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -140,20 +184,20 @@ namespace HueHue.Views
                 return;
             }
 
-            timer.Stop();
+            Stop();
 
             buttonsToColors = new ObservableCollection<JoystickButtonToColor>();
 
-            if (joystick != null)
-            {
-                joystick.Unacquire();
-                joystick.Dispose();
-            }
+            //if (joystick != null)
+            //{
+            //    joystick.Unacquire();
+            //    joystick.Dispose();
+            //}
 
             App.settings.JoystickSelected = guids[combo_joysticks.SelectedIndex].ToString();
             App.settings.Save();
 
-            HookSelectedJoystick();
+            //HookSelectedJoystick();
 
             foreach (var item in joystickHelper.LoadJoystickButtons(guids[combo_joysticks.SelectedIndex]))
             {
@@ -165,7 +209,7 @@ namespace HueHue.Views
                 var item = buttonsToColors[i];
                 if (item.ButtonType == JoystickButtonToColor.ButtonTypeEnum.Color)
                 {
-                    var panel = new ButtonToColor(item);
+                    var panel = new ButtonColorPicker(item);
                     panel.colorPanel.ColorChanged += ColorPanel_ColorChanged;
                     ContextMenu context = new ContextMenu();
                     MenuItem menu = new MenuItem();
@@ -179,7 +223,7 @@ namespace HueHue.Views
                 }
                 else
                 {
-                    var panel = new ButtonToBrightness(item);
+                    var panel = new ButtonBrightnessPicker(item);
 
                     ContextMenu context = new ContextMenu();
                     MenuItem menu = new MenuItem();
@@ -192,7 +236,7 @@ namespace HueHue.Views
                 }
             }
 
-            timer.Start();
+            Start();
         }
 
         private void Item_Click(object sender, RoutedEventArgs e)
@@ -218,16 +262,6 @@ namespace HueHue.Views
             combo_joysticks.ItemsSource = joystickHelper.GetJoystickNames(guids);
         }
 
-        private void HookSelectedJoystick()
-        {
-            if (combo_joysticks.SelectedIndex < 0)
-            {
-                return;
-            }
-
-            joystick = joystickHelper.HookJoystick(guids[combo_joysticks.SelectedIndex]);
-        }
-
         private async void Button_AddButtonColor_Click(object sender, RoutedEventArgs e)
         {
             var view = new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, JoystickButtonToColor.ButtonTypeEnum.Color);
@@ -235,7 +269,7 @@ namespace HueHue.Views
             var x = (JoystickButtonToColor)newButton;
             x.ButtonType = JoystickButtonToColor.ButtonTypeEnum.Color; //TODO: REMOVE POG
             buttonsToColors.Add(x);
-            var panel = new ButtonToColor(buttonsToColors[buttonsToColors.Count - 1]);
+            var panel = new ButtonColorPicker(buttonsToColors[buttonsToColors.Count - 1]);
             panel.colorPanel.ColorChanged += ColorPanel_ColorChanged;
             panel.colorPanel.MouseLeave += ColorPanel_MouseLeave;
 
@@ -278,7 +312,7 @@ namespace HueHue.Views
             var x = (JoystickButtonToColor)newButton;
             x.ButtonType = JoystickButtonToColor.ButtonTypeEnum.Brightness; //TODO: REMOVE POG
             buttonsToColors.Add(x);
-            var panel = new ButtonToBrightness(buttonsToColors[buttonsToColors.Count - 1]);
+            var panel = new ButtonBrightnessPicker(buttonsToColors[buttonsToColors.Count - 1]);
             ContextMenu context = new ContextMenu();
             MenuItem menu = new MenuItem();
             menu.Header = "Remove";
@@ -315,8 +349,11 @@ namespace HueHue.Views
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            timer.Stop();
-            joystickHelper.SaveJoystickButtons(buttonsToColors.ToList(), guids[combo_joysticks.SelectedIndex]);
+            Stop();
+            if (combo_joysticks.SelectedIndex >= 0)
+            {
+                joystickHelper.SaveJoystickButtons(buttonsToColors.ToList(), guids[combo_joysticks.SelectedIndex]);
+            }
         }
     }
 }
