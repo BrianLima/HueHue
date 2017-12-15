@@ -119,6 +119,9 @@
     <Compile Include="Views\ButtonColorPicker.xaml.cs">
       <DependentUpon>ButtonColorPicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CometMode.xaml.cs">
+      <DependentUpon>CometMode.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Devices\AddArduinoView.xaml.cs">
       <DependentUpon>AddArduinoView.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ButtonColorPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CometMode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

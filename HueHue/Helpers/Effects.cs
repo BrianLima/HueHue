@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Spectrum;
 
 namespace HueHue.Helpers
@@ -44,10 +45,16 @@ namespace HueHue.Helpers
         /// <summary>
         /// Shifts the LEDs to the right, placing the last one at first
         /// </summary>
-        public static void ShiftRight()
+        public static void ShiftLeft()
         {
             LEDs.Insert(0, LEDs[LEDs.Count - 1]);
             LEDs.RemoveAt(LEDs.Count - 1);
+        }
+
+        public static void ShiftRight()
+        {
+            LEDs.Insert(LEDs.Count - 1, LEDs[0]);
+            LEDs.RemoveAt(0);
         }
 
         /// <summary>
@@ -89,6 +96,57 @@ namespace HueHue.Helpers
                     }
                 }
             }
+        }
+
+        public static void CometMode(List<LEDBulb> Comet)
+        {
+            Random r = new Random();
+            int initialPosition = r.Next(App.settings.Length, Effects.LEDs.Count - App.settings.Length);
+            int lefOrRight = r.Next(0, 1); //If it sorts 0, throw the comet to the left, if 1, to the right
+
+            LEDs.InsertRange(initialPosition, Comet); //Insert the comet array on the list of LEDs             
+            Thread.Sleep(App.settings.Speed);
+
+            int steps;
+            if (lefOrRight == 0)
+            {
+                steps = LEDs.Count - initialPosition;
+
+                for (int i = 0; i < Comet.Count; i++) //Remove the excess of LEDs
+                {
+                    LEDs.RemoveAt(LEDs.Count - 1);
+                }
+
+                for (int i = initialPosition; i < LEDs.Count; i++)
+                {
+                    ShiftLeft();
+
+                    if (i + Comet.Count > LEDs.Count)
+                    {
+                        LEDs[i] = Colors[0];
+                    }
+
+                    Thread.Sleep(App.settings.Speed);
+
+                }
+            }
+            else
+            {
+                steps = initialPosition - LEDs.Count;
+
+                for (int i = initialPosition; i > 0; i--)
+                {
+                    ShiftRight();
+
+                    if (i < Comet.Count)
+                    {
+                        LEDs[i] = Colors[0];
+                    }
+
+                    Thread.Sleep(App.settings.Speed);
+                }
+            }
+
         }
 
         /// <summary>

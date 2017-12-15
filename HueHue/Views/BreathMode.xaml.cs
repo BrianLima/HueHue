@@ -71,6 +71,10 @@ namespace HueHue.Views
                     Task.Delay(App.settings.Speed, cancellationToken).Wait(cancellationToken);
 
                 }
+                catch (OperationCanceledException)
+                {
+                    return;
+                }
                 catch (Exception)
                 {
                 }

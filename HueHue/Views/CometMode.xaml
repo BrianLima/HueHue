@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:ColorTools="clr-namespace:ColorTools;assembly=ColorTools" x:Class="HueHue.Views.CometMode"
              mc:Ignorable="d" 
-             d:DesignHeight="513.5" d:DesignWidth="425">
+             d:DesignHeight="513.5" d:DesignWidth="425" Unloaded="UserControl_Unloaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -15,14 +15,14 @@
         </Grid.RowDefinitions>
         <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,0,10" Content="Comet Mode"/>
 
-        <ColorTools:ColorControlPanel x:Name="backgroundColor" Margin="0,115,0,177" Style="{StaticResource StyleColorControlPanel}" ColorChanged="DefaultColor_ColorChanged" Grid.Row="1"/>
-        <ColorTools:ColorControlPanel x:Name="cometColor" Margin="0,282,0,10" Style="{StaticResource StyleColorControlPanel}" ColorChanged="DefaultColor_ColorChanged" Grid.Row="1"/>
+        <ColorTools:ColorControlPanel x:Name="backgroundColor" Margin="0,115,0,177" Style="{StaticResource StyleColorControlPanel}" ColorChanged="BackgroundColor_ColorChanged" Grid.Row="1"/>
+        <ColorTools:ColorControlPanel x:Name="cometColor" Margin="0,282,0,10" Style="{StaticResource StyleColorControlPanel}" ColorChanged="TailColor_ColorChanged" Grid.Row="1"/>
         <TextBlock HorizontalAlignment="Left" Margin="17,54,0,0" TextWrapping="Wrap" Text="Randomize tail color:" VerticalAlignment="Top" Grid.Row="1"/>
-        <ToggleButton x:Name="toggle_mode" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,54,174,0" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="{Binding BreathRandomize}" Height="16" HorizontalAlignment="Right" Width="32" Unchecked="toggle_mode_Unchecked" Checked="toggle_mode_Unchecked" Grid.Row="1" />
+        <ToggleButton x:Name="toggle_mode" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,54,174,0" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="{Binding BreathRandomize}" Height="16" HorizontalAlignment="Right" Width="32" Grid.Row="1" />
         <Slider x:Name="sliderSection_Copy" Value="{Binding Length}" HorizontalAlignment="Right" Margin="0,55,10,0" VerticalAlignment="Top" Width="196" Height="54" Minimum="1" Maximum="10" Style="{StaticResource MaterialDesignDiscreteSlider}" Grid.RowSpan="2"/>
         <TextBlock HorizontalAlignment="Left" Margin="67,33,0,0" TextWrapping="Wrap" Text="Tail Length:" VerticalAlignment="Top" Grid.Row="1"/>
-        <Slider x:Name="sliderSection_Copy1" Value="{Binding Length}" HorizontalAlignment="Right" Margin="0,32,10,0" VerticalAlignment="Top" Width="196" Height="54" Minimum="1" Maximum="10" Style="{StaticResource MaterialDesignDiscreteSlider}" Grid.RowSpan="2"/>
-        <TextBlock HorizontalAlignment="Left" Margin="67,10,0,0" TextWrapping="Wrap" Text="Tail Length:" VerticalAlignment="Top" Grid.Row="1"/>
+        <Slider x:Name="sliderSection_Copy1" Value="{Binding Speed}" HorizontalAlignment="Right" Margin="0,32,10,0" VerticalAlignment="Top" Width="196" Height="54" Minimum="1" Maximum="10" Style="{StaticResource MaterialDesignDiscreteSlider}" Grid.RowSpan="2"/>
+        <TextBlock HorizontalAlignment="Left" Margin="33,10,0,0" TextWrapping="Wrap" Text="Frequency/Speed:" VerticalAlignment="Top" Grid.Row="1"/>
 
     </Grid>
 </UserControl>

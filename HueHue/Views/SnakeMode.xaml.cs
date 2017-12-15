@@ -82,7 +82,7 @@ namespace HueHue.Views
         {
             if (timer != null && this.IsLoaded)
             {
-                await Task.Run(() => Effects.ShiftRight());
+                await Task.Run(() => Effects.ShiftLeft());
             }
         }
 

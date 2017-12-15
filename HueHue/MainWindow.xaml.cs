@@ -72,6 +72,8 @@ namespace HueHue
 
         public void NavigateModes()
         {
+            frame.NavigationService.RemoveBackEntry();
+
             switch (comboBox.SelectedIndex)
             {
                 case 0:
@@ -98,18 +100,18 @@ namespace HueHue
                     frame.Navigate(new JoystickMode());
                     App.settings.Save();
                     break;
-
                 case 6:
                     frame.Navigate(new BreathMode());
                     App.settings.Save();
                     break;
                 case 7:
-                    frame.NavigationService.RemoveBackEntry();
-                    frame.Content = "LED's currently shut off";
-                    Effects.ShutOff();
+                    frame.Navigate(new CometMode());
                     App.settings.Save();
                     break;
                 default:
+                    frame.Content = "LED's currently shut off";
+                    Effects.ShutOff();
+                    App.settings.Save();
                     break;
             }
         }
