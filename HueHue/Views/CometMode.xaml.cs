@@ -31,6 +31,11 @@ namespace HueHue.Views
         {
             InitializeComponent();
 
+            while (Effects.Colors.Count< 2)
+            {
+                Effects.Colors.Add(new LEDBulb());
+            }
+
             backgroundColor.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
             backgroundColor.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
             cometColor.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
@@ -64,7 +69,7 @@ namespace HueHue.Views
                         {
                             comet[i].R = Byte.Parse((Effects.Colors[0].R - (RStep * i)).ToString());
                         }
-                        else
+                        else if (RStep < 0)
                         {
                             comet[i].R = Byte.Parse(((RStep * i) + Effects.Colors[1].R).ToString());
                         }
@@ -73,7 +78,7 @@ namespace HueHue.Views
                         {
                             comet[i].G = Byte.Parse((Effects.Colors[0].G - (GStep * i)).ToString());
                         }
-                        else
+                        else if (GStep < 0)
                         {
                             comet[i].G = Byte.Parse(((GStep * i) + Effects.Colors[1].G).ToString());
                         }
@@ -81,7 +86,7 @@ namespace HueHue.Views
                         {
                             comet[i].B = Byte.Parse((Effects.Colors[0].B - (BStep * i)).ToString());
                         }
-                        else
+                        else if (BStep < 0)
                         {
                             comet[i].B = Byte.Parse(((BStep * i) + Effects.Colors[1].B).ToString());
                         }
