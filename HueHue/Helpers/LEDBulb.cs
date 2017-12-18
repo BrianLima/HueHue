@@ -21,6 +21,14 @@ namespace HueHue.Helpers
             this.b = BaseColor.B;
         }
 
+        public LEDBulb(LEDBulb origin)
+        {
+            this.r = origin.r;
+            this.g = origin.g;
+            this.b = origin.b;
+        }
+
+
         /// <summary>
         /// Initilizes with a determined color
         /// </summary>

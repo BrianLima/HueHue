@@ -100,6 +100,11 @@ namespace HueHue.Helpers
 
         public static void CometMode(List<LEDBulb> Comet)
         {
+            for (int i = 0; i < LEDs.Count; i++)
+            {
+                LEDs[i] = new LEDBulb(Effects.Colors[0]);
+            }
+
             Random r = new Random();
             int initialPosition = r.Next(App.settings.Length, Effects.LEDs.Count - App.settings.Length);
             int lefOrRight = r.Next(0, 1); //If it sorts 0, throw the comet to the left, if 1, to the right
@@ -127,7 +132,6 @@ namespace HueHue.Helpers
                     }
 
                     Thread.Sleep(App.settings.Speed);
-
                 }
             }
             else
