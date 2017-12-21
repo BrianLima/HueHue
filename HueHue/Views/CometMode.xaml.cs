@@ -1,4 +1,5 @@
-﻿using HueHue.Helpers;
+﻿using Spectrum;
+using HueHue.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,9 +56,9 @@ namespace HueHue.Views
             {
                 try
                 {
-                    Decimal RStep = (Decimal)(Effects.Colors[0].R - Effects.Colors[1].R) / (App.settings.Length + 1);
-                    Decimal GStep = (Decimal)(Effects.Colors[0].G - Effects.Colors[1].G) / (App.settings.Length + 1);
-                    Decimal BStep = (Decimal)(Effects.Colors[0].B - Effects.Colors[1].B) / (App.settings.Length + 1);
+                    var Origin = new Spectrum.Color.RGB(Effects.Colors[0].R,Effects.Colors[0].G, Effects.Colors[0].B).ToHSL();
+
+                    var Destiny = new Spectrum.Color.RGB(Effects.Colors[1].R, Effects.Colors[1].G, Effects.Colors[1].B).ToHSL();
 
                     List<LEDBulb> comet = new List<LEDBulb>();
 
@@ -66,25 +67,36 @@ namespace HueHue.Views
                         comet.Add(new LEDBulb());
                     }
 
-                    comet[0] = Effects.Colors[0];
-                    comet[comet.Count - 1] = Effects.Colors[1];
+                    var step = (Origin.H - Destiny.H) / comet.Count;
 
-                    for (int i = 1; i < comet.Count - 1; i++)
+                    if (step > 0)
                     {
-                        Console.WriteLine(i);
-                        if (RStep > 1 || RStep < -1)
+                        for (int i = 1; i <= comet.Count; i++)
                         {
-                            comet[i].R = Byte.Parse(Math.Floor(comet[i - 1].R - RStep).ToString());
-                        }
-                        if (GStep > 1 || GStep < -1)
-                        {
-                            comet[i].G = Byte.Parse(Math.Floor(comet[i - 1].G - GStep).ToString());
-                        }
-                        if (BStep > 1 || BStep < -1)
-                        {
-                            comet[i].B = Byte.Parse(Math.Floor(comet[i - 1].B - BStep).ToString());
+                            comet[i - 1] = new Spectrum.Color.HSL(step * i, Origin.S, Origin.L);
                         }
                     }
+
+
+                    //comet[0] = Effects.Colors[0];
+                    //comet[comet.Count - 1] = Effects.Colors[1];
+
+                    //for (int i = 1; i < comet.Count - 1; i++)
+                    //{
+                    //    Console.WriteLine(i);
+                    //    if (RStep > 1 || RStep < -1)
+                    //    {
+                    //        comet[i].R = Byte.Parse(Math.Floor(comet[i - 1].R - RStep).ToString());
+                    //    }
+                    //    if (GStep > 1 || GStep < -1)
+                    //    {
+                    //        comet[i].G = Byte.Parse(Math.Floor(comet[i - 1].G - GStep).ToString());
+                    //    }
+                    //    if (BStep > 1 || BStep < -1)
+                    //    {
+                    //        comet[i].B = Byte.Parse(Math.Floor(comet[i - 1].B - BStep).ToString());
+                    //    }
+                    //}
 
                     //for (int i = 0; i < App.settings.Length; i++)
                     //{
