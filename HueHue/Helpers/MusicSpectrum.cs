@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HueHue;
+using System;
 using CSCore.DSP;
-using System.Drawing;
-using HueHue.Helpers;
 
 namespace HueHue.Helpers
 {
@@ -31,35 +24,36 @@ namespace HueHue.Helpers
             }
             if (spectrumPoints[1].Value > 0)
             {
-                Effects.Colors[0].G = CalculateScale(spectrumPoints[0].Value);
+                Effects.Colors[0].G = CalculateScale(spectrumPoints[1].Value);
             }
             if (spectrumPoints[2].Value > 0)
             {
-                Effects.Colors[0].B = CalculateScale(spectrumPoints[0].Value);
+                Effects.Colors[0].B = CalculateScale(spectrumPoints[2].Value);
             }
         }
 
-        private double minimum;
-        private double maximum;
+        private const int intervalLength = 255;
+        private double minimum = Double.MaxValue;
+        private double maximum = Double.MinValue;
 
         public byte CalculateScale(double value)
         {
-            if (value == 0)
-            {
-                return 0;
-            }
-            else if (value < minimum)
+            if (value < minimum)//value can be min and max at 1st step
             {
                 minimum = value;
             }
-            else if (value > maximum)
+            if (value > maximum)
             {
                 maximum = value;
             }
 
-            var x = 255/maximum;
+            double delta = maximum - minimum;//total interval which will be mapped to 255
+            if (delta.Equals(0.0))//will be at 1st step.
+            {
+                return 0;
+            }
 
-            return (byte)(x*value);
+            return (byte)(value* intervalLength / delta);//astually, it's (value/delta)*intervalLength, but it's better to multiply first.
         }
     }
 }
