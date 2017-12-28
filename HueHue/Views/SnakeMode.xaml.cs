@@ -1,4 +1,5 @@
 ﻿using HueHue.Helpers;
+using RGB.NET.Core;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,7 +25,7 @@ namespace HueHue.Views
             //Snake mode has a minimum of two colors for the effect
             while (Effects.Colors.Count < 2)
             {
-                Effects.Colors.Add(new LEDBulb());
+                Effects.Colors.Add(new Color());
             }
 
             timer = new DispatcherTimer()
@@ -54,7 +55,7 @@ namespace HueHue.Views
         {
             if (timer != null && this.IsLoaded)
             {
-                Effects.Colors[0] = (LEDBulb)e.CurrentColor;
+                Effects.Colors[0] = new Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
                 Effects.FillSNakeStrip();
             }
         }
@@ -63,7 +64,7 @@ namespace HueHue.Views
         {
             if (timer != null && this.IsLoaded)
             {
-                Effects.Colors[1] = (LEDBulb)e.CurrentColor;
+                Effects.Colors[1] = new Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
                 Effects.FillSNakeStrip();
             }
         }

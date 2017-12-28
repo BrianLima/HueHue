@@ -173,7 +173,8 @@ namespace HueHue.Views
 
             ((ButtonColorPicker)StackColors.Children[index]).rectangle.Background = new SolidColorBrush(Color.FromRgb(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B));
 
-            buttonsToColors[index].Color = (LEDBulb)e.CurrentColor;
+            buttonsToColors[index].Color = new RGB.NET.Core.Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
+
         }
 
         private void combo_joysticks_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -343,7 +344,8 @@ namespace HueHue.Views
                 return;
             }
 
-            Effects.Colors[0] = (LEDBulb)e.CurrentColor;
+            Effects.Colors[0] = new RGB.NET.Core.Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
+
 
             Effects.FixedColor();
         }

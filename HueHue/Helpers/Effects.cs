@@ -1,7 +1,7 @@
-﻿using System;
+﻿using RGB.NET.Core;
+using System;
 using System.Collections.Generic;
 using System.Threading;
-using Spectrum;
 
 namespace HueHue.Helpers
 {
@@ -13,12 +13,12 @@ namespace HueHue.Helpers
         /// <summary>
         /// List of colors the "Fixed Color" effect is based
         /// </summary>
-        public static List<LEDBulb> Colors = new List<LEDBulb>();
+        public static List<Color> Colors = new List<Color>();
 
         /// <summary>
         /// Strip of LEDs representing the LEDs attached to the Arduino
         /// </summary>
-        public static List<LEDBulb> LEDs;
+        public static List<Color> LEDs;
 
         /// <summary>
         /// Step used for some effects
@@ -33,12 +33,12 @@ namespace HueHue.Helpers
         {
             if (LEDs == null || LEDs.Count > 0)
             {
-                LEDs = new List<LEDBulb>();
+                LEDs = new List<Color>();
             }
 
             for (int i = 0; i < TotalLEDs; i++)
             {
-                LEDs.Add(new LEDBulb());
+                LEDs.Add(new Color());
             }
         }
 
@@ -67,7 +67,7 @@ namespace HueHue.Helpers
             for (int i = 0; i < LEDs.Count; i++)
             {
                 //The HSL ColorSpace is WAY better do calculate this type of effect
-                LEDs[i] = new Color.HSL((double)Math.Ceiling(i * HSLstep), Saturation, Lightness);
+                LEDs[i] = Color.FromHSV((double)Math.Ceiling(i * HSLstep), Saturation, Lightness);
             }
         }
 
@@ -98,11 +98,11 @@ namespace HueHue.Helpers
             }
         }
 
-        public static void CometMode(List<LEDBulb> Comet)
+        public static void CometMode(List<Color> Comet)
         {
             for (int i = 0; i < LEDs.Count; i++)
             {
-                LEDs[i] = new LEDBulb(Effects.Colors[0]);
+                LEDs[i] = new Color(Effects.Colors[0]);
             }
 
             Random r = new Random();
@@ -160,15 +160,19 @@ namespace HueHue.Helpers
             {
                 if (i % 2 == 0)
                 {
-                    LEDs[i].R = Colors[0].R;
-                    LEDs[i].G = Colors[0].G;
-                    LEDs[i].B = Colors[0].B;
+                    LEDs[i] = new Color(Colors[0]);
+
+                    //LEDs[i].R = Colors[0].R;
+                    //LEDs[i].G = Colors[0].G;
+                    //LEDs[i].B = Colors[0].B;
                 }
                 else
                 {
-                    LEDs[i].R = Colors[1].R;
-                    LEDs[i].G = Colors[1].G;
-                    LEDs[i].B = Colors[1].B;
+                    LEDs[i] = new Color(Colors[1]);
+
+                    //LEDs[i].R = Colors[1].R;
+                    //LEDs[i].G = Colors[1].G;
+                    //LEDs[i].B = Colors[1].B;
                 }
             }
         }
@@ -305,58 +309,60 @@ namespace HueHue.Helpers
         /// </summary>
         public static void ColorCycle()
         {
-            if (step == 1) //Started with Red, transition to Yellow
-            {
-                Colors[0].G++;
+            //if (step == 1) //Started with Red, transition to Yellow
+            //{
+            //    Colors[0].G++;
 
-                if (Colors[0].G == 255)
-                {
-                    step++;
-                }
-            }
-            else if (step == 2) //From Yellow to Green
-            {
-                Colors[0].R--;
+            //    if (Colors[0].G == 255)
+            //    {
+            //        step++;
+            //    }
+            //}
+            //else if (step == 2) //From Yellow to Green
+            //{
+            //    Colors[0].R--;
 
-                if (Colors[0].R == 0)
-                {
-                    step++;
-                }
-            }
-            else if (step == 3) //From Green to Alice Blue
-            {
-                Colors[0].B++;
+            //    if (Colors[0].R == 0)
+            //    {
+            //        step++;
+            //    }
+            //}
+            //else if (step == 3) //From Green to Alice Blue
+            //{
+            //    Colors[0].B++;
 
-                if (Colors[0].B == 255)
-                {
-                    step++;
-                }
-            }
-            else if (step == 4) //From Alice Blue to Blue
-            {
-                Colors[0].G--;
+            //    if (Colors[0].B == 255)
+            //    {
+            //        step++;
+            //    }
+            //}
+            //else if (step == 4) //From Alice Blue to Blue
+            //{
+            //    Colors[0].G--;
 
-                if (Colors[0].G == 0)
-                {
-                    step++;
-                }
-            }
-            else if (step == 5) // From Blue to Pink/Purple
-            {
-                Colors[0].R++;
-                if (Colors[0].R == 255)
-                {
-                    step++;
-                }
-            }
-            else if (step == 6) //From Pink/Purple to Red
-            {
-                Colors[0].B--;
-                if (Colors[0].B == 0)
-                {
-                    ResetStep(); //We Cycled all the basic colors, reset and start again
-                }
-            }
+            //    if (Colors[0].G == 0)
+            //    {
+            //        step++;
+            //    }
+            //}
+            //else if (step == 5) // From Blue to Pink/Purple
+            //{
+            //    Colors[0].R++;
+            //    if (Colors[0].R == 255)
+            //    {
+            //        step++;
+            //    }
+            //}
+            //else if (step == 6) //From Pink/Purple to Red
+            //{
+            //    Colors[0].B--;
+            //    if (Colors[0].B == 0)
+            //    {
+            //        ResetStep(); //We Cycled all the basic colors, reset and start again
+            //    }
+            //}
+
+            Colors[0].AddHue(1);
 
             //Fill the strip with the color
             for (int i = 0; i < LEDs.Count; i++)

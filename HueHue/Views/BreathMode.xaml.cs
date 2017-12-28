@@ -1,5 +1,6 @@
 ﻿using HueHue.Helpers;
 using System;
+using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -56,7 +57,8 @@ namespace HueHue.Views
                         increase = true;
                         if (App.settings.BreathRandomize)
                         {
-                            Effects.Colors[0] = new LEDBulb();
+                            //TODO: Randomize color
+                            //Effects.Colors[0].se = new Color();
                             Effects.FixedColor();
                             brightness = 0;
                         }
@@ -83,7 +85,7 @@ namespace HueHue.Views
 
         private void DefaultColor_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
         {
-            Effects.Colors[0] = (LEDBulb)e.CurrentColor;
+            Effects.Colors[0] = new RGB.NET.Core.Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
 
             Effects.FixedColor();
         }

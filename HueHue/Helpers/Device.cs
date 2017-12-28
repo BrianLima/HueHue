@@ -8,7 +8,7 @@ namespace HueHue.Helpers
     /// <summary>
     /// Generic class representing a device supported by HueHue
     /// </summary>
-    [JsonConverter(typeof(DeviceConverter))]
+    [JsonConverter(typeof(DeviceJsonConverter))]
     public abstract class Device
     {
         /// <summary>
@@ -89,7 +89,7 @@ namespace HueHue.Helpers
     /// <summary>
     /// Converts json objects to types derived from <Device>
     /// </summary>
-    public class DeviceConverter : JsonConverter
+    public class DeviceJsonConverter : JsonConverter
     {
         static JsonSerializerSettings SpecifiedSubclassConversion = new JsonSerializerSettings() { ContractResolver = new BaseSpecifiedConcreteClassConverter() };
 

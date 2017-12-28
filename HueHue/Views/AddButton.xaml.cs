@@ -1,5 +1,6 @@
 ﻿using HueHue.Helpers;
 using MaterialDesignThemes.Wpf;
+using RGB.NET.Core;
 using SharpDX.DirectInput;
 using System;
 using System.Windows.Controls;
@@ -45,7 +46,7 @@ namespace HueHue.Views
                     JoystickUpdate x = datas[0];
                     if (x.Offset != JoystickOffset.Buttons4 && x.Value > 0)
                     {
-                        buttonColor = new JoystickButtonToColor { Button = x.Offset, Color = new LEDBulb(), ButtonType = buttonType, PressedBrightness = 64, ReleasedBrightness = 255 };
+                        buttonColor = new JoystickButtonToColor { Button = x.Offset, Color = new Color(), ButtonType = buttonType, PressedBrightness = 64, ReleasedBrightness = 255 };
                         timer.Stop();
                         DialogHost.CloseDialogCommand.Execute(buttonColor, this);
                     }

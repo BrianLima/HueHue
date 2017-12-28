@@ -45,9 +45,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\ColorTools.dll</HintPath>
     </Reference>
-    <Reference Include="Corale.Colore, Version=5.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Colore.5.2.0\lib\net35\Corale.Colore.dll</HintPath>
-    </Reference>
     <Reference Include="CSCore, Version=1.2.1.2, Culture=neutral, PublicKeyToken=5a08f2b6f4415dea, processorArchitecture=MSIL">
       <HintPath>..\packages\CSCore.1.2.1.2\lib\net35-client\CSCore.dll</HintPath>
     </Reference>
@@ -103,6 +100,9 @@
     <Reference Include="RGB.NET.Groups, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RGB.NET.Groups.0.0.1.18\lib\net45\RGB.NET.Groups.dll</HintPath>
     </Reference>
+    <Reference Include="RGB.NET.WPF, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RGB.NET.WPF.0.0.1.15\lib\net45\RGB.NET.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="Sanford.Multimedia.Midi, Version=6.4.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Sanford.Multimedia.Midi.6.4.1\lib\net20\Sanford.Multimedia.Midi.dll</HintPath>
     </Reference>
@@ -111,9 +111,6 @@
     </Reference>
     <Reference Include="SharpDX.DirectInput, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpDX.DirectInput.4.0.1\lib\net45\SharpDX.DirectInput.dll</HintPath>
-    </Reference>
-    <Reference Include="Spectrum, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spectrum.0.1.0\lib\portable-net45+sl5+win8+wp8+wpa81\Spectrum.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -141,7 +138,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helpers\Arduino.cs" />
+    <Compile Include="Helpers\AsusAura.cs" />
     <Compile Include="Helpers\BasicSpectrumProvider.cs" />
+    <Compile Include="Helpers\ColorsJsonConverter.cs" />
     <Compile Include="Helpers\Device.cs" />
     <Compile Include="Helpers\Effects.cs" />
     <Compile Include="Helpers\JoystickHelper.cs" />

@@ -2,7 +2,6 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
-using Corale.Colore.Core;
 using static HueHue.Helpers.Device;
 
 namespace HueHue.Views.Devices
@@ -18,12 +17,12 @@ namespace HueHue.Views.Devices
         {
             InitializeComponent();
 
-            if (!Chroma.SdkAvailable)
-            {
-                var main = App.Current.MainWindow as MainWindow;
-
-                main.DisplaySnackbar("Install the Razer Chroma SDK before continuing!");
-            }
+            //if (!Chroma.SdkAvailable)
+            //{
+            //    var main = App.Current.MainWindow as MainWindow;
+            //
+            //    main.DisplaySnackbar("Install the Razer Chroma SDK before continuing!");
+            //}
 
             ComboBox_SubType.SelectedIndex = 0;
         }
@@ -57,7 +56,7 @@ namespace HueHue.Views.Devices
         {
             GetSubType();
 
-            App.devices.Add(new RazerChroma("Chroma", Subtype, TextBoxName.Text));
+            //App.devices.Add(new RazerChroma("Chroma", Subtype, TextBoxName.Text));
 
             var main = App.Current.MainWindow as MainWindow;
 

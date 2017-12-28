@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using SharpDX.DirectInput;
 using Newtonsoft.Json;
 using System.IO;
+using RGB.NET.Core;
 
 namespace HueHue.Helpers
 {
@@ -108,9 +109,9 @@ namespace HueHue.Helpers
             Brightness
         }
 
-        private LEDBulb _color;
+        private Color _color;
 
-        public LEDBulb Color
+        public Color Color
         {
             get { return _color; }
             set { _color = value; }
@@ -147,6 +148,5 @@ namespace HueHue.Helpers
             get { return _released_brightness; }
             set { _released_brightness = value; }
         }
-
     }
 }

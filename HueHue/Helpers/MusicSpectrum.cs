@@ -3,7 +3,7 @@ using CSCore.DSP;
 
 namespace HueHue.Helpers
 {
-    class MusicSpectrum:SpectrumBase
+    class MusicSpectrum : SpectrumBase
     {
         public MusicSpectrum(FftSize fftSize)
         {
@@ -15,20 +15,20 @@ namespace HueHue.Helpers
 
         public void CreateSpectrum()
         {
-               var fftBuffer = new float[(int)FftSize];
+            var fftBuffer = new float[(int)FftSize];
             SpectrumProvider.GetFftData(fftBuffer, this);
             SpectrumPointData[] spectrumPoints = CalculateSpectrumPoints(255, fftBuffer);
             if (spectrumPoints[0].Value > 0)
             {
-                Effects.Colors[0].R = CalculateScale(spectrumPoints[0].Value);
+                Effects.Colors[0].SetR(CalculateScale(spectrumPoints[0].Value));
             }
             if (spectrumPoints[1].Value > 0)
             {
-                Effects.Colors[0].G = CalculateScale(spectrumPoints[1].Value);
+                Effects.Colors[0].SetG(CalculateScale(spectrumPoints[1].Value));
             }
             if (spectrumPoints[2].Value > 0)
             {
-                Effects.Colors[0].B = CalculateScale(spectrumPoints[2].Value);
+                Effects.Colors[0].SetB(CalculateScale(spectrumPoints[2].Value));
             }
         }
 
@@ -53,7 +53,7 @@ namespace HueHue.Helpers
                 return 0;
             }
 
-            return (byte)(value* intervalLength / delta);//astually, it's (value/delta)*intervalLength, but it's better to multiply first.
+            return (byte)(value * intervalLength / delta);//astually, it's (value/delta)*intervalLength, but it's better to multiply first.
         }
     }
 }
