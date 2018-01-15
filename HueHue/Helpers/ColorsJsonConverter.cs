@@ -5,7 +5,7 @@ using System;
 
 namespace HueHue.Helpers
 {
-    public class ColorsJsonConverter: JsonConverter
+    public class ColorsJsonConverter : JsonConverter
     {
         private readonly Type[] _types;
 
@@ -30,13 +30,18 @@ namespace HueHue.Helpers
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             JObject jo = JObject.Load(reader);
-            return new Color(jo["A"].Value<byte>(), jo["R"].Value<byte>(), jo["G"].Value<byte>(), jo["B"].Value<byte>());
+
+            Byte.TryParse(jo["A"].Value<string>(), out byte a);
+            Byte.TryParse(jo["R"].Value<string>(), out byte r);
+            Byte.TryParse(jo["G"].Value<string>(), out byte g);
+            Byte.TryParse(jo["B"].Value<string>(), out byte b);
+
+            return new Color(a, r, g, b);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-
-            throw new NotImplementedException(); // won't be called because CanWrite returns false
+            throw new NotImplementedException(); //Isn't needed
         }
     }
 }
