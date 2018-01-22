@@ -309,59 +309,6 @@ namespace HueHue.Helpers
         /// </summary>
         public static void ColorCycle()
         {
-            //if (step == 1) //Started with Red, transition to Yellow
-            //{
-            //    Colors[0].G++;
-
-            //    if (Colors[0].G == 255)
-            //    {
-            //        step++;
-            //    }
-            //}
-            //else if (step == 2) //From Yellow to Green
-            //{
-            //    Colors[0].R--;
-
-            //    if (Colors[0].R == 0)
-            //    {
-            //        step++;
-            //    }
-            //}
-            //else if (step == 3) //From Green to Alice Blue
-            //{
-            //    Colors[0].B++;
-
-            //    if (Colors[0].B == 255)
-            //    {
-            //        step++;
-            //    }
-            //}
-            //else if (step == 4) //From Alice Blue to Blue
-            //{
-            //    Colors[0].G--;
-
-            //    if (Colors[0].G == 0)
-            //    {
-            //        step++;
-            //    }
-            //}
-            //else if (step == 5) // From Blue to Pink/Purple
-            //{
-            //    Colors[0].R++;
-            //    if (Colors[0].R == 255)
-            //    {
-            //        step++;
-            //    }
-            //}
-            //else if (step == 6) //From Pink/Purple to Red
-            //{
-            //    Colors[0].B--;
-            //    if (Colors[0].B == 0)
-            //    {
-            //        ResetStep(); //We Cycled all the basic colors, reset and start again
-            //    }
-            //}
-
             Colors[0] = Colors[0].AddHue(1);
 
             //Fill the strip with the color

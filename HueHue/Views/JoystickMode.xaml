@@ -60,6 +60,6 @@
                 ToolTip="Add Button to Brightness" VerticalAlignment="Bottom" Click="Button_AddButtonBrightness_Click" Grid.Row="3">
             <materialDesign:PackIcon Kind="Brightness6" Height="24" Width="24"/>
         </Button>
-        <materialDesign:DialogHost x:Name="dialogHost" CloseOnClickAway="True" Grid.RowSpan="4" />
+        <materialDesign:DialogHost x:Name="dialogHost" CloseOnClickAway="True" Grid.RowSpan="4" Margin="0,-30,-0.4,29.4" />
     </Grid>
 </UserControl>

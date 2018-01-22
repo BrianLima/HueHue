@@ -8,6 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300" Unloaded="UserControl_Unloaded">
     <Grid>
         <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+        <TextBlock Text="Not fully functional yet, under review in the comming releases." Margin="10,130,0,0" VerticalAlignment="Top" Height="77"/>
 
     </Grid>
 </UserControl>
