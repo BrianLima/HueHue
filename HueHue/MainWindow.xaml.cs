@@ -12,36 +12,12 @@ namespace HueHue
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
 
             GridMain.DataContext = App.settings;
-
-            //The app was auto started by windows from the user's startup folder
-            var startArg = Environment.GetCommandLineArgs();
-
-            bool autoStarted = false;
-
-            if (startArg != null && App.settings.AutoStart)
-            {
-                foreach (var arg in startArg)
-                {
-                    if (arg.Contains("autostart"))
-                    {
-                        autoStarted = true;
-                        Minimize();
-                        App.StartStopDevices();
-                        buttonStart.Content = "Stop";
-                        break;
-                    }
-                }
-            }
-
-            if (!autoStarted)
-            {
-                this.Show();
-            }
 
             ListDevices.ItemsSource = App.devices;
 

@@ -20,6 +20,7 @@ namespace HueHue
         public static TrayIcon icon;
         public static PaletteHelper helper;
         public static RGBSurface surface = RGBSurface.Instance;
+        public static bool autoStarted = false;
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
@@ -31,7 +32,7 @@ namespace HueHue
             {
                 devices.Add(device);
             }
-           
+
             Effects.Setup(App.settings.TotalLeds);
 
             foreach (var item in settings.Colors)
@@ -45,10 +46,35 @@ namespace HueHue
 
             this.MainWindow = window;
 
+            //The app was auto started by windows from the user's startup folder
+            var startArg = Environment.GetCommandLineArgs();
+
+            if (startArg != null && App.settings.AutoStart)
+            {
+                foreach (var arg in startArg)
+                {
+                    if (arg.Contains("autostart"))
+                    {
+                        autoStarted = true;
+                        window.Hide();
+                        App.StartStopDevices();
+                        break;
+                    }
+                }
+            }
 
             if (App.settings.DarkMode)
             {
                 App.helper.SetLightDark(App.settings.DarkMode);
+            }
+
+            if (!autoStarted)
+            {
+                window.Show();
+            }
+            else
+            {
+                window.Hide();
             }
 
             settings.SaveDevices();
@@ -63,8 +89,8 @@ namespace HueHue
                 store.Add(item);
             }
 
-            settings.Devices = store; 
-        } 
+            settings.Devices = store;
+        }
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {

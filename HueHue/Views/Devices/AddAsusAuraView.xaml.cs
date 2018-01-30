@@ -24,7 +24,7 @@ namespace HueHue.Views.Devices
         public AddAsusAuraView()
         {
             InitializeComponent();
-App.surface.Devices.get
+//App.surface.Devices.get
             //AsusDeviceProvider.Instance.Initialize(.)
 
             //foreach (var item )

@@ -24,6 +24,7 @@ namespace HueHue.Views
         private Thread _workerThread;
         private CancellationTokenSource _cancellationTokenSource;
         bool running = false;
+        int selectedjoystick;
 
         ObservableCollection<JoystickButtonToColor> buttonsToColors;
         List<JoystickButtonToColor> pressedButtons;
@@ -63,7 +64,6 @@ namespace HueHue.Views
 
             selectedjoystick = combo_joysticks.SelectedIndex;
 
-
             _cancellationTokenSource = new CancellationTokenSource();
             _workerThread = new Thread(BackgroundWorker_DoWork)
             {
@@ -84,8 +84,6 @@ namespace HueHue.Views
             _workerThread = null;
             running = false;
         }
-
-        int selectedjoystick;
 
         private void BackgroundWorker_DoWork(object tokenObject)
         {
@@ -174,7 +172,6 @@ namespace HueHue.Views
             ((ButtonColorPicker)StackColors.Children[index]).rectangle.Background = new SolidColorBrush(Color.FromRgb(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B));
 
             buttonsToColors[index].Color = new RGB.NET.Core.Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
-
         }
 
         private void combo_joysticks_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -191,7 +188,7 @@ namespace HueHue.Views
             App.settings.JoystickSelected = guids[combo_joysticks.SelectedIndex].ToString();
             App.settings.Save();
 
-            foreach (var item in joystickHelper.LoadJoystickButtons(guids[combo_joysticks.SelectedIndex]))
+            foreach (JoystickButtonToColor item in joystickHelper.LoadJoystickButtons(guids[combo_joysticks.SelectedIndex]))
             {
                 buttonsToColors.Add(item);
             }
