@@ -1,9 +1,9 @@
-﻿using HueHue.Helpers;
+﻿using HueHue.Helpers.Devices;
+using RGB.NET.Devices.Razer;
 using System;
 using System.Windows;
 using System.Windows.Controls;
-using static HueHue.Helpers.Device;
-using RGB.NET.Devices.Razer;
+using static HueHue.Helpers.Devices.Device;
 
 namespace HueHue.Views.Devices
 {

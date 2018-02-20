@@ -1,12 +1,13 @@
-﻿using System;
+﻿using HueHue.Helpers.Modes;
+using HueHue.Properties;
+using NLog;
+using System;
 using System.Diagnostics;
 using System.IO.Ports;
 using System.Threading;
 using System.Threading.Tasks;
-using NLog;
-using HueHue.Properties;
 
-namespace HueHue.Helpers
+namespace HueHue.Helpers.Devices
 {
     /// <summary>
     /// ComPort communication logic for Arduino devices running HueHueClient scrip 
@@ -83,13 +84,13 @@ namespace HueHue.Helpers
             outputStream[counter++] = App.settings.Breath ? (byte)1 : (byte)0; //If the user wants to use a breath effect this will be 1 and the arduino will handle the brightness, else it's 0 andit will use the next byte as brightness
             outputStream[counter++] = App.settings.Brightness; //Set the brightness as the first byte after the preamble
 
-            foreach (LEDBulb bulb in Effects.LEDs)
+            foreach (LEDBulb bulb in Mode.LEDs)
             {
                 if (App.settings.CurrentMode == 1)
                 {
-                    outputStream[counter++] = Effects.Colors[0].B;
-                    outputStream[counter++] = Effects.Colors[0].G;
-                    outputStream[counter++] = Effects.Colors[0].R;
+                    outputStream[counter++] = Mode.Colors[0].B;
+                    outputStream[counter++] = Mode.Colors[0].G;
+                    outputStream[counter++] = Mode.Colors[0].R;
                 }
                 else
                 {

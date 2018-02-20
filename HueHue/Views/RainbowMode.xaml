@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:HueHue.Views"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="HueHue.Views.RainbowMode"
              mc:Ignorable="d" 
+             Style="{StaticResource StyleUserControlPadronization}"
              d:DesignHeight="450" d:DesignWidth="450" Unloaded="UserControl_Unloaded">
     <Grid >
         <Grid.RowDefinitions>

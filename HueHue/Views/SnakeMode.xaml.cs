@@ -1,4 +1,5 @@
 ﻿using HueHue.Helpers;
+using HueHue.Helpers.Modes;
 using RGB.NET.Core;
 using System;
 using System.Threading.Tasks;
@@ -23,9 +24,9 @@ namespace HueHue.Views
             GridSnakeColorSettings.DataContext = App.settings;
 
             //Snake mode has a minimum of two colors for the effect
-            while (Effects.Colors.Count < 2)
+            while (Mode.Colors.Count < 2)
             {
-                Effects.Colors.Add(new Color());
+                Mode.Colors.Add(new Color());
             }
 
             timer = new DispatcherTimer()
@@ -39,24 +40,24 @@ namespace HueHue.Views
             //Binding each value from the RGB is broken
             //Binding the color it self conflicts because the controler uses System.Windows.Media.Color instead of System.Drawing.Color
             //I give up, this is it, MVVM for a later day.
-            colorPicker.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
-            colorPicker.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
+            colorPicker.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[0].R, Mode.Colors[0].G, Mode.Colors[0].B));
+            colorPicker.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[0].R, Mode.Colors[0].G, Mode.Colors[0].B));
 
-            colorPicker2.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[1].R, Effects.Colors[1].G, Effects.Colors[1].B));
-            colorPicker2.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[1].R, Effects.Colors[1].G, Effects.Colors[1].B));
+            colorPicker2.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[1].R, Mode.Colors[1].G, Mode.Colors[1].B));
+            colorPicker2.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[1].R, Mode.Colors[1].G, Mode.Colors[1].B));
 
-            Effects.FillSNakeStrip();
+            Mode.FillSNakeStrip();
 
             //I think this is a good limit
-            sliderWidth.Maximum = Effects.LEDs.Count / 2;
+            sliderWidth.Maximum = Mode.LEDs.Count / 2;
         }
 
         private void colorPicker_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
         {
             if (timer != null && this.IsLoaded)
             {
-                Effects.Colors[0] = new Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
-                Effects.FillSNakeStrip();
+                Mode.Colors[0] = new Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
+                Mode.FillSNakeStrip();
             }
         }
 
@@ -64,8 +65,8 @@ namespace HueHue.Views
         {
             if (timer != null && this.IsLoaded)
             {
-                Effects.Colors[1] = new Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
-                Effects.FillSNakeStrip();
+                Mode.Colors[1] = new Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
+                Mode.FillSNakeStrip();
             }
         }
 
@@ -83,7 +84,7 @@ namespace HueHue.Views
         {
             if (timer != null && this.IsLoaded)
             {
-                await Task.Run(() => Effects.ShiftLeft());
+                await Task.Run(() => Mode.ShiftLeft());
             }
         }
 
@@ -91,7 +92,7 @@ namespace HueHue.Views
         {
             if (timer != null && this.IsLoaded)
             {
-                Effects.FillSNakeStrip();
+                Mode.FillSNakeStrip();
             }
         }
 

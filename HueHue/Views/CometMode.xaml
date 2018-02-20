@@ -7,6 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:ColorTools="clr-namespace:ColorTools;assembly=ColorTools" x:Class="HueHue.Views.CometMode"
              mc:Ignorable="d" 
+             Style="{StaticResource StyleUserControlPadronization}"
              d:DesignHeight="513.5" d:DesignWidth="425" Unloaded="UserControl_Unloaded">
     <Grid x:Name="gridMain">
         <Grid.RowDefinitions>

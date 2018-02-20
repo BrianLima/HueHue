@@ -1,4 +1,5 @@
 ﻿using HueHue.Helpers;
+using HueHue.Helpers.Modes;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,9 +21,9 @@ namespace HueHue.Views
             gridSettings.DataContext = App.settings;
 
             //Starts with Red
-            Effects.Colors[0] = new RGB.NET.Core.Color(255, 0, 0);
+            Mode.Colors[0] = new RGB.NET.Core.Color(255, 0, 0);
 
-            Effects.ResetStep();
+            Mode.ResetStep();
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(App.settings.Speed);
@@ -32,7 +33,7 @@ namespace HueHue.Views
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            Effects.ColorCycle();
+            Mode.ColorCycle();
         }
 
         private void Grid_Unloaded(object sender, RoutedEventArgs e)

@@ -1,4 +1,4 @@
-﻿using HueHue.Helpers;
+﻿using HueHue.Helpers.Modes;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,14 +28,14 @@ namespace HueHue.Views
 
             GridRainbow.DataContext = App.settings;
 
-            Effects.CalcRainbow(App.settings.Saturation / 10, App.settings.Lightness / 10);
+            Mode.CalcRainbow(App.settings.Saturation / 10, App.settings.Lightness / 10);
         }
 
         private async void Timer_Tick(object sender, EventArgs e)
         {
             if (timer != null && this.IsLoaded)
             {
-                await Task.Run(() => Effects.ShiftLeft());
+                await Task.Run(() => Mode.ShiftLeft());
             }
         }
 
@@ -62,7 +62,7 @@ namespace HueHue.Views
                 timer.Interval = TimeSpan.FromMilliseconds(e.NewValue);
                 timer.Start();
 
-                Effects.CalcRainbow(App.settings.Saturation / 10, App.settings.Lightness /10);
+                Mode.CalcRainbow(App.settings.Saturation / 10, App.settings.Lightness /10);
             }
         }
 
@@ -70,7 +70,7 @@ namespace HueHue.Views
         {
             if (timer != null && this.IsLoaded)
             {
-                Effects.CalcRainbow(App.settings.Saturation / 10, App.settings.Lightness / 10);
+                Mode.CalcRainbow(App.settings.Saturation / 10, App.settings.Lightness / 10);
             }
         }
     }

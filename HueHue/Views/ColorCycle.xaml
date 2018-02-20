@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:HueHue.Views"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="HueHue.Views.ColorCycle"
              mc:Ignorable="d" 
+             Style="{StaticResource StyleUserControlPadronization}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Unloaded="Grid_Unloaded">
         <Grid.RowDefinitions>

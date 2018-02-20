@@ -6,7 +6,7 @@
              xmlns:controls="clr-namespace:ColorTools;assembly=ColorTools"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:local="clr-namespace:HueHue.Views"
-             FontFamily="Segoe UI"
+             Style="{StaticResource StyleUserControlPadronization}"
              mc:Ignorable="d" 
              d:DesignWidth="450">
     <Grid>

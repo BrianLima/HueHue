@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Media = System.Windows.Media;
 using RGB.NET.Core;
+using HueHue.Helpers.Modes;
 
 namespace HueHue.Views
 {
@@ -21,15 +22,15 @@ namespace HueHue.Views
         {
             InitializeComponent();
 
-            while (Effects.Colors.Count < 2)
+            while (Mode.Colors.Count < 2)
             {
-                Effects.Colors.Add(new Color());
+                Mode.Colors.Add(new Color());
             }
 
-            backgroundColor.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
-            backgroundColor.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
-            cometColor.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[1].R, Effects.Colors[1].G, Effects.Colors[1].B));
-            cometColor.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[1].R, Effects.Colors[1].G, Effects.Colors[1].B));
+            backgroundColor.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[0].R, Mode.Colors[0].G, Mode.Colors[0].B));
+            backgroundColor.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[0].R, Mode.Colors[0].G, Mode.Colors[0].B));
+            cometColor.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[1].R, Mode.Colors[1].G, Mode.Colors[1].B));
+            cometColor.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[1].R, Mode.Colors[1].G, Mode.Colors[1].B));
 
             gridMain.DataContext = App.settings;
 
@@ -45,9 +46,9 @@ namespace HueHue.Views
             {
                 try
                 {
-                    var Origin = new Color(Effects.Colors[0].R,Effects.Colors[0].G, Effects.Colors[0].B);
+                    var Origin = new Color(Mode.Colors[0].R,Mode.Colors[0].G, Mode.Colors[0].B);
 
-                    var Destiny = new Color(Effects.Colors[1].R, Effects.Colors[1].G, Effects.Colors[1].B);
+                    var Destiny = new Color(Mode.Colors[1].R, Mode.Colors[1].G, Mode.Colors[1].B);
 
                     List<Color> comet = new List<Color>();
 
@@ -64,7 +65,7 @@ namespace HueHue.Views
 
 
 
-                    Effects.CometMode(comet);
+                    Mode.CometMode(comet);
                     Thread.Sleep(App.settings.Speed);
                 }
                 catch (OperationCanceledException)
@@ -81,16 +82,16 @@ namespace HueHue.Views
 
         private void BackgroundColor_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
         {
-            Effects.Colors[0] = new Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
+            Mode.Colors[0] = new Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
 
-            //Effects.FixedColor();
+            //Mode.FixedColor();
         }
 
         private void TailColor_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
         {
-            Effects.Colors[1] = new Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
+            Mode.Colors[1] = new Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
 
-            //Effects.FixedColor();
+            //Mode.FixedColor();
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)

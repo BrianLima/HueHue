@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System;
 
-namespace HueHue.Helpers
+namespace HueHue.Helpers.Devices
 {
     /// <summary>
     /// Generic class representing a device supported by HueHue

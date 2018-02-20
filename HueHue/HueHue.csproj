@@ -148,16 +148,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Helpers\Arduino.cs" />
-    <Compile Include="Helpers\AsusAura.cs" />
-    <Compile Include="Helpers\BasicSpectrumProvider.cs" />
+    <Compile Include="Helpers\Devices\Arduino.cs" />
+    <Compile Include="Helpers\Devices\AsusAura.cs" />
+    <Compile Include="Helpers\Modes\BasicSpectrumProvider.cs" />
     <Compile Include="Helpers\ColorsJsonConverter.cs" />
-    <Compile Include="Helpers\Device.cs" />
-    <Compile Include="Helpers\Effects.cs" />
-    <Compile Include="Helpers\JoystickHelper.cs" />
-    <Compile Include="Helpers\MusicSpectrum.cs" />
-    <Compile Include="Helpers\RazerChroma.cs" />
-    <Compile Include="Helpers\SpectrumBase.cs" />
+    <Compile Include="Helpers\Devices\CoolerMaster.cs" />
+    <Compile Include="Helpers\Devices\Device.cs" />
+    <Compile Include="Helpers\Modes\Mode.cs" />
+    <Compile Include="Helpers\Modes\JoystickHelper.cs" />
+    <Compile Include="Helpers\Modes\MusicSpectrum.cs" />
+    <Compile Include="Helpers\Devices\RazerChroma.cs" />
+    <Compile Include="Helpers\Modes\SpectrumBase.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
@@ -195,7 +196,7 @@
       <DependentUpon>FixedColors.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\LEDBulb.cs" />
-    <Compile Include="Helpers\SerialStream.cs" />
+    <Compile Include="Helpers\Devices\SerialStream.cs" />
     <Compile Include="Helpers\AppSettings.cs" />
     <Compile Include="Views\JoystickMode.xaml.cs">
       <DependentUpon>JoystickMode.xaml</DependentUpon>
@@ -361,8 +362,10 @@
     <Resource Include="HueHue.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Icons\Devices\CoolerMaster.png" />
     <Content Include="Resources\ColorTools.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\RGB.NET.Devices.Asus.0.0.1.37\build\net45\RGB.NET.Devices.Asus.targets" Condition="Exists('..\packages\RGB.NET.Devices.Asus.0.0.1.37\build\net45\RGB.NET.Devices.Asus.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

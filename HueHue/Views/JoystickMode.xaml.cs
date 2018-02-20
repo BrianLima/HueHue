@@ -1,5 +1,6 @@
 ﻿using ColorTools;
 using HueHue.Helpers;
+using HueHue.Helpers.Modes;
 using MaterialDesignThemes.Wpf;
 using SharpDX.DirectInput;
 using System;
@@ -25,6 +26,7 @@ namespace HueHue.Views
         private CancellationTokenSource _cancellationTokenSource;
         bool running = false;
         int selectedjoystick;
+        MainWindow main = App.Current.MainWindow as MainWindow;
 
         ObservableCollection<JoystickButtonToColor> buttonsToColors;
         List<JoystickButtonToColor> pressedButtons;
@@ -54,8 +56,8 @@ namespace HueHue.Views
                 }
             }
 
-            DefaultColor.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
-            DefaultColor.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
+            DefaultColor.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[0].R, Mode.Colors[0].G, Mode.Colors[0].B));
+            DefaultColor.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[0].R, Mode.Colors[0].G, Mode.Colors[0].B));
         }
 
         private void Start()
@@ -136,11 +138,11 @@ namespace HueHue.Views
 
                     if (pressedButtons.Count == 0 && App.settings.JoystickUseDefault > 0)
                     {
-                        Effects.FixedColor();
+                        Mode.FixedColor();
                     }
                     else
                     {
-                        Effects.JoystickMode(pressedButtons, App.settings.Length);
+                        Mode.JoystickMode(pressedButtons, App.settings.Length);
                     }
 
                     Task.Delay(16, cancellationToken).Wait(cancellationToken); //60 FPS
@@ -253,6 +255,12 @@ namespace HueHue.Views
 
         private async void Button_AddButtonColor_Click(object sender, RoutedEventArgs e)
         {
+            if ( guids.Count < 0 || combo_joysticks.SelectedIndex < 0)
+            {
+                main.DisplaySnackbar("No joysticks detected!");
+                return;
+            }
+
             var view = new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, JoystickButtonToColor.ButtonTypeEnum.Color);
             JoystickButtonToColor newButton = (JoystickButtonToColor)await DialogHost.Show(view);
 
@@ -336,15 +344,13 @@ namespace HueHue.Views
 
         private void ColorControlPanel_ColorChanged(object sender, ColorControlPanel.ColorChangedEventArgs e)
         {
-            if (Effects.Colors.Count == 0)
+            if (Mode.Colors.Count == 0)
             {
                 return;
             }
 
-            Effects.Colors[0] = new RGB.NET.Core.Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
-
-
-            Effects.FixedColor();
+            Mode.Colors[0] = new RGB.NET.Core.Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
+            Mode.FixedColor();
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)

@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:controls="clr-namespace:ColorTools;assembly=ColorTools"
+             Style="{StaticResource StyleUserControlPadronization}"
              xmlns:local="clr-namespace:HueHue.Views"
              mc:Ignorable="d" 
              d:DesignHeight="510" d:DesignWidth="450" Unloaded="UserControl_Unloaded">
@@ -34,7 +35,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <ComboBox Margin="174,4,105,0" VerticalAlignment="Top" Height="28" x:Name="combo_joysticks" SelectionChanged="combo_joysticks_SelectionChanged"/>
-            <TextBlock HorizontalAlignment="Left" Margin="75,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="94"><Run Text="Selected Joystick:"/></TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="75,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="94" TextAlignment="Right" Text="Selected Joystick:"/>
             <Button Content="Refresh" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Click="Button_Click"/>
             <ComboBox Margin="174,37,105,0" VerticalAlignment="Top" Height="28" x:Name="combo_MultipleButtons" SelectedIndex="{Binding JoystickMultipleButtons}" SelectionChanged="combo_MultipleButtons_SelectionChanged">
                 <ComboBoxItem Content="Color LEDs alternated"/>
@@ -44,8 +45,8 @@
                 <ComboBoxItem Content="Do nothing"/>
                 <ComboBoxItem Content="Return to a default Color"/>
             </ComboBox>
-            <TextBlock HorizontalAlignment="Left" Margin="0,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="169"><Run Text="When multiple buttons pressed:"/></TextBlock>
-            <TextBlock HorizontalAlignment="Left" Margin="0,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="169" TextAlignment="Right"><Run Text="When all buttons are released:"/></TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="0,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="169" TextAlignment="Right"><Run Text="When multiple buttons pressed:"/></TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="8,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="161" TextAlignment="Right"><Run Text="When all buttons are released:"/></TextBlock>
             <Slider x:Name="sliderSection" Visibility="Collapsed" Value="{Binding Length}" HorizontalAlignment="Right" Margin="0,71,98,0" VerticalAlignment="Top" Width="166" Height="54" Minimum="1" Maximum="30" Style="{StaticResource MaterialDesignDiscreteSlider}" Grid.RowSpan="2"/>
             <TextBlock x:Name="textSection" Text="Section Length:" HorizontalAlignment="Left" Margin="87,8,0,0" VerticalAlignment="Top" Width="82" Grid.Row="1" Visibility="Collapsed"/>
         </Grid>
@@ -60,6 +61,6 @@
                 ToolTip="Add Button to Brightness" VerticalAlignment="Bottom" Click="Button_AddButtonBrightness_Click" Grid.Row="3">
             <materialDesign:PackIcon Kind="Brightness6" Height="24" Width="24"/>
         </Button>
-        <materialDesign:DialogHost x:Name="dialogHost" CloseOnClickAway="True" Grid.RowSpan="4" Margin="0,-30,-0.4,29.4" />
+        <!--<materialDesign:DialogHost x:Name="dialogHost" CloseOnClickAway="True" Grid.RowSpan="4" Margin="0,-30,-0.4,29.4" />-->
     </Grid>
 </UserControl>

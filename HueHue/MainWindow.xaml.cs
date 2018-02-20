@@ -1,9 +1,8 @@
-﻿using HueHue.Helpers;
+﻿using HueHue.Helpers.Modes;
 using HueHue.Views;
 using HueHue.Views.Devices;
-using System;
-using System.Windows;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace HueHue
 {
@@ -86,7 +85,7 @@ namespace HueHue
                     break;
                 default:
                     frame.Content = "LED's currently shut off";
-                    Effects.ShutOff();
+                    Mode.ShutOff();
                     App.settings.Save();
                     break;
             }

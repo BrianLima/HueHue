@@ -1,4 +1,5 @@
 ﻿using HueHue.Helpers;
+using HueHue.Helpers.Modes;
 using System.Windows;
 using System.Windows.Controls;
 using Media = System.Windows.Media;

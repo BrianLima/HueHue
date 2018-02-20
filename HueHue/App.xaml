@@ -14,12 +14,19 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="controls:ColorControlPanel" x:Key="StyleColorControlPanel" >
-                <Setter Property="FontFamily" Value="Arial Black"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
                 <Setter Property="TextForeground" Value="{DynamicResource MaterialDesignBody}"/>
                 <Setter Property="TextBoxBackground" Value="{DynamicResource MaterialDesignPaper}"/>
                 <Setter Property="Foreground" Value="{DynamicResource MaterialDesignPaper}"/>
                 <Setter Property="TextBoxBorder" Value="{DynamicResource MaterialDesignPaper}"/>
                 <Setter Property="DockAlphaVisibility" Value="Hidden"/>
+            </Style>
+            <Style TargetType="UserControl" x:Key="StyleUserControlPadronization">
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+                <Setter Property="TextElement.FontWeight" Value="Regular"/>
+                <Setter Property="TextElement.FontSize" Value="13"/>
+                <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
+                <Setter Property="FontFamily" Value="Segoe UI" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

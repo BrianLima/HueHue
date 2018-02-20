@@ -1,11 +1,11 @@
-﻿using HueHue.Helpers;
+﻿using HueHue.Helpers.Modes;
 using MaterialDesignThemes.Wpf;
 using RGB.NET.Core;
 using SharpDX.DirectInput;
 using System;
 using System.Windows.Controls;
 using System.Windows.Threading;
-using static HueHue.Helpers.JoystickButtonToColor;
+using static HueHue.Helpers.Modes.JoystickButtonToColor;
 
 namespace HueHue.Views
 {
@@ -18,6 +18,7 @@ namespace HueHue.Views
         DispatcherTimer timer;
         public JoystickButtonToColor buttonColor;
         bool firstRun = true;
+        bool ignoreB4 = true;
         ButtonTypeEnum buttonType;
 
         public AddButton(Guid _guid, JoystickHelper helper, ButtonTypeEnum _buttonType)
@@ -26,6 +27,7 @@ namespace HueHue.Views
 
             joystick = helper.HookJoystick(_guid);
             buttonType = _buttonType;
+            toggle_ignore.DataContext = ignoreB4;
 
             timer = new DispatcherTimer() { Interval = new TimeSpan(20) };
             timer.Tick += Timer_Tick;
@@ -44,7 +46,7 @@ namespace HueHue.Views
                 foreach (var item in datas)
                 {
                     JoystickUpdate x = datas[0];
-                    if (x.Offset != JoystickOffset.Buttons4 && x.Value > 0)
+                    if ((x.Offset != JoystickOffset.Buttons4 && !ignoreB4) && x.Value > 0)
                     {
                         buttonColor = new JoystickButtonToColor() { Button = x.Offset, Color = new Color(), ButtonType = buttonType, PressedBrightness = 64, ReleasedBrightness = 255 };
                         timer.Stop();

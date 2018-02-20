@@ -51,7 +51,7 @@
                 <Label Content="Comet Mode"/>
                 <Label Content="Shut Off"/>
             </ComboBox>
-            <TextBlock HorizontalAlignment="Left" Margin="0,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="64" Text="Effect:" Grid.Row="1" RenderTransformOrigin="0.561,0.346"/>
+            <TextBlock HorizontalAlignment="Left" Margin="0,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="64" Text="Mode:" Grid.Row="1" RenderTransformOrigin="0.561,0.346"/>
             <Slider x:Name="slider" Value="{Binding Brightness}" HorizontalAlignment="Right" Margin="0,12,2.6,0" VerticalAlignment="Top" Width="159" Height="53" Minimum="0" Maximum="255" Style="{StaticResource MaterialDesignDiscreteSlider}" Grid.Row="1"/>
             <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="0,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="64" Text="Brightness:" Grid.Row="1"/>
             <Button x:Name="buttonStart" Content="Start" Margin="146,10.4,10,93.4" Click="Button_Click" Height="Auto" Grid.Row="2" RenderTransformOrigin="0.5,0.503"/>
@@ -94,13 +94,19 @@
                     <Button ToolTip="Add a new Razer Chroma Device" Style="{DynamicResource MaterialDesignRaisedLightButton }" Click="Button_AddRazerChroma_Click" Margin="0,0,0,5">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Icons/Devices/RazerChroma.png" Margin="0,0,0,0"  RenderOptions.BitmapScalingMode="HighQuality"/>
-                            <TextBlock Text="Razer Chroma Device" Margin="5,0,0,0" />
+                            <TextBlock Text="Razer Chroma" Margin="5,0,0,0" />
                         </StackPanel>
                     </Button>
                     <Button ToolTip="Add a new Asus Aura Device" Style="{DynamicResource MaterialDesignRaisedLightButton }" Click="Button_AddArduino_Click" Margin="0,0,0,5">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Icons/Devices/AURA-sync.png" Margin="0,0,0,0"  RenderOptions.BitmapScalingMode="HighQuality"/>
-                            <TextBlock Text="Asus Aura Device" Margin="5,0,0,0" />
+                            <TextBlock Text="Asus Aura" Margin="5,0,0,0" />
+                        </StackPanel>
+                    </Button>
+                    <Button ToolTip="Add a new Cooler Master Device" Style="{DynamicResource MaterialDesignRaisedLightButton }" Click="Button_AddArduino_Click" Margin="0,0,0,5">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Icons/Devices/CoolerMaster.png" Margin="0,0,0,0"  RenderOptions.BitmapScalingMode="HighQuality"/>
+                            <TextBlock Text="Cooler Master" Margin="5,0,0,0" />
                         </StackPanel>
                     </Button>
                 </StackPanel>

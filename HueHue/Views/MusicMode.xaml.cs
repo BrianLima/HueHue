@@ -6,6 +6,7 @@ using CSCore.SoundOut;
 using CSCore.Streams;
 using CSCore.Streams.Effects;
 using HueHue.Helpers;
+using HueHue.Helpers.Modes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

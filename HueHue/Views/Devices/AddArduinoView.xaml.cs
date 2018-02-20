@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Reflection;
+using HueHue.Helpers.Devices;
 
 namespace HueHue.Views.Devices
 {

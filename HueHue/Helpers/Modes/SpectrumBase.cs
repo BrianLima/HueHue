@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HueHue.Helpers
+namespace HueHue.Helpers.Modes
 {
     public class SpectrumBase:INotifyPropertyChanged
     {

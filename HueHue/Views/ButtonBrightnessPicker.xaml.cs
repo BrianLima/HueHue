@@ -1,4 +1,4 @@
-﻿using HueHue.Helpers;
+﻿using HueHue.Helpers.Modes;
 using System.Windows.Controls;
 
 namespace HueHue.Views

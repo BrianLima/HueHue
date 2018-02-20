@@ -1,4 +1,5 @@
 ﻿using HueHue.Helpers;
+using HueHue.Helpers.Modes;
 using System;
 using System.Drawing;
 using System.Threading;
@@ -25,8 +26,8 @@ namespace HueHue.Views
 
             gridMain.DataContext = App.settings;
 
-            colorPanel.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
-            colorPanel.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Effects.Colors[0].R, Effects.Colors[0].G, Effects.Colors[0].B));
+            colorPanel.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[0].R, Mode.Colors[0].G, Mode.Colors[0].B));
+            colorPanel.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[0].R, Mode.Colors[0].G, Mode.Colors[0].B));
 
             _cancellationTokenSource = new CancellationTokenSource();
             _workerThread = new Thread(BackgroundWorker_DoWork) { Name = "BreathEffect", IsBackground = true };
@@ -58,8 +59,8 @@ namespace HueHue.Views
                         if (App.settings.BreathRandomize)
                         {
                             //TODO: Randomize color
-                            //Effects.Colors[0].se = new Color();
-                            Effects.FixedColor();
+                            //Mode.Colors[0].se = new Color();
+                            Mode.FixedColor();
                             brightness = 0;
                         }
                     }
@@ -85,9 +86,9 @@ namespace HueHue.Views
 
         private void DefaultColor_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
         {
-            Effects.Colors[0] = new RGB.NET.Core.Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
+            Mode.Colors[0] = new RGB.NET.Core.Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
 
-            Effects.FixedColor();
+            Mode.FixedColor();
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)

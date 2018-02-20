@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              xmlns:controls="clr-namespace:ColorTools;assembly=ColorTools"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-             FontFamily="Segoe UI"
+             Style="{StaticResource StyleUserControlPadronization}"
              d:DesignHeight="350" d:DesignWidth="425" Unloaded="UserControl_Unloaded">
     <Grid>
         <Grid.RowDefinitions>

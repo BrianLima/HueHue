@@ -5,9 +5,10 @@ using Newtonsoft.Json;
 using System.IO;
 using RGB.NET.Core;
 using Newtonsoft.Json.Linq;
-using static HueHue.Helpers.JoystickButtonToColor;
+using static HueHue.Helpers.Modes.JoystickButtonToColor;
+using HueHue.Helpers.Devices;
 
-namespace HueHue.Helpers
+namespace HueHue.Helpers.Modes
 {
     public class JoystickHelper
     {

@@ -1,4 +1,6 @@
 ﻿using HueHue.Helpers;
+using HueHue.Helpers.Modes;
+using HueHue.Helpers.Devices;
 using HueHue.Views;
 using MaterialDesignThemes.Wpf;
 using RGB.NET.Core;
@@ -33,11 +35,11 @@ namespace HueHue
                 devices.Add(device);
             }
 
-            Effects.Setup(App.settings.TotalLeds);
+            Mode.Setup(App.settings.TotalLeds);
 
             foreach (var item in settings.Colors)
             {
-                Effects.Colors.Add(item);
+                Mode.Colors.Add(item);
             }
 
             icon = new TrayIcon();
@@ -96,7 +98,7 @@ namespace HueHue
         {
             SaveDevices();
 
-            settings.Colors = Effects.Colors;
+            settings.Colors = Mode.Colors;
 
             settings.Save();
 

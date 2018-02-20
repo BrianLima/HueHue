@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using HueHue.Helpers.Devices;
+using HueHue.Helpers.Modes;
 
 namespace HueHue.Helpers
 {
@@ -110,7 +112,7 @@ namespace HueHue.Helpers
                     break;
                 case "TotalLeds":
                     Properties.Settings.Default.TotalLeds = _total_leds;
-                    Effects.Setup(_total_leds);
+                    Mode.Setup(_total_leds);
                     break;
                 case "Breath":
                     Properties.Settings.Default.Breath = _breath;

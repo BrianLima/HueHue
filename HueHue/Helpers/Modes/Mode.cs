@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace HueHue.Helpers
+namespace HueHue.Helpers.Modes
 {
     /// <summary>
     /// Logic implementation for all of the available effects
     /// </summary>
-    public static class Effects
+    public static class Mode
     {
         /// <summary>
         /// List of colors the "Fixed Color" effect is based
@@ -102,11 +102,11 @@ namespace HueHue.Helpers
         {
             for (int i = 0; i < LEDs.Count; i++)
             {
-                LEDs[i] = new Color(Effects.Colors[0]);
+                LEDs[i] = new Color(Mode.Colors[0]);
             }
 
             Random r = new Random();
-            int initialPosition = r.Next(App.settings.Length, Effects.LEDs.Count - App.settings.Length);
+            int initialPosition = r.Next(App.settings.Length, Mode.LEDs.Count - App.settings.Length);
 
             LEDs.InsertRange(initialPosition, Comet); //Insert the comet array on the list of LEDs             
             Thread.Sleep(App.settings.Speed);
@@ -305,7 +305,7 @@ namespace HueHue.Helpers
 
         /// <summary>
         /// Cycles through all the basic colors
-        /// Run ResetStep() and set Effects.ColorOne.R to 255 before starting to use this effect
+        /// Run ResetStep() and set Mode.ColorOne.R to 255 before starting to use this effect
         /// </summary>
         public static void ColorCycle()
         {

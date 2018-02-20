@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace HueHue.Helpers
+namespace HueHue.Helpers.Modes
 {
     class BasicSpectrumProvider : FftProvider, ISpectrumProvider
     {

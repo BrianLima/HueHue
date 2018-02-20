@@ -1,4 +1,4 @@
-﻿namespace HueHue.Helpers
+﻿namespace HueHue.Helpers.Devices
 {
     class Arduino : SerialStream
     {
