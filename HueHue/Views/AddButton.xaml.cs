@@ -18,16 +18,15 @@ namespace HueHue.Views
         DispatcherTimer timer;
         public JoystickButtonToColor buttonColor;
         bool firstRun = true;
-        bool ignoreB4 = true;
-        ButtonTypeEnum buttonType;
+        ControlTypeEnum controlType;
 
-        public AddButton(Guid _guid, JoystickHelper helper, ButtonTypeEnum _buttonType)
+        public AddButton(Guid _guid, JoystickHelper helper, ControlTypeEnum _controlType)
         {
             InitializeComponent();
 
             joystick = helper.HookJoystick(_guid);
-            buttonType = _buttonType;
-            toggle_ignore.DataContext = ignoreB4;
+            controlType = _controlType;
+            toggle_ignore.DataContext = this;
 
             timer = new DispatcherTimer() { Interval = new TimeSpan(20) };
             timer.Tick += Timer_Tick;
@@ -46,9 +45,10 @@ namespace HueHue.Views
                 foreach (var item in datas)
                 {
                     JoystickUpdate x = datas[0];
-                    if ((x.Offset != JoystickOffset.Buttons4 && !ignoreB4) && x.Value > 0)
+                    if ((x.Offset != JoystickOffset.Buttons4 && (toggle_ignore.IsChecked ?? false)) && x.Value > 0)
                     {
-                        buttonColor = new JoystickButtonToColor() { Button = x.Offset, Color = new Color(), ButtonType = buttonType, PressedBrightness = 64, ReleasedBrightness = 255 };
+                        buttonColor = new JoystickButtonToColor() { Button = x.Offset, Color = new Color(), ControlType = controlType, PressedBrightness = 64, CenteredBrightness = 255 };
+                        buttonColor.SetMinMaxValues(x.Value);
                         timer.Stop();
                         DialogHost.CloseDialogCommand.Execute(buttonColor, this);
                     }
@@ -60,6 +60,7 @@ namespace HueHue.Views
 
         private void UserControl_DialogClosing(object sender, DialogClosingEventArgs eventArgs)
         {
+            GC.Collect();
         }
     }
 }

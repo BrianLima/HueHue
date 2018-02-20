@@ -14,6 +14,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using Media = System.Windows.Media;
+using RGB.NET.Core;
 
 namespace HueHue.Views
 {
@@ -108,10 +109,11 @@ namespace HueHue.Views
 
                     foreach (var state in datas)
                     {
+
                         JoystickButtonToColor Pressed = buttonsToColors.FirstOrDefault(x => x.Button == state.Offset);
                         if (Pressed != null)
                         {
-                            if (Pressed.ButtonType == JoystickButtonToColor.ButtonTypeEnum.Color)
+                            if (Pressed.ControlType == JoystickButtonToColor.ControlTypeEnum.Color)
                             {
                                 if (state.Value > 0)
                                 {
@@ -124,13 +126,18 @@ namespace HueHue.Views
                             }
                             else
                             {
-                                if (state.Value != 32511) //Guitar strum bar is centered
+                                Pressed.SetMinMaxValues(state.Value);
+                                var center = (Pressed.MinMaxValue[1] - Pressed.MinMaxValue[0]) / 2;
+                                var test = (state.Value - center).Clamp(0, 255); //TODO: Normalize values into [0, 255]
+
+                                if (state.Value != center)
                                 {
-                                    App.settings.Brightness = Pressed.PressedBrightness;
+
+                                    App.settings.Brightness = 0;
                                 }
                                 else
                                 {
-                                    App.settings.Brightness = Pressed.ReleasedBrightness;
+                                    App.settings.Brightness = Pressed.CenteredBrightness;
                                 }
                             }
                         }
@@ -171,7 +178,7 @@ namespace HueHue.Views
         {
             int index = StackColors.Children.IndexOf(((Grid)(((ColorControlPanel)sender).Parent)).Parent as UIElement);
 
-            ((ButtonColorPicker)StackColors.Children[index]).rectangle.Background = new SolidColorBrush(Color.FromRgb(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B));
+            ((ButtonColorPicker)StackColors.Children[index]).rectangle.Background = new SolidColorBrush(Media.Color.FromRgb(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B));
 
             buttonsToColors[index].Color = new RGB.NET.Core.Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
         }
@@ -198,7 +205,7 @@ namespace HueHue.Views
             for (int i = 0; i < buttonsToColors.Count; i++)
             {
                 var item = buttonsToColors[i];
-                if (item.ButtonType == JoystickButtonToColor.ButtonTypeEnum.Color)
+                if (item.ControlType == JoystickButtonToColor.ControlTypeEnum.Color)
                 {
                     var panel = new ButtonColorPicker(item);
                     panel.colorPanel.ColorChanged += ColorPanel_ColorChanged;
@@ -233,7 +240,7 @@ namespace HueHue.Views
         private void Item_Click(object sender, RoutedEventArgs e)
         {
             //Using the Uid to store the index of this item on the StackPanel
-            //Might no be a good practice, but it prevents the need of a lot of ((type)sender).Parent
+            //Surelly not be a good practice, but it prevents the need of a lot of ((type)sender).Parent
             int index = int.Parse(((MenuItem)sender).Uid);
 
             StackColors.Children.RemoveAt(index);
@@ -255,13 +262,13 @@ namespace HueHue.Views
 
         private async void Button_AddButtonColor_Click(object sender, RoutedEventArgs e)
         {
-            if ( guids.Count < 0 || combo_joysticks.SelectedIndex < 0)
+            if (guids.Count < 0 || combo_joysticks.SelectedIndex < 0)
             {
                 main.DisplaySnackbar("No joysticks detected!");
                 return;
             }
 
-            var view = new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, JoystickButtonToColor.ButtonTypeEnum.Color);
+            var view = new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, JoystickButtonToColor.ControlTypeEnum.Color);
             JoystickButtonToColor newButton = (JoystickButtonToColor)await DialogHost.Show(view);
 
             if (newButton == null)
@@ -269,7 +276,7 @@ namespace HueHue.Views
                 return;
             }
 
-            newButton.ButtonType = JoystickButtonToColor.ButtonTypeEnum.Color; //TODO: REMOVE POG
+            newButton.ControlType = JoystickButtonToColor.ControlTypeEnum.Color; //TODO: REMOVE POG
             buttonsToColors.Add(newButton);
             var panel = new ButtonColorPicker(buttonsToColors[buttonsToColors.Count - 1]);
             panel.colorPanel.ColorChanged += ColorPanel_ColorChanged;
@@ -309,7 +316,7 @@ namespace HueHue.Views
 
         private async void Button_AddButtonBrightness_Click(object sender, RoutedEventArgs e)
         {
-            var view = new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, JoystickButtonToColor.ButtonTypeEnum.Color);
+            var view = new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, JoystickButtonToColor.ControlTypeEnum.Color);
             JoystickButtonToColor newButton = (JoystickButtonToColor)await DialogHost.Show(view);
 
             if (newButton == null)
@@ -317,13 +324,14 @@ namespace HueHue.Views
                 return;
             }
 
-            newButton.ButtonType = JoystickButtonToColor.ButtonTypeEnum.Brightness; //TODO: REMOVE POG
+            newButton.ControlType = JoystickButtonToColor.ControlTypeEnum.Brightness; //TODO: REMOVE POG
             buttonsToColors.Add(newButton);
             var panel = new ButtonBrightnessPicker(buttonsToColors[buttonsToColors.Count - 1]);
             ContextMenu context = new ContextMenu();
             MenuItem menu = new MenuItem();
             menu.Header = "Remove";
             menu.Click += Item_Click;
+            menu.Uid = (buttonsToColors.Count - 1).ToString();
             context.Items.Add(menu);
             panel.ContextMenu = context;
 

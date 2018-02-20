@@ -16,7 +16,7 @@
             <RowDefinition Height="119*"/>
         </Grid.RowDefinitions>
         <materialDesign:ColorZone Background="{DynamicResource PrimaryHueMidBrush}" Height="46"/>
-        <TextBlock TextWrapping="Wrap" Margin="2,0,-2,18.8" TextAlignment="Center" Height="24" VerticalAlignment="Bottom" > Center all your Axys and press a button now!</TextBlock>
+        <TextBlock TextWrapping="Wrap" Margin="2,0,-2,18.8" TextAlignment="Center" Height="24" VerticalAlignment="Bottom" > Center all your Axis and press a button now!</TextBlock>
 
         <Border BorderThickness="2" BorderBrush="{DynamicResource PrimaryHueMidBrush}" MinWidth="256" MinHeight="256" ClipToBounds="True" Margin="0,44,0,0" Grid.RowSpan="2"/>
         <materialDesign:Card
@@ -30,7 +30,7 @@
 		    Style="{StaticResource MaterialDesignCircularProgressBar}"
 		    Value="50" Height="35" Width="33"/>
         </materialDesign:Card>
-        <ToggleButton x:Name="toggle_ignore" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,84,10,0" IsChecked="{Binding .}"  ToolTip="Button4 must be ignored on PS2 Guitars because the keep it pressed the whole time." Height="25" HorizontalAlignment="Right" Width="36" Grid.Row="1" />
-        <TextBlock TextWrapping="Wrap" Margin="0,0,51,10" TextAlignment="Right" Height="24" VerticalAlignment="Bottom" Grid.Row="1" ToolTip="Button4 must be ignored on PS2 Guitars because the keep it pressed the whole time." Text="Ignore button4" />
+        <ToggleButton x:Name="toggle_ignore" IsChecked="True" Style="{StaticResource MaterialDesignSwitchToggleButton}" Margin="0,0,10,10" ToolTip="Button4 must be ignored on PS2 Guitars because the keep it pressed the whole time." HorizontalAlignment="Right" Width="36" Grid.Row="1" Height="25" VerticalAlignment="Bottom" />
+        <TextBlock TextWrapping="Wrap" Margin="0,0,51,10" TextAlignment="Right" Height="24" VerticalAlignment="Bottom" Grid.Row="1" ToolTip="Button4 must be ignored on PS2 Guitars because the keep it pressed the whole time." Text="Ignore button4" HorizontalAlignment="Right" Width="249" />
     </Grid>
 </UserControl>

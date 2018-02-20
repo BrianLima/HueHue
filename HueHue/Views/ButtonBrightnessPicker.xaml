@@ -14,11 +14,11 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Slider Margin="4.4,8,9,0" VerticalAlignment="Top" Grid.Column="1" x:Name="PressedBrightness" Value="{Binding PressedBrightness}" Style="{StaticResource MaterialDesignDiscreteSlider}" Minimum="0" Maximum="255"/>
-        <Label Content="Pressed Brightness:" HorizontalAlignment="Left" Margin="20,36,0,0" VerticalAlignment="Top"/>
-        <Label Content="Released Brightness:" Margin="11,62,166,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <Label Content="Binded Button:" Margin="45,10,0.6,0" VerticalAlignment="Top"/>
+        <Label Content="Pressed Brightness:" HorizontalAlignment="Left" Margin="24,37,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right"/>
+        <Label Content="Centered Brightness:" Margin="15,62,2,0" VerticalAlignment="Top" HorizontalContentAlignment="Right"/>
+        <Label Content="Binded Button:" Margin="44,10,2,0" VerticalAlignment="Top" HorizontalContentAlignment="Right"/>
         <Label Content="{Binding Button}" Margin="4.4,10,10,0" VerticalAlignment="Top" Grid.Column="1" x:Name="BindedButton" Height="26"/>
-        <Rectangle Margin="81,91,81,0" RadiusY="4" RadiusX="4" x:Name="rectangle" x:FieldModifier="public" Grid.ColumnSpan="2" Fill="{StaticResource PrimaryHueLightBrush}" Height="4" VerticalAlignment="Top"/>
+        <Rectangle Margin="81,94,81,0" RadiusY="4" RadiusX="4" x:Name="rectangle" x:FieldModifier="public" Grid.ColumnSpan="2" Fill="{StaticResource PrimaryHueLightBrush}" Height="4" VerticalAlignment="Top"/>
         <Slider Margin="3.4,33,10,0" VerticalAlignment="Top" Grid.Column="1" Value="{Binding ReleasedBrightness}" Style="{StaticResource MaterialDesignDiscreteSlider}" Minimum="0" Maximum="255"/>
     </Grid>
 </UserControl>

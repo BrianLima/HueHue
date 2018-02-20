@@ -118,5 +118,6 @@
             <materialDesign:PackIcon Kind="Settings" Height="24" Width="24" />
         </Button>
         <materialDesign:Snackbar  Grid.Column="1" Margin="10,0,216,0" Grid.Row="2" x:Name="snackBar" MessageQueue="{materialDesign:MessageQueue}" Style="{DynamicResource SnackbarMessage}" materialDesign:ShadowAssist.ShadowDepth="Depth2"/>
+        <materialDesign:DialogHost x:Name="dialogHost" CloseOnClickAway="True" Grid.RowSpan="3" Margin="0,0,0,5" Grid.ColumnSpan="2" />
     </Grid>
 </Window>
