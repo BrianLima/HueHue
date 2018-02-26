@@ -44,7 +44,18 @@ namespace HueHue.Views
             {
                 foreach (var item in datas)
                 {
-                    JoystickUpdate x = datas[0];
+                    JoystickUpdate x;
+
+                    if (joystick.Information.InstanceName.Contains("Xbox"))
+                    {
+                        //not sure why, but xbox controllers always put pressed buttons after axis manipulation data contrary to my PS2 adapter
+                        x = datas[datas.Length - 1];
+                    }
+                    else
+                    {
+                        x = datas[0];
+                    }
+
                     if ((x.Offset != JoystickOffset.Buttons4 && (toggle_ignore.IsChecked ?? false)) && x.Value > 0)
                     {
                         buttonColor = new JoystickButtonToColor() { Button = x.Offset, Color = new Color(), ControlType = controlType, PressedBrightness = 64, CenteredBrightness = 255 };

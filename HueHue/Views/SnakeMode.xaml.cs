@@ -1,5 +1,4 @@
-﻿using HueHue.Helpers;
-using HueHue.Helpers.Modes;
+﻿using HueHue.Helpers.Modes;
 using RGB.NET.Core;
 using System;
 using System.Threading.Tasks;

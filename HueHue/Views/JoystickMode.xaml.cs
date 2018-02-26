@@ -129,11 +129,10 @@ namespace HueHue.Views
                                 Pressed.SetMinMaxValues(state.Value);
                                 var center = (Pressed.MinMaxValue[1] - Pressed.MinMaxValue[0]) / 2;
                                 var test = (state.Value - center).Clamp(0, 255); //TODO: Normalize values into [0, 255]
-
-                                if (state.Value != center)
+                                int deadZone = 500;
+                                if (state.Value > (center + deadZone) || state.Value < (center - deadZone))
                                 {
-
-                                    App.settings.Brightness = 0;
+                                    App.settings.Brightness = Pressed.PressedBrightness;
                                 }
                                 else
                                 {
