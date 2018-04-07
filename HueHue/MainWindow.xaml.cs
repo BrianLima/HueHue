@@ -176,5 +176,10 @@ namespace HueHue
         {
             frame.Navigate(new AddRazerChromaView());
         }
+
+        private void Button_addCoolerMaster_Click(object sender, RoutedEventArgs e)
+        {
+            frame.Navigate(new AddCoolerMasterView());
+        }
     }
 }

@@ -103,7 +103,7 @@
                             <TextBlock Text="Asus Aura" Margin="5,0,0,0" />
                         </StackPanel>
                     </Button>
-                    <Button ToolTip="Add a new Cooler Master Device" Style="{DynamicResource MaterialDesignRaisedLightButton }" Click="Button_AddArduino_Click" Margin="0,0,0,5">
+                    <Button ToolTip="Add a new Cooler Master Device" Style="{DynamicResource MaterialDesignRaisedLightButton }" Click="Button_addCoolerMaster_Click" Margin="0,0,0,5">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Icons/Devices/CoolerMaster.png" Margin="0,0,0,0"  RenderOptions.BitmapScalingMode="HighQuality"/>
                             <TextBlock Text="Cooler Master" Margin="5,0,0,0" />
