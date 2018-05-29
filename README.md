@@ -2,7 +2,7 @@
 ### Open source LED controler App for Windows, Arduinos and various RGB Devices
 
 
-HueHue is a simple LED controler based on Arduino and open-source libraries aimmed for PC cases, tables, decoration and any place where you want to put Windows PC-controled LED kits, some will see some resemblance to stablished PC case manufacturers functionality in this.
+HueHue is a simple LED controler based on Arduino and open-source libraries aimed for PC cases, tables, decoration and any place where you want to put Windows PC-controled LED kits. This has some resemblance to established PC case manufacturers functionality for LED control.
 
 #### What can it do:
 - Real time controled fixed colors.
