@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using RGB.NET.Core;
 using RGB.NET.Devices.CoolerMaster;
+using RGB.NET.Groups;
 
 namespace HueHue.Helpers.Devices
 {
@@ -14,6 +15,11 @@ namespace HueHue.Helpers.Devices
         private Thread _workerThread;
         private CancellationTokenSource _cancellationTokenSource;
         private bool running = false;
+        dynamic device;
+        ILedGroup deviceleds;
+        IDeviceUpdateTrigger t;
+       
+        //<CoolerMasterMouseRGBDevice> d;
 
         CoolerMasterDeviceProvider provider;
 
@@ -23,32 +29,40 @@ namespace HueHue.Helpers.Devices
             this.subType = _subType;
             this.Name = _Name;
             this.Icon = "/HueHue;component/Icons/Devices/CoolerMaster.png";
-        }
-
-        public static void GetCoolerMasterDevices()
-        {
-            RGBSurface s = RGBSurface.Instance;
 
             if (!CoolerMasterDeviceProvider.Instance.IsInitialized)
             {
                 CoolerMasterDeviceProvider.Instance.Initialize();
             }
 
+            App.surface.LoadDevices(CoolerMasterDeviceProvider.Instance, RGBDeviceType.Mouse, true);
 
-            //var a=  App.surface.Devices.OfType<RGBDeviceType.GraphicsCard>();
-            s.LoadDevices(CoolerMasterDeviceProvider.Instance);
-            foreach (var item in s.Devices)
+            //deviceleds = new ListLedGroup(RGBSurface.Instance.Leds).e;
+            //deviceleds
+        }
+
+        public static List<String> GetCoolerMasterDevices()
+        {
+            if (!CoolerMasterDeviceProvider.Instance.IsInitialized)
             {
-
+                CoolerMasterDeviceProvider.Instance.Initialize();
             }
+
+            List<String> result = new List<string>();
+
+            foreach (var item in CoolerMasterDeviceProvider.Instance.Devices)
+            {
+                result.Add(item.DeviceInfo.Model);
+            }
+
+            return result;
         }
 
         public override void Start()
         {
-            provider = new CoolerMasterDeviceProvider();
-            if (!provider.IsInitialized)
+            if (!CoolerMasterDeviceProvider.Instance.IsInitialized)
             {
-                provider.Initialize();
+                CoolerMasterDeviceProvider.Instance.Initialize();
             }
 
             if (_workerThread != null) return;
@@ -56,23 +70,98 @@ namespace HueHue.Helpers.Devices
             _cancellationTokenSource = new CancellationTokenSource();
             _workerThread = new Thread(BackgroundWorker_DoWork)
             {
-                Name = "Serial sending",
+                Name = "HueHue Device " + subType,
                 IsBackground = true
             };
             _workerThread.Start(_cancellationTokenSource.Token);
             running = true;
-
-            if (!CoolerMasterDeviceProvider.Instance.IsInitialized)
-            {
-                CoolerMasterDeviceProvider.Instance.Initialize();
-            }
-
-
         }
 
-        private void BackgroundWorker_DoWork()
+        private void BackgroundWorker_DoWork(object tokenObject)
         {
-            throw new NotImplementedException();
+            var cancellationToken = (CancellationToken)tokenObject;
+            while (!cancellationToken.IsCancellationRequested)
+            {
+                try
+                {
+                    var x = CoolerMasterDeviceProvider.Instance.Devices;
+                    //foreach (< item> in x)
+                    //{
+                        
+                    //    App.surface.Leds[0].se
+                    //    if (true)
+                    //    {
+
+                    //    }
+
+                    //}
+                    //switch (subType)
+                    //{
+                    //    case SubType.Keyboard:
+                    //        RazerRGBDevice<RazerKeyboardRGBDeviceInfo>()
+                    //        var keyboardGrid = Corale.Colore.Razer.Keyboard.Mode.Custom.Create();
+                    //        //Loop through all Rows
+                    //        for (var r = 0; r < Corale.Colore.Razer.Keyboard.Constants.MaxRows; r++)
+                    //        {
+                    //            //Loop through all Columns
+                    //            for (var c = 0; c < Corale.Colore.Razer.Keyboard.Constants.MaxColumns; c++)
+                    //            {
+                    //                // Set the current row and column to the random color
+                    //                keyboardGrid[r, c] = (new Color(Mode.LEDs[c].R, Mode.LEDs[c].G, Mode.LEDs[c].B));
+                    //            }
+                    //        }
+
+                    //        await Task.Run(() => Chroma.Instance.Keyboard.SetCustom(keyboardGrid));
+                    //        break;
+                    //    case SubType.Mouse:
+                    //        var mouseCustom = Corale.Colore.Razer.Mouse.Mode.Custom.Create();
+                    //        for (int i = 0; i < Corale.Colore.Razer.Mouse.Constants.MaxLeds; i++)
+                    //        {
+                    //            mouseCustom[i] = (new Color(Mode.LEDs[i].R, Mode.LEDs[i].G, Mode.LEDs[i].B));
+                    //        }
+                    //        await Task.Run(() => Chroma.Instance.Mouse.SetCustom(mouseCustom));
+                    //        break;
+                    //    case SubType.Headset: //LEDs on a headset for some reason doesn't seem to be adressable
+                    //                          //var headCustom = Corale.Colore.Razer.Headset.Mode.Static;
+
+                    //        await Task.Run(() => Chroma.Instance.Headset.SetAll(new Color(Mode.LEDs[0].R, Mode.LEDs[0].G, Mode.LEDs[0].B)));
+                    //        break;
+                    //    case SubType.Mousepad:
+                    //        var padCustom = Corale.Colore.Razer.Mousepad.Mode.Custom.Create();
+                    //        for (int i = 0; i < Corale.Colore.Razer.Mousepad.Constants.MaxLeds; i++)
+                    //        {
+                    //            padCustom[i] = (new Color(Mode.LEDs[i].R, Mode.LEDs[i].G, Mode.LEDs[i].B));
+                    //        }
+                    //        await Task.Run(() => Chroma.Instance.Mousepad.SetCustom(padCustom));
+                    //        break;
+                    //    case SubType.Keypad:
+                    //        var keypadGrid = Corale.Colore.Razer.Keypad.Mode.Custom.Create();
+                    //        // Loop through all Rows
+                    //        for (var r = 0; r < Corale.Colore.Razer.Keypad.Constants.MaxRows; r++)
+                    //        {
+                    //            //Loop through all Columns
+                    //            for (var c = 0; c < Corale.Colore.Razer.Keypad.Constants.MaxColumns; c++)
+                    //            {
+                    //                // Set the current row and column to the random color
+                    //                keypadGrid[r, c] = (new Color(Mode.LEDs[c].R, Mode.LEDs[c].G, Mode.LEDs[c].B));
+                    //            }
+                    //        }
+                    //        await Task.Run(() => Chroma.Instance.Keypad.SetCustom(keypadGrid)); break;
+                    //    case SubType.All:
+                    //        await Task.Run(() => Chroma.Instance.SetAll(new Color(Mode.LEDs[0].R, Mode.LEDs[0].G, Mode.LEDs[0].B)));
+                    //        break;
+                    //    default:
+                    //        break;
+                    //}
+
+                    //15 so we aproach 60~70 fps
+                    Task.Delay(15, cancellationToken).Wait(cancellationToken);
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
         }
 
         public override void Stop()
