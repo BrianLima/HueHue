@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using Spectrum;
 
 namespace HueHue.Helpers.Modes
 {
@@ -61,12 +62,12 @@ namespace HueHue.Helpers.Modes
         /// </summary>
         public static void CalcRainbow(double Saturation, double Lightness)
         {
-            decimal HSLstep = 360M / LEDs.Count;
+            var HSLstep = 360.0d / LEDs.Count;
 
             for (int i = 0; i < LEDs.Count; i++)
             {
                 //The HSL ColorSpace is WAY better do calculate this type of effect
-                //LEDs[i] = Color.FromHSV((double)Math.Ceiling(i * HSLstep), Saturation, Lightness);
+                LEDs[i] = new Color.HSV((double)Math.Floor(i * HSLstep), Saturation, Lightness);
             }
         }
 

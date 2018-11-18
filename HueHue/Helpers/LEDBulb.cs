@@ -104,6 +104,12 @@ namespace HueHue.Helpers
             return System.Drawing.Color.FromArgb(v.R, v.G, v.B);
         }
 
+        public static implicit operator LEDBulb(Color.HSV hsv)
+        {
+            var c = hsv.ToRGB();
+            return new LEDBulb(c.R, c.G, c.B);
+        }
+
         //public static implicit operator LEDBulb(Spectrum.Color rgb)
         //{
         //    return new LEDBulb(rgb.R, rgb.G, rgb.B);
