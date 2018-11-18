@@ -90,7 +90,14 @@ namespace HueHue.Views
         {
             if (timer != null && this.IsLoaded)
             {
-                Mode.FillSNakeStrip();
+                try
+                {
+                    Mode.FillSNakeStrip();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error while trying to apply colors: " + Environment.NewLine + ex.Message + ex.StackTrace);
+                }
             }
         }
 
