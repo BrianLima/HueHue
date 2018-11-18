@@ -1,5 +1,5 @@
 ﻿using System;
-//using Spectrum;
+using Spectrum;
 
 namespace HueHue.Helpers
 {
@@ -13,10 +13,10 @@ namespace HueHue.Helpers
             Random random = new Random();
             //Generating a random color via the HSL colorspace and then convert it to
             //Tradicional RGB, this makes the software generate randomized, yet saturated colors
-            //var BaseColor = Color.FromHSV(random.Next(0, 360), 1, 1);
-            //this.r = BaseColor.R;
-            //this.g = BaseColor.G;
-            //this.b = BaseColor.B;
+            var BaseColor = new Color.HSL(random.Next(0, 360), 1, 1).ToRGB();
+            this.r = BaseColor.R;
+            this.g = BaseColor.G;
+            this.b = BaseColor.B;
         }
 
         /// <summary>
@@ -41,6 +41,20 @@ namespace HueHue.Helpers
             this.r = r;
             this.g = g;
             this.b = b;
+        }
+
+        /// <summary>
+        /// Rotates a color by n degrees
+        /// </summary>
+        /// <param name="degree"></param>
+        public void AddHue(double degree)
+        {
+            var rotated = new Color.RGB(this.r, this.g, this.b).ToHSL().ShiftHue(degree).ToRGB();
+            this.r = rotated.R;
+            this.g = rotated.G;
+            this.b = rotated.B;
+
+            Console.WriteLine("R: {0} G:{1} B:{2}", this.r, this.g, this.b);
         }
 
         private byte r;
@@ -90,7 +104,7 @@ namespace HueHue.Helpers
             return System.Drawing.Color.FromArgb(v.R, v.G, v.B);
         }
 
-        //public static implicit operator LEDBulb(Color rgb)
+        //public static implicit operator LEDBulb(Spectrum.Color rgb)
         //{
         //    return new LEDBulb(rgb.R, rgb.G, rgb.B);
         //}

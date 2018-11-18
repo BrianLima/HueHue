@@ -30,7 +30,6 @@ namespace HueHue.Helpers
         {
             JObject jo = JObject.Load(reader);
 
-            Byte.TryParse(jo["A"].Value<string>(), out byte a);
             Byte.TryParse(jo["R"].Value<string>(), out byte r);
             Byte.TryParse(jo["G"].Value<string>(), out byte g);
             Byte.TryParse(jo["B"].Value<string>(), out byte b);

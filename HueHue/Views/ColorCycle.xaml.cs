@@ -1,6 +1,7 @@
 ﻿using HueHue.Helpers;
 using HueHue.Helpers.Modes;
 using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -49,6 +50,12 @@ namespace HueHue.Views
                 timer.Interval = TimeSpan.FromMilliseconds(e.NewValue);
                 timer.Start();
             }
+        }
+
+        private void TextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }
