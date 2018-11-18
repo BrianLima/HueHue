@@ -86,7 +86,7 @@ namespace HueHue.Views
 
         private void DefaultColor_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
         {
-            Mode.Colors[0] = new RGB.NET.Core.Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
+            Mode.Colors[0] = new LEDBulb(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
 
             Mode.FixedColor();
         }

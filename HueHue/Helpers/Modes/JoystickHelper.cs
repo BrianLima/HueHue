@@ -1,7 +1,6 @@
 ﻿using HueHue.Helpers.Devices;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using RGB.NET.Core;
 using SharpDX.DirectInput;
 using System;
 using System.Collections.Generic;
@@ -115,15 +114,15 @@ namespace HueHue.Helpers.Modes
 
         }
 
-        public JoystickButtonToColor(Color color, JoystickOffset button, ControlTypeEnum buttonType, byte pressedBrightness, byte releasedBrightness, int[] minCenterMaxValue)
-        {
-            this._color = color;
-            this._button = button;
-            this._control_type = buttonType;
-            this._pressed_brightness = pressedBrightness;
-            this._Centered_brightness = releasedBrightness;
-            this._min_max_value = minCenterMaxValue;
-        }
+        //public JoystickButtonToColor(Color color, JoystickOffset button, ControlTypeEnum buttonType, byte pressedBrightness, byte releasedBrightness, int[] minCenterMaxValue)
+        //{
+        //    this._color = color;
+        //    this._button = button;
+        //    this._control_type = buttonType;
+        //    this._pressed_brightness = pressedBrightness;
+        //    this._Centered_brightness = releasedBrightness;
+        //    this._min_max_value = minCenterMaxValue;
+        //}
 
         public enum ControlTypeEnum
         {
@@ -131,15 +130,15 @@ namespace HueHue.Helpers.Modes
             Brightness
         }
 
-        private Color _color;
-        /// <summary>
-        /// Gets or sets the color of the desired button
-        /// </summary>
-        public Color Color
-        {
-            get { return _color; }
-            set { _color = value; }
-        }
+        //private Color _color;
+        ///// <summary>
+        ///// Gets or sets the color of the desired button
+        ///// </summary>
+        //public Color Color
+        //{
+        //    get { return _color; }
+        //    set { _color = value; }
+        //}
 
         private JoystickOffset _button;
         /// <summary>
@@ -241,8 +240,8 @@ namespace HueHue.Helpers.Modes
             //Enums are stored as int64 on the JSON, to read it properly converting the index is needed
             JoystickOffset button = (JoystickOffset)jo["Button"].Value<Int64>();
             ControlTypeEnum buttonType = (ControlTypeEnum)jo["ButtonType"].Value<Int64>();
-
-            return new JoystickButtonToColor(new Color(a, r, g, b), button, buttonType, jo["PressedBrightness"].Value<byte>(), jo["ReleasedBrightness"].Value<byte>(), jo["MinCenterMaxValue"].Value<int[]>());
+            return null;
+            //return new JoystickButtonToColor(new Color(a, r, g, b), button, buttonType, jo["PressedBrightness"].Value<byte>(), jo["ReleasedBrightness"].Value<byte>(), jo["MinCenterMaxValue"].Value<int[]>());
         }
 
         public override bool CanWrite

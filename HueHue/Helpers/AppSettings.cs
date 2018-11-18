@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using RGB.NET.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,11 +47,11 @@ namespace HueHue.Helpers
             if (!File.Exists(AppData.FullName + "Colors.json"))
             {
                 File.Create(AppData.FullName + "Colors.json");
-                this._colors = new List<Color>() { new Color() { } };
+                this._colors = new List<LEDBulb>() { new LEDBulb() { } };
             }
             else
             {
-                this._colors = JsonConvert.DeserializeObject<List<Color>>(File.ReadAllText(AppData.FullName + "Colors.json"), new ColorsJsonConverter());
+                this._colors = JsonConvert.DeserializeObject<List<LEDBulb>>(File.ReadAllText(AppData.FullName + "Colors.json"), new ColorsJsonConverter());
             }
 
             if (!File.Exists(AppData.FullName + "Devices.json"))
@@ -72,7 +71,7 @@ namespace HueHue.Helpers
             }
             if (_colors == null)
             {
-                _colors = new List<Color>() { new Color() { } };
+                _colors = new List<LEDBulb>() { new LEDBulb() { } };
             }
         }
 
@@ -286,11 +285,11 @@ namespace HueHue.Helpers
             set { _auto_run = value; OnPropertyChanged("AutoRun"); }
         }
 
-        private List<Color> _colors;
+        private List<LEDBulb> _colors;
         /// <summary>
         /// List of colors the user is using
         /// </summary>
-        public List<Color> Colors
+        public List<LEDBulb> Colors
         {
             get { return _colors; }
             set { _colors = value; OnPropertyChanged("Colors"); }

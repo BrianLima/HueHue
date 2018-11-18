@@ -5,7 +5,6 @@ using Media = System.Windows.Media;
 using ColorTools;
 using System.Windows.Threading;
 using System.Threading.Tasks;
-using RGB.NET.Core;
 using HueHue.Helpers.Modes;
 
 namespace HueHue
@@ -103,7 +102,7 @@ namespace HueHue
         {
             int index = StackColors.Children.IndexOf(sender as UIElement);
 
-            Mode.Colors[index] = new RGB.NET.Core.Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
+            Mode.Colors[index] = new LEDBulb(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
 
 
             FillColor();
@@ -123,7 +122,7 @@ namespace HueHue
 
         private void Button_Add_Color_Click(object sender, RoutedEventArgs e)
         {
-            Mode.Colors.Add(new Color(255, 0, 0));
+            Mode.Colors.Add(new LEDBulb(255, 0, 0));
 
             ColorControlPanel panel = new ColorControlPanel();
             panel.Margin = new Thickness(10);

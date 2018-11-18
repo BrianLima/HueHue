@@ -1,5 +1,4 @@
-﻿using RGB.NET.Devices.Asus;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +8,15 @@ namespace HueHue.Helpers.Devices
 {
     public class AsusAura : Device, IDisposable
     {
-        AsusDeviceProvider provider;
+        //AsusDeviceProvider provider;
 
         public override void Start()
         {
-            provider = new AsusDeviceProvider();
-            if (!provider.IsInitialized)
-            {
-                provider.Initialize(RGB.NET.Core.RGBDeviceType.All, false, false);
-            }
+            //provider = new AsusDeviceProvider();
+            //if (!provider.IsInitialized)
+            //{
+            //    provider.Initialize(RGB.NET.Core.RGBDeviceType.All, false, false);
+            //}
         }
 
         public override void Stop()

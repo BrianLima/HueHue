@@ -25,13 +25,13 @@ namespace HueHue.Views.Devices
         {
             InitializeComponent();
 
-            ComboBox_SubType.ItemsSource = CoolerMaster.GetCoolerMasterDevices();
+            //ComboBox_SubType.ItemsSource = CoolerMaster.GetCoolerMasterDevices();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            App.devices.Add(new CoolerMaster("mouse", Device.SubType.Mouse, "MMouse"));
-            App.devices[1].Start();
+            //App.devices.Add(new CoolerMaster("mouse", Device.SubType.Mouse, "MMouse"));
+            //App.devices[1].Start();
         }
 
         private void ComboBox_SubType_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -1,5 +1,4 @@
-﻿using RGB.NET.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -13,12 +12,12 @@ namespace HueHue.Helpers.Modes
         /// <summary>
         /// List of colors the "Fixed Color" effect is based
         /// </summary>
-        public static List<Color> Colors = new List<Color>();
+        public static List<LEDBulb> Colors = new List<LEDBulb>();
 
         /// <summary>
         /// Strip of LEDs representing the LEDs attached to the Arduino
         /// </summary>
-        public static List<Color> LEDs;
+        public static List<LEDBulb> LEDs;
 
         /// <summary>
         /// Step used for some effects
@@ -33,12 +32,12 @@ namespace HueHue.Helpers.Modes
         {
             if (LEDs == null || LEDs.Count > 0)
             {
-                LEDs = new List<Color>();
+                LEDs = new List<LEDBulb>();
             }
 
             for (int i = 0; i < TotalLEDs; i++)
             {
-                LEDs.Add(new Color());
+                LEDs.Add(new LEDBulb());
             }
         }
 
@@ -67,7 +66,7 @@ namespace HueHue.Helpers.Modes
             for (int i = 0; i < LEDs.Count; i++)
             {
                 //The HSL ColorSpace is WAY better do calculate this type of effect
-                LEDs[i] = Color.FromHSV((double)Math.Ceiling(i * HSLstep), Saturation, Lightness);
+                //LEDs[i] = Color.FromHSV((double)Math.Ceiling(i * HSLstep), Saturation, Lightness);
             }
         }
 
@@ -98,11 +97,11 @@ namespace HueHue.Helpers.Modes
             }
         }
 
-        public static void CometMode(List<Color> Comet)
+        public static void CometMode(List<LEDBulb> Comet)
         {
             for (int i = 0; i < LEDs.Count; i++)
             {
-                LEDs[i] = new Color(Mode.Colors[0]);
+                LEDs[i] = new LEDBulb(Mode.Colors[0]);
             }
 
             Random r = new Random();
@@ -160,7 +159,7 @@ namespace HueHue.Helpers.Modes
             {
                 if (i % 2 == 0)
                 {
-                    LEDs[i] = new Color(Colors[0]);
+                    LEDs[i] = new LEDBulb(Colors[0]);
 
                     //LEDs[i].R = Colors[0].R;
                     //LEDs[i].G = Colors[0].G;
@@ -168,7 +167,7 @@ namespace HueHue.Helpers.Modes
                 }
                 else
                 {
-                    LEDs[i] = new Color(Colors[1]);
+                    LEDs[i] = new LEDBulb(Colors[1]);
 
                     //LEDs[i].R = Colors[1].R;
                     //LEDs[i].G = Colors[1].G;
@@ -195,8 +194,8 @@ namespace HueHue.Helpers.Modes
                 foreach (var item in pressedButtons)
                 {
                     if (spotLength == 0)
-                    {
-                        LEDs[i] = item.Color;
+                    {//TODO return to gather color
+                       // LEDs[i] = item.Color;
                         i++;
                     }
                     else
@@ -208,7 +207,7 @@ namespace HueHue.Helpers.Modes
                                 break;
                             }
 
-                            LEDs[i] = item.Color;
+                            //LEDs[i] = item.Color;
                             i++;
 
                         }
@@ -309,7 +308,8 @@ namespace HueHue.Helpers.Modes
         /// </summary>
         public static void ColorCycle()
         {
-            Colors[0] = Colors[0].AddHue(1);
+            //TODO: Fix Color Cycle
+            //Colors[0] = Colors[0].AddHue(1);
 
             //Fill the strip with the color
             for (int i = 0; i < LEDs.Count; i++)

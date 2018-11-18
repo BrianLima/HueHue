@@ -3,7 +3,6 @@ using HueHue.Helpers.Modes;
 using HueHue.Helpers.Devices;
 using HueHue.Views;
 using MaterialDesignThemes.Wpf;
-using RGB.NET.Core;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,7 +20,6 @@ namespace HueHue
         public static bool isRunning { get; private set; }
         public static TrayIcon icon;
         public static PaletteHelper helper;
-        public static RGBSurface surface = RGBSurface.Instance;
         public static bool autoStarted = false;
 
         private void Application_Startup(object sender, StartupEventArgs e)

@@ -1,6 +1,5 @@
 ﻿using System;
 //using Spectrum;
-using RGB.NET.Core;
 
 namespace HueHue.Helpers
 {
@@ -14,10 +13,10 @@ namespace HueHue.Helpers
             Random random = new Random();
             //Generating a random color via the HSL colorspace and then convert it to
             //Tradicional RGB, this makes the software generate randomized, yet saturated colors
-            var BaseColor = Color.FromHSV(random.Next(0, 360), 1, 1);
-            this.r = BaseColor.R;
-            this.g = BaseColor.G;
-            this.b = BaseColor.B;
+            //var BaseColor = Color.FromHSV(random.Next(0, 360), 1, 1);
+            //this.r = BaseColor.R;
+            //this.g = BaseColor.G;
+            //this.b = BaseColor.B;
         }
 
         /// <summary>
@@ -91,9 +90,9 @@ namespace HueHue.Helpers
             return System.Drawing.Color.FromArgb(v.R, v.G, v.B);
         }
 
-        public static implicit operator LEDBulb(Color rgb)
-        {
-            return new LEDBulb(rgb.R, rgb.G, rgb.B);
-        }
+        //public static implicit operator LEDBulb(Color rgb)
+        //{
+        //    return new LEDBulb(rgb.R, rgb.G, rgb.B);
+        //}
     }
 }

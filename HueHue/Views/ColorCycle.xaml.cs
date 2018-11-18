@@ -21,7 +21,7 @@ namespace HueHue.Views
             gridSettings.DataContext = App.settings;
 
             //Starts with Red
-            Mode.Colors[0] = new RGB.NET.Core.Color(255, 0, 0);
+            Mode.Colors[0] = new LEDBulb(255, 0, 0);
 
             Mode.ResetStep();
 

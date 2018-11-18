@@ -2,8 +2,6 @@
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System;
-using RGB.NET.Devices;
-using RGB.NET.Core;
 
 namespace HueHue.Helpers.Devices
 {
@@ -67,13 +65,13 @@ namespace HueHue.Helpers.Devices
             set { _subType = value; }
         }
 
-        private RGBDeviceType _RGBDeviceType;
+        //private RGBDeviceType _RGBDeviceType;
 
-        public RGBDeviceType GetRGBDeviceType
-        {
-            get { return _RGBDeviceType; }
-            set { _RGBDeviceType = value; }
-        }
+        //public RGBDeviceType GetRGBDeviceType
+        //{
+        //    get { return _RGBDeviceType; }
+        //    set { _RGBDeviceType = value; }
+        //}
 
 
         /// <summary>
@@ -120,7 +118,7 @@ namespace HueHue.Helpers.Devices
                 case "Aura":
                     return JsonConvert.DeserializeObject<Arduino>(jo.ToString(), SpecifiedSubclassConversion);
                 case "Chroma":
-                    return JsonConvert.DeserializeObject<RazerChroma>(jo.ToString(), SpecifiedSubclassConversion);
+                    //return JsonConvert.DeserializeObject<RazerChroma>(jo.ToString(), SpecifiedSubclassConversion);
                 default:
                     throw new Exception();
             }

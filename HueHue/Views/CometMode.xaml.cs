@@ -5,7 +5,6 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using Media = System.Windows.Media;
-using RGB.NET.Core;
 using HueHue.Helpers.Modes;
 
 namespace HueHue.Views
@@ -24,7 +23,7 @@ namespace HueHue.Views
 
             while (Mode.Colors.Count < 2)
             {
-                Mode.Colors.Add(new Color());
+                Mode.Colors.Add(new LEDBulb());
             }
 
             backgroundColor.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[0].R, Mode.Colors[0].G, Mode.Colors[0].B));
@@ -46,15 +45,15 @@ namespace HueHue.Views
             {
                 try
                 {
-                    var Origin = new Color(Mode.Colors[0].R,Mode.Colors[0].G, Mode.Colors[0].B);
+                    var Origin = new LEDBulb(Mode.Colors[0].R,Mode.Colors[0].G, Mode.Colors[0].B);
 
-                    var Destiny = new Color(Mode.Colors[1].R, Mode.Colors[1].G, Mode.Colors[1].B);
+                    var Destiny = new LEDBulb(Mode.Colors[1].R, Mode.Colors[1].G, Mode.Colors[1].B);
 
-                    List<Color> comet = new List<Color>();
+                    List<LEDBulb> comet = new List<LEDBulb>();
 
                     for (int i = 0; i < App.settings.Length; i++)
                     {
-                        comet.Add(new Color());
+                        comet.Add(new LEDBulb());
                     }
 
 
@@ -82,14 +81,14 @@ namespace HueHue.Views
 
         private void BackgroundColor_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
         {
-            Mode.Colors[0] = new Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
+            Mode.Colors[0] = new LEDBulb(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
 
             //Mode.FixedColor();
         }
 
         private void TailColor_ColorChanged(object sender, ColorTools.ColorControlPanel.ColorChangedEventArgs e)
         {
-            Mode.Colors[1] = new Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
+            Mode.Colors[1] = new LEDBulb(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
 
             //Mode.FixedColor();
         }

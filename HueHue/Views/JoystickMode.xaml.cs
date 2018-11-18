@@ -14,7 +14,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using Media = System.Windows.Media;
-using RGB.NET.Core;
 
 namespace HueHue.Views
 {
@@ -128,7 +127,7 @@ namespace HueHue.Views
                             {
                                 Pressed.SetMinMaxValues(state.Value);
                                 var center = (Pressed.MinMaxValue[1] - Pressed.MinMaxValue[0]) / 2;
-                                var test = (state.Value - center).Clamp(0, 255); //TODO: Normalize values into [0, 255]
+                                //var test = (state.Value - center).Clamp(0, 255); //TODO: Normalize values into [0, 255]
                                 int deadZone = 500;
                                 if (state.Value > (center + deadZone) || state.Value < (center - deadZone))
                                 {
@@ -179,7 +178,8 @@ namespace HueHue.Views
 
             ((ButtonColorPicker)StackColors.Children[index]).rectangle.Background = new SolidColorBrush(Media.Color.FromRgb(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B));
 
-            buttonsToColors[index].Color = new RGB.NET.Core.Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
+            //TODO pick color
+           // buttonsToColors[index].Color = new LEDBulb(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
         }
 
         private void combo_joysticks_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -356,7 +356,7 @@ namespace HueHue.Views
                 return;
             }
 
-            Mode.Colors[0] = new RGB.NET.Core.Color(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
+            Mode.Colors[0] = new LEDBulb(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
             Mode.FixedColor();
         }
 

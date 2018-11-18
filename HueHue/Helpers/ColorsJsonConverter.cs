@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using RGB.NET.Core;
 using System;
 
 namespace HueHue.Helpers
@@ -16,11 +15,11 @@ namespace HueHue.Helpers
 
         public override bool CanConvert(Type objectType)
         {
-            return (objectType == typeof(Color));
+            return (objectType == typeof(LEDBulb));
         }
 
         /// <summary>
-        /// Deserializes a JSON object back to a RGB.NET.Core.Color
+        /// Deserializes a JSON object back to a LEDBulb object
         /// </summary>
         /// <param name="reader"></param>
         /// <param name="objectType"></param>
@@ -36,7 +35,7 @@ namespace HueHue.Helpers
             Byte.TryParse(jo["G"].Value<string>(), out byte g);
             Byte.TryParse(jo["B"].Value<string>(), out byte b);
 
-            return new Color(a, r, g, b);
+            return new LEDBulb(r, g, b);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
