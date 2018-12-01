@@ -112,7 +112,7 @@ namespace HueHue.Views
                         JoystickButtonToColor Pressed = buttonsToColors.FirstOrDefault(x => x.Button == state.Offset);
                         if (Pressed != null)
                         {
-                            if (Pressed.ControlType == JoystickButtonToColor.ControlTypeEnum.Color)
+                            if (Pressed.ButtonType == JoystickButtonToColor.ButtonTypeEnum.Color)
                             {
                                 if (state.Value > 0)
                                 {
@@ -179,7 +179,7 @@ namespace HueHue.Views
             ((ButtonColorPicker)StackColors.Children[index]).rectangle.Background = new SolidColorBrush(Media.Color.FromRgb(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B));
 
             //TODO pick color
-           // buttonsToColors[index].Color = new LEDBulb(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
+            buttonsToColors[index].Color = new LEDBulb(e.CurrentColor.R, e.CurrentColor.G, e.CurrentColor.B);
         }
 
         private void combo_joysticks_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -204,7 +204,7 @@ namespace HueHue.Views
             for (int i = 0; i < buttonsToColors.Count; i++)
             {
                 var item = buttonsToColors[i];
-                if (item.ControlType == JoystickButtonToColor.ControlTypeEnum.Color)
+                if (item.ButtonType == JoystickButtonToColor.ButtonTypeEnum.Color)
                 {
                     var panel = new ButtonColorPicker(item);
                     panel.colorPanel.ColorChanged += ColorPanel_ColorChanged;
@@ -238,8 +238,8 @@ namespace HueHue.Views
 
         private void Item_Click(object sender, RoutedEventArgs e)
         {
-            //Using the Uid to store the index of this item on the StackPanel
-            //Surelly not be a good practice, but it prevents the need of a lot of ((type)sender).Parent
+            // Using the Uid to store the index of this item on the StackPanel
+            // Surelly not a good practice, but it prevents the need of a lot of ((type)sender).Parent
             int index = int.Parse(((MenuItem)sender).Uid);
 
             StackColors.Children.RemoveAt(index);
@@ -248,7 +248,7 @@ namespace HueHue.Views
             joystickHelper.SaveJoystickButtons(buttonsToColors.ToList(), guids[combo_joysticks.SelectedIndex]);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonRefreshJoysticks(object sender, RoutedEventArgs e)
         {
             RefreshJoysticks();
         }
@@ -267,7 +267,7 @@ namespace HueHue.Views
                 return;
             }
 
-            var view = new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, JoystickButtonToColor.ControlTypeEnum.Color);
+            var view = new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, JoystickButtonToColor.ButtonTypeEnum.Color);
             JoystickButtonToColor newButton = (JoystickButtonToColor)await DialogHost.Show(view);
 
             if (newButton == null)
@@ -275,12 +275,11 @@ namespace HueHue.Views
                 return;
             }
 
-            newButton.ControlType = JoystickButtonToColor.ControlTypeEnum.Color; //TODO: REMOVE POG
+            newButton.ButtonType = JoystickButtonToColor.ButtonTypeEnum.Color; //TODO: REMOVE POG
             buttonsToColors.Add(newButton);
             var panel = new ButtonColorPicker(buttonsToColors[buttonsToColors.Count - 1]);
             panel.colorPanel.ColorChanged += ColorPanel_ColorChanged;
             panel.colorPanel.MouseLeave += ColorPanel_MouseLeave;
-
             ContextMenu context = new ContextMenu();
             MenuItem menu = new MenuItem();
             menu.Header = "Remove";
@@ -315,7 +314,7 @@ namespace HueHue.Views
 
         private async void Button_AddButtonBrightness_Click(object sender, RoutedEventArgs e)
         {
-            var view = new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, JoystickButtonToColor.ControlTypeEnum.Color);
+            var view = new AddButton(guids[combo_joysticks.SelectedIndex], joystickHelper, JoystickButtonToColor.ButtonTypeEnum.Color);
             JoystickButtonToColor newButton = (JoystickButtonToColor)await DialogHost.Show(view);
 
             if (newButton == null)
@@ -323,7 +322,7 @@ namespace HueHue.Views
                 return;
             }
 
-            newButton.ControlType = JoystickButtonToColor.ControlTypeEnum.Brightness; //TODO: REMOVE POG
+            newButton.ButtonType = JoystickButtonToColor.ButtonTypeEnum.Brightness; //TODO: REMOVE POG
             buttonsToColors.Add(newButton);
             var panel = new ButtonBrightnessPicker(buttonsToColors[buttonsToColors.Count - 1]);
             ContextMenu context = new ContextMenu();

@@ -196,7 +196,7 @@ namespace HueHue.Helpers.Modes
                 {
                     if (spotLength == 0)
                     {//TODO return to gather color
-                       // LEDs[i] = item.Color;
+                        LEDs[i] = item.Color;
                         i++;
                     }
                     else
@@ -208,7 +208,7 @@ namespace HueHue.Helpers.Modes
                                 break;
                             }
 
-                            //LEDs[i] = item.Color;
+                            LEDs[i] = item.Color;
                             i++;
 
                         }

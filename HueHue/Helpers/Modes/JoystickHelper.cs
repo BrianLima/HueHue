@@ -14,7 +14,7 @@ namespace HueHue.Helpers.Modes
         private DirectInput directInput = new DirectInput();
 
         /// <summary>
-        /// Querys all available joysticks on the computer
+        /// Queries all available joysticks on the computer
         /// </summary>
         /// <returns>List<Guid>Joysticks</returns>
         public List<Guid> GetGuids()
@@ -106,39 +106,36 @@ namespace HueHue.Helpers.Modes
     [JsonConverter(typeof(JoystickButtonToColorJsonConverter))]
     public class JoystickButtonToColor
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public JoystickButtonToColor()
-        {
 
+        public JoystickButtonToColor(LEDBulb color, JoystickOffset button, ButtonTypeEnum buttonType, byte pressedBrightness, byte releasedBrightness, int[] minCenterMaxValue)
+        {
+            this._color = color;
+            this._button = button;
+            this._button_type = buttonType;
+            this._pressed_brightness = pressedBrightness;
+            this._Centered_brightness = releasedBrightness;
+            this._min_max_value = minCenterMaxValue;
         }
 
-        //public JoystickButtonToColor(Color color, JoystickOffset button, ControlTypeEnum buttonType, byte pressedBrightness, byte releasedBrightness, int[] minCenterMaxValue)
-        //{
-        //    this._color = color;
-        //    this._button = button;
-        //    this._control_type = buttonType;
-        //    this._pressed_brightness = pressedBrightness;
-        //    this._Centered_brightness = releasedBrightness;
-        //    this._min_max_value = minCenterMaxValue;
-        //}
+        public JoystickButtonToColor()
+        {
+        }
 
-        public enum ControlTypeEnum
+        public enum ButtonTypeEnum
         {
             Color,
             Brightness
         }
 
-        //private Color _color;
-        ///// <summary>
-        ///// Gets or sets the color of the desired button
-        ///// </summary>
-        //public Color Color
-        //{
-        //    get { return _color; }
-        //    set { _color = value; }
-        //}
+        private LEDBulb _color;
+        /// <summary>
+        /// Gets or sets the color of the desired button
+        /// </summary>
+        public LEDBulb Color
+        {
+            get { return _color; }
+            set { _color = value; }
+        }
 
         private JoystickOffset _button;
         /// <summary>
@@ -150,14 +147,14 @@ namespace HueHue.Helpers.Modes
             set { _button = value; }
         }
 
-        private ControlTypeEnum _control_type;
+        private ButtonTypeEnum _button_type;
         /// <summary>
         /// Gets or sets if this button is controlling color or brightness
         /// </summary>
-        public ControlTypeEnum ControlType
+        public ButtonTypeEnum ButtonType
         {
-            get { return _control_type; }
-            set { _control_type = value; }
+            get { return _button_type; }
+            set { _button_type = value; }
         }
 
         private byte _pressed_brightness;
@@ -232,16 +229,27 @@ namespace HueHue.Helpers.Modes
         {
             JObject jo = JObject.Load(reader);
 
-            Byte.TryParse(jo["Color"]["A"].Value<string>(), out byte a);
+            //Byte.TryParse(jo["Color"]["A"].Value<string>(), out byte a);
             Byte.TryParse(jo["Color"]["R"].Value<string>(), out byte r);
             Byte.TryParse(jo["Color"]["G"].Value<string>(), out byte g);
             Byte.TryParse(jo["Color"]["B"].Value<string>(), out byte b);
 
-            //Enums are stored as int64 on the JSON, to read it properly converting the index is needed
+            int[] minmax = new int[2];
+            for (int i = 0; i < 2; i++)
+            {
+                //TODO: Improve this parsing
+                minmax[i] = Int32.Parse(jo["MinMaxValue"][i].ToString());
+            }
+
+            //Enums are stored as int64 on the JSON, to read it properly we need to use a index
             JoystickOffset button = (JoystickOffset)jo["Button"].Value<Int64>();
-            ControlTypeEnum buttonType = (ControlTypeEnum)jo["ButtonType"].Value<Int64>();
-            return null;
-            //return new JoystickButtonToColor(new Color(a, r, g, b), button, buttonType, jo["PressedBrightness"].Value<byte>(), jo["ReleasedBrightness"].Value<byte>(), jo["MinCenterMaxValue"].Value<int[]>());
+            ButtonTypeEnum buttonType = (ButtonTypeEnum)jo["ButtonType"].Value<Int64>();
+            return new JoystickButtonToColor(new LEDBulb(r, g, b), 
+                                             button, 
+                                             buttonType, 
+                                             jo["PressedBrightness"].Value<byte>(), 
+                                             jo["CenteredBrightness"].Value<byte>(), 
+                                             minmax);
         }
 
         public override bool CanWrite

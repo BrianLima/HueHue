@@ -8,26 +8,31 @@
              xmlns:local="clr-namespace:HueHue.Views"
              Style="{StaticResource StyleUserControlPadronization}"
              mc:Ignorable="d" 
-             d:DesignWidth="450">
+             d:DesignWidth="{Binding RelativeSource=
+            {RelativeSource FindAncestor,
+            AncestorType={x:Type ListView}},
+            Path=ActualWidth}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="39"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="450"/>
+            <ColumnDefinition Width="149.493"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="72"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Fill="{DynamicResource PrimaryHueLightBrush}" Height="5" Margin="81,4,81,0" VerticalAlignment="Top" RadiusY="2.333" RadiusX="2.333" Grid.Row="2"/>
-        <controls:ColorControlPanel Margin="10,0" Style="{StaticResource StyleColorControlPanel}" x:Name="colorPanel" x:FieldModifier="public" Grid.Row="1" Visibility="Collapsed" Height="167" VerticalAlignment="Top" />
-        <Label Content="{Binding}" HorizontalContentAlignment="Left" HorizontalAlignment="Right" Margin="0,5,195,0" VerticalAlignment="Top" Height="26" Width="111" x:Name="labelBindedButton" />
-        <Label Content="Binded Button:" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="51,5,0,0" VerticalAlignment="Top" Height="26" Width="88"/>
+        <Rectangle Fill="{DynamicResource PrimaryHueLightBrush}" Height="5" Margin="10,4.8,9.6,-0.2" VerticalAlignment="Top" RadiusY="2.333" RadiusX="2.333" Grid.Row="2" Grid.ColumnSpan="3"/>
+        <controls:ColorControlPanel Margin="10,3.8,9.6,0" Style="{StaticResource StyleColorControlPanel}" x:Name="colorPanel" x:FieldModifier="public" Visibility="Collapsed" Height="167" VerticalAlignment="Top" Grid.ColumnSpan="3" Grid.Row="1" />
+        <Label Content="{Binding}" HorizontalContentAlignment="Left" Margin="10.4,5,10,0" VerticalAlignment="Top" Height="26" x:Name="labelBindedButton" Grid.Column="1" />
+        <Label Content="Binded Button:" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="47,5,0,0" VerticalAlignment="Top" Height="26" Width="99"/>
         <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                Margin="14,5,0,0" HorizontalAlignment="Left"
+                Margin="10,5,0,0" HorizontalAlignment="Left"
                 ToolTip="Add Button to Brightness" Click="Button_Expand_Click" Height="30" VerticalAlignment="Top" Grid.Row="0" Width="32">
             <materialDesign:PackIcon Kind="ArrowRight" Height="24" Width="24" x:Name="icon"/>
         </Button>
-        <Button Margin="414,5,0,0" HorizontalAlignment="Left" Width="26" Height="26" VerticalAlignment="Top" x:Name="rectangle" x:FieldModifier="public" Click="Button_Expand_Click" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
-        <Label Content="Color:" HorizontalAlignment="Left" Margin="371,5,0,0" VerticalAlignment="Top"/>
+        <Button Margin="46.299,5,0,0" HorizontalAlignment="Left" Width="26" Height="26" VerticalAlignment="Top" x:Name="rectangle" x:FieldModifier="public" Click="Button_Expand_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Grid.Column="2"/>
+        <Label Content="Color:" HorizontalAlignment="Left" Margin="3.299,5,0,0" VerticalAlignment="Top" Grid.Column="2"/>
     </Grid>
 </UserControl>

@@ -25,30 +25,39 @@
         </Grid>
         <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,0,4" Content="Joystick Reactive"/>
         <Border BorderBrush="{StaticResource PrimaryHueMidBrush}" Margin="10" Grid.Row="4" BorderThickness="1">
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="3" Margin="0,9,-1,0">
-                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical" x:Name="StackColors" CanVerticallyScroll="True"/>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="3" Margin="0.2,9.2,-1,-0.4">
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical" x:Name="StackColors" CanVerticallyScroll="True" Height="324" Width="auto"/>
             </ScrollViewer>
         </Border>
         <Grid Margin="10,1,10,5" Grid.Row="1" x:Name="gridSettings">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="51.2"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <ComboBox Margin="189,4,85,0" VerticalAlignment="Top" Height="28" x:Name="combo_joysticks" SelectionChanged="combo_joysticks_SelectionChanged"/>
+            <ComboBox Margin="189,4,8.4,0" VerticalAlignment="Top" Height="28" x:Name="combo_joysticks" SelectionChanged="combo_joysticks_SelectionChanged"/>
             <TextBlock HorizontalAlignment="Left" Margin="0,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="184" TextAlignment="Right" Text="Selected Joystick:"/>
-            <Button Content="Refresh" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Click="Button_Click"/>
-            <ComboBox Margin="189,37,85,0" VerticalAlignment="Top" Height="28" x:Name="combo_MultipleButtons" SelectedIndex="{Binding JoystickMultipleButtons}" SelectionChanged="combo_MultipleButtons_SelectionChanged">
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                Margin="0,0,9.6,55.8" HorizontalAlignment="Right"
+                ToolTip="Refresh Joysticks" VerticalAlignment="Bottom" Click="ButtonRefreshJoysticks" Grid.Column="1">
+                <materialDesign:PackIcon Kind="Refresh" Height="24" Width="24"/>
+            </Button>
+
+            <ComboBox Margin="189,37,10.4,0" VerticalAlignment="Top" Height="28" x:Name="combo_MultipleButtons" SelectedIndex="{Binding JoystickMultipleButtons}" SelectionChanged="combo_MultipleButtons_SelectionChanged">
                 <ComboBoxItem Content="Color LEDs alternately"/>
                 <ComboBoxItem Content="Divide the strip in sections"/>
             </ComboBox>
-            <ComboBox Margin="189,70,85,0" VerticalAlignment="Top" Height="28" x:Name="combo_UseDefault" SelectedIndex="{Binding JoystickUseDefault}" SelectionChanged="combo_UseDefault_SelectionChanged">
+            <ComboBox Margin="189,70,10.4,-0.4" VerticalAlignment="Top" Height="28" x:Name="combo_UseDefault" SelectedIndex="{Binding JoystickUseDefault}" SelectionChanged="combo_UseDefault_SelectionChanged" Grid.RowSpan="2">
                 <ComboBoxItem Content="Keep the previous color"/>
                 <ComboBoxItem Content="Return to a default Color"/>
             </ComboBox>
             <TextBlock HorizontalAlignment="Left" Margin="0,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="184" TextAlignment="Right" Text="When multiple buttons pressed:"/>
-            <TextBlock HorizontalAlignment="Left" Margin="8,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="176" TextAlignment="Right" Text="When all buttons are released:"/>
-            <Slider x:Name="sliderSection" Visibility="Collapsed" Value="{Binding Length}" HorizontalAlignment="Right" Margin="0,71,98,0" VerticalAlignment="Top" Width="166" Height="54" Minimum="1" Maximum="30" Style="{StaticResource MaterialDesignDiscreteSlider}" Grid.RowSpan="2"/>
-            <TextBlock x:Name="textSection" Text="Section Length:" HorizontalAlignment="Left" Margin="87,8,0,0" VerticalAlignment="Top" Width="82" Grid.Row="1" Visibility="Collapsed"/>
+            <TextBlock HorizontalAlignment="Left" Margin="8,82,0,-0.4" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="176" TextAlignment="Right" Text="When all buttons are released:" Grid.RowSpan="2"/>
+            <Slider x:Name="sliderSection" Visibility="Collapsed" Value="{Binding Length}" HorizontalAlignment="Right" Margin="0,71,34.4,-27.4" VerticalAlignment="Top" Width="166" Height="54" Minimum="1" Maximum="30" Style="{StaticResource MaterialDesignDiscreteSlider}" Grid.RowSpan="2"/>
+            <TextBlock x:Name="textSection" Text="Section Length:" HorizontalAlignment="Left" Margin="87,8.2,0,-7.4" VerticalAlignment="Top" Width="82" Grid.Row="1" Visibility="Collapsed" Height="0"/>
         </Grid>
 
         <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
