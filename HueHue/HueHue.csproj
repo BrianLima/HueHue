@@ -113,6 +113,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\CSCore\GradientCalculator.cs" />
+    <Compile Include="Helpers\CSCore\VoicePrint3DSpectrum.cs" />
     <Compile Include="Helpers\Devices\Arduino.cs" />
     <Compile Include="Helpers\Devices\AsusAura.cs" />
     <Compile Include="Helpers\Modes\BasicSpectrumProvider.cs" />
@@ -121,9 +123,9 @@
     <Compile Include="Helpers\Devices\Device.cs" />
     <Compile Include="Helpers\Modes\Mode.cs" />
     <Compile Include="Helpers\Modes\JoystickHelper.cs" />
-    <Compile Include="Helpers\Modes\MusicSpectrum.cs" />
+    <Compile Include="Helpers\CSCore\MusicSpectrum.cs" />
     <Compile Include="Helpers\Devices\RazerChroma.cs" />
-    <Compile Include="Helpers\Modes\SpectrumBase.cs" />
+    <Compile Include="Helpers\CSCore\SpectrumBase.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>

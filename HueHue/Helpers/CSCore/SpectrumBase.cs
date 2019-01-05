@@ -4,11 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace HueHue.Helpers.Modes
+namespace HueHue.Helpers.CSCore
 {
     public class SpectrumBase:INotifyPropertyChanged
     {
@@ -127,7 +124,7 @@ namespace HueHue.Helpers.Modes
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void UpdateFrequencyMapping()
+        public virtual void UpdateFrequencyMapping()
         {
             _maximumFrequencyIndex = Math.Min(_spectrumProvider.GetFftBandIndex(MaximumFrequency) + 1, _maxFftIndex);
             _minimumFrequencyIndex = Math.Min(_spectrumProvider.GetFftBandIndex(MinimumFrequency), _maxFftIndex);
@@ -158,7 +155,7 @@ namespace HueHue.Helpers.Modes
             }
         }
 
-        protected virtual SpectrumPointData[] CalculateSpectrumPoints(double maxValue, float[] fftBuffer)
+        public virtual SpectrumPointData[] CalculateSpectrumPoints(double maxValue, float[] fftBuffer)
         {
             this.ScalingStrategy = ScalingStrategy.Linear;
 
@@ -213,7 +210,7 @@ namespace HueHue.Helpers.Modes
 
                 //value = 0;
             }
-            Console.WriteLine(dataPoints[0].Value.ToString() + "             " + dataPoints[1].Value.ToString() + "                " + dataPoints[2].Value.ToString());
+            //Console.WriteLine(dataPoints[0].Value.ToString() + "             " + dataPoints[1].Value.ToString() + "                " + dataPoints[2].Value.ToString());
             return dataPoints.ToArray();
         }
 
@@ -224,7 +221,7 @@ namespace HueHue.Helpers.Modes
         }
 
         [DebuggerDisplay("{Value}")]
-        protected struct SpectrumPointData
+        public struct SpectrumPointData
         {
             public int SpectrumPointIndex;
             public double Value;

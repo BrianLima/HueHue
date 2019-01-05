@@ -1,4 +1,5 @@
 ﻿using CSCore.DSP;
+using HueHue.Helpers.CSCore;
 using System;
 using System.Collections.Generic;
 

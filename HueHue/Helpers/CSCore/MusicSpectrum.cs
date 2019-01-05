@@ -1,7 +1,8 @@
 using System;
 using CSCore.DSP;
+using HueHue.Helpers.Modes;
 
-namespace HueHue.Helpers.Modes
+namespace HueHue.Helpers.CSCore
 {
     class MusicSpectrum : SpectrumBase
     {
@@ -20,15 +21,15 @@ namespace HueHue.Helpers.Modes
             SpectrumPointData[] spectrumPoints = CalculateSpectrumPoints(255, fftBuffer);
             if (spectrumPoints[0].Value > 0)
             {
-                //Mode.Colors[0].SetR(CalculateScale(spectrumPoints[0].Value));
+                Mode.Colors[0].R = (CalculateScale(spectrumPoints[0].Value));
             }
             if (spectrumPoints[1].Value > 0)
             {
-                //Mode.Colors[0].SetG(CalculateScale(spectrumPoints[1].Value));
+                Mode.Colors[0].G = (CalculateScale(spectrumPoints[1].Value));
             }
             if (spectrumPoints[2].Value > 0)
             {
-                //Mode.Colors[0].SetB(CalculateScale(spectrumPoints[2].Value));
+                Mode.Colors[0].B = (CalculateScale(spectrumPoints[2].Value));
             }
         }
 

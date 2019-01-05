@@ -5,23 +5,11 @@ using CSCore.SoundIn;
 using CSCore.SoundOut;
 using CSCore.Streams;
 using CSCore.Streams.Effects;
-using HueHue.Helpers;
+using HueHue.Helpers.CSCore;
 using HueHue.Helpers.Modes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace HueHue.Views
@@ -38,7 +26,7 @@ namespace HueHue.Views
 //        private LineSpectrum _lineSpectrum; //TODO: create my handlers and converters from the audio spectrum to the RGB spectrum
 //        private VoicePrint3DSpectrum _voicePrint3DSpectrum;
         DispatcherTimer timer;
-        private MusicSpectrum _MusicSpectrum;
+        private VoicePrint3DSpectrum _BassSpectrum;
 
         public MusicMode()
         {
@@ -51,12 +39,17 @@ namespace HueHue.Views
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            var size = FftSize.Fft4096;
-
-           _MusicSpectrum.CreateSpectrum();
+            var size = FftSize.Fft256;
+            var fftBuffer = new float[(int)size];
             //render the spectrum
-            //GenerateLineSpectrum();
-           // GenerateVoice3DPrintSpectrum();
+            //GenerateLineSpectrum();   
+            _BassSpectrum.UpdateFrequencyMapping();
+            _BassSpectrum.SpectrumProvider.GetFftData(fftBuffer, _BassSpectrum);
+            var r  = _BassSpectrum.CalculateSpectrumPoints(255, fftBuffer);
+            if (true)
+            {
+                App.settings.Brightness = (byte)Math.Ceiling(r[0].Value);
+            }
         }
 
         private void GenerateLineSpectrum()
@@ -75,10 +68,10 @@ namespace HueHue.Views
         {
             Stop();
 
-            //open the default device 
-            _soundIn = new WasapiLoopbackCapture();
+            //open the default device
+            _soundIn = new WasapiLoopbackCapture(100, new WaveFormat(48000, 24, 2));
             //Our loopback capture opens the default render device by default so the following is not needed
-            _soundIn.Device = MMDeviceEnumerator.DefaultAudioEndpoint(DataFlow.Render, Role.Console);
+            //_soundIn.Device = MMDeviceEnumerator.DefaultAudioEndpoint(DataFlow.Render, Role.Console);
             _soundIn.Initialize();
 
             var soundInSource = new SoundInSource(_soundIn);
@@ -136,30 +129,23 @@ namespace HueHue.Views
             //
             ////linespectrum and voiceprint3dspectrum used for rendering some fft data
             ////in oder to get some fft data, set the previously created spectrumprovider 
-            _MusicSpectrum = new MusicSpectrum(fftSize)
+            _BassSpectrum = new VoicePrint3DSpectrum(fftSize)
             {
                 SpectrumProvider = spectrumProvider,
-                UseAverage = true,
-                Count = 30,
-                IsXLogScale = true,
-                ScalingStrategy = ScalingStrategy.Sqrt
+                UseAverage = false,
+                PointCount = 1,
+                IsXLogScale = false,
+                ScalingStrategy = ScalingStrategy.Sqrt,
+                MaximumFrequency = 250,
+                MinimumFrequency = 20,
             };
-            //_voicePrint3DSpectrum = new VoicePrint3DSpectrum(fftSize)
-            //{
-            //    SpectrumProvider = spectrumProvider,
-            //    UseAverage = true,
-            //    PointCount = 200,
-            //    IsXLogScale = true,
-            //    ScalingStrategy = ScalingStrategy.Sqrt
-            //};
-            //
+
             //the SingleBlockNotificationStream is used to intercept the played samples
             var notificationSource = new SingleBlockNotificationStream(aSampleSource);
             //pass the intercepted samples as input data to the spectrumprovider (which will calculate a fft based on them)
             notificationSource.SingleBlockRead += (s, a) => spectrumProvider.Add(a.Left, a.Right);
 
             _source = notificationSource.ToWaveSource(16);
-
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
