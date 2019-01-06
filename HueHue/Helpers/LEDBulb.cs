@@ -1,19 +1,32 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using Spectrum;
 
 namespace HueHue.Helpers
 {
     public class LEDBulb
     {
+        public enum PropertyType
+        {
+            Hue,
+            Saturation,
+            Lightness,
+        }
+
         /// <summary>
         /// Initializes with a new Random color
         /// </summary>
         public LEDBulb()
         {
-            Random random = new Random();
+            var random = new Random(DateTime.Now.Millisecond).Next(1, 360);
             //Generating a random color via the HSL colorspace and then convert it to
             //Tradicional RGB, this makes the software generate randomized, yet saturated colors
-            var BaseColor = new Color.HSL(random.Next(0, 360), 1, 1).ToRGB();
+
+            var BaseColor = new Color.HSL(random, 1, 0.5).ToRGB();
             this.r = BaseColor.R;
             this.g = BaseColor.G;
             this.b = BaseColor.B;
@@ -81,6 +94,28 @@ namespace HueHue.Helpers
             set { b = value; }
         }
 
+        public static LEDBulb Subtract(double v, PropertyType t, LEDBulb original)
+        {
+            Color.HSL newColor = new Color.RGB(original.r, original.g, original.b).ToHSL();
+            switch (t)
+            {
+                case PropertyType.Hue:
+                    newColor.ShiftHue(v).ToRGB();
+                    break;
+                case PropertyType.Saturation:
+                    newColor = new Color.HSL(newColor.H, 1, v);
+                    break;
+                case PropertyType.Lightness:
+                    newColor.ShiftLightness(-v);
+                    break;
+                default:
+                    // Do nothing
+                    break;
+            }
+
+            return new LEDBulb(newColor);
+        }
+
         private int _id;
 
         public int Id
@@ -110,9 +145,25 @@ namespace HueHue.Helpers
             return new LEDBulb(c.R, c.G, c.B);
         }
 
+        public static implicit operator LEDBulb(Color.HSL hsl)
+        {
+            var c = hsl.ToRGB();
+            return new LEDBulb(c.R, c.G, c.B);
+        }
+
         //public static implicit operator LEDBulb(Spectrum.Color rgb)
         //{
         //    return new LEDBulb(rgb.R, rgb.G, rgb.B);
         //}
+
+    }
+
+    static class Extensions
+    {
+        public static IList<T> Clone<T>(this IList<T> listToClone) where T : ICloneable
+        {
+            return listToClone.Select(item => (T)item.Clone()).ToList();
+        }
     }
 }
+

@@ -98,6 +98,10 @@ namespace HueHue.Helpers.Modes
             }
         }
 
+        /// <summary>
+        /// needs fix
+        /// </summary>
+        /// <param name="Comet"></param>
         public static void CometMode(List<LEDBulb> Comet)
         {
             for (int i = 0; i < LEDs.Count; i++)
@@ -222,7 +226,41 @@ namespace HueHue.Helpers.Modes
         /// </summary>
         public static void Music() /// selo rob de codigos bonito
         {
+            for (int i = 0; i <= LEDs.Count; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (i >= LEDs.Count )
+                    {
+                        break;
+                    }
 
+                    LEDs[i] = new LEDBulb(Colors[0]);
+                    i++;
+                }
+
+                for (int j = 0; j < 3; j++)
+                {
+                    if (i >= LEDs.Count)
+                    {
+                        break;
+                    }
+
+                    LEDs[i] = new LEDBulb(Colors[1]);
+                    i++;
+                }
+
+                for (int j = 0; j < 3; j++)
+                {
+                    if (i >= LEDs.Count)
+                    {
+                        break;
+                    }
+
+                    LEDs[i] = new LEDBulb(Colors[2]);
+                    i++;
+                }
+            }
         }
 
         /// <summary>
@@ -327,6 +365,5 @@ namespace HueHue.Helpers.Modes
                 LED.G = 0;
             }
         }
-
     }
 }
