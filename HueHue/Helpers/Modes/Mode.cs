@@ -228,37 +228,18 @@ namespace HueHue.Helpers.Modes
         {
             for (int i = 0; i <= LEDs.Count; i++)
             {
-                for (int j = 0; j < 3; j++)
+                foreach (LEDBulb color in Colors)
                 {
-                    if (i >= LEDs.Count )
+                    for (int j = 0; j < 10; j++)
                     {
-                        break;
+                        if (i >= LEDs.Count)
+                        {
+                            break;
+                        }
+
+                        LEDs[i] = new LEDBulb(color);
+                        i++;
                     }
-
-                    LEDs[i] = new LEDBulb(Colors[0]);
-                    i++;
-                }
-
-                for (int j = 0; j < 3; j++)
-                {
-                    if (i >= LEDs.Count)
-                    {
-                        break;
-                    }
-
-                    LEDs[i] = new LEDBulb(Colors[1]);
-                    i++;
-                }
-
-                for (int j = 0; j < 3; j++)
-                {
-                    if (i >= LEDs.Count)
-                    {
-                        break;
-                    }
-
-                    LEDs[i] = new LEDBulb(Colors[2]);
-                    i++;
                 }
             }
         }

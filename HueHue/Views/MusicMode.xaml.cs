@@ -38,11 +38,18 @@ namespace HueHue.Views
         private VoicePrint3DSpectrum _MidBassSpectrum;
         private VoicePrint3DSpectrum _UpperBassSpectrum;
 
+        private VoicePrint3DSpectrum _DeepMidSpectrum;
+        private VoicePrint3DSpectrum _MidMidSpectrum;
+        private VoicePrint3DSpectrum _UpperMidSpectrum;
+
+        private VoicePrint3DSpectrum _HighSpectrum;
+        private VoicePrint3DSpectrum _UltraHighSpectrum;
+
         public MusicMode()
         {
             InitializeComponent();
 
-            while (Mode.Colors.Count < 3)
+            while (Mode.Colors.Count < 8)
             {
                 Mode.Colors.Add(new LEDBulb());
             }
@@ -75,7 +82,34 @@ namespace HueHue.Views
             _UpperBassSpectrum.SpectrumProvider.GetFftData(fftBuffer, _UpperBassSpectrum);
             var ub = _MidBassSpectrum.CalculateSpectrumPoints(1, fftBuffer);
             Mode.Colors[2] = LEDBulb.Subtract(ub[0].Value, LEDBulb.PropertyType.Saturation, original_colors[2]);
+
+            _DeepMidSpectrum.UpdateFrequencyMapping();
+            _DeepMidSpectrum.SpectrumProvider.GetFftData(fftBuffer, _DeepMidSpectrum);
+            var dm = _DeepMidSpectrum.CalculateSpectrumPoints(1, fftBuffer);
+            Mode.Colors[3] = LEDBulb.Subtract(dm[0].Value, LEDBulb.PropertyType.Saturation, original_colors[3]);
+
+            _MidMidSpectrum.UpdateFrequencyMapping();
+            _MidMidSpectrum.SpectrumProvider.GetFftData(fftBuffer, _MidMidSpectrum);
+            var mm = _MidMidSpectrum.CalculateSpectrumPoints(1, fftBuffer);
+            Mode.Colors[4] = LEDBulb.Subtract(mm[0].Value, LEDBulb.PropertyType.Saturation, original_colors[4]);
+
+            _UpperMidSpectrum.UpdateFrequencyMapping();
+            _UpperMidSpectrum.SpectrumProvider.GetFftData(fftBuffer, _UpperMidSpectrum);
+            var um = _UpperMidSpectrum.CalculateSpectrumPoints(1, fftBuffer);
+            Mode.Colors[5] = LEDBulb.Subtract(um[0].Value, LEDBulb.PropertyType.Saturation, original_colors[5]);
+
+            _HighSpectrum.UpdateFrequencyMapping();
+            _HighSpectrum.SpectrumProvider.GetFftData(fftBuffer, _HighSpectrum);
+            var h = _HighSpectrum.CalculateSpectrumPoints(1, fftBuffer);
+            Mode.Colors[6] = LEDBulb.Subtract(h[0].Value, LEDBulb.PropertyType.Saturation, original_colors[6]);
+
+            _UltraHighSpectrum.UpdateFrequencyMapping();
+            _UltraHighSpectrum.SpectrumProvider.GetFftData(fftBuffer, _UltraHighSpectrum);
+            var uh = _UltraHighSpectrum.CalculateSpectrumPoints(1, fftBuffer);
+            Mode.Colors[7] = LEDBulb.Subtract(h[0].Value, LEDBulb.PropertyType.Saturation, original_colors[7]);
+
             Console.WriteLine("db {0}, mb{1}, hb{2}", db[0].Value, mb[0].Value, ub[0].Value);
+
             Mode.Music();
         }
 
@@ -169,6 +203,61 @@ namespace HueHue.Views
                 ScalingStrategy = ScalingStrategy.Decibel,
                 MaximumFrequency = 300,
                 MinimumFrequency = 160,
+            };
+
+            _DeepMidSpectrum = new VoicePrint3DSpectrum(fftSize)
+            {
+                SpectrumProvider = spectrumProvider,
+                UseAverage = false,
+                PointCount = 1,
+                IsXLogScale = true,
+                ScalingStrategy = ScalingStrategy.Decibel,
+                MaximumFrequency = 800,
+                MinimumFrequency = 300,
+            };
+
+            _MidMidSpectrum = new VoicePrint3DSpectrum(fftSize)
+            {
+                SpectrumProvider = spectrumProvider,
+                UseAverage = false,
+                PointCount = 1,
+                IsXLogScale = true,
+                ScalingStrategy = ScalingStrategy.Decibel,
+                MaximumFrequency = 2500,
+                MinimumFrequency = 800,
+            };
+
+            _UpperMidSpectrum = new VoicePrint3DSpectrum(fftSize)
+            {
+                SpectrumProvider = spectrumProvider,
+                UseAverage = false,
+                PointCount = 1,
+                IsXLogScale = true,
+                ScalingStrategy = ScalingStrategy.Decibel,
+                MaximumFrequency = 5000,
+                MinimumFrequency = 2500,
+            };
+
+            _HighSpectrum = new VoicePrint3DSpectrum(fftSize)
+            {
+                SpectrumProvider = spectrumProvider,
+                UseAverage = false,
+                PointCount = 1,
+                IsXLogScale = true,
+                ScalingStrategy = ScalingStrategy.Decibel,
+                MaximumFrequency = 10000,
+                MinimumFrequency = 5000,
+            };
+
+            _UltraHighSpectrum = new VoicePrint3DSpectrum(fftSize)
+            {
+                SpectrumProvider = spectrumProvider,
+                UseAverage = false,
+                PointCount = 1,
+                IsXLogScale = true,
+                ScalingStrategy = ScalingStrategy.Decibel,
+                MaximumFrequency = 20000,
+                MinimumFrequency = 10000,
             };
 
             // The SingleBlockNotificationStream is used to intercept the played samples
