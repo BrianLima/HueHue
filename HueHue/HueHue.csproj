@@ -64,6 +64,9 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.5.1.1280, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.2.5.1-ci1280\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.0.1\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -121,6 +124,7 @@
     <Compile Include="Helpers\ColorsJsonConverter.cs" />
     <Compile Include="Helpers\Devices\CoolerMaster.cs" />
     <Compile Include="Helpers\Devices\Device.cs" />
+    <Compile Include="Helpers\Modes\FrequencyHelper.cs" />
     <Compile Include="Helpers\Modes\Mode.cs" />
     <Compile Include="Helpers\Modes\JoystickHelper.cs" />
     <Compile Include="Helpers\CSCore\MusicSpectrum.cs" />
@@ -170,6 +174,9 @@
     <Compile Include="Helpers\AppSettings.cs" />
     <Compile Include="Views\JoystickMode.xaml.cs">
       <DependentUpon>JoystickMode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modes\Music\FrequencyPicker.xaml.cs">
+      <DependentUpon>FrequencyPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MusicMode.xaml.cs">
       <DependentUpon>MusicMode.xaml</DependentUpon>
@@ -252,6 +259,9 @@
     </Compile>
     <Page Include="Views\JoystickMode.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Modes\Music\FrequencyPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MusicMode.xaml">

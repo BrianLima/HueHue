@@ -10,7 +10,7 @@ namespace HueHue.Helpers
 {
     public class LEDBulb
     {
-        public enum PropertyType
+        public enum ColorPropertyType
         {
             Hue,
             Saturation,
@@ -94,24 +94,39 @@ namespace HueHue.Helpers
             set { b = value; }
         }
 
-        public static LEDBulb Subtract(double v, PropertyType t, LEDBulb original)
+        public static LEDBulb Subtract(double v, ColorPropertyType t, LEDBulb original)
         {
+            if (v  == 0)
+            {
+                return new LEDBulb(0, 0, 0);
+            }
+
             Color.HSL newColor = new Color.RGB(original.r, original.g, original.b).ToHSL();
             switch (t)
             {
-                case PropertyType.Hue:
+                case ColorPropertyType.Hue:
                     newColor.ShiftHue(v).ToRGB();
                     break;
-                case PropertyType.Saturation:
+                case ColorPropertyType.Saturation:
+                    //v /= 1000; //Scale the calculated number from 0 to .5
+                    //v /= 2;
+
                     newColor = new Color.HSL(newColor.H, 1, v);
                     break;
-                case PropertyType.Lightness:
+                case ColorPropertyType.Lightness:
                     newColor.ShiftLightness(-v);
                     break;
                 default:
                     // Do nothing
                     break;
             }
+
+            //if (v > .35)
+            //{
+            //    Random r = new Random();
+
+            //    newColor = newColor.GetTetradicColours().ToArray()[r.Next(1,4) -1];
+            //}
 
             return new LEDBulb(newColor);
         }

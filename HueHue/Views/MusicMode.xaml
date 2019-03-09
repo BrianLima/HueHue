@@ -3,13 +3,102 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:HueHue.Views"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              Style="{StaticResource StyleUserControlPadronization}"
-             d:DesignHeight="300" d:DesignWidth="300" Unloaded="UserControl_Unloaded">
+             d:DesignHeight="500" d:DesignWidth="500" Unloaded="UserControl_Unloaded">
     <Grid>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
-        <TextBlock Text="Not fully functional yet, under review in the comming releases." Margin="10,130,0,0" VerticalAlignment="Top" Height="77"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="56"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="ModeSettings" Margin="10,5,8,0" Height="287" VerticalAlignment="Top" Grid.Row="1">
+            <Grid Height="103" VerticalAlignment="Top" HorizontalAlignment="Left" Width="482" Margin="0,154,0,0">
+                <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Top" Height="27">
+                    <Label  Content="Audio Processing" HorizontalAlignment="Left" Margin="-10,-15,0,-17" FontFamily="Segoe UI Semibold" FontSize="14" Foreground="#DDFFFFFF"/>
+                </materialDesign:ColorZone>
+                <Label Content="Use Averages:" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top"/>
+                <Label Content="Point Count:" HorizontalAlignment="Left" Margin="324,30,0,0" VerticalAlignment="Top"/>
+                <Label Content="Use log scale:" HorizontalAlignment="Left" Margin="2,60,0,0" VerticalAlignment="Top"/>
+                <Label Content="Scale Strategy:" HorizontalAlignment="Left" Margin="146,29,0,0" VerticalAlignment="Top"/>
+                <Label Content="FFT Size:" HorizontalAlignment="Left" Margin="180,64,0,0" VerticalAlignment="Top"/>
+                <ToggleButton x:Name="ToggleAverages" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,32,341,0" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="{Binding MusicUseAverages}" Height="26" HorizontalAlignment="Right" Width="46" />
+                <ToggleButton x:Name="ToggleLog" Style="{StaticResource MaterialDesignSwitchToggleButton}" VerticalAlignment="Top" Margin="0,61,341,0" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="{Binding MusicUseLog}" Height="26" HorizontalAlignment="Right" Width="46"/>
+                <ComboBox x:Name="ComboFFT" SelectedIndex="{Binding MusicFFTSize}" HorizontalAlignment="Left" Margin="244,63,0,0" VerticalAlignment="Top" Width="73">
+                    <ComboBoxItem Content="64" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="128" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="256" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="512" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="1024" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="2048" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="4096" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="8192" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="16384" HorizontalAlignment="Left" Width="118"/>
+                </ComboBox>
+                <ComboBox x:Name="ComboStrategy" SelectedIndex="{Binding MusicScaleStrategy}" HorizontalAlignment="Left" Margin="244,29,0,0" VerticalAlignment="Top" Width="73">
+                    <ComboBoxItem Content="Decibel" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="Linear" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="Sqrt" HorizontalAlignment="Left" Width="118"/>
+                </ComboBox>
+                <ComboBox x:Name="ComboPoints" SelectedIndex="{Binding MusicPointCount}" HorizontalAlignment="Left" Margin="409,32,0,0" VerticalAlignment="Top" Width="73"/>
+            </Grid>
+            <Grid Height="72" VerticalAlignment="Top" HorizontalAlignment="Left" Width="482">
+                <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Top" Height="27">
+                    <Label  Content="Audio Device" HorizontalAlignment="Left" Margin="-10,-15,0,-17" FontFamily="Segoe UI Semibold" FontSize="14" Foreground="#DDFFFFFF"/>
+                </materialDesign:ColorZone>
+                <Label Content="Sample Rate" HorizontalAlignment="Left" Margin="0,34,0,0" VerticalAlignment="Top"/>
+                <Label Content="Channels" HorizontalAlignment="Left" Margin="173,32,0,0" VerticalAlignment="Top"/>
+                <Label Content="Bits" HorizontalAlignment="Left" Margin="325,32,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="ComboFFT1" SelectedIndex="{Binding MusicBits}" HorizontalAlignment="Left" Margin="361,32,0,0" VerticalAlignment="Top" Width="73">
+                    <ComboBoxItem Content="24" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="128" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="256" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="512" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="1024" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="2048" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="4096" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="16384" HorizontalAlignment="Left" Width="118"/>
+                </ComboBox>
+                <ComboBox x:Name="ComboSampleRate" SelectedIndex="{Binding MusicSampleRate}" HorizontalAlignment="Left" Margin="86,32,0,0" VerticalAlignment="Top" Width="73">
+                    <ComboBoxItem Content="48000" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="Decibel" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="Sqrt" HorizontalAlignment="Left" Width="118"/>
+                </ComboBox>
+                <ComboBox x:Name="ComboChannels" SelectedIndex="{Binding MusicChannels}" HorizontalAlignment="Left" Margin="240,32,0,0" VerticalAlignment="Top" Width="73">
+                    <ComboBoxItem Content="2" HorizontalAlignment="Left" Width="99"/>
+                </ComboBox>
+                <TextBlock x:Name="LabelDevice" TextAlignment="Right" Text="Device name" HorizontalAlignment="Right" Margin="0,7,10,0" VerticalAlignment="Top" Width="182" Foreground="#DDFFFFFF"/>
+            </Grid>
+            <Grid Height="72" VerticalAlignment="Top" HorizontalAlignment="Left" Width="482" Margin="0,77,0,0">
+                <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Top" Height="27">
+                    <Label  Content="Effect Settings" HorizontalAlignment="Left" Margin="-10,-15,0,-17" FontFamily="Segoe UI Semibold" FontSize="14" Foreground="#DDFFFFFF"/>
+                </materialDesign:ColorZone>
+                <Label Content="Modify" HorizontalAlignment="Left" Margin="0,34,0,0" VerticalAlignment="Top"/>
+                <Label Content="Length" HorizontalAlignment="Left" Margin="133,34,0,0" VerticalAlignment="Top"/>
+                <Slider x:Name="sliderSpeed" Value="{Binding Length}" Margin="194,9,88,0" Minimum="1" Maximum="10" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top"/>
+                <ComboBox x:Name="ComboFFT2" SelectedIndex="{Binding MusicBits}" HorizontalAlignment="Left" Margin="399,32,0,0" VerticalAlignment="Top" Width="73">
+                    <ComboBoxItem Content="24" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="128" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="256" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="512" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="1024" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="2048" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="4096" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="16384" HorizontalAlignment="Left" Width="118"/>
+                </ComboBox>
+                <ComboBox x:Name="ComboMusicModifier" SelectedIndex="{Binding MusicSampleRate}" HorizontalAlignment="Left" Margin="55,32,0,0" VerticalAlignment="Top" Width="73">
+                    <ComboBoxItem Content="Saturation" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="Lightness" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="Hue" HorizontalAlignment="Left" Width="118"/>
+                </ComboBox>
+            </Grid>
+            <Button x:Name="button" Content="Hook audio" VerticalAlignment="Bottom" Click="button_Click" Margin="0,0,10,10" HorizontalAlignment="Right" Width="115"/>
+        </Grid>
+        <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Top" Content="Music Mode" Height="56"/>
+        <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="2" Margin="10,11,10,0" x:Name="s">
+            <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="StackColors" Orientation="Horizontal" />
+        </ScrollViewer>
     </Grid>
 </UserControl>

@@ -86,13 +86,13 @@ namespace HueHue.Helpers.Devices
 
             foreach (LEDBulb bulb in Mode.LEDs)
             {
-                if (App.settings.CurrentMode == 1)
-                {
-                    outputStream[counter++] = Mode.Colors[0].B;
-                    outputStream[counter++] = Mode.Colors[0].G;
-                    outputStream[counter++] = Mode.Colors[0].R;
-                }
-                else
+                //if (App.settings.CurrentMode == 1)
+                //{
+                //    outputStream[counter++] = Mode.Colors[0].B;
+                //    outputStream[counter++] = Mode.Colors[0].G;
+                //    outputStream[counter++] = Mode.Colors[0].R;
+                //}
+                //else
                 {
                     outputStream[counter++] = bulb.B; // blue
                     outputStream[counter++] = bulb.G; // green

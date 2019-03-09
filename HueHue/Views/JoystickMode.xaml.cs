@@ -17,6 +17,7 @@ using Media = System.Windows.Media;
 
 namespace HueHue.Views
 {
+    //TODO: fix ButtonColorPicker list not expanding
     /// <summary>
     /// Interaction logic for JoystickMode.xaml
     /// </summary>

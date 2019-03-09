@@ -36,6 +36,15 @@ namespace HueHue.Helpers
             this._joystick_use_default = Properties.Settings.Default.JoystickUseDefault;
             this._joystick_selected = Properties.Settings.Default.JoystickSelected;
             this._breath_randomize = Properties.Settings.Default.BreathRandomize;
+            this._music_use_averages = Properties.Settings.Default.MusicUseAverages;
+            this._music_use_log = Properties.Settings.Default.MusicUseLog;
+            this._music_scale_strategy = Properties.Settings.Default.MusicScaleStrategy;
+            this._music_fft_size = Properties.Settings.Default.MusicFFTSize;
+            this._music_point_count = Properties.Settings.Default.MusicPointCount;
+            this._music_sample_rate = Properties.Settings.Default.MusicSampleRate;
+            this._music_channels = Properties.Settings.Default.MusicChannels;
+            this._music_bits = Properties.Settings.Default.MusicBits;
+            this._music_device_code = Properties.Settings.Default.MusicDeviceCode;
 
             CheckVersion();
 
@@ -163,6 +172,33 @@ namespace HueHue.Helpers
                     break;
                 case "BreathRandomize":
                     Properties.Settings.Default.BreathRandomize = _breath_randomize;
+                    break;
+                case "MusicUseAverages":
+                    Properties.Settings.Default.MusicUseAverages = _music_use_averages;
+                    break;
+                case "MusicUseLog":
+                    Properties.Settings.Default.MusicUseLog = _music_use_log;
+                    break;
+                case "MusicScaleStrategy":
+                    Properties.Settings.Default.MusicScaleStrategy = _music_scale_strategy;
+                    break;
+                case "MusicFFTSize":
+                    Properties.Settings.Default.MusicFFTSize = _music_fft_size;
+                    break;
+                case "MusicPointCount":
+                    Properties.Settings.Default.MusicPointCount = _music_point_count;
+                    break;
+                case "MusicSampleRate":
+                    Properties.Settings.Default.MusicSampleRate = _music_sample_rate;
+                    break;
+                case "MusicChannels":
+                    Properties.Settings.Default.MusicChannels = _music_channels;
+                    break;
+                case "MusicBits":
+                    Properties.Settings.Default.MusicBits = _music_bits;
+                    break;
+                case "MusicDeviceCode":
+                    Properties.Settings.Default.MusicDeviceCode = _music_device_code;
                     break;
                 default:
                     break;
@@ -383,6 +419,78 @@ namespace HueHue.Helpers
         {
             get { return _breath_randomize; }
             set { _breath_randomize = value; OnPropertyChanged("BreathRandomize"); }
+        }
+
+        private bool _music_use_averages;
+
+        public bool MusicUseAverages
+        {
+            get { return _music_use_averages; }
+            set { _music_use_averages = value; }
+        }
+
+        private bool _music_use_log;
+
+        public bool MusicUseLog
+        {
+            get { return _music_use_log; }
+            set { _music_use_log = value; }
+        }
+
+        private int _music_scale_strategy;
+
+        public int MusicScaleStrategy
+        {
+            get { return _music_scale_strategy; }
+            set { _music_scale_strategy = value; }
+        }
+
+        private int _music_fft_size;
+
+        public int MusicFFTSize
+        {
+            get { return _music_fft_size; }
+            set { _music_fft_size = value; }
+        }
+
+        private int _music_point_count;
+
+        public int MusicPointCount
+        {
+            get { return _music_point_count; }
+            set { _music_point_count = value; }
+        }
+
+        private int _music_sample_rate;
+
+        public int MusicSampleRate
+        {
+            get { return _music_sample_rate; }
+            set { _music_sample_rate = value; }
+        }
+
+        private int _music_channels;
+
+        public int MusicChannels
+        {
+            get { return _music_channels; }
+            set { _music_channels = value; }
+        }
+
+        private int _music_bits;
+
+        public int MusicBits
+        {
+            get { return _music_bits; }
+            set { _music_bits = value; }
+        }
+
+        private string _music_device_code;
+
+        public string MusicDeviceCode
+        {
+            get { return _music_device_code; }
+            set { _music_device_code = value; }
         }
 
     }

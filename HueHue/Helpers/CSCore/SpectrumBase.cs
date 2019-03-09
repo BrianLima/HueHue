@@ -157,8 +157,6 @@ namespace HueHue.Helpers.CSCore
 
         public virtual SpectrumPointData[] CalculateSpectrumPoints(double maxValue, float[] fftBuffer)
         {
-            this.ScalingStrategy = ScalingStrategy.Linear;
-
             var dataPoints = new List<SpectrumPointData>();
 
             double value0 = 0, value = 0;

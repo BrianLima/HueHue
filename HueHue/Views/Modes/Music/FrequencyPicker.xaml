@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="HueHue.Views.Modes.Music.FrequencyPicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HueHue.Views.Modes.Music"
+             xmlns:controls="clr-namespace:ColorTools;assembly=ColorTools"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             Style="{StaticResource StyleUserControlPadronization}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <controls:ColorControlPanel Margin="10,177,10,0" Style="{StaticResource StyleColorControlPanel}" x:Name="colorPanel" x:FieldModifier="public" Height="167" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+        <Label Content="Range:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="27" Width="49" Background="#00000000"/>
+        <Label Content="Label" Margin="0,10,5,0" VerticalAlignment="Top" Height="27" HorizontalAlignment="Right" Width="131"/>
+        <Label Content="Change on threshold:" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"/>
+        <Label Content="Enabled:" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Right" Margin="0,105,10,0" VerticalAlignment="Top" Width="113" SelectedIndex="0">
+            <ListBoxItem Content="Saturation"/>
+            <ListBoxItem Content="Lightness"/>
+            <ListBoxItem Content="Hue"/>
+        </ComboBox>
+        <Label Content="Modifies:" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</UserControl>

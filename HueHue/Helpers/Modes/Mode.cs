@@ -224,23 +224,29 @@ namespace HueHue.Helpers.Modes
         /// <summary>
         /// Placeholder
         /// </summary>
-        public static void Music() /// selo rob de codigos bonito
+        public static void Music(int[] values) /// selo rob de codigos bonito
         {
             for (int i = 0; i <= LEDs.Count; i++)
             {
-                foreach (LEDBulb color in Colors)
+                for (int k = 0; k < Colors.Count; k++)
                 {
-                    for (int j = 0; j < 10; j++)
+                    for (int j = 0;  j < App.settings.Length + values[k]; j++)
                     {
+                        if (values[k] > App.settings.Length)
+                        {
+                            values[k] = App.settings.Length;
+                        }
                         if (i >= LEDs.Count)
                         {
                             break;
                         }
 
-                        LEDs[i] = new LEDBulb(color);
+                        LEDs[i] = new LEDBulb(Colors[k]);
                         i++;
                     }
+
                 }
+
             }
         }
 
