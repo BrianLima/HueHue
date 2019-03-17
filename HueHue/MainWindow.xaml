@@ -42,7 +42,8 @@
             </Grid.RowDefinitions>
             <ComboBox x:Name="comboBox" SelectedIndex="{Binding CurrentMode}" Margin="75,0,11.6,0" VerticalAlignment="Top" Height="30" SelectionChanged="comboBox_SelectionChanged" Grid.Row="1">
                 <Label Content="Fixed Color" />
-                <Label Content="Music Mode"/>
+                <Label Content="Music Mode Simple"/>
+                <Label Content="Music Mode Equalizer"/>
                 <Label Content="Color Cycling"/>
                 <Label Content="Snake Color"/>
                 <Label Content="Rainbow Colors"/>

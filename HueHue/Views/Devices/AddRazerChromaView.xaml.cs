@@ -3,7 +3,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using static HueHue.Helpers.Devices.Device;
-using Corale.Colore;
+//using Corale.Colore;
 
 //TODO: Fix razer device using colore
 namespace HueHue.Views.Devices

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Spectrum;
+using System;
 using System.Collections.Generic;
 using System.Threading;
-using Spectrum;
 
 namespace HueHue.Helpers.Modes
 {
@@ -224,18 +224,18 @@ namespace HueHue.Helpers.Modes
         /// <summary>
         /// Placeholder
         /// </summary>
-        public static void Music(int[] values) /// selo rob de codigos bonito
+        public static void Music(double[] values) /// selo rob de codigos bonito
         {
             for (int i = 0; i <= LEDs.Count; i++)
             {
                 for (int k = 0; k < Colors.Count; k++)
                 {
-                    for (int j = 0;  j < App.settings.Length + values[k]; j++)
+                    for (int j = 0; j < App.settings.Length; j++)
                     {
-                        if (values[k] > App.settings.Length)
-                        {
-                            values[k] = App.settings.Length;
-                        }
+                        //if (values[k] > App.settings.Length)
+                        //{
+                        //    values[k] = App.settings.Length;
+                        //}
                         if (i >= LEDs.Count)
                         {
                             break;
@@ -246,8 +246,46 @@ namespace HueHue.Helpers.Modes
                     }
 
                 }
-
             }
+        }
+
+        public static double[] IncreaseVariance(double[] values)
+        {
+            double[] result = new double[values.Length];
+
+            for (int i = 0; i < values.Length; i++)
+            {
+                double increased = 0;
+                if (values[i] < 10) //decrease by 50%
+                {
+                    increased = values[i] * .5;
+                }
+                else if (values[i] >= 10 && values[i] < 20) //decrease by 25%
+                {
+                    increased = values[i] * .75;
+                }
+                else if (values[i] >= 20 && values[i] < 30) //do nothing
+                {
+
+                }
+                else if (values[i] >= 30 && values[i] < 40) //increase by 75%
+                {
+                    increased = values[i] * 1.25;
+                }
+                else // >= 400 increase by 50%
+                {
+                    increased = values[i] * 1.5;
+                }
+
+                if (increased > 50)
+                {
+                    increased = 50;
+                }
+
+                result[i] = increased / 100;
+            }
+
+            return result;
         }
 
         /// <summary>

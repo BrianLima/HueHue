@@ -108,25 +108,14 @@ namespace HueHue.Helpers
                     newColor.ShiftHue(v).ToRGB();
                     break;
                 case ColorPropertyType.Saturation:
-                    //v /= 1000; //Scale the calculated number from 0 to .5
-                    //v /= 2;
-
                     newColor = new Color.HSL(newColor.H, 1, v);
                     break;
                 case ColorPropertyType.Lightness:
                     newColor.ShiftLightness(-v);
                     break;
                 default:
-                    // Do nothing
                     break;
             }
-
-            //if (v > .35)
-            //{
-            //    Random r = new Random();
-
-            //    newColor = newColor.GetTetradicColours().ToArray()[r.Next(1,4) -1];
-            //}
 
             return new LEDBulb(newColor);
         }

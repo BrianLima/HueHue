@@ -56,33 +56,38 @@ namespace HueHue
                     App.settings.Save();
                     break;
                 case 1:
-                    frame.Navigate(new MusicMode());
+                    frame.Navigate(new MusicModeSimple());
                     App.settings.Save();
                     break;
                 case 2:
-                    frame.Navigate(new ColorCycle());
+                    frame.Navigate(new MusicModeEqualizer());
                     App.settings.Save();
                     break;
                 case 3:
-                    frame.Navigate(new SnakeMode());
+                    frame.Navigate(new ColorCycle());
                     App.settings.Save();
                     break;
                 case 4:
-                    frame.Navigate(new RainbowMode());
+                    frame.Navigate(new SnakeMode());
                     App.settings.Save();
                     break;
                 case 5:
-                    frame.Navigate(new JoystickMode());
+                    frame.Navigate(new RainbowMode());
                     App.settings.Save();
                     break;
                 case 6:
-                    frame.Navigate(new BreathMode());
+                    frame.Navigate(new JoystickMode());
                     App.settings.Save();
                     break;
                 case 7:
+                    frame.Navigate(new BreathMode());
+                    App.settings.Save();
+                    break;
+                case 8:
                     frame.Navigate(new CometMode());
                     App.settings.Save();
                     break;
+                    
                 default:
                     frame.Content = "LED's currently shut off";
                     Mode.ShutOff();

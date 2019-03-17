@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using static HueHue.Helpers.Devices.Device;
 using HueHue.Helpers.Devices;
-using Corale.Colore.Core;
+//using Corale.Colore.Core;
 
 namespace HueHue.Helpers
 {
