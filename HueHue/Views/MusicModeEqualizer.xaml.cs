@@ -1,5 +1,6 @@
 ﻿using ColorTools;
 using CSCore;
+using CSCore.CoreAudioAPI;
 using CSCore.DSP;
 using CSCore.SoundIn;
 using CSCore.SoundOut;
@@ -55,9 +56,11 @@ namespace HueHue.Views
         {
             InitializeComponent();
 
+            DetectAudioDevice();
+
             while (Mode.Colors.Count < 8)
             {
-                Mode.Colors.Add(new LEDBulb());
+                //Mode.Colors.Add(new LEDBulb());
             }
 
             for (int i = 0; i < 10; i++)
@@ -406,6 +409,19 @@ namespace HueHue.Views
                 Stop();
                 timer.Stop();
             }
+        }
+
+        private void DetectAudioDevice(object sender, RoutedEventArgs e)
+        {
+            //open the default device 
+            WasapiCapture device = new WasapiLoopbackCapture();
+            //Our loopback capture opens the default render device by default so the following is not needed
+            device.Device = MMDeviceEnumerator.DefaultAudioEndpoint(DataFlow.Render, Role.Console);
+
+            LabelDevice.Text = device.Device.FriendlyName;
+            App.settings.MusicSampleRate = device.Device.DeviceFormat.SampleRate;
+            App.settings.MusicChannels = device.Device.DeviceFormat.Channels;
+            App.settings.MusicBits = device.Device.DeviceFormat.BitsPerSample;
         }
     }
 }

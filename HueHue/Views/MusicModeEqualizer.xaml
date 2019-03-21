@@ -52,6 +52,7 @@
                 <Label Content="Channels" HorizontalAlignment="Left" Margin="173,32,0,0" VerticalAlignment="Top"/>
                 <Label Content="Bits" HorizontalAlignment="Left" Margin="325,32,0,0" VerticalAlignment="Top"/>
                 <ComboBox x:Name="ComboFFT1" SelectedIndex="{Binding MusicBits}" HorizontalAlignment="Left" Margin="361,32,0,0" VerticalAlignment="Top" Width="73">
+                    <ComboBoxItem Content="16" HorizontalAlignment="Left" Width="118"/>
                     <ComboBoxItem Content="24" HorizontalAlignment="Left" Width="118"/>
                     <ComboBoxItem Content="128" HorizontalAlignment="Left" Width="118"/>
                     <ComboBoxItem Content="256" HorizontalAlignment="Left" Width="118"/>
@@ -63,36 +64,28 @@
                 </ComboBox>
                 <ComboBox x:Name="ComboSampleRate" SelectedIndex="{Binding MusicSampleRate}" HorizontalAlignment="Left" Margin="86,32,0,0" VerticalAlignment="Top" Width="73">
                     <ComboBoxItem Content="48000" HorizontalAlignment="Left" Width="118"/>
-                    <ComboBoxItem Content="Decibel" HorizontalAlignment="Left" Width="118"/>
-                    <ComboBoxItem Content="Sqrt" HorizontalAlignment="Left" Width="118"/>
                 </ComboBox>
                 <ComboBox x:Name="ComboChannels" SelectedIndex="{Binding MusicChannels}" HorizontalAlignment="Left" Margin="240,32,0,0" VerticalAlignment="Top" Width="73">
                     <ComboBoxItem Content="2" HorizontalAlignment="Left" Width="99"/>
                 </ComboBox>
                 <TextBlock x:Name="LabelDevice" TextAlignment="Right" Text="Device name" HorizontalAlignment="Right" Margin="0,7,10,0" VerticalAlignment="Top" Width="182" Foreground="#DDFFFFFF"/>
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                    Margin="0,0,3,3" HorizontalAlignment="Right"
+                    ToolTip="Save Colors" VerticalAlignment="Bottom" Click="DetectAudioDevice">
+                    <materialDesign:PackIcon Kind="Refresh" Height="24" Width="24" />
+                </Button>
             </Grid>
             <Grid Height="72" VerticalAlignment="Top" HorizontalAlignment="Left" Width="482" Margin="0,77,0,0">
                 <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Top" Height="27">
                     <Label  Content="Effect Settings" HorizontalAlignment="Left" Margin="-10,-15,0,-17" FontFamily="Segoe UI Semibold" FontSize="14" Foreground="#DDFFFFFF"/>
                 </materialDesign:ColorZone>
-                <Label Content="Modify" HorizontalAlignment="Left" Margin="0,34,0,0" VerticalAlignment="Top"/>
-                <Label Content="Length" HorizontalAlignment="Left" Margin="133,34,0,0" VerticalAlignment="Top"/>
-                <Slider x:Name="sliderSpeed" Value="{Binding Length}" Margin="194,9,88,0" Minimum="1" Maximum="10" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top"/>
-                <ComboBox x:Name="ComboFFT2" SelectedIndex="{Binding MusicBits}" HorizontalAlignment="Left" Margin="399,32,0,0" VerticalAlignment="Top" Width="73">
-                    <ComboBoxItem Content="24" HorizontalAlignment="Left" Width="118"/>
-                    <ComboBoxItem Content="128" HorizontalAlignment="Left" Width="118"/>
-                    <ComboBoxItem Content="256" HorizontalAlignment="Left" Width="118"/>
-                    <ComboBoxItem Content="512" HorizontalAlignment="Left" Width="118"/>
-                    <ComboBoxItem Content="1024" HorizontalAlignment="Left" Width="118"/>
-                    <ComboBoxItem Content="2048" HorizontalAlignment="Left" Width="118"/>
-                    <ComboBoxItem Content="4096" HorizontalAlignment="Left" Width="118"/>
-                    <ComboBoxItem Content="16384" HorizontalAlignment="Left" Width="118"/>
+                <Label Content="Section Length" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top"/>
+                <Slider x:Name="sliderSpeed" Value="{Binding Length}" Margin="111,0,171,0" Minimum="1" Maximum="10" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top"/>
+                <ComboBox x:Name="ComboChannels_Copy" SelectedIndex="{Binding MusicType}" HorizontalAlignment="Left" Margin="361,32,0,0" VerticalAlignment="Top" Width="111">
+                    <ComboBoxItem Content="Simple Mode" HorizontalAlignment="Left" Width="99"/>
+                    <ComboBoxItem Content="Advanced Mode" HorizontalAlignment="Left" Width="111" Margin="0,0,-2.2,0"/>
                 </ComboBox>
-                <ComboBox x:Name="ComboMusicModifier" SelectedIndex="{Binding MusicSampleRate}" HorizontalAlignment="Left" Margin="55,32,0,0" VerticalAlignment="Top" Width="73">
-                    <ComboBoxItem Content="Saturation" HorizontalAlignment="Left" Width="118"/>
-                    <ComboBoxItem Content="Lightness" HorizontalAlignment="Left" Width="118"/>
-                    <ComboBoxItem Content="Hue" HorizontalAlignment="Left" Width="118"/>
-                </ComboBox>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="311,36,0,0" TextWrapping="Wrap" Text="{Binding Length}" VerticalAlignment="Top" Width="28"/>
             </Grid>
             <Button x:Name="button" Content="Hook audio" VerticalAlignment="Bottom" Click="button_Click" Margin="0,0,10,10" HorizontalAlignment="Right" Width="115"/>
         </Grid>
