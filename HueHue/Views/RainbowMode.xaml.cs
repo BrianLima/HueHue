@@ -17,18 +17,17 @@ namespace HueHue.Views
         public RainbowMode()
         {
             InitializeComponent();
+            GridRainbow.DataContext = App.settings;
 
             timer = new DispatcherTimer()
             {
                 Interval = TimeSpan.FromMilliseconds(App.settings.Speed)
+
             };
 
+            Mode.CalcRainbow(App.settings.Saturation / 10, App.settings.Lightness / 10);
             timer.Tick += Timer_Tick;
             timer.Start();
-
-            GridRainbow.DataContext = App.settings;
-
-            Mode.CalcRainbow(App.settings.Saturation / 10, App.settings.Lightness / 10);
         }
 
         private async void Timer_Tick(object sender, EventArgs e)

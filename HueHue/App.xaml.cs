@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using MaterialDesignColors;
 
 namespace HueHue
 {
@@ -65,7 +66,20 @@ namespace HueHue
 
             if (App.settings.DarkMode)
             {
-                App.helper.SetLightDark(App.settings.DarkMode);
+                // TODO: Implement a proper color handler here, allowing users to customize the color to their liking!
+                // We should have a base helper class for this tho
+                BaseTheme baseTheme;
+                if (App.settings.DarkMode)
+                {
+                    baseTheme = BaseTheme.Dark;
+                }
+                else { baseTheme = BaseTheme.Light; }
+
+                var theme = Theme.Create(baseTheme.GetBaseTheme(),
+                SwatchHelper.Lookup[(MaterialDesignColor)PrimaryColor.DeepPurple],
+                SwatchHelper.Lookup[(MaterialDesignColor)SecondaryColor.Lime]);
+
+                App.helper.SetTheme(theme);
             }
 
             if (!autoStarted)

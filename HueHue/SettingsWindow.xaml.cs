@@ -3,6 +3,8 @@ using System;
 using System.Windows;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
+using MaterialDesignThemes.Wpf;
+using MaterialDesignColors;
 
 namespace HueHue
 {
@@ -92,7 +94,20 @@ namespace HueHue
 
         private void toggle_mode_CheckChanged(object sender, RoutedEventArgs e)
         {
-            App.helper.SetLightDark(App.settings.DarkMode);
+            // TODO: Implement a proper color handler here, allowing users to customize the color to their liking!
+            // We should have a base helper class for this tho
+            BaseTheme baseTheme;
+            if (App.settings.DarkMode)
+            {
+                baseTheme = BaseTheme.Dark;
+            }
+            else { baseTheme = BaseTheme.Light; }
+
+            var theme = Theme.Create(baseTheme.GetBaseTheme(),
+            SwatchHelper.Lookup[(MaterialDesignColor)PrimaryColor.DeepPurple],
+            SwatchHelper.Lookup[(MaterialDesignColor)SecondaryColor.Lime]);
+
+            App.helper.SetTheme(theme);
         }
     }
 }

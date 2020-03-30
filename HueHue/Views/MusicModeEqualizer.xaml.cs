@@ -56,7 +56,7 @@ namespace HueHue.Views
         {
             InitializeComponent();
 
-            DetectAudioDevice();
+            DetectAudioDevice(null, null);
 
             while (Mode.Colors.Count < 8)
             {
