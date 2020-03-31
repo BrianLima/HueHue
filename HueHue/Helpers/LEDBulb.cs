@@ -27,9 +27,9 @@ namespace HueHue.Helpers
             //Tradicional RGB, this makes the software generate randomized, yet saturated colors
 
             var BaseColor = new Color.HSL(random, 1, 0.5).ToRGB();
-            this.r = BaseColor.R;
-            this.g = BaseColor.G;
-            this.b = BaseColor.B;
+            this.R = BaseColor.R;
+            this.G = BaseColor.G;
+            this.B = BaseColor.B;
         }
 
         /// <summary>
@@ -38,9 +38,9 @@ namespace HueHue.Helpers
         /// <param name="origin"></param>
         public LEDBulb(LEDBulb origin)
         {
-            this.r = origin.r;
-            this.g = origin.g;
-            this.b = origin.b;
+            this.R = origin.R;
+            this.G = origin.G;
+            this.B = origin.B;
         }
 
         /// <summary>
@@ -51,9 +51,9 @@ namespace HueHue.Helpers
         /// <param name="b"></param>
         public LEDBulb(byte r, byte g, byte b)
         {
-            this.r = r;
-            this.g = g;
-            this.b = b;
+            this.R = r;
+            this.G = g;
+            this.B = b;
         }
 
         /// <summary>
@@ -62,37 +62,19 @@ namespace HueHue.Helpers
         /// <param name="degree"></param>
         public void AddHue(double degree)
         {
-            var rotated = new Color.RGB(this.r, this.g, this.b).ToHSL().ShiftHue(degree).ToRGB();
-            this.r = rotated.R;
-            this.g = rotated.G;
-            this.b = rotated.B;
+            var rotated = new Color.RGB(this.R, this.G, this.B).ToHSL().ShiftHue(degree).ToRGB();
+            this.R = rotated.R;
+            this.G = rotated.G;
+            this.B = rotated.B;
 
-            Console.WriteLine("R: {0} G:{1} B:{2}", this.r, this.g, this.b);
+            Console.WriteLine("R: {0} G:{1} B:{2}", this.R, this.G, this.B);
         }
 
-        private byte r;
+        public byte R { get; set; }
 
-        public byte R
-        {
-            get { return r; }
-            set { r = value; }
-        }
+        public byte G { get; set; }
 
-        private byte g;
-
-        public byte G
-        {
-            get { return g; }
-            set { g = value; }
-        }
-
-        private byte b;
-
-        public byte B
-        {
-            get { return b; }
-            set { b = value; }
-        }
+        public byte B { get; set; }
 
         public static LEDBulb Subtract(double v, ColorPropertyType t, LEDBulb original)
         {
@@ -101,7 +83,7 @@ namespace HueHue.Helpers
                 return new LEDBulb(0, 0, 0);
             }
 
-            Color.HSL newColor = new Color.RGB(original.r, original.g, original.b).ToHSL();
+            Color.HSL newColor = new Color.RGB(original.R, original.G, original.B).ToHSL();
             switch (t)
             {
                 case ColorPropertyType.Hue:
@@ -120,13 +102,7 @@ namespace HueHue.Helpers
             return new LEDBulb(newColor);
         }
 
-        private int _id;
-
-        public int Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
+        public int Id { get; set; }
 
         public static explicit operator LEDBulb(System.Drawing.Color v)
         {

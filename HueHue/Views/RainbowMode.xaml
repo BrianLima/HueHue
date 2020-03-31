@@ -10,25 +10,25 @@
              d:DesignHeight="450" d:DesignWidth="450" Unloaded="UserControl_Unloaded">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="52"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Margin="0,0,0,0.578" Content="Rainbow Colors"/>
+        <materialDesign:ColorZone x:Name="colorZone" Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" VerticalAlignment="Stretch" Content="Rainbow Colors"/>
         <ScrollViewer Margin="-1,10,10,0" Grid.Row="1">
             <Grid x:Name="GridRainbow">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="76"/>
                 </Grid.ColumnDefinitions>
-                <TextBox HorizontalAlignment="Left" Height="24" Margin="14,21,0,0" TextWrapping="Wrap" Text="{Binding Speed}" VerticalAlignment="Top" Width="49" Grid.Column="1"/>
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="14,21,0,0" TextWrapping="Wrap" Text="{Binding Speed, Delay=1000}" VerticalAlignment="Top" Width="49" Grid.Column="1"/>
                 <Label Content="Speed:" HorizontalAlignment="Left" Margin="33,29,0,0" VerticalAlignment="Top" Height="27" Width="48"/>
-                <TextBox HorizontalAlignment="Left" Height="24" Margin="14,53,0,0" TextWrapping="Wrap" Text="{Binding Saturation}" VerticalAlignment="Top" Width="49" Grid.Column="1"/>
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="14,53,0,0" TextWrapping="Wrap" Text="{Binding Saturation, Delay=1000}" VerticalAlignment="Top" Width="49" Grid.Column="1"/>
                 <Label Content="Saturation:" HorizontalAlignment="Left" Margin="12,59,0,0" VerticalAlignment="Top" Height="27" Width="72"/>
-                <Slider x:Name="sliderSpeed" Value="{Binding Speed}" Margin="79,0,10,0" Minimum="1" Maximum="1000" Style="{StaticResource MaterialDesignDiscreteSlider}" ValueChanged="sliderSpeed_ValueChanged" Height="53" VerticalAlignment="Top"/>
-                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding Saturation}" Margin="79,30,10,0" Minimum="1" Maximum="10" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="14,83,0,0" TextWrapping="Wrap" Text="{Binding Lightness}" VerticalAlignment="Top" Width="49" Grid.Column="1"/>
+                <Slider x:Name="sliderSpeed" Value="{Binding Speed, Delay=1000}" Margin="79,0,10,0" Minimum="1" Maximum="1000" Style="{StaticResource MaterialDesignDiscreteSlider}" ValueChanged="sliderSpeed_ValueChanged" Height="53" VerticalAlignment="Top"/>
+                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding Saturation, Delay=1000}" Margin="79,30,10,0" Minimum="1" Maximum="10" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="14,83,0,0" TextWrapping="Wrap" Text="{Binding Lightness, Delay=1000}" VerticalAlignment="Top" Width="49" Grid.Column="1"/>
                 <Label Content="Lightness:" HorizontalAlignment="Left" Margin="12,88,0,0" VerticalAlignment="Top" Height="27" Width="67"/>
-                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding Lightness}" Margin="79,59,10,0" Minimum="1" Maximum="10" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top"/>
+                <Slider ValueChanged="sliders_ValueChanged" Value="{Binding Lightness, Delay=1000}" Margin="79,59,10,0" Minimum="1" Maximum="10" Style="{StaticResource MaterialDesignDiscreteSlider}" Height="53" VerticalAlignment="Top"/>
             </Grid>
         </ScrollViewer>
     </Grid>
