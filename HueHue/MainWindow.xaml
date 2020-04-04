@@ -42,14 +42,14 @@
             </Grid.RowDefinitions>
             <ComboBox x:Name="comboBox" SelectedIndex="{Binding CurrentMode}" Margin="75,0,11.6,0" VerticalAlignment="Top" Height="30" SelectionChanged="comboBox_SelectionChanged" Grid.Row="1">
                 <Label Content="Fixed Color" />
-                <Label Content="Music Mode Simple"/>
-                <Label Content="Music Mode Equalizer"/>
                 <Label Content="Color Cycling"/>
                 <Label Content="Snake Color"/>
                 <Label Content="Rainbow Colors"/>
                 <Label Content="Joystick Reactive"/>
                 <Label Content="Breath Mode"/>
                 <Label Content="Comet Mode"/>
+                <Label Content="Music Mode Simple"/>
+                <Label Content="Music Mode Equalizer"/>
                 <Label Content="Shut Off"/>
             </ComboBox>
             <TextBlock HorizontalAlignment="Left" Margin="0,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="64" Text="Mode:" Grid.Row="1" RenderTransformOrigin="0.561,0.346"/>
