@@ -34,12 +34,12 @@ namespace HueHue
                 devices.Add(device);
             }
 
-            Mode.Setup(App.settings.TotalLeds);
-
             foreach (var item in settings.Colors)
             {
                 Mode.Colors.Add(item);
             }
+
+            Mode.SwitchCurrentMode();
 
             icon = new TrayIcon();
 
@@ -94,17 +94,7 @@ namespace HueHue
             settings.SaveDevices();
         }
 
-        public static void SaveDevices()
-        {
-            var store = new List<Device>();
 
-            foreach (var item in devices)
-            {
-                store.Add(item);
-            }
-
-            settings.Devices = store;
-        }
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
@@ -120,6 +110,17 @@ namespace HueHue
             }
 
             icon.Close();
+        }
+        public static void SaveDevices()
+        {
+            var store = new List<Device>();
+
+            foreach (var item in devices)
+            {
+                store.Add(item);
+            }
+
+            settings.Devices = store;
         }
 
         private static void StartDevices()

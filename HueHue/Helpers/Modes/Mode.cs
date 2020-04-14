@@ -1,6 +1,7 @@
 ﻿using Spectrum;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading;
 
 namespace HueHue.Helpers.Modes
@@ -10,6 +11,81 @@ namespace HueHue.Helpers.Modes
     /// </summary>
     public static class Mode
     {
+        private static Thread t;
+        private static MethodInfo currentMode;
+        private static object[] parameters;
+
+        public static void SwitchCurrentMode()
+        {
+            if (t != null)
+            {
+                if (t.IsAlive)
+                {
+                    t.Abort();
+                }
+            }
+
+            Setup(App.settings.TotalLeds);
+            t = new Thread(new ThreadStart(executeMode));
+
+            string currentModeName = "FixedColor";
+
+            switch (App.settings.CurrentMode)
+            {
+                case 1:
+                    currentModeName = "ColorCycle";
+                    parameters = new object[] { };
+                    break;
+                case 2:
+                    currentModeName = "ShiftLeft";
+                    FillSNakeStrip();
+                    parameters = new object[] { };
+                    break;
+                case 3:
+                    currentModeName = "ShiftLeft";
+                    CalcRainbow();
+                    parameters = new object[] { };
+                    break;
+                case 4:
+                // TODO: Properly initialize joystickmode and more complex modes
+                //currentModeName = JoystickMode()
+                //params = ?????
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    break;
+
+                default:
+                    // currentModeName is initialized with the default mode 
+                    break;
+            }
+
+            currentMode = typeof(Mode).GetMethod(currentModeName);
+            t.Start();
+        }
+
+        private static void executeMode()
+        {
+            while (true)
+            {
+                currentMode.Invoke(currentMode, parameters);
+
+                if (App.settings.CurrentMode == 0)
+                {
+                    // We don't need to update the effect and colors as often for fixed color based effects
+                    Thread.Sleep(1000);
+                }
+                else
+                {
+                    Thread.Sleep(App.settings.Speed);
+                }
+            }
+        }
+
         /// <summary>
         /// List of colors the "Fixed Color" effect is based
         /// </summary>
@@ -60,14 +136,14 @@ namespace HueHue.Helpers.Modes
         /// <summary>
         /// Applies the rainbow effect on the LED strip
         /// </summary>
-        public static void CalcRainbow(double Saturation, double Lightness)
+        public static void CalcRainbow()
         {
             var HSLstep = 360.0d / LEDs.Count;
 
             for (int i = 0; i < LEDs.Count; i++)
             {
                 //The HSL ColorSpace is WAY better do calculate this type of effect
-                LEDs[i] = new Color.HSV((double)Math.Floor(i * HSLstep), Saturation, Lightness);
+                LEDs[i] = new Color.HSV((double)Math.Floor(i * HSLstep), App.settings.Saturation / 10, App.settings.Lightness / 10);
             }
         }
 
@@ -165,18 +241,10 @@ namespace HueHue.Helpers.Modes
                 if (i % 2 == 0)
                 {
                     LEDs[i] = new LEDBulb(Colors[0]);
-
-                    //LEDs[i].R = Colors[0].R;
-                    //LEDs[i].G = Colors[0].G;
-                    //LEDs[i].B = Colors[0].B;
                 }
                 else
                 {
                     LEDs[i] = new LEDBulb(Colors[1]);
-
-                    //LEDs[i].R = Colors[1].R;
-                    //LEDs[i].G = Colors[1].G;
-                    //LEDs[i].B = Colors[1].B;
                 }
             }
         }
@@ -199,7 +267,8 @@ namespace HueHue.Helpers.Modes
                 foreach (var item in pressedButtons)
                 {
                     if (spotLength == 0)
-                    {//TODO return to gather color
+                    {
+                        //TODO return to gather color
                         LEDs[i] = item.Color;
                         i++;
                     }
