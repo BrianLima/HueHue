@@ -56,23 +56,23 @@ namespace HueHue
                     App.settings.Save();
                     break;
                 case 1:
-                    frame.Navigate(new MusicModeSimple());
-                    App.settings.Save();
-                    break;
-                case 2:
-                    frame.Navigate(new MusicModeEqualizer());
-                    App.settings.Save();
-                    break;
-                case 3:
                     frame.Navigate(new ColorCycle());
                     App.settings.Save();
                     break;
-                case 4:
+                case 2:
                     frame.Navigate(new SnakeMode());
                     App.settings.Save();
                     break;
-                case 5:
+                case 3:
                     frame.Navigate(new RainbowMode());
+                    App.settings.Save();
+                    break;
+                case 4:
+                    frame.Navigate(new MusicModeEqualizer());
+                    App.settings.Save();
+                    break;
+                case 5:
+                    frame.Navigate(new MusicModeSimple());
                     App.settings.Save();
                     break;
                 case 6:
@@ -87,13 +87,15 @@ namespace HueHue
                     frame.Navigate(new CometMode());
                     App.settings.Save();
                     break;
-                    
+
                 default:
                     frame.Content = "LED's currently shut off";
                     Mode.ShutOff();
                     App.settings.Save();
                     break;
             }
+
+            Mode.SwitchCurrentMode();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
