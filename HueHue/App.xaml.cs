@@ -94,14 +94,12 @@ namespace HueHue
             settings.SaveDevices();
         }
 
-
-
         private void Application_Exit(object sender, ExitEventArgs e)
         {
+            Mode.kill();
+
             SaveDevices();
-
             settings.Colors = Mode.Colors;
-
             settings.Save();
 
             foreach (Device device in devices)

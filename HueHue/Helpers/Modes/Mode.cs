@@ -65,7 +65,20 @@ namespace HueHue.Helpers.Modes
             }
 
             currentMode = typeof(Mode).GetMethod(currentModeName);
+            t.Name = "HueHue RGB Mode Thread";
+            t.IsBackground = true;
             t.Start();
+        }
+
+        public static void kill()
+        {
+            if (t != null)
+            {
+                if (t.IsAlive)
+                {
+                    t.Abort();
+                }
+            }
         }
 
         private static void executeMode()
