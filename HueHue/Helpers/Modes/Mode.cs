@@ -66,8 +66,9 @@ namespace HueHue.Helpers.Modes
 
             for (int i = 0; i < LEDs.Count; i++)
             {
+               
                 //The HSL ColorSpace is WAY better do calculate this type of effect
-                LEDs[i] = Color.FromHSV((double)Math.Ceiling(i * HSLstep), Saturation, Lightness);
+                LEDs[i] = HSVColor.Create((double)Math.Ceiling(i * HSLstep), Saturation, Lightness);
             }
         }
 

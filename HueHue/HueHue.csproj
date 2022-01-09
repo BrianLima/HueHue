@@ -56,7 +56,6 @@
     </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.5.0.1161, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.2.5.0-ci1161\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
@@ -67,50 +66,32 @@
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.5.9\lib\net45\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="RGB.NET.Brushes, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RGB.NET.Brushes.0.0.1.67\lib\net45\RGB.NET.Brushes.dll</HintPath>
+    <Reference Include="RGB.NET.Brushes, Version=0.1.33.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RGB.NET.Brushes.0.1.33\lib\net45\RGB.NET.Brushes.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="RGB.NET.Core, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RGB.NET.Core.0.0.1.67\lib\net45\RGB.NET.Core.dll</HintPath>
+    <Reference Include="RGB.NET.Core, Version=0.1.33.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RGB.NET.Core.0.1.33\lib\net45\RGB.NET.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="RGB.NET.Decorators, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RGB.NET.Decorators.0.0.1.67\lib\net45\RGB.NET.Decorators.dll</HintPath>
+    <Reference Include="RGB.NET.Decorators, Version=0.1.33.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RGB.NET.Decorators.0.1.33\lib\net45\RGB.NET.Decorators.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="RGB.NET.Devices.Asus, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RGB.NET.Devices.Asus.0.0.1.67\lib\net45\RGB.NET.Devices.Asus.dll</HintPath>
+    <Reference Include="RGB.NET.Devices.CoolerMaster, Version=0.1.33.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RGB.NET.Devices.CoolerMaster.0.1.33\lib\net45\RGB.NET.Devices.CoolerMaster.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="RGB.NET.Devices.CoolerMaster, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RGB.NET.Devices.CoolerMaster.0.0.1.67\lib\net45\RGB.NET.Devices.CoolerMaster.dll</HintPath>
+    <Reference Include="RGB.NET.Devices.Razer, Version=0.1.33.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RGB.NET.Devices.Razer.0.1.33\lib\net45\RGB.NET.Devices.Razer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="RGB.NET.Devices.Corsair, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RGB.NET.Devices.Corsair.0.0.1.67\lib\net45\RGB.NET.Devices.Corsair.dll</HintPath>
-    </Reference>
-    <Reference Include="RGB.NET.Devices.Logitech, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RGB.NET.Devices.Logitech.0.0.1.67\lib\net45\RGB.NET.Devices.Logitech.dll</HintPath>
-    </Reference>
-    <Reference Include="RGB.NET.Devices.Msi, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RGB.NET.Devices.Msi.0.0.1.40\lib\net45\RGB.NET.Devices.Msi.dll</HintPath>
-    </Reference>
-    <Reference Include="RGB.NET.Devices.Novation, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RGB.NET.Devices.Novation.0.0.1.67\lib\net45\RGB.NET.Devices.Novation.dll</HintPath>
-    </Reference>
-    <Reference Include="RGB.NET.Devices.Razer, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RGB.NET.Devices.Razer.0.0.1.67\lib\net45\RGB.NET.Devices.Razer.dll</HintPath>
-    </Reference>
-    <Reference Include="RGB.NET.Groups, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RGB.NET.Groups.0.0.1.67\lib\net45\RGB.NET.Groups.dll</HintPath>
-    </Reference>
-    <Reference Include="RGB.NET.Input, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RGB.NET.Input.0.0.1.40\lib\net45\RGB.NET.Input.dll</HintPath>
-    </Reference>
-    <Reference Include="RGB.NET.Input.Corsair, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RGB.NET.Input.Corsair.0.0.1.42\lib\net45\RGB.NET.Input.Corsair.dll</HintPath>
-    </Reference>
-    <Reference Include="RGB.NET.WPF, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RGB.NET.WPF.0.0.1.15\lib\net45\RGB.NET.WPF.dll</HintPath>
+    <Reference Include="RGB.NET.Groups, Version=0.1.33.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RGB.NET.Groups.0.1.33\lib\net45\RGB.NET.Groups.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Sanford.Multimedia.Midi, Version=6.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sanford.Multimedia.Midi.Standard.6.6.0\lib\net35\Sanford.Multimedia.Midi.dll</HintPath>
+      <HintPath>..\packages\Sanford.Multimedia.Midi.6.6.0\lib\net20\Sanford.Multimedia.Midi.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpDX.4.2.0\lib\net45\SharpDX.dll</HintPath>
@@ -375,13 +356,6 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\RGB.NET.Devices.Msi.0.0.1.40\build\net45\RGB.NET.Devices.Msi.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\RGB.NET.Devices.Msi.0.0.1.40\build\net45\RGB.NET.Devices.Msi.targets'))" />
-  </Target>
-  <Import Project="..\packages\RGB.NET.Devices.Msi.0.0.1.40\build\net45\RGB.NET.Devices.Msi.targets" Condition="Exists('..\packages\RGB.NET.Devices.Msi.0.0.1.40\build\net45\RGB.NET.Devices.Msi.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
