@@ -88,9 +88,9 @@ namespace HueHue.Helpers.Devices
             {
                 if (App.settings.CurrentMode == 1)
                 {
-                    outputStream[counter++] = Mode.Colors[0].B;
-                    outputStream[counter++] = Mode.Colors[0].G;
-                    outputStream[counter++] = Mode.Colors[0].R;
+                    outputStream[counter++] = (byte)Mode.Colors[0].B;
+                    outputStream[counter++] = (byte)Mode.Colors[0].G;
+                    outputStream[counter++] = (byte)Mode.Colors[0].R;
                 }
                 else
                 {

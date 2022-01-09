@@ -14,10 +14,10 @@ namespace HueHue.Helpers
             Random random = new Random();
             //Generating a random color via the HSL colorspace and then convert it to
             //Tradicional RGB, this makes the software generate randomized, yet saturated colors
-            var BaseColor = Color.FromHSV(random.Next(0, 360), 1, 1);
-            this.r = BaseColor.R;
-            this.g = BaseColor.G;
-            this.b = BaseColor.B;
+            var BaseColor = HSVColor.Create(random.Next(0, 360), 1, 1);
+            this.r = (byte)BaseColor.R;
+            this.g = (byte)BaseColor.G;
+            this.b = (byte)BaseColor.B;
         }
 
         /// <summary>
@@ -42,6 +42,19 @@ namespace HueHue.Helpers
             this.r = r;
             this.g = g;
             this.b = b;
+        }
+
+        /// <summary>
+        /// Initilizes with a determined color
+        /// </summary>
+        /// <param name="r"></param>
+        /// <param name="g"></param>
+        /// <param name="b"></param>
+        public LEDBulb(double r, double g, double b)
+        {
+            this.r = (byte)r;
+            this.g = (byte)g;
+            this.b = (byte)b;
         }
 
         private byte r;

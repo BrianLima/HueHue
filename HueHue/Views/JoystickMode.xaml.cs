@@ -57,8 +57,8 @@ namespace HueHue.Views
                 }
             }
 
-            DefaultColor.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[0].R, Mode.Colors[0].G, Mode.Colors[0].B));
-            DefaultColor.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[0].R, Mode.Colors[0].G, Mode.Colors[0].B));
+            DefaultColor.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, (byte)Mode.Colors[0].R, (byte)Mode.Colors[0].G, (byte)Mode.Colors[0].B));
+            DefaultColor.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, (byte)Mode.Colors[0].R, (byte)Mode.Colors[0].G, (byte)Mode.Colors[0].B));
         }
 
         private void Start()

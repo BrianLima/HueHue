@@ -39,11 +39,11 @@ namespace HueHue.Views
             //Binding each value from the RGB is broken
             //Binding the color it self conflicts because the controler uses System.Windows.Media.Color instead of System.Drawing.Color
             //I give up, this is it, MVVM for a later day.
-            colorPicker.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[0].R, Mode.Colors[0].G, Mode.Colors[0].B));
-            colorPicker.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[0].R, Mode.Colors[0].G, Mode.Colors[0].B));
+            colorPicker.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, (byte)Mode.Colors[0].R, (byte)Mode.Colors[0].G, (byte)Mode.Colors[0].B));
+            colorPicker.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, (byte)Mode.Colors[0].R, (byte)Mode.Colors[0].G, (byte)Mode.Colors[0].B));
 
-            colorPicker2.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[1].R, Mode.Colors[1].G, Mode.Colors[1].B));
-            colorPicker2.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[1].R, Mode.Colors[1].G, Mode.Colors[1].B));
+            colorPicker2.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, (byte)Mode.Colors[1].R, (byte)Mode.Colors[1].G, (byte)Mode.Colors[1].B));
+            colorPicker2.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, (byte)Mode.Colors[1].R, (byte)Mode.Colors[1].G, (byte)Mode.Colors[1].B));
 
             Mode.FillSNakeStrip();
 

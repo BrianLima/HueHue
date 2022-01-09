@@ -310,7 +310,7 @@ namespace HueHue.Helpers.Modes
         /// </summary>
         public static void ColorCycle()
         {
-            Colors[0] = Colors[0].AddHue(1);
+            // Colors[0] = Colors[0].AddHue(1);
 
             //Fill the strip with the color
             for (int i = 0; i < LEDs.Count; i++)

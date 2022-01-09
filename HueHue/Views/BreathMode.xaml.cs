@@ -26,8 +26,8 @@ namespace HueHue.Views
 
             gridMain.DataContext = App.settings;
 
-            colorPanel.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[0].R, Mode.Colors[0].G, Mode.Colors[0].B));
-            colorPanel.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[0].R, Mode.Colors[0].G, Mode.Colors[0].B));
+            colorPanel.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, (byte)Mode.Colors[0].R, (byte)Mode.Colors[0].G, (byte)Mode.Colors[0].B));
+            colorPanel.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, (byte)Mode.Colors[0].R, (byte)Mode.Colors[0].G, (byte)Mode.Colors[0].B));
 
             _cancellationTokenSource = new CancellationTokenSource();
             _workerThread = new Thread(BackgroundWorker_DoWork) { Name = "BreathEffect", IsBackground = true };

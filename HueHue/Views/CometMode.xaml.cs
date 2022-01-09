@@ -27,10 +27,10 @@ namespace HueHue.Views
                 Mode.Colors.Add(new Color());
             }
 
-            backgroundColor.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[0].R, Mode.Colors[0].G, Mode.Colors[0].B));
-            backgroundColor.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[0].R, Mode.Colors[0].G, Mode.Colors[0].B));
-            cometColor.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[1].R, Mode.Colors[1].G, Mode.Colors[1].B));
-            cometColor.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[1].R, Mode.Colors[1].G, Mode.Colors[1].B));
+            backgroundColor.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, (byte)Mode.Colors[0].R, (byte)Mode.Colors[0].G, (byte)Mode.Colors[0].B));
+            backgroundColor.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, (byte)Mode.Colors[0].R, (byte)Mode.Colors[0].G, (byte)Mode.Colors[0].B));
+            cometColor.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, (byte)Mode.Colors[1].R, (byte)Mode.Colors[1].G, (byte)Mode.Colors[1].B));
+            cometColor.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, (byte)Mode.Colors[1].R, (byte)Mode.Colors[1].G, (byte)Mode.Colors[1].B));
 
             gridMain.DataContext = App.settings;
 
@@ -46,9 +46,9 @@ namespace HueHue.Views
             {
                 try
                 {
-                    var Origin = new Color(Mode.Colors[0].R,Mode.Colors[0].G, Mode.Colors[0].B);
+                    var Origin = new Color((byte)Mode.Colors[0].R,(byte)Mode.Colors[0].G, (byte)Mode.Colors[0].B);
 
-                    var Destiny = new Color(Mode.Colors[1].R, Mode.Colors[1].G, Mode.Colors[1].B);
+                    var Destiny = new Color((byte)Mode.Colors[1].R, (byte)Mode.Colors[1].G, (byte)Mode.Colors[1].B);
 
                     List<Color> comet = new List<Color>();
 

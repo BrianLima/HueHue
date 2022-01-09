@@ -31,8 +31,8 @@ namespace HueHue
                 //Binding the color it self conflicts because the controler uses System.Windows.Media.Color instead of System.Drawing.Color
                 //I give up, this is it, MVVM for a later day.
 
-                panel.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[i].R, Mode.Colors[i].G, Mode.Colors[i].B));
-                panel.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[i].R, Mode.Colors[i].G, Mode.Colors[i].B));
+                panel.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, (byte)Mode.Colors[i].R, (byte)Mode.Colors[i].G, (byte)Mode.Colors[i].B));
+                panel.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, (byte)Mode.Colors[i].R, (byte)Mode.Colors[i].G, (byte)Mode.Colors[i].B));
                 panel.DockAlphaVisibility = Visibility.Hidden;
                 panel.Style = (Style)FindResource("StyleColorControlPanel");
                 panel.ColorChanged += colorPicker_ColorChanged;
@@ -134,8 +134,8 @@ namespace HueHue
             //Binding each value from the RGB is broken
             //Binding the color it self conflicts because the controler uses System.Windows.Media.Color instead of System.Drawing.Color
             //I give up, this is it, MVVM for a later day.
-            panel.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[i].R, Mode.Colors[i].G, Mode.Colors[i].B));
-            panel.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, Mode.Colors[i].R, Mode.Colors[i].G, Mode.Colors[i].B));
+            panel.SelectedColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, (byte)Mode.Colors[i].R, (byte)Mode.Colors[i].G, (byte)Mode.Colors[i].B));
+            panel.InitialColorBrush = new Media.SolidColorBrush(Media.Color.FromArgb(0, (byte)Mode.Colors[i].R, (byte)Mode.Colors[i].G, (byte)Mode.Colors[i].B));
             panel.DockAlphaVisibility = Visibility.Hidden;
             panel.Style = (Style)FindResource("StyleColorControlPanel");
             panel.ColorChanged += colorPicker_ColorChanged;
